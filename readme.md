@@ -1,8 +1,4 @@
-# TIA_Simulation
-
-A simulation project of a HMI PLC display
-
-## Overview
+# MotorControlHMI
 
 This repository contains source code for the graphical user interface (GUI) and middleware targeting STM32 platforms.
 
@@ -13,3 +9,6 @@ This repository contains source code for the graphical user interface (GUI) and 
 
 ## Hardware requirements
 - STM32H7B3I-DK
+
+## How to use
+TBD
