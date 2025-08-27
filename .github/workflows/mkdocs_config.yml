@@ -1,4 +1,4 @@
-name: ci
+name: mkdocs_pipeline
 on:
   push:
     branches:
