@@ -1,4 +1,6 @@
-/output
-/STM32H7B3-Discovery-BuildEnvironment-V14.00.00.00
+Application/EmbeddedWizardGeneratedCode
+Application/Project/STM32CubeIDE/STM32H7B3-Discovery
+cmake/Obj
+cmake/Bin
 /TIA_Simulation/Application.ewu.bak
 /TIA_Simulation/TIA_Simulation.ewp.bak
