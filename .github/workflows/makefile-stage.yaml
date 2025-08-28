@@ -1,32 +1,24 @@
-name: Build Project
+name: Build EmbeddedWizard Project
 
-on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+on: [push, pull_request]
 
 jobs:
   build:
     runs-on: windows-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-      # Install MSYS2 to get make, gcc-arm-none-eabi, etc.
-      - name: Setup MSYS2
+      - name: Setup ARM GCC
+        uses: ryanclaassen/setup-arm-gcc@v1
+        with:
+          version: '12.2-2022.11'
+
+      - name: Install make
         uses: msys2/setup-msys2@v2
         with:
           update: true
-          install: make gcc-arm-none-eabi
+          install: make
 
-      # Optional: check compiler and make
-      - name: Verify tools
-        run: |
-          gcc --version
-          make --version
-
-      # Run your batch file
       - name: Build project
         run: .\StartGccBuildEnvironment.bat
