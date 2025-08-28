@@ -1,16 +1,21 @@
 name: Build EmbeddedWizard Project
 
-on: [push, pull_request]
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
 
 jobs:
   build:
     runs-on: windows-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
       - name: Setup ARM GCC
-        uses: ryanclaassen/setup-arm-gcc@v1
+        uses: carlosperate/arm-none-eabi-gcc-action@v1
         with:
           version: '12.2-2022.11'
 
