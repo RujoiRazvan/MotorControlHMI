@@ -1,0 +1,2517 @@
+<!DOCTYPE HTML PUBLIC>
+<HTML>
+<HEAD>
+  <META http-equiv="content-type" content="text/html; charset=UTF-8">
+  </META>
+  <TITLE>Embedded Wizard Code Generation Report</TITLE>
+  <STYLE>
+    *
+    {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -moz-box-sizing: border-box;
+    }
+    html
+    {
+      background-color: #FFFFFF;
+    }
+    body
+    {
+      font-family: Segoe UI, Segoe, Helvetica Neue, Helvetica, Tahoma, Verdana, Arial, sans-serif;
+      margin-left: 0em;
+      margin-right: 0em;
+      -webkit-font-smoothing: antialiased;
+    }
+    div.CodeMetrics table, div.Files table
+    {
+      border-collapse: collapse;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 2em;
+      margin-bottom: 2em;
+      border-spacing: 0;
+    }
+    div.CodeMetrics th, div.Files th
+    {
+      border: 1px solid #DDDDDD;
+      background-color: #F4F4F4;
+      padding: 0.5em;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      cursor: pointer;
+      color: #666666;
+    }
+    div.CodeMetrics th:hover, div.Files th:hover
+    {
+      border: 1px solid #CCCCCC;
+      background-color: #E4E4E4;
+    }
+    div.CodeMetrics th:active, div.Files th:active
+    {
+      border: 1px solid #BBBBBB;
+      background-color: #C4C4C4;
+      color: #000000;
+    }
+    div.CodeMetrics td, div.Files td
+    {
+      border: 1px solid #DDDDDD;
+      padding-left: 0.5em;
+      padding-right: 0.5em;
+      padding-top: 0.25em;
+      padding-bottom: 0.25em;
+    }
+    div.CodeMetrics tr:nth-child(odd), div.Files tr:nth-child(odd)
+    {
+      background-color: #F8F8F8;
+    }
+    div.CodeMetrics tr td:nth-child(3)
+    {
+      text-align: right;
+    }
+    div.CodeMetrics tr td:nth-child(2)
+    {
+      text-align: center;
+    }
+    div.Files tr td:nth-child(2)
+    {
+      text-align: center;
+    }
+    div.Files tr td:nth-child(3)
+    {
+      text-align: right;
+    }
+    div.CodeMetrics tr:last-child, div.Files tr:last-child
+    {
+      font-size: 100%;
+      font-weight: bold;
+    }
+    div.CodeMetrics tr:last-child td, div.Files tr:last-child td
+    {
+      padding: 0.5em;
+    }
+    div.Summary
+    {
+      margin-left:  2em;
+      margin-right: 2em;
+    }
+    div.Summary table
+    {
+      border-collapse: collapse;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 2em;
+      margin-bottom: 2em;
+      border-spacing: 0;
+    }
+    div.Summary tr p:nth-child(1)
+    {
+      line-height: 180%;
+      margin-top: -0.3em;
+    }
+    div.Summary tr p:nth-child(2)
+    {
+      margin-top: -0.5em;
+      margin-bottom: 0.2em;
+    }
+    div.Summary td
+    {
+      padding-left: 0.5em;
+      padding-right: 0.5em;
+      padding-top: 0.3em;
+      padding-bottom: 0.3em;
+    }
+    div.Summary td p:nth-child(1)
+    {
+      padding-top: 0.25em;
+      padding-bottom: 0.25em;
+    }
+    div.Summary td p:nth-child(2)
+    {
+      color: #999999;
+      padding-top: 0.25em;
+      font-size: 80%;
+      line-height: 145%;
+    }
+    div.Summary tr td:nth-child(1)
+    {
+    }
+    div.Summary tr td:nth-child(2)
+    {
+      text-align: right;
+    }
+    th
+    {
+      font-weight: normal;
+    }
+    div.Summary tr
+    {
+      border-top: 1px solid #DDDDDD;
+      border-bottom: 1px solid #DDDDDD;
+    }
+    div.Summary tr.HintRow p
+    {
+      padding-top: 1em;
+      padding-bottom: 1em;
+      line-height: 145%;
+      color: #FF0000;
+      font-size: 80%;
+    }
+    div.footer
+    {
+      height: 4em;
+      background-color: #FFFFFF;
+      margin-top: 1em;
+      margin-bottom: 2em;
+      padding-top: 0em;
+      text-align: center;
+    }
+    div.footer p.footer-1
+    {
+      margin-bottom: 0.1em;
+      font-size: 80%;
+      padding-top: 1em;
+      color: #999999;
+      line-height: 145%;
+    }
+    div.footer p.footer-2
+    {
+      margin-top: 0.1em;
+      margin-bottom: 0.1em;
+      font-size: 80%;
+      color: #999999;
+      line-height: 145%;
+    }
+    div.footer p.footer-3
+    {
+      margin-top: 0.1em;
+      padding-bottom: 2em;
+      font-size: 80%;
+      color: #999999;
+      line-height: 145%;
+    }
+    div.Caption
+    {
+      margin-top: 3em;
+      padding-bottom: 0em;
+      text-align: center;
+    }
+    div.Caption p:nth-child(1)
+    {
+      font-size: 180%;
+      color: #000000;
+    }
+    div.Caption p:nth-child(2)
+    {
+      margin-top: 0.5em;
+      font-size: 100%;
+      color: #999999;
+    }
+    a.LocalLink
+    {
+      text-decoration: none;
+      border-radius: 0.5em;
+      padding-top: 0.0em;
+      padding-bottom: 0.15em;
+      padding-left: 0.5em;
+      padding-right: 0.5em;
+      margin-left: 2em;
+      border: 1px solid #E4E4E4;
+      background-color: #F8F8F8;
+      color: #888888;
+      font-size: 80%;
+    }
+    a.LocalLink:hover
+    {
+      border: 1px solid #CCCCCC;
+      background-color: #E4E4E4;
+      color: #444444;
+    }
+    a.LocalLink:active
+    {
+      border: 1px solid #BBBBBB;
+      background-color: #C4C4C4;
+      color: #000000;
+    }
+  </STYLE>
+</HEAD>
+<BODY>
+  <DIV CLASS=Caption>
+    <P>Code Generation Report</p>
+    <P>created by Embedded Wizard Studio</p>
+  </DIV>
+  <DIV ID=Summary CLASS=Summary>
+    <TABLE>
+      <TR CLASS=InfoRow>
+        <TD>
+          <P>
+            Version of Embedded Wizard Studio
+          </P>
+        </TD>
+        <TD>
+          14.05
+        </TD>
+      </TR>
+      <TR CLASS=InfoRow>
+        <TD>
+          <P>
+            Date of code generation
+          </P>
+        </TD>
+        <TD>
+          27&nbsp;Aug&nbsp;2025<BR>21:42:34
+        </TD>
+      </TR>
+      <TR CLASS=InfoRow>
+        <TD>
+          <P>
+            Selected <a href="https://doc.embedded-wizard.de/profile-member">Profile</a>
+          </P>
+          <P>
+            The Profile contains configuration parameters affecting the code generation.
+          </P>
+        </TD>
+        <TD>
+          Profile
+        </TD>
+      </TR>
+      <TR CLASS=InfoRow>
+        <TD>
+          <P>
+            <a href="https://doc.embedded-wizard.de/platformpackage-attr">Platform Package</a> name
+          </P>
+          <P>
+            Identifies the Code Generator and Resource Converters used during the code generation.
+          </P>
+        </TD>
+        <TD>
+          STM.STM32.RGB565
+        </TD>
+      </TR>
+      <TR CLASS=InfoRow>
+        <TD>
+          <P>
+            Default <a href="https://doc.embedded-wizard.de/formatofbitmapresources-attr">conversion mode</a> of Bitmap Resources
+          </P>
+          <P>
+            Controls how pixel data of Bitmap Resources are processed if no other mode has been specified for the respective Bitmap Resource project member. See also the Bitmap Resource attribute <a href="https://doc.embedded-wizard.de/mode-attr">Mode</a>.
+          </P>
+        </TD>
+        <TD>
+          Compressed
+        </TD>
+      </TR>
+      <TR CLASS=InfoRow>
+        <TD>
+          <P>
+            <a href="https://doc.embedded-wizard.de/formatofstringconstants-attr">Conversion mode</a> of all String constants
+          </P>
+          <P>
+            Controls how contents of string Constant members and string literals are processed.
+          </P>
+        </TD>
+        <TD>
+          Compressed
+        </TD>
+      </TR>
+      <TR CLASS=SizeRow>
+        <TD>
+          <P>
+            Estimated total memory (flash) usage
+          </P>
+          <P>
+            It includes the implementation (the logic) of your application, all constant data and all resources.
+          </P>
+        </TD>
+        <TD>
+          244&nbsp;KB
+        </TD>
+      </TR>
+      <TR CLASS=HintRow>
+        <TD colspan='2'>
+          <P>
+            IMPORTANT: All memory (flash) usage values are roughly estimated.  The size of the resulting binary depends on the target CPU architecture, your C/C++ compiler and the selected compiler optimization modes. Also the estimated size does not include the <a href='https://doc.embedded-wizard.de/platform-package#4'>Runtime Environment</a>, the <a href='https://doc.embedded-wizard.de/platform-package#3'>Graphics Engine</a>, the C standard library (libc), BSP, drivers, etc.. In order to get an exact size of the resulting binary please evaluate the linker's MAP file.
+          </P>
+        </TD>
+      </TR>
+      <TR CLASS=SizeRow>
+        <TD>
+          <P>
+            Estimated memory (flash) usage for <a href="https://doc.embedded-wizard.de/class-member">Classes</a> only <a class=LocalLink href='#Classes'>Show&nbsp;detailed&nbsp;list</a>
+          </P>
+          <P>
+            It includes the implementation (the logic) of the application.
+          </P>
+        </TD>
+        <TD>
+          142&nbsp;KB
+        </TD>
+      </TR>
+      <TR CLASS=SizeRow>
+        <TD>
+          <P>
+            Estimated memory (flash) usage for <a href="https://doc.embedded-wizard.de/constant-member">Constants</a> only <a class=LocalLink href='#Constants'>Show&nbsp;detailed&nbsp;list</a>
+          </P>
+          <P>
+            It includes all Constant members found in your project.
+          </P>
+        </TD>
+        <TD>
+          2&nbsp;KB
+        </TD>
+      </TR>
+      <TR CLASS=SizeRow>
+        <TD>
+          <P>
+            Estimated memory (flash) usage for Strings only <a class=LocalLink href='#Strings'>Show&nbsp;detailed&nbsp;list</a>
+          </P>
+          <P>
+            It includes the converted contents of all string Constant members and string literals found in your project.
+          </P>
+        </TD>
+        <TD>
+          2&nbsp;KB
+        </TD>
+      </TR>
+      <TR CLASS=SizeRow>
+        <TD>
+          <P>
+            Estimated memory (flash) usage for <a href="https://doc.embedded-wizard.de/autoobject-member">Autoobjects</a> only <a class=LocalLink href='#Autoobjects'>Show&nbsp;detailed&nbsp;list</a>
+          </P>
+          <P>
+            It includes the initialization for all Autoobject members (global objects) found in your project.
+          </P>
+        </TD>
+        <TD>
+          2&nbsp;KB
+        </TD>
+      </TR>
+      <TR CLASS=SizeRow>
+        <TD>
+          <P>
+            Estimated memory (flash) usage for <a href="https://doc.embedded-wizard.de/bitmap-resource-member">Bitmap Resources</a> only <a class=LocalLink href='#BitmapResources'>Show&nbsp;detailed&nbsp;list</a>
+          </P>
+          <P>
+            It includes all Bitmap Resource members found in your project together with the converted pixel data.
+          </P>
+        </TD>
+        <TD>
+          37&nbsp;KB
+        </TD>
+      </TR>
+      <TR CLASS=SizeRow>
+        <TD>
+          <P>
+            Estimated memory (flash) usage for <a href="https://doc.embedded-wizard.de/font-resource-member">Font Resources</a> only <a class=LocalLink href='#FontResources'>Show&nbsp;detailed&nbsp;list</a>
+          </P>
+          <P>
+            It includes all Font Resource members found in your project. The font data is managed separately. See the information below.
+          </P>
+        </TD>
+        <TD>
+          1&nbsp;KB
+        </TD>
+      </TR>
+      <TR CLASS=SizeRow>
+        <TD>
+          <P>
+            Estimated memory (flash) usage for font data only <a class=LocalLink href='#FontData'>Show&nbsp;detailed&nbsp;list</a>
+          </P>
+          <P>
+            It includes the fonts used in your project together with the converted glyph pixel data and metrics. The font data can be used by multiple Font Resources.
+          </P>
+        </TD>
+        <TD>
+          62&nbsp;KB
+        </TD>
+      </TR>
+      <TR CLASS=SizeRow>
+        <TD>
+          <P>
+            Total size of all generated files <a class=LocalLink href='#Files'>Show&nbsp;detailed&nbsp;list</a>
+          </P>
+          <P>
+            It is the sum of all code files (e.g. C++, C, H, JS) and resource files (e.g. PNG) created during the code generation process.
+          </P>
+        </TD>
+        <TD>
+          1612&nbsp;KB
+        </TD>
+      </TR>
+    </TABLE>
+  </DIV>
+  <DIV ID=Classes CLASS=CodeMetrics>
+    <TABLE>
+      <TR>
+        <TH>
+          Project Member Name
+        </TH>
+        <TH>
+          Content Type
+        </TH>
+        <TH>
+          Size (Bytes)
+        </TH>
+      </TR>
+      <TR>
+        <TD>
+          Application::HMI
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          3913
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Application::MainPage
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          1666
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Application::MeasuredValues
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          1592
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Application::SystemInfo
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          1476
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Application::WelcomePage
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          800
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Core::CursorEvent
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          630
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Core::CursorGrabEvent
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          326
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Core::CursorHit
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          272
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Core::DialogContext
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          172
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Core::DragEvent
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          324
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Core::Event
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          220
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Core::Group
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          18816
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Core::KeyEvent
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          1703
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Core::KeyPressHandler
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          598
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Core::LayoutContext
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          172
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Core::LayoutQuadContext
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          176
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Core::Outline
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          1626
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Core::QuadView
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          7639
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Core::RectView
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          3699
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Core::Resource
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          239
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Core::Root
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          10515
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Core::SimpleTouchHandler
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          4329
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Core::SlideTouchHandler
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          9628
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Core::Task
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          387
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Core::TaskQueue
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          1136
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Core::Timer
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          760
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Core::View
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          2399
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Core::WipeTouchHandler
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          3847
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Effects::Effect
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          3564
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Effects::EffectTimerClass
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          210
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Effects::Fader
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          331
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Effects::FaderTask
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          1315
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Effects::FloatEffect
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          189
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Effects::ShowHideTransition
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          860
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Effects::Transition
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          308
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Effects::VisibilityFader
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          725
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Graphics::Canvas
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          2864
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Resources::Bitmap
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          718
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Resources::Font
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          712
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Resources::FontSet
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          851
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Views::Border
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          1118
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Views::Frame
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          4249
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Views::Image
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          3225
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Views::Rectangle
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          973
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Views::Shadow
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          1242
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Views::Text
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          12483
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          WidgetSet::HorizontalSlider
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          7620
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          WidgetSet::HorizontalSliderConfig
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          2134
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          WidgetSet::PushButton
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          7538
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          WidgetSet::PushButtonConfig
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          3300
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          WidgetSet::ToggleButton
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          5744
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          WidgetSet::ToggleButtonConfig
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          3038
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          WidgetSet::WidgetConfig
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          196
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          TOTAL
+        </TD>
+        <TD>
+        </TD>
+        <TD>
+          144567
+        </TD>
+      </TR>
+    </TABLE>
+  </DIV>
+  <DIV ID=Constants CLASS=CodeMetrics>
+    <TABLE>
+      <TR>
+        <TH>
+          Unit Name
+        </TH>
+        <TH>
+          Content Type
+        </TH>
+        <TH>
+          Size (Bytes)
+        </TH>
+      </TR>
+      <TR>
+        <TD>
+          Application
+        </TD>
+        <TD>
+          Constants
+        </TD>
+        <TD>
+          670
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Core
+        </TD>
+        <TD>
+          Constants
+        </TD>
+        <TD>
+          158
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Effects
+        </TD>
+        <TD>
+          Constants
+        </TD>
+        <TD>
+          24
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Graphics
+        </TD>
+        <TD>
+          Constants
+        </TD>
+        <TD>
+          52
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Resources
+        </TD>
+        <TD>
+          Constants
+        </TD>
+        <TD>
+          20
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Views
+        </TD>
+        <TD>
+          Constants
+        </TD>
+        <TD>
+          56
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          WidgetSet
+        </TD>
+        <TD>
+          Constants
+        </TD>
+        <TD>
+          192
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          TOTAL
+        </TD>
+        <TD>
+        </TD>
+        <TD>
+          1172
+        </TD>
+      </TR>
+    </TABLE>
+  </DIV>
+  <DIV ID=Strings CLASS=CodeMetrics>
+    <TABLE>
+      <TR>
+        <TH>
+          Unit Name
+        </TH>
+        <TH>
+          Content Type
+        </TH>
+        <TH>
+          Size (Bytes)
+        </TH>
+      </TR>
+      <TR>
+        <TD>
+          Application
+        </TD>
+        <TD>
+          Strings
+        </TD>
+        <TD>
+          396
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Core
+        </TD>
+        <TD>
+          Strings
+        </TD>
+        <TD>
+          640
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Effects
+        </TD>
+        <TD>
+          Strings
+        </TD>
+        <TD>
+          224
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Graphics
+        </TD>
+        <TD>
+          Strings
+        </TD>
+        <TD>
+          304
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Resources
+        </TD>
+        <TD>
+          Strings
+        </TD>
+        <TD>
+          156
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Views
+        </TD>
+        <TD>
+          Strings
+        </TD>
+        <TD>
+          168
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          TOTAL
+        </TD>
+        <TD>
+        </TD>
+        <TD>
+          1888
+        </TD>
+      </TR>
+    </TABLE>
+  </DIV>
+  <DIV ID=BitmapResources CLASS=CodeMetrics>
+    <TABLE>
+      <TR>
+        <TH>
+          Project Member Name
+        </TH>
+        <TH>
+          Content Type
+        </TH>
+        <TH>
+          Size (Bytes)
+        </TH>
+      </TR>
+      <TR>
+        <TD>
+          Application::GreenLed
+        </TD>
+        <TD>
+          Bitmap Resource
+        </TD>
+        <TD>
+          7016
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Application::RedLed
+        </TD>
+        <TD>
+          Bitmap Resource
+        </TD>
+        <TD>
+          5358
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Application::TurnedOffLed
+        </TD>
+        <TD>
+          Bitmap Resource
+        </TD>
+        <TD>
+          4508
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          WidgetSet::HorizontalSliderTrackSmall
+        </TD>
+        <TD>
+          Bitmap Resource
+        </TD>
+        <TD>
+          1156
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          WidgetSet::SwitchMedium
+        </TD>
+        <TD>
+          Bitmap Resource
+        </TD>
+        <TD>
+          17074
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          WidgetSet::ThumbKnobSmall
+        </TD>
+        <TD>
+          Bitmap Resource
+        </TD>
+        <TD>
+          2068
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          TOTAL
+        </TD>
+        <TD>
+        </TD>
+        <TD>
+          37180
+        </TD>
+      </TR>
+    </TABLE>
+  </DIV>
+  <DIV ID=FontResources CLASS=CodeMetrics>
+    <TABLE>
+      <TR>
+        <TH>
+          Project Member Name
+        </TH>
+        <TH>
+          Content Type
+        </TH>
+        <TH>
+          Size (Bytes)
+        </TH>
+      </TR>
+      <TR>
+        <TD>
+          Resources::FontExtraLarge
+        </TD>
+        <TD>
+          Font Resource
+        </TD>
+        <TD>
+          136
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Resources::FontLarge
+        </TD>
+        <TD>
+          Font Resource
+        </TD>
+        <TD>
+          131
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Resources::FontMedium
+        </TD>
+        <TD>
+          Font Resource
+        </TD>
+        <TD>
+          132
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          TOTAL
+        </TD>
+        <TD>
+        </TD>
+        <TD>
+          399
+        </TD>
+      </TR>
+    </TABLE>
+  </DIV>
+  <DIV ID=FontData CLASS=CodeMetrics>
+    <TABLE>
+      <TR>
+        <TH>
+          Font Name
+        </TH>
+        <TH>
+          Content Type
+        </TH>
+        <TH>
+          Size (Bytes)
+        </TH>
+      </TR>
+      <TR>
+        <TD>
+          Roboto 24px height
+        </TD>
+        <TD>
+          Font Data
+        </TD>
+        <TD>
+          11846
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Roboto 36px height
+        </TD>
+        <TD>
+          Font Data
+        </TD>
+        <TD>
+          18754
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Roboto 54px height
+        </TD>
+        <TD>
+          Font Data
+        </TD>
+        <TD>
+          31870
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          TOTAL
+        </TD>
+        <TD>
+        </TD>
+        <TD>
+          62470
+        </TD>
+      </TR>
+    </TABLE>
+  </DIV>
+  <DIV ID=Autoobjects CLASS=CodeMetrics>
+    <TABLE>
+      <TR>
+        <TH>
+          Project Member Name
+        </TH>
+        <TH>
+          Content Type
+        </TH>
+        <TH>
+          Size (Bytes)
+        </TH>
+      </TR>
+      <TR>
+        <TD>
+          Effects::EffectTimer
+        </TD>
+        <TD>
+          Autoobject
+        </TD>
+        <TD>
+          56
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Effects::ShowHideCentered
+        </TD>
+        <TD>
+          Autoobject
+        </TD>
+        <TD>
+          32
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          WidgetSet::HorizontalSlider_Lime_Small
+        </TD>
+        <TD>
+          Autoobject
+        </TD>
+        <TD>
+          480
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          WidgetSet::PushButton_Mono_Medium
+        </TD>
+        <TD>
+          Autoobject
+        </TD>
+        <TD>
+          524
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          WidgetSet::Switch_Lime_Medium
+        </TD>
+        <TD>
+          Autoobject
+        </TD>
+        <TD>
+          596
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          TOTAL
+        </TD>
+        <TD>
+        </TD>
+        <TD>
+          1688
+        </TD>
+      </TR>
+    </TABLE>
+  </DIV>
+  <DIV ID=Files CLASS=Files>
+    <TABLE>
+      <TR>
+        <TH>
+          Generated File Name
+        </TH>
+        <TH>
+          File Type
+        </TH>
+        <TH>
+          Size (Bytes)
+        </TH>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\Application.c
+        </TD>
+        <TD>
+          c
+        </TD>
+        <TD>
+          56078
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\Application.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          2038
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\Core.c
+        </TD>
+        <TD>
+          c
+        </TD>
+        <TD>
+          336369
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\Core.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          31715
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\Effects.c
+        </TD>
+        <TD>
+          c
+        </TD>
+        <TD>
+          52805
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\Effects.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          3611
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\Graphics.c
+        </TD>
+        <TD>
+          c
+        </TD>
+        <TD>
+          27376
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\Graphics.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          2120
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\Resources.c
+        </TD>
+        <TD>
+          c
+        </TD>
+        <TD>
+          18288
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\Resources.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          2177
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\Views.c
+        </TD>
+        <TD>
+          c
+        </TD>
+        <TD>
+          85885
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\Views.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          4222
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\WidgetSet.c
+        </TD>
+        <TD>
+          c
+        </TD>
+        <TD>
+          150637
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\WidgetSet.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          3052
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\_ApplicationHMI.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          6560
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\_ApplicationMainPage.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          6576
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\_ApplicationMeasuredValues.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          5602
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\_ApplicationSystemInfo.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          5275
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\_ApplicationWelcomePage.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          5110
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\_CoreCursorEvent.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          7407
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\_CoreCursorGrabEvent.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          5247
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\_CoreCursorHit.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          3250
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\_CoreDialogContext.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          2688
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\_CoreDragEvent.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          3839
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\_CoreEvent.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          2917
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\_CoreGroup.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          55429
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\_CoreKeyEvent.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          6011
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\_CoreKeyPressHandler.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          4416
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\_CoreLayoutContext.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          2371
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\_CoreLayoutQuadContext.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          2476
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\_CoreOutline.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          10932
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\_CoreQuadView.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          6692
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\_CoreRectView.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          5802
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\_CoreResource.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          2260
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\_CoreRoot.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          36703
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\_CoreSimpleTouchHandler.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          14573
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\_CoreSlideTouchHandler.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          15586
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\_CoreTask.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          8087
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\_CoreTaskQueue.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          5873
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\_CoreTimer.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          4510
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\_CoreView.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          19182
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\_CoreWipeTouchHandler.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          12901
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\_EffectsEffect.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          6920
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\_EffectsEffectTimerClass.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          2634
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\_EffectsFader.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          9132
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\_EffectsFaderTask.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          6315
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\_EffectsFloatEffect.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          5103
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\_EffectsShowHideTransition.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          6848
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\_EffectsTransition.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          7649
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\_EffectsVisibilityFader.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          8121
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\_GraphicsCanvas.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          16753
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\_ResourcesBitmap.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          4511
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\_ResourcesFont.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          4718
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\_ResourcesFontExtraLarge.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          1727
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\_ResourcesFontLarge.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          1686
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\_ResourcesFontMedium.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          1694
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\_ResourcesFontSet.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          3524
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\_ViewsBorder.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          7585
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\_ViewsFrame.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          10582
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\_ViewsImage.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          10253
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\_ViewsRectangle.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          7423
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\_ViewsShadow.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          8948
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\_ViewsText.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          14748
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\_WidgetSetHorizontalSlider.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          13653
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\_WidgetSetHorizontalSliderConfig.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          26560
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\_WidgetSetPushButton.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          12343
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\_WidgetSetPushButtonConfig.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          21867
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\_WidgetSetToggleButton.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          12576
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\_WidgetSetToggleButtonConfig.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          26831
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\_WidgetSetWidgetConfig.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          2273
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\ewfiles.cmake
+        </TD>
+        <TD>
+          cmake
+        </TD>
+        <TD>
+          190
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\ewfiles.inc
+        </TD>
+        <TD>
+          inc
+        </TD>
+        <TD>
+          171
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\ewfiles.lst
+        </TD>
+        <TD>
+          lst
+        </TD>
+        <TD>
+          361
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\ewlocale.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          1438
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\_ApplicationGreenLed.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          23649
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\_ApplicationRedLed.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          18370
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\_ApplicationTurnedOffLed.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          15695
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\_EwFont_Roboto_HC24_C16.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          42643
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\_EwFont_Roboto_HC36_C16.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          64660
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\_EwFont_Roboto_HC54_C16.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          106379
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\_WidgetSetHorizontalSliderTrackSmall.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          5105
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\_WidgetSetSwitchMedium.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          55569
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          N:\ST32_TIASimulation\output\_WidgetSetThumbKnobSmall.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          7929
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          TOTAL
+        </TD>
+        <TD>
+        </TD>
+        <TD>
+          1649784
+        </TD>
+      </TR>
+    </TABLE>
+  </DIV>
+    <div class='footer'>
+      <p class='footer-1'><a href='http://www.embedded-wizard.de' target='_blank'>Embedded Wizard</a> is a product of <a href='http://www.tara-systems.de' target='_blank'>TARA Systems GmbH</a></p>
+      <p class='footer-2'>Concept and implementation by <span class='autor'>Paul Banach</span> and <span class='autor'>Manfred Schweyer</span></p>
+      <p class='footer-3'><span>Copyright © TARA Systems GmbH</span></p>
+    </div>
+    <SCRIPT>
+      if ( !Array.from )
+        Array.from = function( arrayLike )
+        {
+          var temp_array = [];
+          var length     = arrayLike.length;
+          for ( var i = 0; i < length; i++ )
+            temp_array.push( arrayLike[i]);
+          return temp_array;
+        };
+      var ths = document.querySelectorAll( 'th' );
+      function hookTable( th )
+      {
+        th.addEventListener( 'click', function()
+        {
+          const tbody   = th.parentNode.parentNode;
+          var   content = Array.from( tbody.querySelectorAll( 'tr' ));
+          var   first   = content.shift();
+          var   last    = content.pop();
+          var   inx     = Array.from( th.parentNode.children ).indexOf( th );
+          var   asc     = !!this.asc;
+          content.sort( function( a, b )
+          {
+            a = a.children[ inx ].innerText || a.children[ inx ].textContent;
+            b = b.children[ inx ].innerText || b.children[ inx ].textContent;
+            if (( a !== '' ) && ( b !== '' ) && !isNaN( a ) && !isNaN( b ))
+              return asc? a - b : b - a;
+            else
+              return asc? a.toString().localeCompare( b ) :
+                          b.toString().localeCompare( a );
+          });
+          content.forEach( function( tr ){ tbody.appendChild( tr ); });
+          tbody.appendChild( last );
+          this.asc = !asc;
+        });
+      }
+      for ( var i = 0; i < ths.length; i++ )
+        hookTable( ths[i]);
+    </SCRIPT>
+  </BODY>
