@@ -1,0 +1,32 @@
+name: Build Project
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Install MSYS2 to get make, gcc-arm-none-eabi, etc.
+      - name: Setup MSYS2
+        uses: msys2/setup-msys2@v2
+        with:
+          update: true
+          install: make gcc-arm-none-eabi
+
+      # Optional: check compiler and make
+      - name: Verify tools
+        run: |
+          gcc --version
+          make --version
+
+      # Run your batch file
+      - name: Build project
+        run: .\StartGccBuildEnvironment.bat
