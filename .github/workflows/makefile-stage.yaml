@@ -28,7 +28,8 @@ jobs:
       - name: Build project
         shell: cmd
         run: |
-            call .\StartGccBuildEnvironment.bat
+            cd cmake
+            call ..\StartGccBuildEnvironment.bat
             make
 
       - name: Upload binaries as artifacts
