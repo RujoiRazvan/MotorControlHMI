@@ -26,8 +26,9 @@ jobs:
           install: make
 
       - name: Build project
+        shell: cmd
         run: |
-            .\StartGccBuildEnvironment.bat
+            call .\StartGccBuildEnvironment.bat
             make
 
       - name: Upload binaries as artifacts
