@@ -2,11 +2,10 @@ site_name: MotorControlHMI Docs
 theme:
   name: material
 
-plugins:
-  - search
-
 nav:
   - Home: index.md
   - HMI Pages:
       - Motor Controls: motor_control.md
-      # - Measured Values: docs/measured_values.md
+      - Measured Values: measured_values.md
+      - Systems Info: systems_info.md
+  - Project Compile: how_to_use.md
