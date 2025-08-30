@@ -22,3 +22,13 @@ This application is a Human-Machine Interface (HMI) simulation designed for use 
 - [Motor Controls Page](../docs/motor_control.md)
 - [Measured Values Page](../docs/measured_values.md)
 - [System Info Page](../docs/system_info.md)
+
+## Software requirements
+
+- Embedded Wizard V14
+- STM32 CubeProgrammer
+- STM32 CubeIDE
+
+## Hardware requirements
+
+- STM32H7B3I-DK
