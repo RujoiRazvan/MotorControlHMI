@@ -117,7 +117,7 @@ profile Profile : STM.STM32.RGB565
   attr StorageOfConstants = Code;
   attr ModeOfBitmapResources = Compressed;
   attr ModeOfStringConstants = Compressed;
-  attr OutputDirectory = N:\ST32_TIASimulation\STM32H7B3-Discovery-BuildEnvironment-V14.00.00.00\STM32H7B3-Discovery\Application\GeneratedCode;
+  attr OutputDirectory = N:\ST32_TIASimulation\Application\EmbeddedWizardGeneratedCode;
 
   $rect <10,10,154,50>
   macro Author = "Dipl. Ing. Paul Banach and Dipl. Ing. Manfred Schweyer, Copyright (C) TARA Systems GmbH";

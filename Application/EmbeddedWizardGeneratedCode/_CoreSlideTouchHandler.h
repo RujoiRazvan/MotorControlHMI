@@ -161,6 +161,7 @@ EW_DEFINE_FIELDS( CoreSlideTouchHandler, CoreRectView )
   EW_VARIABLE( parkingY,        XBool )
   EW_VARIABLE( parkingX,        XBool )
   EW_VARIABLE( Sliding,         XBool )
+  EW_PROPERTY( SlideVert,       XBool )
   EW_PROPERTY( RubberBandScrolling, XBool )
 EW_END_OF_FIELDS( CoreSlideTouchHandler )
 
@@ -286,6 +287,9 @@ void CoreSlideTouchHandler_OnSetRubberBandEffectDuration( CoreSlideTouchHandler 
 /* 'C' function for method : 'Core::SlideTouchHandler.OnSetRetargetDelay()' */
 void CoreSlideTouchHandler_OnSetRetargetDelay( CoreSlideTouchHandler _this, XInt32 
   value );
+
+/* 'C' function for method : 'Core::SlideTouchHandler.OnSetEnabled()' */
+void CoreSlideTouchHandler_OnSetEnabled( CoreSlideTouchHandler _this, XBool value );
 
 #ifdef __cplusplus
   }
