@@ -224,7 +224,7 @@ LINKING   = $(LD) -mcpu=cortex-m7 -mlittle-endian -mthumb -mthumb-interwork    \
 
 TRANSLATE = $(OBJCOPY) -O ihex $(BIN_PATH)/$(APP_FILE).elf $(BIN_PATH)/$(APP_FILE).hex
 
-FLASHING  = ..\..\FlashDownload\FlashDownload.cmd $(BIN_PATH)/$(APP_FILE).hex
+FLASHING  = ..\Application\FlashDownload\FlashDownload.cmd $(BIN_PATH)/$(APP_FILE).hex
 
 PRINT_SIZE = $(SIZE) $(BIN_PATH)/$(APP_FILE).elf
 
