@@ -1,6 +1,6 @@
 $version 1.0
 
-attr active = Application::MainPage;
+attr active = Application::SystemInfo;
 attr callStackMonitor_Show = false;
 attr connectInspectors = false;
 attr currentCodeInspector = Application::MainPage.onSlide;
@@ -39,6 +39,7 @@ view Project
 
 view unit Application
 {
+  attr enableWireMode = false;
   attr scrollTo = <-7,-7>;
   attr zoom = 1.0;
 }
@@ -83,8 +84,8 @@ codeview Application::MainPage.onSlide
 {
   attr codeColSelect = false;
   attr codeFirstPos = <0,0>;
-  attr codeSelEnd = <0,0>;
-  attr codeSelStart = <96,0>;
+  attr codeSelEnd = <9,2>;
+  attr codeSelStart = <9,2>;
 }
 
 codeview Application::MainPage.onSlide1

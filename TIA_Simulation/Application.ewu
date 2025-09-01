@@ -1102,13 +1102,13 @@ class SystemInfo : Core::Group
   $rect <20,20,160,60>
   object Views::Text MLFB
   {
-    preset Bounds = <13,63,298,93>;
+    preset Bounds = <21,66,306,96>;
     preset OverflowWarning = true;
     preset ColorBL = #000000FF;
     preset ColorBR = #000000FF;
     preset ColorTR = #000000FF;
     preset ColorTL = #000000FF;
-    preset String = "MLFB: 3RK1304 - ";
+    preset String = "MLFB: 9MC1 210-1AA40-0YA0 ";
     preset Font = Resources::FontMedium;
     preset Color = #000000FF;
   }
@@ -1116,7 +1116,7 @@ class SystemInfo : Core::Group
   $rect <20,20,160,60>
   object Views::Text InstallationDate
   {
-    preset Bounds = <16,96,307,126>;
+    preset Bounds = <15,96,306,126>;
     preset OverflowWarning = true;
     preset ColorBL = #000000FF;
     preset ColorBR = #000000FF;
