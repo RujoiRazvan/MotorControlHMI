@@ -6712,6 +6712,7 @@ void CoreSlideTouchHandler__Init( CoreSlideTouchHandler _this, XObject aLink, XH
   /* ... and initialize objects, variables, properties, etc. */
   _this->Super2.viewState = CoreViewStateAlphaBlended | CoreViewStateEnabled | CoreViewStateFastReshape 
   | CoreViewStatePreEnabled | CoreViewStateTouchable | CoreViewStateVisible;
+  _this->SlideVert = 1;
   _this->RubberBandEffectDuration = 500;
   _this->RubberBandScrolling = 1;
   _this->RetargetDelay = 1000;
@@ -6990,7 +6991,9 @@ XObject CoreSlideTouchHandler_HandleEvent( CoreSlideTouchHandler _this, CoreEven
     XPoint delta = EwMovePointNeg( event2->CurrentPos, event2->HittingPos );
     XPoint newOffset = _this->Offset;
     newOffset.X = ( _this->initOffset.X + delta.X );
-    newOffset.Y = ( _this->initOffset.Y + delta.Y );
+
+    if ( _this->SlideVert )
+      newOffset.Y = ( _this->initOffset.Y + delta.Y );
 
     if ( _this->RubberBandScrolling )
     {
@@ -7047,9 +7050,11 @@ XObject CoreSlideTouchHandler_HandleEvent( CoreSlideTouchHandler _this, CoreEven
     XPoint delta = event2->Offset;
     XFloat invTime = 1000.0f / (XFloat)( event2->Super1.Time - _this->refTime );
     XFloat newSpeedX;
-    XFloat newSpeedY;
+    XFloat newSpeedY = 0.0f;
     newSpeedX = (XFloat)delta.X * invTime;
-    newSpeedY = (XFloat)delta.Y * invTime;
+
+    if ( _this->SlideVert )
+      newSpeedY = (XFloat)delta.Y * invTime;
 
     if (( newSpeedX * _this->speedX ) < 0.0f )
       _this->speedX = 0.0f;
@@ -7373,7 +7378,6 @@ CoreCursorHit CoreSlideTouchHandler_CursorHitTest( CoreSlideTouchHandler _this,
   XRect r;
 
   /* Dummy expressions to avoid the 'C' warning 'unused argument'. */
-  EW_UNUSED_ARG( aRetargetReason );
   EW_UNUSED_ARG( aStartView );
   EW_UNUSED_ARG( aStrikeCount );
 
@@ -7385,6 +7389,10 @@ CoreCursorHit CoreSlideTouchHandler_CursorHitTest( CoreSlideTouchHandler _this,
 
   if (( _this->state >= 16777216 ) && (( _this->state & ( 4096 << aFinger )) == 
       0 ))
+    return 0;
+
+  if ( !_this->SlideVert && !!( aRetargetReason & ( CoreRetargetReasonWipeDown | 
+      CoreRetargetReasonWipeUp )))
     return 0;
 
   r = EwIntersectRect( aArea, _this->Super1.Bounds );
@@ -7591,6 +7599,15 @@ void CoreSlideTouchHandler_OnSetRetargetDelay( CoreSlideTouchHandler _this, XInt
     value = 1;
 
   _this->RetargetDelay = value;
+}
+
+/* 'C' function for method : 'Core::SlideTouchHandler.OnSetEnabled()' */
+void CoreSlideTouchHandler_OnSetEnabled( CoreSlideTouchHandler _this, XBool value )
+{
+  if ( value )
+    CoreView__ChangeViewState( _this, CoreViewStatePreEnabled, 0 );
+  else
+    CoreView__ChangeViewState( _this, 0, CoreViewStatePreEnabled );
 }
 
 /* Variants derived from the class : 'Core::SlideTouchHandler' */

@@ -1,9 +1,9 @@
 $version 1.0
 
-attr active = Application::MeasuredValues;
+attr active = Application::MainPage;
 attr callStackMonitor_Show = false;
 attr connectInspectors = false;
-attr currentCodeInspector = Application::MeasuredValues.onMeasureOperatingHours;
+attr currentCodeInspector = Application::MainPage.onSlide;
 attr debug_TrackUpdates = false;
 attr extractDoc_ClassOverview = true;
 attr extractDoc_DeleteOldFiles = false;
@@ -39,7 +39,6 @@ view Project
 
 view unit Application
 {
-  attr enableWireMode = false;
   attr scrollTo = <-7,-7>;
   attr zoom = 1.0;
 }
@@ -47,7 +46,7 @@ view unit Application
 view class Application::MainPage
 {
   attr enableWireMode = false;
-  attr scrollTo = <-63,-39>;
+  attr scrollTo = <-47,-39>;
   attr zoom = 1.0;
 }
 
@@ -84,16 +83,16 @@ codeview Application::MainPage.onSlide
 {
   attr codeColSelect = false;
   attr codeFirstPos = <0,0>;
-  attr codeSelEnd = <30,0>;
-  attr codeSelStart = <30,0>;
+  attr codeSelEnd = <0,0>;
+  attr codeSelStart = <96,0>;
 }
 
 codeview Application::MainPage.onSlide1
 {
   attr codeColSelect = false;
   attr codeFirstPos = <0,0>;
-  attr codeSelEnd = <29,0>;
-  attr codeSelStart = <29,0>;
+  attr codeSelEnd = <2,1>;
+  attr codeSelStart = <2,1>;
 }
 
 codeview Application::MainPage.changePage
@@ -112,10 +111,10 @@ codeview Application::MainPage.onEnd
   attr codeSelStart = <21,0>;
 }
 
-codeview Application::MeasuredValues.onMeasureOperatingHours
+codeview Application::MainPage.onStart
 {
   attr codeColSelect = false;
   attr codeFirstPos = <0,0>;
-  attr codeSelEnd = <71,6>;
-  attr codeSelStart = <71,6>;
+  attr codeSelEnd = <0,0>;
+  attr codeSelStart = <0,0>;
 }

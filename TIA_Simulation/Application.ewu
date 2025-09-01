@@ -53,6 +53,7 @@ class MainPage : Core::Root
     preset OnSlide = onSlide;
     preset OnEnd = onEnd;
     preset OnStart = onStart;
+    preset SlideVert = false;
     preset RubberBandEffectDuration = 0;
     preset RetargetDelay = 1000;
   }
@@ -64,9 +65,11 @@ class MainPage : Core::Root
     preset OnSlide = onSlide1;
     preset OnEnd = onEnd;
     preset OnStart = onStart;
+    preset SlideVert = false;
     preset RubberBandEffectDuration = 500;
     preset RubberBandScrolling = false;
     preset RetargetDelay = 1000;
+    preset Enabled = false;
   }
 
   $rect <510,140,710,180>
@@ -88,13 +91,16 @@ class MainPage : Core::Root
   $rect <510,220,710,260>
   slot onSlide
   {
-    changePage(SlideTouchHandler);
+    if (SlideTouchHandler.Offset.x > touchThreshold || SlideTouchHandler.Offset.x < -touchThreshold)
+      changePage(SlideTouchHandler);
+
   }
 
   $rect <510,260,710,300>
   slot onSlide1
   {
-    changePage(SlideTouchHandler1);
+    if (SlideTouchHandler1.Offset.x > touchThreshold || SlideTouchHandler1.Offset.x < -touchThreshold)
+      changePage(SlideTouchHandler1);
   }
 
   $rect <20,20,160,60>
@@ -162,6 +168,9 @@ class MainPage : Core::Root
   {
     readyToSlide = true;
   }
+
+  $rect <510,460,710,500>
+  var int16 touchThreshold = 20;
 }
 
 $rect <20,80,220,120>

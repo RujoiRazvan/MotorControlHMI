@@ -163,14 +163,17 @@ void ApplicationMainPage__Init( ApplicationMainPage _this, XObject aLink, XHandl
   CoreGroup_OnSetEnabled((CoreGroup)&_this->SystemInfo, 0 );
   CoreGroup_OnSetVisible((CoreGroup)&_this->SystemInfo, 0 );
   CoreRectView__OnSetBounds( &_this->SlideTouchHandler, _Const0001 );
+  _this->SlideTouchHandler.SlideVert = 0;
   CoreSlideTouchHandler_OnSetRubberBandEffectDuration( &_this->SlideTouchHandler, 
   0 );
   CoreSlideTouchHandler_OnSetRetargetDelay( &_this->SlideTouchHandler, 1000 );
   CoreRectView__OnSetBounds( &_this->SlideTouchHandler1, _Const0002 );
+  _this->SlideTouchHandler1.SlideVert = 0;
   CoreSlideTouchHandler_OnSetRubberBandEffectDuration( &_this->SlideTouchHandler1, 
   500 );
   _this->SlideTouchHandler1.RubberBandScrolling = 0;
   CoreSlideTouchHandler_OnSetRetargetDelay( &_this->SlideTouchHandler1, 1000 );
+  CoreSlideTouchHandler_OnSetEnabled( &_this->SlideTouchHandler1, 0 );
   CoreTimer_OnSetPeriod( &_this->WelcomePageTimer, 1000 );
   CoreTimer_OnSetEnabled( &_this->WelcomePageTimer, 1 );
   CoreRectView__OnSetBounds( &_this->MeasuredValues, _Const0000 );
@@ -244,7 +247,9 @@ void ApplicationMainPage_onSlide( ApplicationMainPage _this, XObject sender )
   /* Dummy expressions to avoid the 'C' warning 'unused argument'. */
   EW_UNUSED_ARG( sender );
 
-  ApplicationMainPage_changePage( _this, &_this->SlideTouchHandler );
+  if (( _this->SlideTouchHandler.Offset.X > 20 ) || ( _this->SlideTouchHandler.Offset.X 
+      < -20 ))
+    ApplicationMainPage_changePage( _this, &_this->SlideTouchHandler );
 }
 
 /* 'C' function for method : 'Application::MainPage.onSlide1()' */
@@ -253,7 +258,9 @@ void ApplicationMainPage_onSlide1( ApplicationMainPage _this, XObject sender )
   /* Dummy expressions to avoid the 'C' warning 'unused argument'. */
   EW_UNUSED_ARG( sender );
 
-  ApplicationMainPage_changePage( _this, &_this->SlideTouchHandler1 );
+  if (( _this->SlideTouchHandler1.Offset.X > 20 ) || ( _this->SlideTouchHandler1.Offset.X 
+      < -20 ))
+    ApplicationMainPage_changePage( _this, &_this->SlideTouchHandler1 );
 }
 
 /* 'C' function for method : 'Application::MainPage.changePage()' */
