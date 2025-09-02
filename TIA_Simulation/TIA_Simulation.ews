@@ -1,9 +1,7 @@
 $version 1.0
 
-attr active = Application::SystemInfo;
 attr callStackMonitor_Show = false;
 attr connectInspectors = false;
-attr currentCodeInspector = Application::MainPage.onSlide;
 attr debug_TrackUpdates = false;
 attr extractDoc_ClassOverview = true;
 attr extractDoc_DeleteOldFiles = false;
@@ -40,27 +38,26 @@ view Project
 view unit Application
 {
   attr enableWireMode = false;
-  attr scrollTo = <-7,-7>;
-  attr zoom = 1.0;
+  attr scrollTo = <-7,111>;
+  attr zoom = 1.5;
 }
 
 view class Application::MainPage
 {
   attr enableWireMode = false;
-  attr scrollTo = <-47,-39>;
+  attr scrollTo = <-47,-199>;
   attr zoom = 1.0;
 }
 
 view class Application::HMI
 {
   attr enableWireMode = false;
-  attr scrollTo = <-7,-7>;
+  attr scrollTo = <45,-295>;
   attr zoom = 1.0;
 }
 
 view class Application::SystemInfo
 {
-  attr enableWireMode = false;
   attr scrollTo = <-7,-87>;
   attr zoom = 1.0;
 }
@@ -72,50 +69,9 @@ view class Application::MeasuredValues
   attr zoom = 1.0;
 }
 
-codeview Application::MainPage.onWelcomePageTimer
+view class Application::DeviceClass
 {
-  attr codeColSelect = false;
-  attr codeFirstPos = <0,0>;
-  attr codeSelEnd = <28,1>;
-  attr codeSelStart = <28,1>;
-}
-
-codeview Application::MainPage.onSlide
-{
-  attr codeColSelect = false;
-  attr codeFirstPos = <0,0>;
-  attr codeSelEnd = <9,2>;
-  attr codeSelStart = <9,2>;
-}
-
-codeview Application::MainPage.onSlide1
-{
-  attr codeColSelect = false;
-  attr codeFirstPos = <0,0>;
-  attr codeSelEnd = <2,1>;
-  attr codeSelStart = <2,1>;
-}
-
-codeview Application::MainPage.changePage
-{
-  attr codeColSelect = false;
-  attr codeFirstPos = <0,28>;
-  attr codeSelEnd = <2,26>;
-  attr codeSelStart = <2,26>;
-}
-
-codeview Application::MainPage.onEnd
-{
-  attr codeColSelect = false;
-  attr codeFirstPos = <0,0>;
-  attr codeSelEnd = <21,0>;
-  attr codeSelStart = <21,0>;
-}
-
-codeview Application::MainPage.onStart
-{
-  attr codeColSelect = false;
-  attr codeFirstPos = <0,0>;
-  attr codeSelEnd = <0,0>;
-  attr codeSelStart = <0,0>;
+  attr enableWireMode = false;
+  attr scrollTo = <-7,-95>;
+  attr zoom = 1.25;
 }

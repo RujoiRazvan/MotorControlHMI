@@ -676,17 +676,25 @@ class HMI : Core::Group
   }
 
   $rect <20,20,160,60>
-  object WidgetSet::ToggleButton ToggleButton
+  object WidgetSet::ToggleButton Out1
   {
     preset Bounds = <22,140,145,190>;
+    preset OnUpdate = null;
+    preset Outlet = ^Application::Device.DeviceClass_Out1;
+    preset Checked = false;
+    preset OnRelease = null;
+    preset OnPress = null;
+    preset OnSwitchOn = onOut1On;
+    preset OnSwitchOff = onOut1Off;
     preset Label = "Out1";
     preset Appearance = WidgetSet::Switch_Lime_Medium;
   }
 
   $rect <20,20,160,60>
-  object WidgetSet::ToggleButton ToggleButton1
+  object WidgetSet::ToggleButton Out2
   {
     preset Bounds = <335,140,458,190>;
+    preset Outlet = ^Application::Device.DeviceClass_Out2;
     preset Label = "Out2";
     preset Appearance = WidgetSet::Switch_Lime_Medium;
   }
@@ -824,10 +832,142 @@ class HMI : Core::Group
     attr Bounds = <530,-10,830,190>;
   }
 
-  // Change Page Slots
+  // Output 1
   note group Note2
   {
-    attr Bounds = <530,220,830,420>;
+    attr Bounds = <530,220,1020,420>;
+  }
+
+  $rect <570,270,770,310>
+  slot onOut1On
+  {
+    Value = 1;
+    trace Value;
+  }
+
+  $rect <780,270,980,310>
+  slot onOut1Off
+  {
+    Value = 0;
+    trace Value;
+  }
+
+  $rect <780,320,980,360>
+  property ^bool Outlet_On1 = ^Out1.Checked;
+
+  $rect <780,360,980,400>
+  onset Outlet_On1
+  {
+    // The value doesn't change - nothing to do.
+    if ( pure Outlet_On1 == value )
+      return;
+
+    // Remember the property's new value.
+    pure Outlet_On1 = value;
+
+    // TO DO:
+    // 
+    // Now you can handle the alternation of the property.
+  }
+
+  $rect <560,320,760,360>
+  property int32 Value = 0;
+
+  $rect <560,360,760,400>
+  onset Value
+  {
+    // The value doesn't change - nothing to do.
+    if ( pure Value == value )
+      return;
+
+    // Remember the property's new value.
+    pure Value = value;
+
+    if ( Outlet_On1 != null )
+    {
+      if ( value == 0 )
+      {
+        Outlet_On1^ = false;
+      }
+      else
+      {
+         Outlet_On1^ = true;
+      }
+
+    }
+
+    // TO DO:
+    // 
+    // Now you can handle the alternation of the property.
+  }
+
+  // Output 2
+  note group Note3
+  {
+    attr Bounds = <1040,220,1530,420>;
+  }
+
+  $rect <1080,270,1280,310>
+  slot onOut2On
+  {
+    Value_Out2 = 1;
+    trace Value_Out2;
+  }
+
+  $rect <1290,270,1490,310>
+  slot onOut2Off
+  {
+    Value_Out2 = 0;
+    trace Value_Out2;
+  }
+
+  $rect <1290,320,1490,360>
+  property ^bool Outlet_On2 = ^Out1.Checked;
+
+  $rect <1290,360,1490,400>
+  onset Outlet_On2
+  {
+    // The value doesn't change - nothing to do.
+    if ( pure Outlet_On2 == value )
+      return;
+
+    // Remember the property's new value.
+    pure Outlet_On2 = value;
+
+    // TO DO:
+    // 
+    // Now you can handle the alternation of the property.
+  }
+
+  $rect <1070,320,1270,360>
+  property int32 Value_Out2 = 0;
+
+  $rect <1070,360,1270,400>
+  onset Value_Out2
+  {
+    // The value doesn't change - nothing to do.
+    if ( pure Value_Out2 == value )
+      return;
+
+    // Remember the property's new value.
+    pure Value_Out2 = value;
+
+    if ( Outlet_On2 != null )
+    {
+      if ( value == 0 )
+      {
+        Outlet_On2^ = false;
+      }
+      else
+      {
+         Outlet_On2^ = true;
+      }
+
+    }
+
+    // TO DO:
+    // 
+    // Now you can handle the alternation of the property.
   }
 
   // Directives to adapt the order of the above members according to how these members 
@@ -851,8 +991,8 @@ class HMI : Core::Group
   $member Motor_Error
   $member Motor_Off
   $member motorSlider
-  $member ToggleButton
-  $member ToggleButton1
+  $member Out1
+  $member Out2
   $member IN1_ON
   $member IN1_Off
   $member IN2_ON
@@ -869,6 +1009,19 @@ class HMI : Core::Group
   $member onTripResetPress
   $member Note1
   $member Note2
+  $member onOut1On
+  $member onOut1Off
+  $member Outlet_On1
+  $member OnSetOutlet_On1
+  $member Value
+  $member OnSetValue
+  $member Note3
+  $member onOut2On
+  $member onOut2Off
+  $member Outlet_On2
+  $member OnSetOutlet_On2
+  $member Value_Out2
+  $member OnSetValue_Out2
 
   // Directives to adapt the order of members belonging to this class so they appear 
   // correctly arranged relative to the members inherited from the ancestor (super) 
@@ -1413,3 +1566,178 @@ class MeasuredValues : Core::Group
   $rect <510,140,710,180>
   var int32 ElapsedSeconds;
 }
+
+$rect <390,320,590,360>
+inline Inline
+{
+  #include "DeviceDriver.h"
+
+  void DeviceDriver_SetOutputState(XInt32 output_number, XBool output_state);
+}
+
+$rect <390,280,590,320>
+$output false
+class DeviceClass : Templates::DeviceClass
+{
+  $rect <30,80,230,120>
+  inherited method Done()
+  {
+    // The following section is intended to perform de-initialization-related operations
+    // in the underlying device or middleware. Consequently, the section is taken in
+    // account only when generating code (not during prototyping).
+    $if !$prototyper
+      var object thisObject = this;
+
+      /*
+         TO DO:
+
+         The following native statement is intended to enclose code to communicate with
+         your device API. The variable 'thisObject' contains a pointer to the actually
+         de-initialized Application::DeviceClass object. Use the 'thisObject' pointer to
+         e.g. de-register the object from the middleware if you have registered it
+         beforehand.
+         
+      */
+
+      native ( thisObject )
+      {
+        /*
+           TO DO:
+
+           Depending on your application case you call functions of the underlying
+           middleware (or access the device directly) in order to perform the necessary
+           de-initialization steps. For example, you invoke some 'C' function:
+
+             YourDevice_DeInitialize();
+
+           IMPORTANT:
+           ----------
+
+           The variable 'thisObject' represents the actually de-initialized instance of the
+           Application::DeviceClass. If you have stored this object at the initialization
+           time (in the 'Init' method) in some global C variable or registered it by the
+           middleware, it is important to perform now the opposite operation. Set the
+           global variable to NULL or de-register 'thisObject' object from the middleware.
+           
+        */
+      }
+    $endif
+  }
+
+  $rect <30,40,230,80>
+  inherited method Init()
+  {
+    // The following section is intended to perform initialization-related operations
+    // in the underlying device or middleware. Consequently, the section is taken in
+    // account only when generating code (not during prototyping).
+    $if !$prototyper
+      var object thisObject = this;
+
+      /*
+         TO DO:
+
+         The following native statement is intended to enclose code to communicate with
+         your device API. The variable 'thisObject' contains a pointer to the actually
+         initialized Application::DeviceClass object. Use the 'thisObject' pointer to
+         e.g. register the object by the middleware as receiver of events, etc.
+         
+      */
+
+      native ( thisObject )
+      {
+        /*
+           TO DO:
+
+           Depending on your application case you call functions of the underlying
+           middleware (or access the device directly) in order to perform the necessary
+           initialization steps. For example, you invoke some 'C' function:
+
+             YourDevice_Initialize();
+
+           The variable 'thisObject' represents the actually initialized instance of the
+           Application::DeviceClass. You can store this variable e.g. in the middleware
+           and use it whenever the middleware needs to notify the GUI application about
+           some state alternation or events. In this manner, the middleware will be able
+           to invoke methods of the interface device object.
+
+           For example, you can store 'thisObject' in some global C variable:
+
+             // Declaration of the global C variable
+             XObject theDeviceObject;
+
+             // Store the instance in the global variable
+             theDeviceObject = thisObject;
+
+           Later use the global variable e.g. to provide the GUI application with events:
+
+             ApplicationDeviceClass__TriggerSomeEvent( theDeviceObject );
+
+           IMPORTANT:
+           ----------
+
+           If you store 'thisObject' for later use, don't forget to implement the opposite
+           operation in the method 'Done'. Concrete, 'Done' should set the global variable
+           again to the value NULL.
+
+        */
+      }
+    $endif
+  }
+
+  // Constructor and Destructor
+  note group Note1
+  {
+    attr Bounds = <10,0,250,140>;
+  }
+
+  $rect <400,10,600,50>
+  property bool DeviceClass_Out1 = false;
+
+  $rect <400,50,600,90>
+  onset DeviceClass_Out1
+  {
+    // The value doesn't change - nothing to do.
+    if ( pure DeviceClass_Out1 == value )
+      return;
+
+    // Remember the property's new value.
+    pure DeviceClass_Out1 = value;
+
+
+    native (value)
+    {
+      DeviceDriver_SetOutputState(1, value);
+    }
+
+    // TO DO:
+    // 
+    // Now you can handle the alternation of the property.
+  }
+
+  $rect <608,9,808,49>
+  property bool DeviceClass_Out2 = false;
+
+  $rect <608,49,808,89>
+  onset DeviceClass_Out2
+  {
+    // The value doesn't change - nothing to do.
+    if ( pure DeviceClass_Out2 == value )
+      return;
+
+    // Remember the property's new value.
+    pure DeviceClass_Out2 = value;
+
+
+    native (value)
+    {
+      DeviceDriver_SetOutputState(2, value);
+    }
+
+    // TO DO:
+    // 
+    // Now you can handle the alternation of the property.
+  }
+}
+
+$rect <590,280,790,320>
+autoobject Application::DeviceClass Device;
