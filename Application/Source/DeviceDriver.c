@@ -352,7 +352,7 @@ void DeviceDriver_Initialize(void) {
 	HAL_GPIO_Init(GPIOG, &GPIO_InitStruct);
 
 	HAL_GPIO_WritePin(GPIOG, USER_LED1_Pin, 1);
-	//HAL_GPIO_WritePin(GPIOG, USER_LED2_Pin, 1);
+	HAL_GPIO_WritePin(GPIOG, USER_LED2_Pin, 1);
 
 	/*Configure GPIO pin : IN4_Pin */
 	GPIO_InitStruct.Pin = IN4_Pin;
@@ -466,6 +466,24 @@ int DeviceDriver_ProcessData(void) {
 	 decide whether the GUI application has changed or not.
 	 */
 	return needUpdate;
+}
+
+void DeviceDriver_SetOutputState(XInt32 output_number, XBool output_state)
+{
+	if (output_number == 1)
+	{
+		if (!output_state)
+			HAL_GPIO_WritePin(GPIOG, USER_LED1_Pin, 1);
+		else
+			HAL_GPIO_WritePin(GPIOG, USER_LED1_Pin, 0);
+	}
+	else if (output_number == 2)
+	{
+		if (!output_state)
+			HAL_GPIO_WritePin(GPIOG, USER_LED2_Pin, 1);
+		else
+			HAL_GPIO_WritePin(GPIOG, USER_LED2_Pin, 0);
+	}
 }
 
 /* msy */

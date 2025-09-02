@@ -76,7 +76,6 @@
 #define USER_LED1_Pin GPIO_PIN_11
 #define USER_LED1_GPIO_Port GPIOG
 
-
 #define USER_LED2_Pin GPIO_PIN_2
 #define USER_LED2_GPIO_Port GPIOG
 
@@ -213,6 +212,9 @@ void DeviceDriver_Deinitialize( void );
 *
 *******************************************************************************/
 int DeviceDriver_ProcessData( void );
+
+
+void DeviceDriver_SetOutputState(XInt32 output_number, XBool output_state);
 
 
 #ifdef __cplusplus
