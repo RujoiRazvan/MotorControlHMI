@@ -156,6 +156,9 @@ EW_DEFINE_FIELDS( WidgetSetToggleButton, CoreGroup )
   EW_VARIABLE( textView,        ViewsText )
   EW_VARIABLE( frameView,       ViewsFrame )
   EW_PROPERTY( Appearance,      WidgetSetToggleButtonConfig )
+  EW_PROPERTY( OnSwitchOn,      XSlot )
+  EW_PROPERTY( OnSwitchOff,     XSlot )
+  EW_PROPERTY( Outlet,          XRef )
   EW_PROPERTY( LabelOn,         XString )
   EW_PROPERTY( LabelOff,        XString )
   EW_VARIABLE( onPressKeyTime,  XUInt32 )
@@ -215,6 +218,9 @@ void WidgetSetToggleButton_UpdateViewState( WidgetSetToggleButton _this, XSet aS
 void WidgetSetToggleButton_onConfigChanged( WidgetSetToggleButton _this, XObject 
   sender );
 
+/* 'C' function for method : 'WidgetSet::ToggleButton.onOutlet()' */
+void WidgetSetToggleButton_onOutlet( WidgetSetToggleButton _this, XObject sender );
+
 /* 'C' function for method : 'WidgetSet::ToggleButton.onFlashTimer()' */
 void WidgetSetToggleButton_onFlashTimer( WidgetSetToggleButton _this, XObject sender );
 
@@ -237,6 +243,9 @@ void WidgetSetToggleButton_onReleaseTouch( WidgetSetToggleButton _this, XObject
 /* 'C' function for method : 'WidgetSet::ToggleButton.onPressTouch()' */
 void WidgetSetToggleButton_onPressTouch( WidgetSetToggleButton _this, XObject sender );
 
+/* 'C' function for method : 'WidgetSet::ToggleButton.OnSetOutlet()' */
+void WidgetSetToggleButton_OnSetOutlet( WidgetSetToggleButton _this, XRef value );
+
 /* 'C' function for method : 'WidgetSet::ToggleButton.OnSetChecked()' */
 void WidgetSetToggleButton_OnSetChecked( WidgetSetToggleButton _this, XBool value );
 
@@ -246,6 +255,9 @@ void WidgetSetToggleButton_OnSetLabel( WidgetSetToggleButton _this, XString valu
 /* 'C' function for method : 'WidgetSet::ToggleButton.OnSetAppearance()' */
 void WidgetSetToggleButton_OnSetAppearance( WidgetSetToggleButton _this, WidgetSetToggleButtonConfig 
   value );
+
+/* Default onget method for the property 'Checked' */
+XBool WidgetSetToggleButton_OnGetChecked( WidgetSetToggleButton _this );
 
 #ifdef __cplusplus
   }

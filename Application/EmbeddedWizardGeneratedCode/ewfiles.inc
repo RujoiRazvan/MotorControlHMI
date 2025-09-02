@@ -7,4 +7,6 @@ EMWIFILES := \
 	Resources.c \
 	Views.c \
 	Application.c \
-	WidgetSet.c
+	Templates.c \
+	WidgetSet.c \
+	Unit.c

@@ -108,8 +108,8 @@ EW_DEFINE_FIELDS( ApplicationHMI, CoreGroup )
   EW_OBJECT  ( Motor_On,        ViewsImage )
   EW_OBJECT  ( Motor_Error,     ViewsImage )
   EW_OBJECT  ( Motor_Off,       ViewsImage )
-  EW_OBJECT  ( ToggleButton,    WidgetSetToggleButton )
-  EW_OBJECT  ( ToggleButton1,   WidgetSetToggleButton )
+  EW_OBJECT  ( Out1,            WidgetSetToggleButton )
+  EW_OBJECT  ( Out2,            WidgetSetToggleButton )
   EW_OBJECT  ( IN1_ON,          ViewsImage )
   EW_OBJECT  ( IN1_Off,         ViewsImage )
   EW_OBJECT  ( IN2_ON,          ViewsImage )
@@ -123,6 +123,9 @@ EW_DEFINE_FIELDS( ApplicationHMI, CoreGroup )
   EW_OBJECT  ( IN3_Text,        ViewsText )
   EW_OBJECT  ( IN4_Text,        ViewsText )
   EW_OBJECT  ( TripResetButton, WidgetSetPushButton )
+  EW_PROPERTY( Outlet_On1,      XRef )
+  EW_PROPERTY( Outlet_On2,      XRef )
+  EW_PROPERTY( Value,           XInt32 )
 EW_END_OF_FIELDS( ApplicationHMI )
 
 /* Virtual Method Table (VMT) for the class : 'Application::HMI' */
@@ -162,6 +165,15 @@ void ApplicationHMI_motorSlider( ApplicationHMI _this, XObject sender );
 
 /* 'C' function for method : 'Application::HMI.onTripResetPress()' */
 void ApplicationHMI_onTripResetPress( ApplicationHMI _this, XObject sender );
+
+/* 'C' function for method : 'Application::HMI.onOut1On()' */
+void ApplicationHMI_onOut1On( ApplicationHMI _this, XObject sender );
+
+/* 'C' function for method : 'Application::HMI.onOut1Off()' */
+void ApplicationHMI_onOut1Off( ApplicationHMI _this, XObject sender );
+
+/* 'C' function for method : 'Application::HMI.OnSetValue()' */
+void ApplicationHMI_OnSetValue( ApplicationHMI _this, XInt32 value );
 
 #ifdef __cplusplus
   }

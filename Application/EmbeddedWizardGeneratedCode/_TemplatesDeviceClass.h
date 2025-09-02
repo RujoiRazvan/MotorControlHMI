@@ -24,8 +24,8 @@
 *
 *******************************************************************************/
 
-#ifndef Application_H
-#define Application_H
+#ifndef _TemplatesDeviceClass_H
+#define _TemplatesDeviceClass_H
 
 #ifdef __cplusplus
   extern "C"
@@ -42,29 +42,25 @@
   #error Wrong version of Embedded Wizard Graphics Engine.
 #endif
 
-#include "_ApplicationDeviceClass.h"
-#include "_ApplicationHMI.h"
-#include "_ApplicationMainPage.h"
-#include "_ApplicationMeasuredValues.h"
-#include "_ApplicationSystemInfo.h"
-#include "_ApplicationWelcomePage.h"
+/* Forward declaration of the class Templates::DeviceClass */
+#ifndef _TemplatesDeviceClass_
+  EW_DECLARE_CLASS( TemplatesDeviceClass )
+#define _TemplatesDeviceClass_
+#endif
 
-/* Bitmap resource : 'Application::GreenLed' */
-EW_DECLARE_BITMAP_RES( ApplicationGreenLed )
 
-/* Bitmap resource : 'Application::RedLed' */
-EW_DECLARE_BITMAP_RES( ApplicationRedLed )
+/* Deklaration of class : 'Templates::DeviceClass' */
+EW_DEFINE_FIELDS( TemplatesDeviceClass, XObject )
+EW_END_OF_FIELDS( TemplatesDeviceClass )
 
-/* Bitmap resource : 'Application::TurnedOffLed' */
-EW_DECLARE_BITMAP_RES( ApplicationTurnedOffLed )
-
-/* User defined auto object: 'Application::Device' */
-EW_DECLARE_AUTOOBJECT( ApplicationDevice, ApplicationDeviceClass )
+/* Virtual Method Table (VMT) for the class : 'Templates::DeviceClass' */
+EW_DEFINE_METHODS( TemplatesDeviceClass, XObject )
+EW_END_OF_METHODS( TemplatesDeviceClass )
 
 #ifdef __cplusplus
   }
 #endif
 
-#endif /* Application_H */
+#endif /* _TemplatesDeviceClass_H */
 
 /* Embedded Wizard */

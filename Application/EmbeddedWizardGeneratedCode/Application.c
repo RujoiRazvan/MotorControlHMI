@@ -25,6 +25,7 @@
 *******************************************************************************/
 
 #include "ewlocale.h"
+#include "_ApplicationDeviceClass.h"
 #include "_ApplicationHMI.h"
 #include "_ApplicationMainPage.h"
 #include "_ApplicationMeasuredValues.h"
@@ -54,21 +55,22 @@
 /* Compressed strings for the language 'Default'. */
 EW_CONST_STRING_PRAGMA static const unsigned int _StringsDefault0[] =
 {
-  0x000002BE, /* ratio 55.84 % */
+  0x000002D2, /* ratio 55.96 % */
   0xB8001F00, 0x800AE452, 0x00D80032, 0x0DE00318, 0x01073680, 0x05000080, 0x67001840,
   0xA0000222, 0x85116061, 0x01922F0E, 0x1B800690, 0xCC01128C, 0x4E400859, 0x27278444,
   0x80098C3A, 0x1187C90E, 0xE0346E5D, 0x230009F1, 0x2802373F, 0x40C871E0, 0x1A093CA1,
   0x63706A35, 0x1A4D8F04, 0x72EA94D6, 0x5399D1A2, 0xB8543A5D, 0x9E81E372, 0x8D4CEA00,
   0x412BF421, 0xCA6D629F, 0x0931EA40, 0xC8002700, 0x16FB6CEE, 0x04B9DAC0, 0xC19DC2DD,
   0x1A5D6F36, 0xA4781B42, 0x9C26F2D2, 0xAE225294, 0xA3736844, 0x00538F03, 0x153951E4,
-  0x6E89C421, 0xBA919A4F, 0x00540271, 0x010A824C, 0xDF2523A0, 0x02E24BC4, 0x00030BE0,
-  0x522D89E0, 0xF741146E, 0x179B4AE4, 0x68BC2A15, 0x89D624B3, 0x26562C44, 0xDF2D729D,
-  0x26C24A89, 0x401C5C94, 0x8435B5EB, 0x4418F052, 0x54344DB9, 0x8C244F89, 0xC24A76F0,
-  0x26440045, 0x6863DB3C, 0xDF790C87, 0xBB7A5AC4, 0x4313A9E2, 0x5D93145F, 0x939743BD,
-  0x0B24A459, 0x8DEA85D8, 0xD0867C12, 0xE5892B45, 0x4D234212, 0x0A708564, 0x509DD589,
-  0x15260C17, 0x7559CB6E, 0x4D5A44D4, 0x266F9EA5, 0x509ED651, 0x10E84818, 0xC8590A85,
-  0x52194A54, 0xB6549BD8, 0x581D2769, 0xD2E42187, 0x34661D86, 0x19521211, 0x006CA1E8,
-  0x44C45524, 0xD7844DD8, 0x3909388F, 0x75134794, 0x0146D425, 0x00000001, 0x00000000
+  0x6E89C421, 0xBA919A4F, 0x005403B1, 0x010A824C, 0x0E6523A0, 0x928D5100, 0x2C96B89D,
+  0xE22D000C, 0x1B320802, 0xB1D7E000, 0xFDA9675F, 0x1146E27A, 0xB4AE4F74, 0xC2A15179,
+  0x624B368B, 0x62C4489D, 0xD729D265, 0x24A89DF2, 0xD1C9426C, 0x5B5EBC01, 0x8F052843,
+  0x4002D3B4, 0x44FA1543, 0xA78708C2, 0x40045C24, 0x3DBFC264, 0x10C87686, 0xA5AC4DF9,
+  0x3A9E2BCF, 0x3145F431, 0x90E7D9E5, 0x90B1934B, 0xB9805912, 0x1246DB20, 0x45D0867C,
+  0x12E5892B, 0x644D2342, 0x890A7385, 0x17509E95, 0x7115260C, 0xD47559D7, 0x654D5A44,
+  0x5126729F, 0x18509F96, 0x8810E878, 0x54C8890A, 0x9882254A, 0x99C2549C, 0x87581DE7,
+  0x89D2E421, 0x11346629, 0xA8495212, 0x15784A62, 0xBE791131, 0x92949001, 0x14493538,
+  0x25751341, 0x010146D4, 0x00000000
 };
 
 /* Constant values used in this 'C' module only. */
@@ -112,25 +114,25 @@ static const XRect _Const0024 = {{ 178, 140 }, { 303, 190 }};
 static const XStringRes _Const0025 = { _StringsDefault0, 0x0073 };
 static const XRect _Const0026 = {{ 134, 2 }, { 346, 32 }};
 static const XStringRes _Const0027 = { _StringsDefault0, 0x0080 };
-static const XRect _Const0028 = {{ 13, 63 }, { 298, 93 }};
+static const XRect _Const0028 = {{ 21, 66 }, { 306, 96 }};
 static const XStringRes _Const0029 = { _StringsDefault0, 0x008E };
-static const XRect _Const002A = {{ 16, 96 }, { 307, 126 }};
-static const XStringRes _Const002B = { _StringsDefault0, 0x00A1 };
+static const XRect _Const002A = {{ 15, 96 }, { 306, 126 }};
+static const XStringRes _Const002B = { _StringsDefault0, 0x00AB };
 static const XRect _Const002C = {{ 14, 150 }, { 201, 180 }};
-static const XStringRes _Const002D = { _StringsDefault0, 0x00C3 };
+static const XStringRes _Const002D = { _StringsDefault0, 0x00CD };
 static const XRect _Const002E = {{ 19, 123 }, { 310, 153 }};
-static const XStringRes _Const002F = { _StringsDefault0, 0x00D7 };
+static const XStringRes _Const002F = { _StringsDefault0, 0x00E1 };
 static const XRect _Const0030 = {{ 118, 2 }, { 360, 32 }};
-static const XStringRes _Const0031 = { _StringsDefault0, 0x00F9 };
+static const XStringRes _Const0031 = { _StringsDefault0, 0x0103 };
 static const XRect _Const0032 = {{ 18, 64 }, { 202, 94 }};
-static const XStringRes _Const0033 = { _StringsDefault0, 0x010B };
+static const XStringRes _Const0033 = { _StringsDefault0, 0x0115 };
 static const XRect _Const0034 = {{ 18, 94 }, { 214, 124 }};
-static const XStringRes _Const0035 = { _StringsDefault0, 0x0122 };
+static const XStringRes _Const0035 = { _StringsDefault0, 0x012C };
 static const XRect _Const0036 = {{ 18, 221 }, { 347, 251 }};
-static const XStringRes _Const0037 = { _StringsDefault0, 0x013A };
-static const XStringRes _Const0038 = { _StringsDefault0, 0x014E };
-static const XStringRes _Const0039 = { _StringsDefault0, 0x0154 };
-static const XStringRes _Const003A = { _StringsDefault0, 0x015A };
+static const XStringRes _Const0037 = { _StringsDefault0, 0x0144 };
+static const XStringRes _Const0038 = { _StringsDefault0, 0x0158 };
+static const XStringRes _Const0039 = { _StringsDefault0, 0x015E };
+static const XStringRes _Const003A = { _StringsDefault0, 0x0164 };
 
 /* Initializer for the class 'Application::MainPage' */
 void ApplicationMainPage__Init( ApplicationMainPage _this, XObject aLink, XHandle aArg )
@@ -486,8 +488,8 @@ void ApplicationHMI__Init( ApplicationHMI _this, XObject aLink, XHandle aArg )
   ViewsImage__Init( &_this->Motor_On, &_this->_.XObject, 0 );
   ViewsImage__Init( &_this->Motor_Error, &_this->_.XObject, 0 );
   ViewsImage__Init( &_this->Motor_Off, &_this->_.XObject, 0 );
-  WidgetSetToggleButton__Init( &_this->ToggleButton, &_this->_.XObject, 0 );
-  WidgetSetToggleButton__Init( &_this->ToggleButton1, &_this->_.XObject, 0 );
+  WidgetSetToggleButton__Init( &_this->Out1, &_this->_.XObject, 0 );
+  WidgetSetToggleButton__Init( &_this->Out2, &_this->_.XObject, 0 );
   ViewsImage__Init( &_this->IN1_ON, &_this->_.XObject, 0 );
   ViewsImage__Init( &_this->IN1_Off, &_this->_.XObject, 0 );
   ViewsImage__Init( &_this->IN2_ON, &_this->_.XObject, 0 );
@@ -552,10 +554,11 @@ void ApplicationHMI__Init( ApplicationHMI _this, XObject aLink, XHandle aArg )
   CoreRectView__OnSetBounds( &_this->Motor_On, _Const0012 );
   CoreRectView__OnSetBounds( &_this->Motor_Error, _Const0012 );
   CoreRectView__OnSetBounds( &_this->Motor_Off, _Const0012 );
-  CoreRectView__OnSetBounds( &_this->ToggleButton, _Const0013 );
-  WidgetSetToggleButton_OnSetLabel( &_this->ToggleButton, EwLoadString( &_Const0014 ));
-  CoreRectView__OnSetBounds( &_this->ToggleButton1, _Const0015 );
-  WidgetSetToggleButton_OnSetLabel( &_this->ToggleButton1, EwLoadString( &_Const0016 ));
+  CoreRectView__OnSetBounds( &_this->Out1, _Const0013 );
+  WidgetSetToggleButton_OnSetChecked( &_this->Out1, 0 );
+  WidgetSetToggleButton_OnSetLabel( &_this->Out1, EwLoadString( &_Const0014 ));
+  CoreRectView__OnSetBounds( &_this->Out2, _Const0015 );
+  WidgetSetToggleButton_OnSetLabel( &_this->Out2, EwLoadString( &_Const0016 ));
   CoreRectView__OnSetBounds( &_this->IN1_ON, _Const0017 );
   CoreRectView__OnSetBounds( &_this->IN1_Off, _Const0017 );
   CoreRectView__OnSetBounds( &_this->IN2_ON, _Const0018 );
@@ -608,8 +611,8 @@ void ApplicationHMI__Init( ApplicationHMI _this, XObject aLink, XHandle aArg )
   CoreGroup_Add((CoreGroup)_this, ((CoreView)&_this->Motor_On ), 0 );
   CoreGroup_Add((CoreGroup)_this, ((CoreView)&_this->Motor_Error ), 0 );
   CoreGroup_Add((CoreGroup)_this, ((CoreView)&_this->Motor_Off ), 0 );
-  CoreGroup_Add((CoreGroup)_this, ((CoreView)&_this->ToggleButton ), 0 );
-  CoreGroup_Add((CoreGroup)_this, ((CoreView)&_this->ToggleButton1 ), 0 );
+  CoreGroup_Add((CoreGroup)_this, ((CoreView)&_this->Out1 ), 0 );
+  CoreGroup_Add((CoreGroup)_this, ((CoreView)&_this->Out2 ), 0 );
   CoreGroup_Add((CoreGroup)_this, ((CoreView)&_this->IN1_ON ), 0 );
   CoreGroup_Add((CoreGroup)_this, ((CoreView)&_this->IN1_Off ), 0 );
   CoreGroup_Add((CoreGroup)_this, ((CoreView)&_this->IN2_ON ), 0 );
@@ -637,10 +640,16 @@ void ApplicationHMI__Init( ApplicationHMI _this, XObject aLink, XHandle aArg )
   ResourcesBitmap ));
   ViewsImage_OnSetBitmap( &_this->Motor_Off, EwLoadResource( &ApplicationTurnedOffLed, 
   ResourcesBitmap ));
-  WidgetSetToggleButton_OnSetAppearance( &_this->ToggleButton, EwGetAutoObject( 
-  &WidgetSetSwitch_Lime_Medium, WidgetSetToggleButtonConfig ));
-  WidgetSetToggleButton_OnSetAppearance( &_this->ToggleButton1, EwGetAutoObject( 
-  &WidgetSetSwitch_Lime_Medium, WidgetSetToggleButtonConfig ));
+  WidgetSetToggleButton_OnSetOutlet( &_this->Out1, EwNewRef( EwGetAutoObject( &ApplicationDevice, 
+  ApplicationDeviceClass ), ApplicationDeviceClass_OnGetDeviceClass_Out1, ApplicationDeviceClass_OnSetDeviceClass_Out1 ));
+  _this->Out1.OnSwitchOn = EwNewSlot( _this, ApplicationHMI_onOut1On );
+  _this->Out1.OnSwitchOff = EwNewSlot( _this, ApplicationHMI_onOut1Off );
+  WidgetSetToggleButton_OnSetAppearance( &_this->Out1, EwGetAutoObject( &WidgetSetSwitch_Lime_Medium, 
+  WidgetSetToggleButtonConfig ));
+  WidgetSetToggleButton_OnSetOutlet( &_this->Out2, EwNewRef( EwGetAutoObject( &ApplicationDevice, 
+  ApplicationDeviceClass ), ApplicationDeviceClass_OnGetDeviceClass_Out2, ApplicationDeviceClass_OnSetDeviceClass_Out2 ));
+  WidgetSetToggleButton_OnSetAppearance( &_this->Out2, EwGetAutoObject( &WidgetSetSwitch_Lime_Medium, 
+  WidgetSetToggleButtonConfig ));
   ViewsImage_OnSetBitmap( &_this->IN1_ON, EwLoadResource( &ApplicationGreenLed, 
   ResourcesBitmap ));
   ViewsImage_OnSetBitmap( &_this->IN1_Off, EwLoadResource( &ApplicationTurnedOffLed, 
@@ -664,6 +673,10 @@ void ApplicationHMI__Init( ApplicationHMI _this, XObject aLink, XHandle aArg )
   _this->TripResetButton.OnPress = EwNewSlot( _this, ApplicationHMI_onTripResetPress );
   WidgetSetPushButton_OnSetAppearance( &_this->TripResetButton, EwGetAutoObject( 
   &WidgetSetPushButton_Mono_Medium, WidgetSetPushButtonConfig ));
+  _this->Outlet_On1 = EwNewRef( &_this->Out1, WidgetSetToggleButton_OnGetChecked, 
+  WidgetSetToggleButton_OnSetChecked );
+  _this->Outlet_On2 = EwNewRef( &_this->Out1, WidgetSetToggleButton_OnGetChecked, 
+  WidgetSetToggleButton_OnSetChecked );
 }
 
 /* Re-Initializer for the class 'Application::HMI' */
@@ -684,8 +697,8 @@ void ApplicationHMI__ReInit( ApplicationHMI _this )
   ViewsImage__ReInit( &_this->Motor_On );
   ViewsImage__ReInit( &_this->Motor_Error );
   ViewsImage__ReInit( &_this->Motor_Off );
-  WidgetSetToggleButton__ReInit( &_this->ToggleButton );
-  WidgetSetToggleButton__ReInit( &_this->ToggleButton1 );
+  WidgetSetToggleButton__ReInit( &_this->Out1 );
+  WidgetSetToggleButton__ReInit( &_this->Out2 );
   ViewsImage__ReInit( &_this->IN1_ON );
   ViewsImage__ReInit( &_this->IN1_Off );
   ViewsImage__ReInit( &_this->IN2_ON );
@@ -719,8 +732,8 @@ void ApplicationHMI__Done( ApplicationHMI _this )
   ViewsImage__Done( &_this->Motor_On );
   ViewsImage__Done( &_this->Motor_Error );
   ViewsImage__Done( &_this->Motor_Off );
-  WidgetSetToggleButton__Done( &_this->ToggleButton );
-  WidgetSetToggleButton__Done( &_this->ToggleButton1 );
+  WidgetSetToggleButton__Done( &_this->Out1 );
+  WidgetSetToggleButton__Done( &_this->Out2 );
   ViewsImage__Done( &_this->IN1_ON );
   ViewsImage__Done( &_this->IN1_Off );
   ViewsImage__Done( &_this->IN2_ON );
@@ -784,13 +797,50 @@ void ApplicationHMI_onTripResetPress( ApplicationHMI _this, XObject sender )
   EW_UNUSED_ARG( sender );
 }
 
+/* 'C' function for method : 'Application::HMI.onOut1On()' */
+void ApplicationHMI_onOut1On( ApplicationHMI _this, XObject sender )
+{
+  /* Dummy expressions to avoid the 'C' warning 'unused argument'. */
+  EW_UNUSED_ARG( sender );
+
+  ApplicationHMI_OnSetValue( _this, 1 );
+  EwTrace( "%i", _this->Value );
+}
+
+/* 'C' function for method : 'Application::HMI.onOut1Off()' */
+void ApplicationHMI_onOut1Off( ApplicationHMI _this, XObject sender )
+{
+  /* Dummy expressions to avoid the 'C' warning 'unused argument'. */
+  EW_UNUSED_ARG( sender );
+
+  ApplicationHMI_OnSetValue( _this, 0 );
+  EwTrace( "%i", _this->Value );
+}
+
+/* 'C' function for method : 'Application::HMI.OnSetValue()' */
+void ApplicationHMI_OnSetValue( ApplicationHMI _this, XInt32 value )
+{
+  if ( _this->Value == value )
+    return;
+
+  _this->Value = value;
+
+  if ( _this->Outlet_On1.Object != 0 )
+  {
+    if ( value == 0 )
+      EwOnSetBool( _this->Outlet_On1, 0 );
+    else
+      EwOnSetBool( _this->Outlet_On1, 1 );
+  }
+}
+
 /* Variants derived from the class : 'Application::HMI' */
 EW_DEFINE_CLASS_VARIANTS( ApplicationHMI )
 EW_END_OF_CLASS_VARIANTS( ApplicationHMI )
 
 /* Virtual Method Table (VMT) for the class : 'Application::HMI' */
-EW_DEFINE_CLASS( ApplicationHMI, CoreGroup, WipeTouchHandler, _.VMT, _.VMT, _.VMT, 
-                 _.VMT, _.VMT, "Application::HMI" )
+EW_DEFINE_CLASS( ApplicationHMI, CoreGroup, WipeTouchHandler, Outlet_On1, Outlet_On1, 
+                 Outlet_On1, Value, Value, "Application::HMI" )
   CoreRectView_initLayoutContext,
   CoreView_GetRoot,
   CoreGroup_Draw,
@@ -1161,5 +1211,184 @@ EW_DEFINE_CLASS( ApplicationMeasuredValues, CoreGroup, splashTimer, ElapsedSecon
   CoreGroup_UpdateViewState,
   CoreGroup_InvalidateArea,
 EW_END_OF_CLASS( ApplicationMeasuredValues )
+
+/* User defined inline code: 'Application::Inline' */
+#include "DeviceDriver.h"
+
+void DeviceDriver_SetOutputState(XInt32 output_number, XBool output_state);
+
+/* Initializer for the class 'Application::DeviceClass' */
+void ApplicationDeviceClass__Init( ApplicationDeviceClass _this, XObject aLink, XHandle aArg )
+{
+  /* At first initialize the super class ... */
+  TemplatesDeviceClass__Init( &_this->_.Super, aLink, aArg );
+
+  /* Allow the Immediate Garbage Collection to evalute the members of this class. */
+  _this->_.XObject._.GCT = EW_CLASS_GCT( ApplicationDeviceClass );
+
+  /* Setup the VMT pointer */
+  _this->_.VMT = EW_CLASS( ApplicationDeviceClass );
+
+  /* Call the user defined constructor */
+  ApplicationDeviceClass_Init( _this, aArg );
+}
+
+/* Re-Initializer for the class 'Application::DeviceClass' */
+void ApplicationDeviceClass__ReInit( ApplicationDeviceClass _this )
+{
+  /* At first re-initialize the super class ... */
+  TemplatesDeviceClass__ReInit( &_this->_.Super );
+}
+
+/* Finalizer method for the class 'Application::DeviceClass' */
+void ApplicationDeviceClass__Done( ApplicationDeviceClass _this )
+{
+  /* Call the user defined destructor of the class */
+  ApplicationDeviceClass_Done( _this );
+
+  /* Finalize this class */
+  _this->_.Super._.VMT = EW_CLASS( TemplatesDeviceClass );
+
+  /* Don't forget to deinitialize the super class ... */
+  TemplatesDeviceClass__Done( &_this->_.Super );
+}
+
+/* 'C' function for method : 'Application::DeviceClass.Done()' */
+void ApplicationDeviceClass_Done( ApplicationDeviceClass _this )
+{
+  XObject thisObject = ((XObject)_this );
+
+  {
+    /*
+       TO DO:
+
+       Depending on your application case you call functions of the underlying
+       middleware (or access the device directly) in order to perform the necessary
+       de-initialization steps. For example, you invoke some 'C' function:
+
+         YourDevice_DeInitialize();
+
+       IMPORTANT:
+       ----------
+
+       The variable 'thisObject' represents the actually de-initialized instance of the
+       Application::DeviceClass. If you have stored this object at the initialization
+       time (in the 'Init' method) in some global C variable or registered it by the
+       middleware, it is important to perform now the opposite operation. Set the
+       global variable to NULL or de-register 'thisObject' object from the middleware.
+
+    */
+  }
+}
+
+/* 'C' function for method : 'Application::DeviceClass.Init()' */
+void ApplicationDeviceClass_Init( ApplicationDeviceClass _this, XHandle aArg )
+{
+  XObject thisObject;
+
+  /* Dummy expressions to avoid the 'C' warning 'unused argument'. */
+  EW_UNUSED_ARG( aArg );
+
+  thisObject = ((XObject)_this );
+  {
+    /*
+       TO DO:
+
+       Depending on your application case you call functions of the underlying
+       middleware (or access the device directly) in order to perform the necessary
+       initialization steps. For example, you invoke some 'C' function:
+
+         YourDevice_Initialize();
+
+       The variable 'thisObject' represents the actually initialized instance of the
+       Application::DeviceClass. You can store this variable e.g. in the middleware
+       and use it whenever the middleware needs to notify the GUI application about
+       some state alternation or events. In this manner, the middleware will be able
+       to invoke methods of the interface device object.
+
+       For example, you can store 'thisObject' in some global C variable:
+
+         // Declaration of the global C variable
+         XObject theDeviceObject;
+
+         // Store the instance in the global variable
+         theDeviceObject = thisObject;
+
+       Later use the global variable e.g. to provide the GUI application with events:
+
+         ApplicationDeviceClass__TriggerSomeEvent( theDeviceObject );
+
+       IMPORTANT:
+       ----------
+
+       If you store 'thisObject' for later use, don't forget to implement the opposite
+       operation in the method 'Done'. Concrete, 'Done' should set the global variable
+       again to the value NULL.
+
+    */
+  }
+}
+
+/* 'C' function for method : 'Application::DeviceClass.OnSetDeviceClass_Out1()' */
+void ApplicationDeviceClass_OnSetDeviceClass_Out1( ApplicationDeviceClass _this, 
+  XBool value )
+{
+  if ( _this->DeviceClass_Out1 == value )
+    return;
+
+  _this->DeviceClass_Out1 = value;
+  DeviceDriver_SetOutputState(1, value);
+}
+
+/* 'C' function for method : 'Application::DeviceClass.OnSetDeviceClass_Out2()' */
+void ApplicationDeviceClass_OnSetDeviceClass_Out2( ApplicationDeviceClass _this, 
+  XBool value )
+{
+  if ( _this->DeviceClass_Out2 == value )
+    return;
+
+  _this->DeviceClass_Out2 = value;
+  DeviceDriver_SetOutputState(2, value);
+}
+
+/* Default onget method for the property 'DeviceClass_Out1' */
+XBool ApplicationDeviceClass_OnGetDeviceClass_Out1( ApplicationDeviceClass _this )
+{
+  return _this->DeviceClass_Out1;
+}
+
+/* Default onget method for the property 'DeviceClass_Out2' */
+XBool ApplicationDeviceClass_OnGetDeviceClass_Out2( ApplicationDeviceClass _this )
+{
+  return _this->DeviceClass_Out2;
+}
+
+/* Variants derived from the class : 'Application::DeviceClass' */
+EW_DEFINE_CLASS_VARIANTS( ApplicationDeviceClass )
+EW_END_OF_CLASS_VARIANTS( ApplicationDeviceClass )
+
+/* Virtual Method Table (VMT) for the class : 'Application::DeviceClass' */
+EW_DEFINE_CLASS( ApplicationDeviceClass, TemplatesDeviceClass, _.VMT, _.VMT, _.VMT, 
+                 _.VMT, _.VMT, _.VMT, "Application::DeviceClass" )
+EW_END_OF_CLASS( ApplicationDeviceClass )
+
+/* User defined auto object: 'Application::Device' */
+EW_DEFINE_AUTOOBJECT( ApplicationDevice, ApplicationDeviceClass )
+
+/* Initializer for the auto object 'Application::Device' */
+void ApplicationDevice__Init( ApplicationDeviceClass _this )
+{
+  EW_UNUSED_ARG( _this );
+}
+
+/* Re-Initializer for the auto object 'Application::Device' */
+void ApplicationDevice__ReInit( ApplicationDeviceClass _this )
+{
+  EW_UNUSED_ARG( _this );
+}
+
+/* Table with links to derived variants of the auto object : 'Application::Device' */
+EW_DEFINE_AUTOOBJECT_VARIANTS( ApplicationDevice )
+EW_END_OF_AUTOOBJECT_VARIANTS( ApplicationDevice )
 
 /* Embedded Wizard */

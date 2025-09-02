@@ -24,47 +24,7 @@
 *
 *******************************************************************************/
 
-#ifndef Application_H
-#define Application_H
-
-#ifdef __cplusplus
-  extern "C"
-  {
-#endif
-
-#include "ewrte.h"
-#if ( EW_RTE_VERSION >> 16 ) != 14
-  #error Wrong version of Embedded Wizard Runtime Environment.
-#endif
-
-#include "ewgfx.h"
-#if ( EW_GFX_VERSION >> 16 ) != 14
-  #error Wrong version of Embedded Wizard Graphics Engine.
-#endif
-
-#include "_ApplicationDeviceClass.h"
-#include "_ApplicationHMI.h"
-#include "_ApplicationMainPage.h"
-#include "_ApplicationMeasuredValues.h"
-#include "_ApplicationSystemInfo.h"
-#include "_ApplicationWelcomePage.h"
-
-/* Bitmap resource : 'Application::GreenLed' */
-EW_DECLARE_BITMAP_RES( ApplicationGreenLed )
-
-/* Bitmap resource : 'Application::RedLed' */
-EW_DECLARE_BITMAP_RES( ApplicationRedLed )
-
-/* Bitmap resource : 'Application::TurnedOffLed' */
-EW_DECLARE_BITMAP_RES( ApplicationTurnedOffLed )
-
-/* User defined auto object: 'Application::Device' */
-EW_DECLARE_AUTOOBJECT( ApplicationDevice, ApplicationDeviceClass )
-
-#ifdef __cplusplus
-  }
-#endif
-
-#endif /* Application_H */
+#include "ewlocale.h"
+#include "Unit.h"
 
 /* Embedded Wizard */
