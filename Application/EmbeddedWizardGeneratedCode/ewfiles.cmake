@@ -8,5 +8,4 @@ set(EMWIFILES
 	"Views.c" 
 	"Application.c" 
 	"Templates.c" 
-	"WidgetSet.c" 
-	"Unit.c")
+	"WidgetSet.c")
