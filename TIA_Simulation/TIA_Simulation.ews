@@ -3,6 +3,7 @@ $version 1.0
 attr active = Application::HMI;
 attr callStackMonitor_Show = false;
 attr connectInspectors = false;
+attr currentCodeInspector = Application::Inline;
 attr debug_TrackUpdates = false;
 attr extractDoc_ClassOverview = true;
 attr extractDoc_DeleteOldFiles = false;
@@ -53,19 +54,25 @@ view class Application::MainPage
 view class Application::HMI
 {
   attr enableWireMode = false;
-  attr scrollTo = <-531,-178>;
-  attr zoom = 1.75;
+  attr scrollTo = <-25,-58>;
+  attr zoom = 1.25;
 }
 
 view class Application::SystemInfo
 {
-  attr enableWireMode = false;
   attr scrollTo = <-7,-87>;
   attr zoom = 1.0;
 }
 
 view class Application::MeasuredValues
 {
+  attr scrollTo = <-7,-7>;
+  attr zoom = 1.0;
+}
+
+view class Application::FaultOrWarning
+{
+  attr enableWireMode = false;
   attr scrollTo = <-7,-7>;
   attr zoom = 1.0;
 }
@@ -77,9 +84,154 @@ view class Application::DeviceClass
   attr zoom = 1.25;
 }
 
-view class Application::FaultOrWarning
+codeview Application::HMI.onCWOff
 {
-  attr enableWireMode = false;
-  attr scrollTo = <-7,-7>;
-  attr zoom = 1.0;
+  attr codeColSelect = false;
+  attr codeFirstPos = <0,0>;
+  attr codeSelEnd = <7,0>;
+  attr codeSelStart = <7,0>;
+}
+
+codeview Application::HMI.onCWOn
+{
+  attr codeColSelect = false;
+  attr codeFirstPos = <0,0>;
+  attr codeSelEnd = <0,0>;
+  attr codeSelStart = <0,0>;
+}
+
+codeview Application::HMI.onCCWOff
+{
+  attr codeColSelect = false;
+  attr codeFirstPos = <0,0>;
+  attr codeSelEnd = <8,0>;
+  attr codeSelStart = <0,0>;
+}
+
+codeview Application::HMI.onCCWOn
+{
+  attr codeColSelect = false;
+  attr codeFirstPos = <0,0>;
+  attr codeSelEnd = <8,0>;
+  attr codeSelStart = <8,0>;
+}
+
+codeview Application::HMI.OnSetcwValue
+{
+  attr codeColSelect = false;
+  attr codeFirstPos = <0,0>;
+  attr codeSelEnd = <13,15>;
+  attr codeSelStart = <13,15>;
+}
+
+codeview Application::HMI.OnSetValue
+{
+  attr codeColSelect = false;
+  attr codeFirstPos = <0,3>;
+  attr codeSelEnd = <0,7>;
+  attr codeSelStart = <1,18>;
+}
+
+codeview Application::HMI.OnSetcwOutlet
+{
+  attr codeColSelect = false;
+  attr codeFirstPos = <0,0>;
+  attr codeSelEnd = <0,0>;
+  attr codeSelStart = <0,0>;
+}
+
+codeview Application::HMI.OnSetOutlet_On1
+{
+  attr codeColSelect = false;
+  attr codeFirstPos = <0,0>;
+  attr codeSelEnd = <0,0>;
+  attr codeSelStart = <0,0>;
+}
+
+codeview Application::HMI.onOut1Off
+{
+  attr codeColSelect = false;
+  attr codeFirstPos = <0,0>;
+  attr codeSelEnd = <0,0>;
+  attr codeSelStart = <0,0>;
+}
+
+codeview Application::HMI.OnSetccwValue
+{
+  attr codeColSelect = false;
+  attr codeFirstPos = <0,6>;
+  attr codeSelEnd = <6,7>;
+  attr codeSelStart = <6,7>;
+}
+
+codeview Application::DeviceClass.OnSetDeviceClass_CW
+{
+  attr codeColSelect = false;
+  attr codeFirstPos = <0,6>;
+  attr codeSelEnd = <3,10>;
+  attr codeSelStart = <40,10>;
+}
+
+codeview Application::DeviceClass.OnSetDeviceClass_CCW
+{
+  attr codeColSelect = false;
+  attr codeFirstPos = <0,6>;
+  attr codeSelEnd = <31,10>;
+  attr codeSelStart = <31,10>;
+}
+
+codeview Application::Inline
+{
+  attr codeColSelect = false;
+  attr codeFirstPos = <0,0>;
+  attr codeSelEnd = <26,4>;
+  attr codeSelStart = <26,4>;
+}
+
+codeview Application::HMI.OnSetValue_Out2
+{
+  attr codeColSelect = false;
+  attr codeFirstPos = <0,3>;
+  attr codeSelEnd = <0,0>;
+  attr codeSelStart = <0,0>;
+}
+
+codeview Application::HMI.onOut2On
+{
+  attr codeColSelect = false;
+  attr codeFirstPos = <0,0>;
+  attr codeSelEnd = <0,0>;
+  attr codeSelStart = <0,0>;
+}
+
+codeview Application::HMI.onOut2Off
+{
+  attr codeColSelect = false;
+  attr codeFirstPos = <0,0>;
+  attr codeSelEnd = <0,0>;
+  attr codeSelStart = <0,0>;
+}
+
+codeview Application::HMI.OnSetOutlet_On2
+{
+  attr codeColSelect = false;
+  attr codeFirstPos = <0,0>;
+  attr codeSelEnd = <0,0>;
+  attr codeSelStart = <0,0>;
+}
+
+codeview Application::DeviceClass.OnSetDeviceClass_Out2
+{
+  attr codeColSelect = false;
+  attr codeFirstPos = <0,0>;
+  attr codeSelEnd = <0,0>;
+  attr codeSelStart = <0,0>;
+}
+
+codeview Application::DeviceClass.OnSetDeviceClass_Out1
+{
+  attr codeColSelect = false;
+  attr codeFirstPos = <0,0>;
+  attr codeSelEnd = <0,0>;
+  attr codeSelStart = <0,0>;
 }

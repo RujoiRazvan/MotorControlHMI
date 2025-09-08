@@ -525,7 +525,7 @@ class HMI : Core::Group
     */
   }
 
-  $rect <920,50,1120,90>
+  $rect <550,50,750,90>
   object Core::Timer splashTimer
   {
     preset OnTrigger = onTimer;
@@ -534,7 +534,7 @@ class HMI : Core::Group
     preset Enabled = true;
   }
 
-  $rect <920,100,1120,140>
+  $rect <550,100,750,140>
   slot onTimer
   {
     // Determine the previously presented splash dialog
@@ -559,25 +559,7 @@ class HMI : Core::Group
   // WelcomePage Configuration
   note group Note
   {
-    attr Bounds = <900,0,1200,200>;
-  }
-
-  $rect <550,50,750,90>
-  slot motorSlider
-  {
-    sender; /* the method is called from the sender object */
-    if (HorizontalSlider.CurrentValue == 0 || HorizontalSlider.CurrentValue == 2)
-    {
-      Motor_Error.Visible = false;
-      Motor_Off.Visible = false;
-      Motor_On.Visible = true;
-    }
-    else if (HorizontalSlider.CurrentValue == 1)
-    {
-      Motor_Error.Visible = false;
-      Motor_Off.Visible = true;
-      Motor_On.Visible = false;
-    }
+    attr Bounds = <530,0,830,200>;
   }
 
   $rect <20,20,160,60>
@@ -590,11 +572,7 @@ class HMI : Core::Group
   object WidgetSet::ToggleButton Out1
   {
     preset Bounds = <340,43,463,93>;
-    preset OnUpdate = null;
     preset Outlet = ^Application::Device.DeviceClass_Out1;
-    preset Checked = false;
-    preset OnRelease = null;
-    preset OnPress = null;
     preset OnSwitchOn = onOut1On;
     preset OnSwitchOff = onOut1Off;
     preset Label = "Out1";
@@ -606,6 +584,8 @@ class HMI : Core::Group
   {
     preset Bounds = <340,96,463,146>;
     preset Outlet = ^Application::Device.DeviceClass_Out2;
+    preset OnSwitchOn = onOut2On;
+    preset OnSwitchOff = onOut2Off;
     preset Label = "Out2";
     preset Appearance = WidgetSet::Switch_Lime_Medium;
   }
@@ -732,7 +712,7 @@ class HMI : Core::Group
     preset Appearance = WidgetSet::PushButton_Mono_Medium;
   }
 
-  $rect <550,100,750,140>
+  $rect <910,40,1110,80>
   slot onTripResetPress
   {
     sender; /* the method is called from the sender object */
@@ -741,7 +721,7 @@ class HMI : Core::Group
   // On Page Slots
   note group Note1
   {
-    attr Bounds = <530,-10,830,190>;
+    attr Bounds = <850,0,1150,200>;
   }
 
   // Output 1
@@ -891,8 +871,8 @@ class HMI : Core::Group
     preset Checked = false;
     preset OnRelease = null;
     preset OnPress = null;
-    preset OnSwitchOn = null;
-    preset OnSwitchOff = null;
+    preset OnSwitchOn = onCWOn;
+    preset OnSwitchOff = onCWOff;
     preset Label = "CW";
     preset Appearance = WidgetSet::Switch_Lime_Medium;
   }
@@ -906,8 +886,8 @@ class HMI : Core::Group
     preset Checked = false;
     preset OnRelease = null;
     preset OnPress = null;
-    preset OnSwitchOn = null;
-    preset OnSwitchOff = null;
+    preset OnSwitchOn = onCCWOn;
+    preset OnSwitchOff = onCCWOff;
     preset Label = "CCW";
     preset Appearance = WidgetSet::Switch_Lime_Medium;
   }
@@ -926,9 +906,6 @@ class HMI : Core::Group
     preset Label = "Cycle";
     preset Appearance = WidgetSet::Switch_Lime_Medium;
   }
-
-  $rect <-10,450,230,490>
-  object WidgetSet::ValueDisplayConfig ValueDisplayConfig;
 
   $rect <20,20,160,60>
   object Views::Text CycleCounterText
@@ -950,19 +927,11 @@ class HMI : Core::Group
     preset Color = #000000FF;
   }
 
-  $rect <360,510,580,550>
-  object Resources::FontSet FontSet
-  {
-    preset Font3 = Resources::FontExtraLarge;
-    preset Font2 = Resources::FontLarge;
-    preset Font1 = Resources::FontMedium;
-    preset Font0 = Resources::FontSmall;
-  }
-
   $rect <20,20,160,60>
   object Application::FaultOrWarning Fault
   {
     preset Bounds = <350,208,451,237>;
+    preset Embedded = false;
   }
 
   $rect <20,20,160,60>
@@ -977,6 +946,138 @@ class HMI : Core::Group
     preset Bounds = <12,2,135,45>;
   }
 
+  $rect <560,530,760,570>
+  slot onCWOn
+  {
+    Value = 0;
+    trace Value;
+  }
+
+  // Motor Control
+  note group Note4
+  {
+    attr Bounds = <530,430,1640,680>;
+  }
+
+  $rect <559,479,759,519>
+  slot onCWOff
+  {
+    cwValue = 0;
+    trace Value;
+  }
+
+  $rect <559,631,759,671>
+  slot onCCWOn
+  {
+    ccwValue = 0;
+    trace Value;
+  }
+
+  $rect <558,580,758,620>
+  slot onCCWOff
+  {
+    ccwValue = 0;
+    trace Value;
+  }
+
+  $rect <782,480,982,520>
+  property int32 cwValue;
+
+  $rect <1002,480,1202,520>
+  onset cwValue
+  {
+    // The value doesn't change - nothing to do.
+    if ( pure cwValue == value )
+      return;
+
+    // Remember the property's new value.
+    pure cwValue = value;
+
+    if ( cwOutlet != null )
+    {
+      if ( value == 0 )
+      {
+        cwOutlet^ = false;
+      }
+      else
+      {
+         cwOutlet^ = true;
+      }
+
+    }
+
+    // TO DO:
+    // 
+    // Now you can handle the alternation of the property.
+  }
+
+  $rect <1222,480,1422,520>
+  property ^bool cwOutlet;
+
+  $rect <1432,480,1632,520>
+  onset cwOutlet
+  {
+    // The value doesn't change - nothing to do.
+    if ( pure cwOutlet == value )
+      return;
+
+    // Remember the property's new value.
+    pure cwOutlet = value;
+
+    // TO DO:
+    // 
+    // Now you can handle the alternation of the property.
+  }
+
+  $rect <770,600,970,640>
+  property int32 ccwValue;
+
+  $rect <990,600,1190,640>
+  onset ccwValue
+  {
+    // The value doesn't change - nothing to do.
+    if ( pure ccwValue == value )
+      return;
+
+    // Remember the property's new value.
+    pure ccwValue = value;
+
+    if ( ccwOutlet != null )
+    {
+      if ( value == 0 )
+      {
+        ccwOutlet^ = false;
+      }
+      else
+      {
+         ccwOutlet^ = true;
+      }
+
+    }
+
+    // TO DO:
+    // 
+    // Now you can handle the alternation of the property.
+  }
+
+  $rect <1210,600,1410,640>
+  property ^bool ccwOutlet;
+
+  $rect <1420,600,1620,640>
+  onset ccwOutlet
+  {
+    // The value doesn't change - nothing to do.
+    if ( pure ccwOutlet == value )
+      return;
+
+    // Remember the property's new value.
+    pure ccwOutlet = value;
+
+    // TO DO:
+    // 
+    // Now you can handle the alternation of the property.
+  }
+
   // Directives to adapt the order of the above members according to how these members 
   // where arranged when the project content was stored. In this manner the storage 
   // and the expected order of the members don't depend. Merging of changes in the 
@@ -989,7 +1090,6 @@ class HMI : Core::Group
   $member onTimer
   $member Rectangle
   $member Note
-  $member motorSlider
   $member Out1
   $member Out2
   $member IN1_ON
@@ -1024,13 +1124,24 @@ class HMI : Core::Group
   $member CW
   $member CCW
   $member Cycle
-  $member ValueDisplayConfig
   $member CycleCounterText
   $member CycleCounterValue
-  $member FontSet
   $member Fault
   $member Warning
   $member Ready
+  $member onCWOn
+  $member Note4
+  $member onCWOff
+  $member onCCWOn
+  $member onCCWOff
+  $member cwValue
+  $member OnSetcwValue
+  $member cwOutlet
+  $member OnSetcwOutlet
+  $member ccwValue
+  $member OnSetccwValue
+  $member ccwOutlet
+  $member OnSetccwOutlet
 
   // Directives to adapt the order of members belonging to this class so they appear 
   // correctly arranged relative to the members inherited from the ancestor (super) 
@@ -1582,6 +1693,8 @@ inline Inline
   #include "DeviceDriver.h"
 
   void DeviceDriver_SetOutputState(XInt32 output_number, XBool output_state);
+
+  void DeviceDriver_SetMotorState(XInt8 rotation, XBool rotation_state);
 }
 
 $rect <20,340,220,380>
@@ -1740,6 +1853,54 @@ class DeviceClass : Templates::DeviceClass
     native (value)
     {
       DeviceDriver_SetOutputState(2, value);
+    }
+
+    // TO DO:
+    // 
+    // Now you can handle the alternation of the property.
+  }
+
+  $rect <400,110,600,150>
+  property bool DeviceClass_CW = false;
+
+  $rect <400,150,600,190>
+  onset DeviceClass_CW
+  {
+    // The value doesn't change - nothing to do.
+    if ( pure DeviceClass_CW == value )
+      return;
+
+    // Remember the property's new value.
+    pure DeviceClass_CW = value;
+
+
+    native (value)
+    {
+       DeviceDriver_SetMotorState(1, value);
+    }
+
+    // TO DO:
+    // 
+    // Now you can handle the alternation of the property.
+  }
+
+  $rect <608,109,808,149>
+  property bool DeviceClass_CCW = false;
+
+  $rect <608,149,808,189>
+  onset DeviceClass_CCW
+  {
+    // The value doesn't change - nothing to do.
+    if ( pure DeviceClass_CCW == value )
+      return;
+
+    // Remember the property's new value.
+    pure DeviceClass_CCW = value;
+
+
+    native (value)
+    {
+       DeviceDriver_SetMotorState(2, value);
     }
 
     // TO DO:
@@ -1918,20 +2079,21 @@ class FaultOrWarning : Core::Group
   }
 
   $rect <20,20,160,60>
-  object Views::Rectangle FaultRectangle
+  object Views::Rectangle Rectangle
   {
     preset Bounds = <0,1,100,30>;
     preset Color = #D6D6D6FF;
   }
 
   $rect <20,20,160,60>
-  object Views::Text FaultText
+  object Views::Text Text
   {
     preset Bounds = <0,0,100,30>;
     preset OverflowWarning = true;
     preset String = "Fault";
     preset Font = Resources::FontSmall;
-    preset Color = #0D0D0DFF;
+    preset Color = #000000FF;
+    preset Embedded = false;
   }
 }
 
