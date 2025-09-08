@@ -1,5 +1,6 @@
 $version 1.0
 
+attr active = Application::HMI;
 attr callStackMonitor_Show = false;
 attr connectInspectors = false;
 attr debug_TrackUpdates = false;
@@ -38,8 +39,8 @@ view Project
 view unit Application
 {
   attr enableWireMode = false;
-  attr scrollTo = <-7,111>;
-  attr zoom = 1.5;
+  attr scrollTo = <-7,9>;
+  attr zoom = 1.25;
 }
 
 view class Application::MainPage
@@ -52,19 +53,19 @@ view class Application::MainPage
 view class Application::HMI
 {
   attr enableWireMode = false;
-  attr scrollTo = <45,-295>;
-  attr zoom = 1.0;
+  attr scrollTo = <-531,-178>;
+  attr zoom = 1.75;
 }
 
 view class Application::SystemInfo
 {
+  attr enableWireMode = false;
   attr scrollTo = <-7,-87>;
   attr zoom = 1.0;
 }
 
 view class Application::MeasuredValues
 {
-  attr enableWireMode = false;
   attr scrollTo = <-7,-7>;
   attr zoom = 1.0;
 }
@@ -74,4 +75,11 @@ view class Application::DeviceClass
   attr enableWireMode = false;
   attr scrollTo = <-7,-95>;
   attr zoom = 1.25;
+}
+
+view class Application::FaultOrWarning
+{
+  attr enableWireMode = false;
+  attr scrollTo = <-7,-7>;
+  attr zoom = 1.0;
 }
