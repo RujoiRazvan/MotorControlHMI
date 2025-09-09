@@ -591,122 +591,10 @@ class HMI : Core::Group
   }
 
   $rect <20,20,160,60>
-  object Views::Image IN1_ON
-  {
-    preset Bounds = <228,46,278,96>;
-    preset Bitmap = Application::GreenLed;
-  }
-
-  $rect <20,20,160,60>
-  object Views::Image IN1_Off
-  {
-    preset Bounds = <228,46,278,96>;
-    preset Bitmap = Application::TurnedOffLed;
-  }
-
-  $rect <20,20,160,60>
-  object Views::Image IN2_ON
-  {
-    preset Bounds = <226,101,278,151>;
-    preset Bitmap = Application::GreenLed;
-  }
-
-  $rect <20,20,160,60>
-  object Views::Image IN2_Off
-  {
-    preset Bounds = <227,101,277,151>;
-    preset Bitmap = Application::TurnedOffLed;
-  }
-
-  $rect <20,20,160,60>
-  object Views::Image IN3_ON
-  {
-    preset Bounds = <228,153,278,203>;
-    preset Bitmap = Application::GreenLed;
-  }
-
-  $rect <20,20,160,60>
-  object Views::Image IN3_Off
-  {
-    preset Bounds = <228,153,278,203>;
-    preset Bitmap = Application::TurnedOffLed;
-  }
-
-  $rect <20,20,160,60>
-  object Views::Image IN4_ON
-  {
-    preset Bounds = <228,206,278,256>;
-    preset Bitmap = Application::GreenLed;
-  }
-
-  $rect <20,20,160,60>
-  object Views::Image IN4_Off
-  {
-    preset Bounds = <228,206,278,256>;
-    preset Bitmap = Application::TurnedOffLed;
-  }
-
-  $rect <20,20,160,60>
-  object Views::Text IN1_Text
-  {
-    preset Bounds = <166,56,219,86>;
-    preset OverflowWarning = true;
-    preset ColorBL = #000000FF;
-    preset ColorBR = #000000FF;
-    preset ColorTR = #000000FF;
-    preset ColorTL = #000000FF;
-    preset String = "IN1";
-    preset Font = Resources::FontMedium;
-    preset Color = #000000FF;
-  }
-
-  $rect <20,20,160,60>
-  object Views::Text IN2_Text
-  {
-    preset Bounds = <172,111,213,141>;
-    preset OverflowWarning = true;
-    preset ColorBL = #000000FF;
-    preset ColorBR = #000000FF;
-    preset ColorTR = #000000FF;
-    preset ColorTL = #000000FF;
-    preset String = "IN2";
-    preset Font = Resources::FontMedium;
-    preset Color = #000000FF;
-  }
-
-  $rect <20,20,160,60>
-  object Views::Text IN3_Text
-  {
-    preset Bounds = <172,163,213,193>;
-    preset OverflowWarning = true;
-    preset ColorBL = #000000FF;
-    preset ColorBR = #000000FF;
-    preset ColorTR = #000000FF;
-    preset ColorTL = #000000FF;
-    preset String = "IN3";
-    preset Font = Resources::FontMedium;
-    preset Color = #000000FF;
-  }
-
-  $rect <20,20,160,60>
-  object Views::Text IN4_Text
-  {
-    preset Bounds = <172,216,213,246>;
-    preset OverflowWarning = true;
-    preset ColorBL = #000000FF;
-    preset ColorBR = #000000FF;
-    preset ColorTR = #000000FF;
-    preset ColorTL = #000000FF;
-    preset String = "IN4";
-    preset Font = Resources::FontMedium;
-    preset Color = #000000FF;
-  }
-
-  $rect <20,20,160,60>
   object WidgetSet::PushButton TripResetButton
   {
     preset Bounds = <338,151,463,201>;
-    preset Visible = false;
+    preset Visible = true;
     preset OnPress = onTripResetPress;
     preset Label = "Trip Reset";
     preset Appearance = WidgetSet::PushButton_Mono_Medium;
@@ -715,7 +603,9 @@ class HMI : Core::Group
   $rect <910,40,1110,80>
   slot onTripResetPress
   {
-    sender; /* the method is called from the sender object */
+    faultEnabled = !faultEnabled;
+    warningEnabled = !warningEnabled;
+    input1State = !input1State;
   }
 
   // On Page Slots
@@ -803,18 +693,18 @@ class HMI : Core::Group
   slot onOut2On
   {
     Value_Out2 = 1;
-    trace Value_Out2;
+
   }
 
   $rect <1290,270,1490,310>
   slot onOut2Off
   {
     Value_Out2 = 0;
-    trace Value_Out2;
+
   }
 
   $rect <1290,320,1490,360>
-  property ^bool Outlet_On2 = ^Out1.Checked;
+  property ^bool Outlet_On2 = ^Out2.Checked;
 
   $rect <1290,360,1490,400>
   onset Outlet_On2
@@ -932,18 +822,21 @@ class HMI : Core::Group
   {
     preset Bounds = <350,208,451,237>;
     preset Embedded = false;
+    preset type = "Fault";
   }
 
   $rect <20,20,160,60>
   object Application::FaultOrWarning Warning
   {
     preset Bounds = <350,240,451,269>;
+    preset type = "Warning";
   }
 
   $rect <20,20,160,60>
   object Application::Ready Ready
   {
     preset Bounds = <12,2,135,45>;
+    preset readyFlag = false;
   }
 
   $rect <560,530,760,570>
@@ -1078,6 +971,207 @@ class HMI : Core::Group
     // Now you can handle the alternation of the property.
   }
 
+  $rect <1176,37,1376,77>
+  property bool motorReady;
+
+  $rect <1176,77,1376,117>
+  onset motorReady
+  {
+    // The value doesn't change - nothing to do.
+    if ( pure motorReady == value )
+      return;
+
+    // Remember the property's new value.
+    pure motorReady = value;
+    Ready.readyFlag = motorReady;
+
+  }
+
+  // Properties
+  note group Note5
+  {
+    attr Bounds = <1170,0,1810,199>;
+  }
+
+  $rect <1390,39,1590,79>
+  property bool faultEnabled;
+
+  $rect <1390,79,1590,119>
+  onset faultEnabled
+  {
+    // The value doesn't change - nothing to do.
+    if ( pure faultEnabled == value )
+      return;
+
+    // Remember the property's new value.
+    pure faultEnabled = value;
+    Fault.type = "Fault";
+    Fault.Text.String = "Fault";
+    Fault.enabled = faultEnabled;
+
+    // TO DO:
+    // 
+    // Now you can handle the alternation of the property.
+  }
+
+  $rect <1600,39,1800,79>
+  property bool warningEnabled;
+
+  $rect <1600,79,1800,119>
+  onset warningEnabled
+  {
+    // The value doesn't change - nothing to do.
+    if ( pure warningEnabled == value )
+      return;
+
+    // Remember the property's new value.
+    pure warningEnabled = value;
+    Warning.type = "Warning";
+    Warning.Text.String = "Warning";
+    Warning.enabled = warningEnabled;
+    // TO DO:
+    // 
+    // Now you can handle the alternation of the property.
+  }
+
+  $rect <20,20,160,60>
+  object Application::Input IN1
+  {
+    preset Bounds = <179,50,302,93>;
+    preset inputState = false;
+    preset inputNumber = 1;
+  }
+
+  $rect <20,20,160,60>
+  object Application::Input IN2
+  {
+    preset Bounds = <179,92,302,135>;
+    preset inputState = false;
+    preset inputNumber = 2;
+  }
+
+  $rect <20,20,160,60>
+  object Application::Input IN3
+  {
+    preset Bounds = <179,136,302,179>;
+    preset inputState = false;
+    preset inputNumber = 3;
+  }
+
+  $rect <20,20,160,60>
+  object Application::Input IN4
+  {
+    preset Bounds = <179,178,302,221>;
+    preset inputState = false;
+    preset inputNumber = 4;
+  }
+
+  // Inputs
+  note group Note6
+  {
+    attr Bounds = <1570,220,2470,420>;
+  }
+
+  $rect <1590,259,1790,299>
+  property bool input1State;
+
+  $rect <1590,299,1790,339>
+  onset input1State
+  {
+    // The value doesn't change - nothing to do.
+    if ( pure input1State == value )
+      return;
+
+    // Remember the property's new value.
+    pure input1State = value;
+    IN1.inputState = input1State;
+
+    // TO DO:
+    // 
+    // Now you can handle the alternation of the property.
+  }
+
+  $rect <1590,339,1790,379>
+  onget input1State
+  {
+    return pure input1State;
+  }
+
+  $rect <1810,260,2010,300>
+  property bool input2State;
+
+  $rect <1810,300,2010,340>
+  onset input2State
+  {
+    // The value doesn't change - nothing to do.
+    if ( pure input2State == value )
+      return;
+
+    // Remember the property's new value.
+    pure input2State = value;
+    IN2.inputState = input2State;
+
+    // TO DO:
+    // 
+    // Now you can handle the alternation of the property.
+  }
+
+  $rect <1810,340,2010,380>
+  onget input2State
+  {
+    return pure input2State;
+  }
+
+  $rect <2031,260,2231,300>
+  property bool input3State;
+
+  $rect <2031,300,2231,340>
+  onset input3State
+  {
+    // The value doesn't change - nothing to do.
+    if ( pure input3State == value )
+      return;
+
+    // Remember the property's new value.
+    pure input3State = value;
+    IN2.inputState = input3State;
+
+    // TO DO:
+    // 
+    // Now you can handle the alternation of the property.
+  }
+
+  $rect <2031,340,2231,380>
+  onget input3State
+  {
+    return pure input3State;
+  }
+
+  $rect <2247,260,2447,300>
+  property bool input4State;
+
+  $rect <2247,300,2447,340>
+  onset input4State
+  {
+    // The value doesn't change - nothing to do.
+    if ( pure input4State == value )
+      return;
+
+    // Remember the property's new value.
+    pure input4State = value;
+    IN2.inputState = input4State;
+
+    // TO DO:
+    // 
+    // Now you can handle the alternation of the property.
+  }
+
+  $rect <2247,340,2447,380>
+  onget input4State
+  {
+    return pure input4State;
+  }
+
   // Directives to adapt the order of the above members according to how these members 
   // where arranged when the project content was stored. In this manner the storage 
   // and the expected order of the members don't depend. Merging of changes in the 
@@ -1092,18 +1186,6 @@ class HMI : Core::Group
   $member Note
   $member Out1
   $member Out2
-  $member IN1_ON
-  $member IN1_Off
-  $member IN2_ON
-  $member IN2_Off
-  $member IN3_ON
-  $member IN3_Off
-  $member IN4_ON
-  $member IN4_Off
-  $member IN1_Text
-  $member IN2_Text
-  $member IN3_Text
-  $member IN4_Text
   $member TripResetButton
   $member onTripResetPress
   $member Note1
@@ -1142,6 +1224,30 @@ class HMI : Core::Group
   $member OnSetccwValue
   $member ccwOutlet
   $member OnSetccwOutlet
+  $member motorReady
+  $member OnSetmotorReady
+  $member Note5
+  $member faultEnabled
+  $member OnSetfaultEnabled
+  $member warningEnabled
+  $member OnSetwarningEnabled
+  $member IN1
+  $member IN2
+  $member IN3
+  $member IN4
+  $member Note6
+  $member input1State
+  $member OnSetinput1State
+  $member OnGetinput1State
+  $member input2State
+  $member OnSetinput2State
+  $member OnGetinput2State
+  $member input3State
+  $member OnSetinput3State
+  $member OnGetinput3State
+  $member input4State
+  $member OnSetinput4State
+  $member OnGetinput4State
 
   // Directives to adapt the order of members belonging to this class so they appear 
   // correctly arranged relative to the members inherited from the ancestor (super) 
@@ -1825,12 +1931,12 @@ class DeviceClass : Templates::DeviceClass
     // Remember the property's new value.
     pure DeviceClass_Out1 = value;
 
-
+    $if (!$prototyper)
     native (value)
     {
       DeviceDriver_SetOutputState(1, value);
     }
-
+    $endif
     // TO DO:
     // 
     // Now you can handle the alternation of the property.
@@ -1849,12 +1955,13 @@ class DeviceClass : Templates::DeviceClass
     // Remember the property's new value.
     pure DeviceClass_Out2 = value;
 
+    $if (!$prototyper)
 
     native (value)
     {
       DeviceDriver_SetOutputState(2, value);
     }
-
+    $endif
     // TO DO:
     // 
     // Now you can handle the alternation of the property.
@@ -2090,10 +2197,50 @@ class FaultOrWarning : Core::Group
   {
     preset Bounds = <0,0,100,30>;
     preset OverflowWarning = true;
-    preset String = "Fault";
+    preset String = "Text";
     preset Font = Resources::FontSmall;
     preset Color = #000000FF;
     preset Embedded = false;
+  }
+
+  $rect <410,0,610,40>
+  property bool enabled;
+
+  $rect <410,40,610,80>
+  onset enabled
+  {
+    // The value doesn't change - nothing to do.
+    if ( pure enabled == value )
+      return;
+
+    // Remember the property's new value.
+    pure enabled = value;
+    if (type == "Fault" && enabled)
+      Rectangle.Color = #D60802FF;
+    else if (type == "Warning" && enabled)
+      Rectangle.Color = #F68F00FF;
+    else if ((type == "Fault" || type == "Warning") && !enabled)
+      Rectangle.Color = #D6D6D6FF;
+
+  }
+
+  $rect <170,0,370,40>
+  property string type;
+
+  $rect <170,40,370,80>
+  onset type
+  {
+    // The value doesn't change - nothing to do.
+    if ( pure type == value )
+      return;
+
+    // Remember the property's new value.
+    pure type = value;
+    Text.String = type;
+
+    // TO DO:
+    // 
+    // Now you can handle the alternation of the property.
   }
 }
 
@@ -2267,12 +2414,12 @@ class Ready : Core::Group
   object Views::Rectangle ReadyBorder
   {
     preset Bounds = <1,2,37,38>;
-    preset ColorBL = #000000FF;
-    preset ColorBR = #000000FF;
-    preset ColorTR = #000000FF;
-    preset ColorTL = #000000FF;
+    preset ColorBL = #CCCCCCFF;
+    preset ColorBR = #CCCCCCFF;
+    preset ColorTR = #CCCCCCFF;
+    preset ColorTL = #CCCCCCFF;
     preset Radius = 100;
-    preset Color = #A7A7A7FF;
+    preset Color = #CCCCCCFF;
   }
 
   $rect <20,20,160,60>
@@ -2292,10 +2439,277 @@ class Ready : Core::Group
     preset Radius = 100;
     preset Color = #FFFFFFFF;
   }
+
+  $rect <220,30,420,70>
+  property bool readyFlag;
+
+  $rect <220,70,420,110>
+  onset readyFlag
+  {
+    // The value doesn't change - nothing to do.
+    if ( pure readyFlag == value )
+      return;
+
+    // Remember the property's new value.
+    pure readyFlag = value;
+    if (readyFlag)
+      ReadyLed.Color = #00FF3FFF;
+    else
+      ReadyLed.Color = #FFFFFFFF;
+    InvalidateViewState();
+    // TO DO:
+    // 
+    // Now you can handle the alternation of the property.
+  }
 }
 
 // Modules
 note group Modules
 {
   attr Bounds = <490,240,790,450>;
+}
+
+$rect <540,394,740,434>
+$output false
+class Input : Core::Group
+{
+  $rect <10,230,210,270>
+  inherited property Bounds = <0,0,94,40>;
+
+  $rect <10,390,210,430>
+  inherited method UpdateLayout()
+  {
+    // Always invoke the inherited method.
+    super( aSize );
+
+    /*
+
+      HINT:
+
+      This method exists for sophisticated layout calculation. Please note, that in 
+      most cases it is completely sufficient to use the views property 'Layout' to
+      determine how the view should behave when the component is resized.
+
+    */
+
+    /*
+
+      TO DO:
+
+      Put here the code to calculate new position and size of enclosed views. The
+      current (new) size of the component itself is passed in the parameter aSize.
+      For example:
+
+        SomeView.Bounds = rect( 10, 10, aSize.x - 20, aSize.y - 20 );
+
+    */
+  }
+
+  $rect <10,350,210,390>
+  inherited method UpdateViewState()
+  {
+    // Always invoke the inherited method.
+    super( aState );
+
+    /*
+
+      HINT 1:
+
+      This method is invoked automatically when the state set of the component has
+      been changed. The new state set can be found in the parameter aState.
+      Following are the important states:
+
+        Enabled   --> The component can react to user inputs.
+
+        Selected  --> The component is selected in context of its owner.
+
+        Focused   --> The component is selected in context of its owner and 
+                      the owner can react to keyboard events. In this manner the
+                      component is also able to react to keyboard events.
+
+        Modal     --> The component is modal. All events are redirected to this
+                      component.
+
+      To determine whether a state is currently active or not you have to test
+      the aState parameter. For example to test the 'Selected' state:
+
+        if ( aState.contains( Core::ViewState[ Selected ]))
+        {
+          ... yes, this component is currently selected.
+        }
+
+    */
+
+    /*
+
+      HINT 2:
+
+      Alternatively you can request this method invocation by executing explicitly
+      following code:
+
+
+        InvalidateViewState();
+
+    */
+      
+    /*
+
+      TO DO 1:
+
+      Put here the code to ensure that the visual aspect of the component does
+      reflect its current state. For example, depending on its 'Enabled' state
+      a component may appear with full colors or pale if it is disabled:
+
+        if ( aState.contains( Core::ViewState[ Enabled ]))
+        {
+          SomeBackgroundView.Opacity = 255;
+          SomeTextView.Color         = #000000FF;
+        }
+        else
+        {
+          SomeBackgroundView.Opacity = 128;
+          SomeTextView.Color         = #00000080;
+        }
+
+
+      TO DO 2:
+
+      You can evaluate here also the state of any other member in your component.
+      For example in a push-button component, the button should appear highlighted
+      as long as the user holds the finger within a touch area of the button:
+
+        if ( SomeTouchHandler.Down && SomeTouchHandler.Inside )
+          HighlightedBackground.Visible = true;
+        else
+          HighlightedBackground.Visible = false;
+
+      The touch handler itself only requests the update method to be called. Use
+      for this purpose 'InvalidateViewState()' method.
+
+
+      TO DO 3:
+
+      You can calculate here also the position/size of views accordingly to the
+      state of any other member in your component. For example in a slider you
+      can calculate the position of the slider knob from some properties like
+      'SliderValue' and 'SliderRange':
+
+        SliderKnob.Bounds.origin.x = ( SliderValue * Bounds.w ) / SliderRange;
+
+      Changing the 'SliderValue' or 'SliderRange' property should only request
+      the update method to be called. Use for this purpose 'InvalidateViewState()'
+      method.
+
+    */
+  }
+
+  // To do:
+  // 
+  // - Adjust the visible size of your component (the thick blue border).
+  // 
+  // - The simplest way to compose the appearance of the component is to use the \
+  // 'Views' and 'Widget Sets' from the Gallery.
+  // 
+  // - To react to touch or keyboard events use the templates from the Gallery folder \
+  // 'Event Handlers'.
+  // 
+  // - To perform transitions (animations) use the templates from the Gallery folder \
+  // 'Effects'.
+  // 
+  // - To implement the interface of the component use the 'Property' template from \
+  // the Gallery folder 'Chora'.
+  // 
+  // - To store values use the 'Variable' and 'Array' templates available in the \
+  // Gallery folder 'Chora'.
+  // 
+  // - To implement behavior use the 'Method' and 'Slot Method' templates available \
+  // in the Gallery folder 'Chora'.
+  // 
+  // - In the method 'UpdateViewState()' you can put code to update the state of \
+  // views enclosed in your component.
+  // 
+  // - In the method 'UpdateLayout()' you can put code to perform sophisticated layout \
+  // calculation for enclosed views.
+  note legend Note1
+  {
+    attr Bounds = <220,230,1000,550>;
+  }
+
+  $rect <20,20,160,60>
+  object Views::Rectangle LedBorder
+  {
+    preset Bounds = <60,6,91,38>;
+    preset ColorBL = #CCCCCCFF;
+    preset ColorBR = #CCCCCCFF;
+    preset ColorTR = #CCCCCCFF;
+    preset ColorTL = #CCCCCCFF;
+    preset Radius = 100;
+    preset Color = #CCCCCCFF;
+  }
+
+  $rect <20,20,160,60>
+  object Views::Text InputText
+  {
+    preset Bounds = <1,8,57,32>;
+    preset OverflowWarning = true;
+    preset String = "IN X";
+    preset Font = Application::Font;
+    preset Color = #000000FF;
+  }
+
+  $rect <20,20,160,60>
+  object Views::Rectangle InputLed
+  {
+    preset Bounds = <63,9,88,35>;
+    preset Radius = 100;
+    preset Color = #FFFFFFFF;
+  }
+
+  $rect <220,30,420,70>
+  property bool inputState;
+
+  $rect <220,70,420,110>
+  onset inputState
+  {
+    // The value doesn't change - nothing to do.
+    if ( pure inputState == value )
+      return;
+
+    // Remember the property's new value.
+    pure inputState = value;
+
+    if (inputState)
+      InputLed.Color = #00FF3FFF;
+    else
+      InputLed.Color = #FFFFFFFF;
+    InvalidateViewState();
+    // TO DO:
+    // 
+    // Now you can handle the alternation of the property.
+  }
+
+  $rect <450,30,650,70>
+  property int32 inputNumber;
+
+  $rect <450,70,650,110>
+  onset inputNumber
+  {
+    // The value doesn't change - nothing to do.
+    if ( pure inputNumber == value )
+      return;
+
+    // Remember the property's new value.
+    pure inputNumber = value;
+    if (inputNumber == 1)
+      InputText.String = "IN 1";
+    else if (inputNumber == 2)
+      InputText.String = "IN 2";
+    else if (inputNumber == 3)
+      InputText.String = "IN 3";
+    else if (inputNumber == 4)
+      InputText.String = "IN 4";
+    // TO DO:
+    // 
+    // Now you can handle the alternation of the property.
+  }
 }
