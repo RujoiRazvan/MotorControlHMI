@@ -49,6 +49,7 @@
 #include "_ApplicationLed.h"
 #include "_ApplicationMainPage.h"
 #include "_ApplicationMeasuredValues.h"
+#include "_ApplicationNumKeyboard.h"
 #include "_ApplicationReady.h"
 #include "_ApplicationSystemInfo.h"
 #include "_ApplicationWelcomePage.h"

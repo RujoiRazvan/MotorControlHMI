@@ -62,6 +62,11 @@ EW_DECLARE_FONT_RES( ResourcesFontLarge )
    TrueType font with 54 pixel height. */
 EW_DECLARE_FONT_RES( ResourcesFontExtraLarge )
 
+/* Bitmap resource containing diverse icons you can use in your project. Usually 
+   the icons are used to represent keys within a virtual keyboard. The icons have 
+   the size 36x36 pixel. */
+EW_DECLARE_BITMAP_RES( ResourcesKeyIconsMedium )
+
 #ifdef __cplusplus
   }
 #endif

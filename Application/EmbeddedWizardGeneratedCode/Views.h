@@ -44,6 +44,7 @@
 
 #include "_ViewsBorder.h"
 #include "_ViewsFrame.h"
+#include "_ViewsImage.h"
 #include "_ViewsRectangle.h"
 #include "_ViewsShadow.h"
 #include "_ViewsText.h"

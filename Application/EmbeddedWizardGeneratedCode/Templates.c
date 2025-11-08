@@ -26,7 +26,65 @@
 
 #include "ewlocale.h"
 #include "_TemplatesDeviceClass.h"
+#include "_TemplatesNumKeyboard.h"
 #include "Templates.h"
+
+/* Initializer for the class 'Templates::NumKeyboard' */
+void TemplatesNumKeyboard__Init( TemplatesNumKeyboard _this, XObject aLink, XHandle aArg )
+{
+  /* At first initialize the super class ... */
+  CoreGroup__Init( &_this->_.Super, aLink, aArg );
+
+  /* Allow the Immediate Garbage Collection to evalute the members of this class. */
+  _this->_.XObject._.GCT = EW_CLASS_GCT( TemplatesNumKeyboard );
+
+  /* Setup the VMT pointer */
+  _this->_.VMT = EW_CLASS( TemplatesNumKeyboard );
+}
+
+/* Re-Initializer for the class 'Templates::NumKeyboard' */
+void TemplatesNumKeyboard__ReInit( TemplatesNumKeyboard _this )
+{
+  /* At first re-initialize the super class ... */
+  CoreGroup__ReInit( &_this->_.Super );
+}
+
+/* Finalizer method for the class 'Templates::NumKeyboard' */
+void TemplatesNumKeyboard__Done( TemplatesNumKeyboard _this )
+{
+  /* Finalize this class */
+  _this->_.Super._.VMT = EW_CLASS( CoreGroup );
+
+  /* Don't forget to deinitialize the super class ... */
+  CoreGroup__Done( &_this->_.Super );
+}
+
+/* Variants derived from the class : 'Templates::NumKeyboard' */
+EW_DEFINE_CLASS_VARIANTS( TemplatesNumKeyboard )
+EW_END_OF_CLASS_VARIANTS( TemplatesNumKeyboard )
+
+/* Virtual Method Table (VMT) for the class : 'Templates::NumKeyboard' */
+EW_DEFINE_CLASS( TemplatesNumKeyboard, CoreGroup, _.VMT, _.VMT, _.VMT, _.VMT, _.VMT, 
+                 _.VMT, "Templates::NumKeyboard" )
+  CoreRectView_initLayoutContext,
+  CoreView_GetRoot,
+  CoreGroup_Draw,
+  CoreGroup_GetClipping,
+  CoreView_HandleEvent,
+  CoreGroup_CursorHitTest,
+  CoreGroup_AdjustDrawingArea,
+  CoreRectView_ArrangeView,
+  CoreRectView_MoveView,
+  CoreRectView_GetExtent,
+  CoreGroup_ChangeViewState,
+  CoreGroup_OnSetBounds,
+  CoreGroup_OnSetFocus,
+  CoreGroup_OnSetOpacity,
+  CoreGroup_DispatchEvent,
+  CoreGroup_BroadcastEvent,
+  CoreGroup_UpdateViewState,
+  CoreGroup_InvalidateArea,
+EW_END_OF_CLASS( TemplatesNumKeyboard )
 
 /* Initializer for the class 'Templates::DeviceClass' */
 void TemplatesDeviceClass__Init( TemplatesDeviceClass _this, XObject aLink, XHandle aArg )

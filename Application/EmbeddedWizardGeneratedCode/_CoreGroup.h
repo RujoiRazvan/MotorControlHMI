@@ -767,6 +767,20 @@ void CoreGroup_InvalidateArea( CoreGroup _this, XRect aArea );
 /* Wrapper function for the virtual method : 'Core::Group.InvalidateArea()' */
 void CoreGroup__InvalidateArea( void* _this, XRect aArea );
 
+/* The method FindViewAtPosition() searches at the given position aPosition within 
+   the component for a view.
+   The search operation starts with the view lying behind the view specified in 
+   the parameter aView - aView itself will be excluded from the search operation. 
+   This allows you to enumerate all affected views, view by view from the front 
+   to the background. If the parameter aView == null, the search operations will 
+   start with the top most view.
+   Beside the position, the additional parameter aFilter can be used to limit the 
+   search operation to special views only, e.g. to visible and touchable views.
+   If there is no other view at the given position lying behind the start view aView, 
+   the method returns 'null'. */
+CoreView CoreGroup_FindViewAtPosition( CoreGroup _this, CoreView aView, XPoint aPosition, 
+  XSet aFilter );
+
 /* The method FindSiblingView() searches for a sibling view of the view specified 
    in the parameter aView - aView itself will be excluded from the search operation.
    The method combines the functionality of @FindNextView() and @FindPrevView() 

@@ -43,6 +43,7 @@
 #endif
 
 #include "_TemplatesDeviceClass.h"
+#include "_TemplatesNumKeyboard.h"
 
 #ifdef __cplusplus
   }
