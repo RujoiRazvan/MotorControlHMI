@@ -77,10 +77,28 @@
 #define _EffectsFader_
 #endif
 
+/* Forward declaration of the class Effects::FloatEffect */
+#ifndef _EffectsFloatEffect_
+  EW_DECLARE_CLASS( EffectsFloatEffect )
+#define _EffectsFloatEffect_
+#endif
+
+/* Forward declaration of the class Views::Border */
+#ifndef _ViewsBorder_
+  EW_DECLARE_CLASS( ViewsBorder )
+#define _ViewsBorder_
+#endif
+
 /* Forward declaration of the class Views::Frame */
 #ifndef _ViewsFrame_
   EW_DECLARE_CLASS( ViewsFrame )
 #define _ViewsFrame_
+#endif
+
+/* Forward declaration of the class Views::Rectangle */
+#ifndef _ViewsRectangle_
+  EW_DECLARE_CLASS( ViewsRectangle )
+#define _ViewsRectangle_
 #endif
 
 /* Forward declaration of the class Views::Text */
@@ -153,12 +171,23 @@ EW_DEFINE_FIELDS( WidgetSetToggleButton, CoreGroup )
   EW_OBJECT  ( FlashTimer,      CoreTimer )
   EW_OBJECT  ( KeyHandler,      CoreKeyPressHandler )
   EW_OBJECT  ( TouchHandler,    CoreSimpleTouchHandler )
+  EW_VARIABLE( animation,       EffectsFloatEffect )
+  EW_VARIABLE( rectView3,       ViewsRectangle )
+  EW_VARIABLE( borderView2,     ViewsBorder )
+  EW_VARIABLE( rectView2,       ViewsRectangle )
+  EW_VARIABLE( borderView1,     ViewsBorder )
+  EW_VARIABLE( rectView1,       ViewsRectangle )
   EW_VARIABLE( textView,        ViewsText )
   EW_VARIABLE( frameView,       ViewsFrame )
   EW_PROPERTY( Appearance,      WidgetSetToggleButtonConfig )
+  EW_PROPERTY( OnSwitchOn,      XSlot )
+  EW_PROPERTY( OnSwitchOff,     XSlot )
+  EW_PROPERTY( Outlet,          XRef )
   EW_PROPERTY( LabelOn,         XString )
   EW_PROPERTY( LabelOff,        XString )
   EW_VARIABLE( onPressKeyTime,  XUInt32 )
+  EW_VARIABLE( animEndState,    XChar )
+  EW_VARIABLE( animStartState,  XChar )
   EW_VARIABLE( prevState,       XChar )
   EW_PROPERTY( Checked,         XBool )
 EW_END_OF_FIELDS( WidgetSetToggleButton )
@@ -211,9 +240,15 @@ void WidgetSetToggleButton_OnSetBounds( WidgetSetToggleButton _this, XRect value
    you can request its invocation by using the method @InvalidateViewState(). */
 void WidgetSetToggleButton_UpdateViewState( WidgetSetToggleButton _this, XSet aState );
 
+/* 'C' function for method : 'WidgetSet::ToggleButton.onAnimate()' */
+void WidgetSetToggleButton_onAnimate( WidgetSetToggleButton _this, XObject sender );
+
 /* 'C' function for method : 'WidgetSet::ToggleButton.onConfigChanged()' */
 void WidgetSetToggleButton_onConfigChanged( WidgetSetToggleButton _this, XObject 
   sender );
+
+/* 'C' function for method : 'WidgetSet::ToggleButton.onOutlet()' */
+void WidgetSetToggleButton_onOutlet( WidgetSetToggleButton _this, XObject sender );
 
 /* 'C' function for method : 'WidgetSet::ToggleButton.onFlashTimer()' */
 void WidgetSetToggleButton_onFlashTimer( WidgetSetToggleButton _this, XObject sender );
@@ -237,6 +272,9 @@ void WidgetSetToggleButton_onReleaseTouch( WidgetSetToggleButton _this, XObject
 /* 'C' function for method : 'WidgetSet::ToggleButton.onPressTouch()' */
 void WidgetSetToggleButton_onPressTouch( WidgetSetToggleButton _this, XObject sender );
 
+/* 'C' function for method : 'WidgetSet::ToggleButton.OnSetOutlet()' */
+void WidgetSetToggleButton_OnSetOutlet( WidgetSetToggleButton _this, XRef value );
+
 /* 'C' function for method : 'WidgetSet::ToggleButton.OnSetChecked()' */
 void WidgetSetToggleButton_OnSetChecked( WidgetSetToggleButton _this, XBool value );
 
@@ -246,6 +284,9 @@ void WidgetSetToggleButton_OnSetLabel( WidgetSetToggleButton _this, XString valu
 /* 'C' function for method : 'WidgetSet::ToggleButton.OnSetAppearance()' */
 void WidgetSetToggleButton_OnSetAppearance( WidgetSetToggleButton _this, WidgetSetToggleButtonConfig 
   value );
+
+/* Default onget method for the property 'Checked' */
+XBool WidgetSetToggleButton_OnGetChecked( WidgetSetToggleButton _this );
 
 #ifdef __cplusplus
   }

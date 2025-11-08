@@ -100,6 +100,7 @@ EW_DEFINE_FIELDS( ApplicationMeasuredValues, CoreGroup )
   EW_OBJECT  ( OperatingHours,  ViewsText )
   EW_OBJECT  ( measureOperatingHours, CoreTimer )
   EW_VARIABLE( ElapsedSeconds,  XInt32 )
+  EW_VARIABLE( isFirstStart,    XBool )
 EW_END_OF_FIELDS( ApplicationMeasuredValues )
 
 /* Virtual Method Table (VMT) for the class : 'Application::MeasuredValues' */

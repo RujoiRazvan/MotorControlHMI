@@ -26,7 +26,6 @@
 
 #include "ewlocale.h"
 #include "_CoreKeyPressHandler.h"
-#include "_CoreRoot.h"
 #include "_CoreSimpleTouchHandler.h"
 #include "_CoreTimer.h"
 #include "_CoreView.h"
@@ -35,122 +34,56 @@
 #include "_ResourcesFont.h"
 #include "_ViewsBorder.h"
 #include "_ViewsFrame.h"
-#include "_ViewsImage.h"
 #include "_ViewsRectangle.h"
 #include "_ViewsShadow.h"
 #include "_ViewsText.h"
-#include "_WidgetSetHorizontalSlider.h"
-#include "_WidgetSetHorizontalSliderConfig.h"
 #include "_WidgetSetPushButton.h"
 #include "_WidgetSetPushButtonConfig.h"
 #include "_WidgetSetToggleButton.h"
 #include "_WidgetSetToggleButtonConfig.h"
 #include "_WidgetSetWidgetConfig.h"
 #include "Core.h"
-#include "Graphics.h"
 #include "Resources.h"
 #include "Views.h"
 #include "WidgetSet.h"
 
 /* Constant values used in this 'C' module only. */
-static const XPoint _Const0000 = { 30, 26 };
-static const XColor _Const0001 = { 0x6C, 0x6E, 0x70, 0xFF };
-static const XColor _Const0002 = { 0xA8, 0xAB, 0xAB, 0xFF };
-static const XColor _Const0003 = { 0xA8, 0xAB, 0xAB, 0xAA };
-static const XPoint _Const0004 = { 70, 39 };
-static const XColor _Const0005 = { 0x00, 0x00, 0x00, 0xFF };
-static const XColor _Const0006 = { 0xFF, 0xFF, 0xFF, 0xFF };
-static const XRect _Const0007 = {{ 0, 0 }, { 200, 50 }};
-static const XPoint _Const0008 = { 0, 50 };
-static const XPoint _Const0009 = { 200, 50 };
-static const XPoint _Const000A = { 200, 0 };
-static const XPoint _Const000B = { 0, 0 };
-static const XRect _Const000C = {{ 0, 0 }, { 0, 0 }};
-static const XRect _Const000D = {{ -8, -8 }, { 9, 9 }};
-static const XRect _Const000E = {{ 0, 0 }, { 150, 50 }};
-static const XPoint _Const000F = { 150, 50 };
-static const XPoint _Const0010 = { 150, 0 };
-static const XColor _Const0011 = { 0x00, 0x00, 0x00, 0x00 };
-static const XPoint _Const0012 = { -1, -1 };
-static const XColor _Const0013 = { 0x00, 0x00, 0x00, 0xEE };
-static const XColor _Const0014 = { 0x00, 0x00, 0x00, 0x88 };
-static const XColor _Const0015 = { 0x00, 0x00, 0x00, 0x22 };
-static const XColor _Const0016 = { 0x00, 0x00, 0x00, 0x44 };
-static const XColor _Const0017 = { 0x44, 0x44, 0x44, 0xFF };
-static const XColor _Const0018 = { 0x44, 0x44, 0x44, 0x44 };
-static const XPoint _Const0019 = { 40, 40 };
-
-/* Include a file containing the bitmap resource : 'WidgetSet::HorizontalSliderTrackSmall' */
-#include "_WidgetSetHorizontalSliderTrackSmall.h"
-
-/* Table with links to derived variants of the bitmap resource : 'WidgetSet::HorizontalSliderTrackSmall' */
-EW_RES_WITHOUT_VARIANTS( WidgetSetHorizontalSliderTrackSmall )
-
-/* Include a file containing the bitmap resource : 'WidgetSet::ThumbKnobSmall' */
-#include "_WidgetSetThumbKnobSmall.h"
-
-/* Table with links to derived variants of the bitmap resource : 'WidgetSet::ThumbKnobSmall' */
-EW_RES_WITHOUT_VARIANTS( WidgetSetThumbKnobSmall )
-
-/* This autoobject provides the default customization for the 'horizontal slider' 
-   widget (WidgetSet::HorizontalSlider) in its small size variant. */
-EW_DEFINE_AUTOOBJECT( WidgetSetHorizontalSlider_Lime_Small, WidgetSetHorizontalSliderConfig )
-
-/* Initializer for the auto object 'WidgetSet::HorizontalSlider_Lime_Small' */
-void WidgetSetHorizontalSlider_Lime_Small__Init( WidgetSetHorizontalSliderConfig _this )
-{
-  WidgetSetHorizontalSliderConfig_OnSetKeyRepeatPeriod( _this, 100 );
-  WidgetSetHorizontalSliderConfig_OnSetKeyRepeatDelay( _this, 500 );
-  WidgetSetHorizontalSliderConfig_OnSetThumbMarginRight( _this, -1 );
-  WidgetSetHorizontalSliderConfig_OnSetThumbMarginLeft( _this, -1 );
-  WidgetSetHorizontalSliderConfig_OnSetThumbFrameActive( _this, 3 );
-  WidgetSetHorizontalSliderConfig_OnSetThumbFrameFocused( _this, 2 );
-  WidgetSetHorizontalSliderConfig_OnSetThumbFrameDisabled( _this, 0 );
-  WidgetSetHorizontalSliderConfig_OnSetThumbFrameDefault( _this, 1 );
-  WidgetSetHorizontalSliderConfig_OnSetThumbBitmapActive( _this, EwLoadResource( 
-  &WidgetSetThumbKnobSmall, ResourcesBitmap ));
-  WidgetSetHorizontalSliderConfig_OnSetThumbBitmapFocused( _this, EwLoadResource( 
-  &WidgetSetThumbKnobSmall, ResourcesBitmap ));
-  WidgetSetHorizontalSliderConfig_OnSetThumbBitmapDisabled( _this, EwLoadResource( 
-  &WidgetSetThumbKnobSmall, ResourcesBitmap ));
-  WidgetSetHorizontalSliderConfig_OnSetThumbBitmapDefault( _this, EwLoadResource( 
-  &WidgetSetThumbKnobSmall, ResourcesBitmap ));
-  WidgetSetHorizontalSliderConfig_OnSetTrackRightFrameActive( _this, 0 );
-  WidgetSetHorizontalSliderConfig_OnSetTrackRightFrameFocused( _this, 0 );
-  WidgetSetHorizontalSliderConfig_OnSetTrackRightFrameDisabled( _this, 0 );
-  WidgetSetHorizontalSliderConfig_OnSetTrackRightFrameDefault( _this, 0 );
-  WidgetSetHorizontalSliderConfig_OnSetTrackRightBitmapActive( _this, EwLoadResource( 
-  &WidgetSetHorizontalSliderTrackSmall, ResourcesBitmap ));
-  WidgetSetHorizontalSliderConfig_OnSetTrackRightBitmapFocused( _this, EwLoadResource( 
-  &WidgetSetHorizontalSliderTrackSmall, ResourcesBitmap ));
-  WidgetSetHorizontalSliderConfig_OnSetTrackRightBitmapDisabled( _this, EwLoadResource( 
-  &WidgetSetHorizontalSliderTrackSmall, ResourcesBitmap ));
-  WidgetSetHorizontalSliderConfig_OnSetTrackRightBitmapDefault( _this, EwLoadResource( 
-  &WidgetSetHorizontalSliderTrackSmall, ResourcesBitmap ));
-  WidgetSetHorizontalSliderConfig_OnSetTrackLeftFrameActive( _this, 1 );
-  WidgetSetHorizontalSliderConfig_OnSetTrackLeftFrameFocused( _this, 1 );
-  WidgetSetHorizontalSliderConfig_OnSetTrackLeftFrameDisabled( _this, 1 );
-  WidgetSetHorizontalSliderConfig_OnSetTrackLeftFrameDefault( _this, 1 );
-  WidgetSetHorizontalSliderConfig_OnSetTrackLeftBitmapActive( _this, EwLoadResource( 
-  &WidgetSetHorizontalSliderTrackSmall, ResourcesBitmap ));
-  WidgetSetHorizontalSliderConfig_OnSetTrackLeftBitmapFocused( _this, EwLoadResource( 
-  &WidgetSetHorizontalSliderTrackSmall, ResourcesBitmap ));
-  WidgetSetHorizontalSliderConfig_OnSetTrackLeftBitmapDisabled( _this, EwLoadResource( 
-  &WidgetSetHorizontalSliderTrackSmall, ResourcesBitmap ));
-  WidgetSetHorizontalSliderConfig_OnSetTrackLeftBitmapDefault( _this, EwLoadResource( 
-  &WidgetSetHorizontalSliderTrackSmall, ResourcesBitmap ));
-  WidgetSetHorizontalSliderConfig_OnSetWidgetMinSize( _this, _Const0000 );
-}
-
-/* Re-Initializer for the auto object 'WidgetSet::HorizontalSlider_Lime_Small' */
-void WidgetSetHorizontalSlider_Lime_Small__ReInit( WidgetSetHorizontalSliderConfig _this )
-{
-  EW_UNUSED_ARG( _this );
-}
-
-/* Table with links to derived variants of the auto object : 'WidgetSet::HorizontalSlider_Lime_Small' */
-EW_DEFINE_AUTOOBJECT_VARIANTS( WidgetSetHorizontalSlider_Lime_Small )
-EW_END_OF_AUTOOBJECT_VARIANTS( WidgetSetHorizontalSlider_Lime_Small )
+static const XColor _Const0000 = { 0x6C, 0x6E, 0x70, 0xFF };
+static const XColor _Const0001 = { 0xA8, 0xAB, 0xAB, 0xFF };
+static const XColor _Const0002 = { 0xA8, 0xAB, 0xAB, 0xAA };
+static const XPoint _Const0003 = { 70, 39 };
+static const XColor _Const0004 = { 0x00, 0x00, 0x00, 0xFF };
+static const XColor _Const0005 = { 0xFF, 0xFF, 0xFF, 0xFF };
+static const XRect _Const0006 = {{ 0, 0 }, { 150, 50 }};
+static const XPoint _Const0007 = { 0, 50 };
+static const XPoint _Const0008 = { 150, 50 };
+static const XPoint _Const0009 = { 150, 0 };
+static const XPoint _Const000A = { 0, 0 };
+static const XRect _Const000B = {{ 0, 0 }, { 0, 0 }};
+static const XPoint _Const000C = { -1, -1 };
+static const XColor _Const000D = { 0x00, 0x00, 0x00, 0x00 };
+static const XColor _Const000E = { 0x00, 0x00, 0x00, 0xEE };
+static const XColor _Const000F = { 0x00, 0x00, 0x00, 0x88 };
+static const XColor _Const0010 = { 0x00, 0x00, 0x00, 0x22 };
+static const XColor _Const0011 = { 0x00, 0x00, 0x00, 0x44 };
+static const XColor _Const0012 = { 0x44, 0x44, 0x44, 0xFF };
+static const XColor _Const0013 = { 0x44, 0x44, 0x44, 0x44 };
+static const XPoint _Const0014 = { 40, 40 };
+static const XColor _Const0015 = { 0x00, 0x00, 0x00, 0x11 };
+static const XPoint _Const0016 = { 12, 0 };
+static const XPoint _Const0017 = { 70, 60 };
+static const XPoint _Const0018 = { 60, 60 };
+static const XPoint _Const0019 = { -2, 0 };
+static const XPoint _Const001A = { -12, 0 };
+static const XColor _Const001B = { 0xDD, 0xDD, 0xDD, 0xFF };
+static const XColor _Const001C = { 0xEE, 0xEE, 0xEE, 0xFF };
+static const XPoint _Const001D = { -3, 0 };
+static const XPoint _Const001E = { 40, 30 };
+static const XPoint _Const001F = { 30, 30 };
+static const XPoint _Const0020 = { -17, 0 };
+static const XPoint _Const0021 = { -27, 0 };
+static const XPoint _Const0022 = { 60, 36 };
+static const XPoint _Const0023 = { 60, 40 };
 
 /* Include a file containing the bitmap resource : 'WidgetSet::SwitchMedium' */
 #include "_WidgetSetSwitchMedium.h"
@@ -166,23 +99,23 @@ EW_DEFINE_AUTOOBJECT( WidgetSetSwitch_Lime_Medium, WidgetSetToggleButtonConfig )
 /* Initializer for the auto object 'WidgetSet::Switch_Lime_Medium' */
 void WidgetSetSwitch_Lime_Medium__Init( WidgetSetToggleButtonConfig _this )
 {
-  WidgetSetToggleButtonConfig_OnSetLabelOnColorActive( _this, _Const0001 );
-  WidgetSetToggleButtonConfig_OnSetLabelOnColorFocused( _this, _Const0001 );
-  WidgetSetToggleButtonConfig_OnSetLabelOnColorDisabled( _this, _Const0002 );
-  WidgetSetToggleButtonConfig_OnSetLabelOnColorDefault( _this, _Const0001 );
-  WidgetSetToggleButtonConfig_OnSetLabelOffColorActive( _this, _Const0001 );
-  WidgetSetToggleButtonConfig_OnSetLabelOffColorFocused( _this, _Const0001 );
-  WidgetSetToggleButtonConfig_OnSetLabelOffColorDisabled( _this, _Const0002 );
-  WidgetSetToggleButtonConfig_OnSetLabelOffColorDefault( _this, _Const0001 );
+  WidgetSetToggleButtonConfig_OnSetLabelOnColorActive( _this, _Const0000 );
+  WidgetSetToggleButtonConfig_OnSetLabelOnColorFocused( _this, _Const0000 );
+  WidgetSetToggleButtonConfig_OnSetLabelOnColorDisabled( _this, _Const0001 );
+  WidgetSetToggleButtonConfig_OnSetLabelOnColorDefault( _this, _Const0000 );
+  WidgetSetToggleButtonConfig_OnSetLabelOffColorActive( _this, _Const0000 );
+  WidgetSetToggleButtonConfig_OnSetLabelOffColorFocused( _this, _Const0000 );
+  WidgetSetToggleButtonConfig_OnSetLabelOffColorDisabled( _this, _Const0001 );
+  WidgetSetToggleButtonConfig_OnSetLabelOffColorDefault( _this, _Const0000 );
   WidgetSetToggleButtonConfig_OnSetLabelMarginRight( _this, 75 );
-  WidgetSetToggleButtonConfig_OnSetIconOnTintActive( _this, _Const0001 );
-  WidgetSetToggleButtonConfig_OnSetIconOnTintFocused( _this, _Const0001 );
-  WidgetSetToggleButtonConfig_OnSetIconOnTintDisabled( _this, _Const0003 );
-  WidgetSetToggleButtonConfig_OnSetIconOnTintDefault( _this, _Const0001 );
-  WidgetSetToggleButtonConfig_OnSetIconOffTintActive( _this, _Const0001 );
-  WidgetSetToggleButtonConfig_OnSetIconOffTintFocused( _this, _Const0001 );
-  WidgetSetToggleButtonConfig_OnSetIconOffTintDisabled( _this, _Const0003 );
-  WidgetSetToggleButtonConfig_OnSetIconOffTintDefault( _this, _Const0001 );
+  WidgetSetToggleButtonConfig_OnSetIconOnTintActive( _this, _Const0000 );
+  WidgetSetToggleButtonConfig_OnSetIconOnTintFocused( _this, _Const0000 );
+  WidgetSetToggleButtonConfig_OnSetIconOnTintDisabled( _this, _Const0002 );
+  WidgetSetToggleButtonConfig_OnSetIconOnTintDefault( _this, _Const0000 );
+  WidgetSetToggleButtonConfig_OnSetIconOffTintActive( _this, _Const0000 );
+  WidgetSetToggleButtonConfig_OnSetIconOffTintFocused( _this, _Const0000 );
+  WidgetSetToggleButtonConfig_OnSetIconOffTintDisabled( _this, _Const0002 );
+  WidgetSetToggleButtonConfig_OnSetIconOffTintDefault( _this, _Const0000 );
   WidgetSetToggleButtonConfig_OnSetIconMarginRight( _this, 75 );
   WidgetSetToggleButtonConfig_OnSetLabelAlignment( _this, ViewsTextAlignmentAlignHorzLeft 
   | ViewsTextAlignmentAlignVertCenter );
@@ -217,7 +150,7 @@ void WidgetSetSwitch_Lime_Medium__Init( WidgetSetToggleButtonConfig _this )
   &WidgetSetSwitchMedium, ResourcesBitmap ));
   WidgetSetToggleButtonConfig_OnSetFaceOffBitmapDefault( _this, EwLoadResource( 
   &WidgetSetSwitchMedium, ResourcesBitmap ));
-  WidgetSetToggleButtonConfig_OnSetWidgetMinSize( _this, _Const0004 );
+  WidgetSetToggleButtonConfig_OnSetWidgetMinSize( _this, _Const0003 );
 }
 
 /* Re-Initializer for the auto object 'WidgetSet::Switch_Lime_Medium' */
@@ -229,385 +162,6 @@ void WidgetSetSwitch_Lime_Medium__ReInit( WidgetSetToggleButtonConfig _this )
 /* Table with links to derived variants of the auto object : 'WidgetSet::Switch_Lime_Medium' */
 EW_DEFINE_AUTOOBJECT_VARIANTS( WidgetSetSwitch_Lime_Medium )
 EW_END_OF_AUTOOBJECT_VARIANTS( WidgetSetSwitch_Lime_Medium )
-
-/* Initializer for the class 'WidgetSet::HorizontalSliderConfig' */
-void WidgetSetHorizontalSliderConfig__Init( WidgetSetHorizontalSliderConfig _this, XObject aLink, XHandle aArg )
-{
-  /* At first initialize the super class ... */
-  WidgetSetWidgetConfig__Init( &_this->_.Super, aLink, aArg );
-
-  /* Allow the Immediate Garbage Collection to evalute the members of this class. */
-  _this->_.XObject._.GCT = EW_CLASS_GCT( WidgetSetHorizontalSliderConfig );
-
-  /* Setup the VMT pointer */
-  _this->_.VMT = EW_CLASS( WidgetSetHorizontalSliderConfig );
-
-  /* ... and initialize objects, variables, properties, etc. */
-  _this->ThumbFrameActive = -1;
-  _this->ThumbFrameFocused = -1;
-  _this->ThumbFrameDisabled = -1;
-  _this->ThumbFrameDefault = -1;
-  _this->TrackRightFrameActive = -1;
-  _this->TrackRightFrameFocused = -1;
-  _this->TrackRightFrameDisabled = -1;
-  _this->TrackRightFrameDefault = -1;
-  _this->TrackLeftFrameActive = -1;
-  _this->TrackLeftFrameFocused = -1;
-  _this->TrackLeftFrameDisabled = -1;
-  _this->TrackLeftFrameDefault = -1;
-}
-
-/* Re-Initializer for the class 'WidgetSet::HorizontalSliderConfig' */
-void WidgetSetHorizontalSliderConfig__ReInit( WidgetSetHorizontalSliderConfig _this )
-{
-  /* At first re-initialize the super class ... */
-  WidgetSetWidgetConfig__ReInit( &_this->_.Super );
-}
-
-/* Finalizer method for the class 'WidgetSet::HorizontalSliderConfig' */
-void WidgetSetHorizontalSliderConfig__Done( WidgetSetHorizontalSliderConfig _this )
-{
-  /* Finalize this class */
-  _this->_.Super._.VMT = EW_CLASS( WidgetSetWidgetConfig );
-
-  /* Don't forget to deinitialize the super class ... */
-  WidgetSetWidgetConfig__Done( &_this->_.Super );
-}
-
-/* 'C' function for method : 'WidgetSet::HorizontalSliderConfig.OnSetKeyRepeatPeriod()' */
-void WidgetSetHorizontalSliderConfig_OnSetKeyRepeatPeriod( WidgetSetHorizontalSliderConfig _this, 
-  XInt32 value )
-{
-  if ( _this->KeyRepeatPeriod == value )
-    return;
-
-  _this->KeyRepeatPeriod = value;
-  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
-}
-
-/* 'C' function for method : 'WidgetSet::HorizontalSliderConfig.OnSetKeyRepeatDelay()' */
-void WidgetSetHorizontalSliderConfig_OnSetKeyRepeatDelay( WidgetSetHorizontalSliderConfig _this, 
-  XInt32 value )
-{
-  if ( _this->KeyRepeatDelay == value )
-    return;
-
-  _this->KeyRepeatDelay = value;
-  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
-}
-
-/* 'C' function for method : 'WidgetSet::HorizontalSliderConfig.OnSetThumbFrameActive()' */
-void WidgetSetHorizontalSliderConfig_OnSetThumbFrameActive( WidgetSetHorizontalSliderConfig _this, 
-  XInt32 value )
-{
-  if ( _this->ThumbFrameActive == value )
-    return;
-
-  _this->ThumbFrameActive = value;
-  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
-}
-
-/* 'C' function for method : 'WidgetSet::HorizontalSliderConfig.OnSetThumbFrameFocused()' */
-void WidgetSetHorizontalSliderConfig_OnSetThumbFrameFocused( WidgetSetHorizontalSliderConfig _this, 
-  XInt32 value )
-{
-  if ( _this->ThumbFrameFocused == value )
-    return;
-
-  _this->ThumbFrameFocused = value;
-  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
-}
-
-/* 'C' function for method : 'WidgetSet::HorizontalSliderConfig.OnSetThumbFrameDisabled()' */
-void WidgetSetHorizontalSliderConfig_OnSetThumbFrameDisabled( WidgetSetHorizontalSliderConfig _this, 
-  XInt32 value )
-{
-  if ( _this->ThumbFrameDisabled == value )
-    return;
-
-  _this->ThumbFrameDisabled = value;
-  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
-}
-
-/* 'C' function for method : 'WidgetSet::HorizontalSliderConfig.OnSetThumbFrameDefault()' */
-void WidgetSetHorizontalSliderConfig_OnSetThumbFrameDefault( WidgetSetHorizontalSliderConfig _this, 
-  XInt32 value )
-{
-  if ( _this->ThumbFrameDefault == value )
-    return;
-
-  _this->ThumbFrameDefault = value;
-  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
-}
-
-/* 'C' function for method : 'WidgetSet::HorizontalSliderConfig.OnSetThumbBitmapActive()' */
-void WidgetSetHorizontalSliderConfig_OnSetThumbBitmapActive( WidgetSetHorizontalSliderConfig _this, 
-  ResourcesBitmap value )
-{
-  if ( _this->ThumbBitmapActive == value )
-    return;
-
-  _this->ThumbBitmapActive = value;
-  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
-}
-
-/* 'C' function for method : 'WidgetSet::HorizontalSliderConfig.OnSetThumbBitmapFocused()' */
-void WidgetSetHorizontalSliderConfig_OnSetThumbBitmapFocused( WidgetSetHorizontalSliderConfig _this, 
-  ResourcesBitmap value )
-{
-  if ( _this->ThumbBitmapFocused == value )
-    return;
-
-  _this->ThumbBitmapFocused = value;
-  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
-}
-
-/* 'C' function for method : 'WidgetSet::HorizontalSliderConfig.OnSetThumbBitmapDisabled()' */
-void WidgetSetHorizontalSliderConfig_OnSetThumbBitmapDisabled( WidgetSetHorizontalSliderConfig _this, 
-  ResourcesBitmap value )
-{
-  if ( _this->ThumbBitmapDisabled == value )
-    return;
-
-  _this->ThumbBitmapDisabled = value;
-  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
-}
-
-/* 'C' function for method : 'WidgetSet::HorizontalSliderConfig.OnSetThumbBitmapDefault()' */
-void WidgetSetHorizontalSliderConfig_OnSetThumbBitmapDefault( WidgetSetHorizontalSliderConfig _this, 
-  ResourcesBitmap value )
-{
-  if ( _this->ThumbBitmapDefault == value )
-    return;
-
-  _this->ThumbBitmapDefault = value;
-  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
-}
-
-/* 'C' function for method : 'WidgetSet::HorizontalSliderConfig.OnSetThumbMarginRight()' */
-void WidgetSetHorizontalSliderConfig_OnSetThumbMarginRight( WidgetSetHorizontalSliderConfig _this, 
-  XInt32 value )
-{
-  if ( _this->ThumbMarginRight == value )
-    return;
-
-  _this->ThumbMarginRight = value;
-  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
-}
-
-/* 'C' function for method : 'WidgetSet::HorizontalSliderConfig.OnSetThumbMarginLeft()' */
-void WidgetSetHorizontalSliderConfig_OnSetThumbMarginLeft( WidgetSetHorizontalSliderConfig _this, 
-  XInt32 value )
-{
-  if ( _this->ThumbMarginLeft == value )
-    return;
-
-  _this->ThumbMarginLeft = value;
-  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
-}
-
-/* 'C' function for method : 'WidgetSet::HorizontalSliderConfig.OnSetTrackRightFrameActive()' */
-void WidgetSetHorizontalSliderConfig_OnSetTrackRightFrameActive( WidgetSetHorizontalSliderConfig _this, 
-  XInt32 value )
-{
-  if ( _this->TrackRightFrameActive == value )
-    return;
-
-  _this->TrackRightFrameActive = value;
-  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
-}
-
-/* 'C' function for method : 'WidgetSet::HorizontalSliderConfig.OnSetTrackRightFrameFocused()' */
-void WidgetSetHorizontalSliderConfig_OnSetTrackRightFrameFocused( WidgetSetHorizontalSliderConfig _this, 
-  XInt32 value )
-{
-  if ( _this->TrackRightFrameFocused == value )
-    return;
-
-  _this->TrackRightFrameFocused = value;
-  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
-}
-
-/* 'C' function for method : 'WidgetSet::HorizontalSliderConfig.OnSetTrackRightFrameDisabled()' */
-void WidgetSetHorizontalSliderConfig_OnSetTrackRightFrameDisabled( WidgetSetHorizontalSliderConfig _this, 
-  XInt32 value )
-{
-  if ( _this->TrackRightFrameDisabled == value )
-    return;
-
-  _this->TrackRightFrameDisabled = value;
-  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
-}
-
-/* 'C' function for method : 'WidgetSet::HorizontalSliderConfig.OnSetTrackRightFrameDefault()' */
-void WidgetSetHorizontalSliderConfig_OnSetTrackRightFrameDefault( WidgetSetHorizontalSliderConfig _this, 
-  XInt32 value )
-{
-  if ( _this->TrackRightFrameDefault == value )
-    return;
-
-  _this->TrackRightFrameDefault = value;
-  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
-}
-
-/* 'C' function for method : 'WidgetSet::HorizontalSliderConfig.OnSetTrackRightBitmapActive()' */
-void WidgetSetHorizontalSliderConfig_OnSetTrackRightBitmapActive( WidgetSetHorizontalSliderConfig _this, 
-  ResourcesBitmap value )
-{
-  if ( _this->TrackRightBitmapActive == value )
-    return;
-
-  _this->TrackRightBitmapActive = value;
-  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
-}
-
-/* 'C' function for method : 'WidgetSet::HorizontalSliderConfig.OnSetTrackRightBitmapFocused()' */
-void WidgetSetHorizontalSliderConfig_OnSetTrackRightBitmapFocused( WidgetSetHorizontalSliderConfig _this, 
-  ResourcesBitmap value )
-{
-  if ( _this->TrackRightBitmapFocused == value )
-    return;
-
-  _this->TrackRightBitmapFocused = value;
-  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
-}
-
-/* 'C' function for method : 'WidgetSet::HorizontalSliderConfig.OnSetTrackRightBitmapDisabled()' */
-void WidgetSetHorizontalSliderConfig_OnSetTrackRightBitmapDisabled( WidgetSetHorizontalSliderConfig _this, 
-  ResourcesBitmap value )
-{
-  if ( _this->TrackRightBitmapDisabled == value )
-    return;
-
-  _this->TrackRightBitmapDisabled = value;
-  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
-}
-
-/* 'C' function for method : 'WidgetSet::HorizontalSliderConfig.OnSetTrackRightBitmapDefault()' */
-void WidgetSetHorizontalSliderConfig_OnSetTrackRightBitmapDefault( WidgetSetHorizontalSliderConfig _this, 
-  ResourcesBitmap value )
-{
-  if ( _this->TrackRightBitmapDefault == value )
-    return;
-
-  _this->TrackRightBitmapDefault = value;
-  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
-}
-
-/* 'C' function for method : 'WidgetSet::HorizontalSliderConfig.OnSetTrackLeftFrameActive()' */
-void WidgetSetHorizontalSliderConfig_OnSetTrackLeftFrameActive( WidgetSetHorizontalSliderConfig _this, 
-  XInt32 value )
-{
-  if ( _this->TrackLeftFrameActive == value )
-    return;
-
-  _this->TrackLeftFrameActive = value;
-  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
-}
-
-/* 'C' function for method : 'WidgetSet::HorizontalSliderConfig.OnSetTrackLeftFrameFocused()' */
-void WidgetSetHorizontalSliderConfig_OnSetTrackLeftFrameFocused( WidgetSetHorizontalSliderConfig _this, 
-  XInt32 value )
-{
-  if ( _this->TrackLeftFrameFocused == value )
-    return;
-
-  _this->TrackLeftFrameFocused = value;
-  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
-}
-
-/* 'C' function for method : 'WidgetSet::HorizontalSliderConfig.OnSetTrackLeftFrameDisabled()' */
-void WidgetSetHorizontalSliderConfig_OnSetTrackLeftFrameDisabled( WidgetSetHorizontalSliderConfig _this, 
-  XInt32 value )
-{
-  if ( _this->TrackLeftFrameDisabled == value )
-    return;
-
-  _this->TrackLeftFrameDisabled = value;
-  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
-}
-
-/* 'C' function for method : 'WidgetSet::HorizontalSliderConfig.OnSetTrackLeftFrameDefault()' */
-void WidgetSetHorizontalSliderConfig_OnSetTrackLeftFrameDefault( WidgetSetHorizontalSliderConfig _this, 
-  XInt32 value )
-{
-  if ( _this->TrackLeftFrameDefault == value )
-    return;
-
-  _this->TrackLeftFrameDefault = value;
-  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
-}
-
-/* 'C' function for method : 'WidgetSet::HorizontalSliderConfig.OnSetTrackLeftBitmapActive()' */
-void WidgetSetHorizontalSliderConfig_OnSetTrackLeftBitmapActive( WidgetSetHorizontalSliderConfig _this, 
-  ResourcesBitmap value )
-{
-  if ( _this->TrackLeftBitmapActive == value )
-    return;
-
-  _this->TrackLeftBitmapActive = value;
-  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
-}
-
-/* 'C' function for method : 'WidgetSet::HorizontalSliderConfig.OnSetTrackLeftBitmapFocused()' */
-void WidgetSetHorizontalSliderConfig_OnSetTrackLeftBitmapFocused( WidgetSetHorizontalSliderConfig _this, 
-  ResourcesBitmap value )
-{
-  if ( _this->TrackLeftBitmapFocused == value )
-    return;
-
-  _this->TrackLeftBitmapFocused = value;
-  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
-}
-
-/* 'C' function for method : 'WidgetSet::HorizontalSliderConfig.OnSetTrackLeftBitmapDisabled()' */
-void WidgetSetHorizontalSliderConfig_OnSetTrackLeftBitmapDisabled( WidgetSetHorizontalSliderConfig _this, 
-  ResourcesBitmap value )
-{
-  if ( _this->TrackLeftBitmapDisabled == value )
-    return;
-
-  _this->TrackLeftBitmapDisabled = value;
-  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
-}
-
-/* 'C' function for method : 'WidgetSet::HorizontalSliderConfig.OnSetTrackLeftBitmapDefault()' */
-void WidgetSetHorizontalSliderConfig_OnSetTrackLeftBitmapDefault( WidgetSetHorizontalSliderConfig _this, 
-  ResourcesBitmap value )
-{
-  if ( _this->TrackLeftBitmapDefault == value )
-    return;
-
-  _this->TrackLeftBitmapDefault = value;
-  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
-}
-
-/* 'C' function for method : 'WidgetSet::HorizontalSliderConfig.OnSetWidgetMinSize()' */
-void WidgetSetHorizontalSliderConfig_OnSetWidgetMinSize( WidgetSetHorizontalSliderConfig _this, 
-  XPoint value )
-{
-  if ( value.X < 0 )
-    value.X = 0;
-
-  if ( value.Y < 0 )
-    value.Y = 0;
-
-  if ( !EwCompPoint( _this->WidgetMinSize, value ))
-    return;
-
-  _this->WidgetMinSize = value;
-  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
-}
-
-/* Variants derived from the class : 'WidgetSet::HorizontalSliderConfig' */
-EW_DEFINE_CLASS_VARIANTS( WidgetSetHorizontalSliderConfig )
-EW_END_OF_CLASS_VARIANTS( WidgetSetHorizontalSliderConfig )
-
-/* Virtual Method Table (VMT) for the class : 'WidgetSet::HorizontalSliderConfig' */
-EW_DEFINE_CLASS( WidgetSetHorizontalSliderConfig, WidgetSetWidgetConfig, ThumbBitmapActive, 
-                 ThumbBitmapActive, KeyRepeatPeriod, KeyRepeatPeriod, KeyRepeatPeriod, 
-                 KeyRepeatPeriod, "WidgetSet::HorizontalSliderConfig" )
-EW_END_OF_CLASS( WidgetSetHorizontalSliderConfig )
 
 /* Initializer for the class 'WidgetSet::ToggleButtonConfig' */
 void WidgetSetToggleButtonConfig__Init( WidgetSetToggleButtonConfig _this, XObject aLink, XHandle aArg )
@@ -622,22 +176,29 @@ void WidgetSetToggleButtonConfig__Init( WidgetSetToggleButtonConfig _this, XObje
   _this->_.VMT = EW_CLASS( WidgetSetToggleButtonConfig );
 
   /* ... and initialize objects, variables, properties, etc. */
-  _this->LabelOnColorActive = _Const0005;
-  _this->LabelOnColorFocused = _Const0005;
-  _this->LabelOnColorDisabled = _Const0005;
-  _this->LabelOnColorDefault = _Const0005;
-  _this->LabelOffColorActive = _Const0005;
-  _this->LabelOffColorFocused = _Const0005;
-  _this->LabelOffColorDisabled = _Const0005;
-  _this->LabelOffColorDefault = _Const0005;
-  _this->IconOnTintActive = _Const0006;
-  _this->IconOnTintFocused = _Const0006;
-  _this->IconOnTintDisabled = _Const0006;
-  _this->IconOnTintDefault = _Const0006;
-  _this->IconOffTintActive = _Const0006;
-  _this->IconOffTintFocused = _Const0006;
-  _this->IconOffTintDisabled = _Const0006;
-  _this->IconOffTintDefault = _Const0006;
+  _this->PressedFeedbackDuration = 50;
+  _this->AccentLayout = CoreLayoutAlignToBottom | CoreLayoutAlignToLeft | CoreLayoutAlignToRight 
+  | CoreLayoutAlignToTop | CoreLayoutResizeHorz | CoreLayoutResizeVert;
+  _this->ThumbLayout = CoreLayoutAlignToBottom | CoreLayoutAlignToLeft | CoreLayoutAlignToRight 
+  | CoreLayoutAlignToTop | CoreLayoutResizeHorz | CoreLayoutResizeVert;
+  _this->TrackLayout = CoreLayoutAlignToBottom | CoreLayoutAlignToLeft | CoreLayoutAlignToRight 
+  | CoreLayoutAlignToTop | CoreLayoutResizeHorz | CoreLayoutResizeVert;
+  _this->LabelOnColorActive = _Const0004;
+  _this->LabelOnColorFocused = _Const0004;
+  _this->LabelOnColorDisabled = _Const0004;
+  _this->LabelOnColorDefault = _Const0004;
+  _this->LabelOffColorActive = _Const0004;
+  _this->LabelOffColorFocused = _Const0004;
+  _this->LabelOffColorDisabled = _Const0004;
+  _this->LabelOffColorDefault = _Const0004;
+  _this->IconOnTintActive = _Const0005;
+  _this->IconOnTintFocused = _Const0005;
+  _this->IconOnTintDisabled = _Const0005;
+  _this->IconOnTintDefault = _Const0005;
+  _this->IconOffTintActive = _Const0005;
+  _this->IconOffTintFocused = _Const0005;
+  _this->IconOffTintDisabled = _Const0005;
+  _this->IconOffTintDefault = _Const0005;
   _this->LabelAlignment = ViewsTextAlignmentAlignHorzCenter | ViewsTextAlignmentAlignVertCenter;
   _this->IconAlignment = ViewsImageAlignmentAlignHorzCenter | ViewsImageAlignmentAlignVertCenter;
   _this->FaceLayout = CoreLayoutAlignToBottom | CoreLayoutAlignToLeft | CoreLayoutAlignToRight 
@@ -667,6 +228,1296 @@ void WidgetSetToggleButtonConfig__Done( WidgetSetToggleButtonConfig _this )
 
   /* Don't forget to deinitialize the super class ... */
   WidgetSetWidgetConfig__Done( &_this->_.Super );
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetStateTransitionDuration()' */
+void WidgetSetToggleButtonConfig_OnSetStateTransitionDuration( WidgetSetToggleButtonConfig _this, 
+  XInt32 value )
+{
+  if ( value < 0 )
+    value = 0;
+
+  if ( _this->StateTransitionDuration == value )
+    return;
+
+  _this->StateTransitionDuration = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetPressedFeedbackDuration()' */
+void WidgetSetToggleButtonConfig_OnSetPressedFeedbackDuration( WidgetSetToggleButtonConfig _this, 
+  XInt32 value )
+{
+  if ( _this->PressedFeedbackDuration == value )
+    return;
+
+  _this->PressedFeedbackDuration = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetLimitTouchArea()' */
+void WidgetSetToggleButtonConfig_OnSetLimitTouchArea( WidgetSetToggleButtonConfig _this, 
+  XBool value )
+{
+  if ( _this->LimitTouchArea == value )
+    return;
+
+  _this->LimitTouchArea = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetAccentOnColorActive()' */
+void WidgetSetToggleButtonConfig_OnSetAccentOnColorActive( WidgetSetToggleButtonConfig _this, 
+  XColor value )
+{
+  if ( !EwCompColor( _this->AccentOnColorActive, value ))
+    return;
+
+  _this->AccentOnColorActive = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetAccentOnColorFocused()' */
+void WidgetSetToggleButtonConfig_OnSetAccentOnColorFocused( WidgetSetToggleButtonConfig _this, 
+  XColor value )
+{
+  if ( !EwCompColor( _this->AccentOnColorFocused, value ))
+    return;
+
+  _this->AccentOnColorFocused = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetAccentOnCornerRadiusActive()' */
+void WidgetSetToggleButtonConfig_OnSetAccentOnCornerRadiusActive( WidgetSetToggleButtonConfig _this, 
+  XInt32 value )
+{
+  if ( value < 0 )
+    value = 0;
+
+  if ( _this->AccentOnCornerRadiusActive == value )
+    return;
+
+  _this->AccentOnCornerRadiusActive = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetAccentOnCornerRadiusFocused()' */
+void WidgetSetToggleButtonConfig_OnSetAccentOnCornerRadiusFocused( WidgetSetToggleButtonConfig _this, 
+  XInt32 value )
+{
+  if ( value < 0 )
+    value = 0;
+
+  if ( _this->AccentOnCornerRadiusFocused == value )
+    return;
+
+  _this->AccentOnCornerRadiusFocused = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetAccentOnCornerRadiusDisabled()' */
+void WidgetSetToggleButtonConfig_OnSetAccentOnCornerRadiusDisabled( WidgetSetToggleButtonConfig _this, 
+  XInt32 value )
+{
+  if ( value < 0 )
+    value = 0;
+
+  if ( _this->AccentOnCornerRadiusDisabled == value )
+    return;
+
+  _this->AccentOnCornerRadiusDisabled = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetAccentOnCornerRadiusDefault()' */
+void WidgetSetToggleButtonConfig_OnSetAccentOnCornerRadiusDefault( WidgetSetToggleButtonConfig _this, 
+  XInt32 value )
+{
+  if ( value < 0 )
+    value = 0;
+
+  if ( _this->AccentOnCornerRadiusDefault == value )
+    return;
+
+  _this->AccentOnCornerRadiusDefault = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetAccentOnOffsetActive()' */
+void WidgetSetToggleButtonConfig_OnSetAccentOnOffsetActive( WidgetSetToggleButtonConfig _this, 
+  XPoint value )
+{
+  if ( !EwCompPoint( _this->AccentOnOffsetActive, value ))
+    return;
+
+  _this->AccentOnOffsetActive = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetAccentOnOffsetFocused()' */
+void WidgetSetToggleButtonConfig_OnSetAccentOnOffsetFocused( WidgetSetToggleButtonConfig _this, 
+  XPoint value )
+{
+  if ( !EwCompPoint( _this->AccentOnOffsetFocused, value ))
+    return;
+
+  _this->AccentOnOffsetFocused = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetAccentOnOffsetDisabled()' */
+void WidgetSetToggleButtonConfig_OnSetAccentOnOffsetDisabled( WidgetSetToggleButtonConfig _this, 
+  XPoint value )
+{
+  if ( !EwCompPoint( _this->AccentOnOffsetDisabled, value ))
+    return;
+
+  _this->AccentOnOffsetDisabled = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetAccentOnOffsetDefault()' */
+void WidgetSetToggleButtonConfig_OnSetAccentOnOffsetDefault( WidgetSetToggleButtonConfig _this, 
+  XPoint value )
+{
+  if ( !EwCompPoint( _this->AccentOnOffsetDefault, value ))
+    return;
+
+  _this->AccentOnOffsetDefault = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetAccentOnSizeActive()' */
+void WidgetSetToggleButtonConfig_OnSetAccentOnSizeActive( WidgetSetToggleButtonConfig _this, 
+  XPoint value )
+{
+  if ( !EwCompPoint( _this->AccentOnSizeActive, value ))
+    return;
+
+  _this->AccentOnSizeActive = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetAccentOnSizeFocused()' */
+void WidgetSetToggleButtonConfig_OnSetAccentOnSizeFocused( WidgetSetToggleButtonConfig _this, 
+  XPoint value )
+{
+  if ( !EwCompPoint( _this->AccentOnSizeFocused, value ))
+    return;
+
+  _this->AccentOnSizeFocused = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetAccentOnSizeDisabled()' */
+void WidgetSetToggleButtonConfig_OnSetAccentOnSizeDisabled( WidgetSetToggleButtonConfig _this, 
+  XPoint value )
+{
+  if ( !EwCompPoint( _this->AccentOnSizeDisabled, value ))
+    return;
+
+  _this->AccentOnSizeDisabled = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetAccentOnSizeDefault()' */
+void WidgetSetToggleButtonConfig_OnSetAccentOnSizeDefault( WidgetSetToggleButtonConfig _this, 
+  XPoint value )
+{
+  if ( !EwCompPoint( _this->AccentOnSizeDefault, value ))
+    return;
+
+  _this->AccentOnSizeDefault = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetAccentOffColorActive()' */
+void WidgetSetToggleButtonConfig_OnSetAccentOffColorActive( WidgetSetToggleButtonConfig _this, 
+  XColor value )
+{
+  if ( !EwCompColor( _this->AccentOffColorActive, value ))
+    return;
+
+  _this->AccentOffColorActive = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetAccentOffColorFocused()' */
+void WidgetSetToggleButtonConfig_OnSetAccentOffColorFocused( WidgetSetToggleButtonConfig _this, 
+  XColor value )
+{
+  if ( !EwCompColor( _this->AccentOffColorFocused, value ))
+    return;
+
+  _this->AccentOffColorFocused = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetAccentOffCornerRadiusActive()' */
+void WidgetSetToggleButtonConfig_OnSetAccentOffCornerRadiusActive( WidgetSetToggleButtonConfig _this, 
+  XInt32 value )
+{
+  if ( value < 0 )
+    value = 0;
+
+  if ( _this->AccentOffCornerRadiusActive == value )
+    return;
+
+  _this->AccentOffCornerRadiusActive = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetAccentOffCornerRadiusFocused()' */
+void WidgetSetToggleButtonConfig_OnSetAccentOffCornerRadiusFocused( WidgetSetToggleButtonConfig _this, 
+  XInt32 value )
+{
+  if ( value < 0 )
+    value = 0;
+
+  if ( _this->AccentOffCornerRadiusFocused == value )
+    return;
+
+  _this->AccentOffCornerRadiusFocused = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetAccentOffCornerRadiusDisabled()' */
+void WidgetSetToggleButtonConfig_OnSetAccentOffCornerRadiusDisabled( WidgetSetToggleButtonConfig _this, 
+  XInt32 value )
+{
+  if ( value < 0 )
+    value = 0;
+
+  if ( _this->AccentOffCornerRadiusDisabled == value )
+    return;
+
+  _this->AccentOffCornerRadiusDisabled = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetAccentOffCornerRadiusDefault()' */
+void WidgetSetToggleButtonConfig_OnSetAccentOffCornerRadiusDefault( WidgetSetToggleButtonConfig _this, 
+  XInt32 value )
+{
+  if ( value < 0 )
+    value = 0;
+
+  if ( _this->AccentOffCornerRadiusDefault == value )
+    return;
+
+  _this->AccentOffCornerRadiusDefault = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetAccentOffOffsetActive()' */
+void WidgetSetToggleButtonConfig_OnSetAccentOffOffsetActive( WidgetSetToggleButtonConfig _this, 
+  XPoint value )
+{
+  if ( !EwCompPoint( _this->AccentOffOffsetActive, value ))
+    return;
+
+  _this->AccentOffOffsetActive = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetAccentOffOffsetFocused()' */
+void WidgetSetToggleButtonConfig_OnSetAccentOffOffsetFocused( WidgetSetToggleButtonConfig _this, 
+  XPoint value )
+{
+  if ( !EwCompPoint( _this->AccentOffOffsetFocused, value ))
+    return;
+
+  _this->AccentOffOffsetFocused = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetAccentOffOffsetDisabled()' */
+void WidgetSetToggleButtonConfig_OnSetAccentOffOffsetDisabled( WidgetSetToggleButtonConfig _this, 
+  XPoint value )
+{
+  if ( !EwCompPoint( _this->AccentOffOffsetDisabled, value ))
+    return;
+
+  _this->AccentOffOffsetDisabled = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetAccentOffOffsetDefault()' */
+void WidgetSetToggleButtonConfig_OnSetAccentOffOffsetDefault( WidgetSetToggleButtonConfig _this, 
+  XPoint value )
+{
+  if ( !EwCompPoint( _this->AccentOffOffsetDefault, value ))
+    return;
+
+  _this->AccentOffOffsetDefault = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetAccentOffSizeActive()' */
+void WidgetSetToggleButtonConfig_OnSetAccentOffSizeActive( WidgetSetToggleButtonConfig _this, 
+  XPoint value )
+{
+  if ( !EwCompPoint( _this->AccentOffSizeActive, value ))
+    return;
+
+  _this->AccentOffSizeActive = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetAccentOffSizeFocused()' */
+void WidgetSetToggleButtonConfig_OnSetAccentOffSizeFocused( WidgetSetToggleButtonConfig _this, 
+  XPoint value )
+{
+  if ( !EwCompPoint( _this->AccentOffSizeFocused, value ))
+    return;
+
+  _this->AccentOffSizeFocused = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetAccentOffSizeDisabled()' */
+void WidgetSetToggleButtonConfig_OnSetAccentOffSizeDisabled( WidgetSetToggleButtonConfig _this, 
+  XPoint value )
+{
+  if ( !EwCompPoint( _this->AccentOffSizeDisabled, value ))
+    return;
+
+  _this->AccentOffSizeDisabled = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetAccentOffSizeDefault()' */
+void WidgetSetToggleButtonConfig_OnSetAccentOffSizeDefault( WidgetSetToggleButtonConfig _this, 
+  XPoint value )
+{
+  if ( !EwCompPoint( _this->AccentOffSizeDefault, value ))
+    return;
+
+  _this->AccentOffSizeDefault = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetAccentLayout()' */
+void WidgetSetToggleButtonConfig_OnSetAccentLayout( WidgetSetToggleButtonConfig _this, 
+  XSet value )
+{
+  if ( _this->AccentLayout == value )
+    return;
+
+  _this->AccentLayout = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOnBorderColorActive()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOnBorderColorActive( WidgetSetToggleButtonConfig _this, 
+  XColor value )
+{
+  if ( !EwCompColor( _this->ThumbOnBorderColorActive, value ))
+    return;
+
+  _this->ThumbOnBorderColorActive = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOnBorderColorFocused()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOnBorderColorFocused( WidgetSetToggleButtonConfig _this, 
+  XColor value )
+{
+  if ( !EwCompColor( _this->ThumbOnBorderColorFocused, value ))
+    return;
+
+  _this->ThumbOnBorderColorFocused = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOnBorderColorDisabled()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOnBorderColorDisabled( WidgetSetToggleButtonConfig _this, 
+  XColor value )
+{
+  if ( !EwCompColor( _this->ThumbOnBorderColorDisabled, value ))
+    return;
+
+  _this->ThumbOnBorderColorDisabled = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOnBorderColorDefault()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOnBorderColorDefault( WidgetSetToggleButtonConfig _this, 
+  XColor value )
+{
+  if ( !EwCompColor( _this->ThumbOnBorderColorDefault, value ))
+    return;
+
+  _this->ThumbOnBorderColorDefault = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOnBorderWidthActive()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOnBorderWidthActive( WidgetSetToggleButtonConfig _this, 
+  XInt32 value )
+{
+  if ( value < 0 )
+    value = 0;
+
+  if ( _this->ThumbOnBorderWidthActive == value )
+    return;
+
+  _this->ThumbOnBorderWidthActive = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOnBorderWidthFocused()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOnBorderWidthFocused( WidgetSetToggleButtonConfig _this, 
+  XInt32 value )
+{
+  if ( value < 0 )
+    value = 0;
+
+  if ( _this->ThumbOnBorderWidthFocused == value )
+    return;
+
+  _this->ThumbOnBorderWidthFocused = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOnBorderWidthDisabled()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOnBorderWidthDisabled( WidgetSetToggleButtonConfig _this, 
+  XInt32 value )
+{
+  if ( value < 0 )
+    value = 0;
+
+  if ( _this->ThumbOnBorderWidthDisabled == value )
+    return;
+
+  _this->ThumbOnBorderWidthDisabled = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOnBorderWidthDefault()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOnBorderWidthDefault( WidgetSetToggleButtonConfig _this, 
+  XInt32 value )
+{
+  if ( value < 0 )
+    value = 0;
+
+  if ( _this->ThumbOnBorderWidthDefault == value )
+    return;
+
+  _this->ThumbOnBorderWidthDefault = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOnColorActive()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOnColorActive( WidgetSetToggleButtonConfig _this, 
+  XColor value )
+{
+  if ( !EwCompColor( _this->ThumbOnColorActive, value ))
+    return;
+
+  _this->ThumbOnColorActive = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOnColorFocused()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOnColorFocused( WidgetSetToggleButtonConfig _this, 
+  XColor value )
+{
+  if ( !EwCompColor( _this->ThumbOnColorFocused, value ))
+    return;
+
+  _this->ThumbOnColorFocused = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOnColorDisabled()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOnColorDisabled( WidgetSetToggleButtonConfig _this, 
+  XColor value )
+{
+  if ( !EwCompColor( _this->ThumbOnColorDisabled, value ))
+    return;
+
+  _this->ThumbOnColorDisabled = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOnColorDefault()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOnColorDefault( WidgetSetToggleButtonConfig _this, 
+  XColor value )
+{
+  if ( !EwCompColor( _this->ThumbOnColorDefault, value ))
+    return;
+
+  _this->ThumbOnColorDefault = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOnCornerRadiusActive()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOnCornerRadiusActive( WidgetSetToggleButtonConfig _this, 
+  XInt32 value )
+{
+  if ( value < 0 )
+    value = 0;
+
+  if ( _this->ThumbOnCornerRadiusActive == value )
+    return;
+
+  _this->ThumbOnCornerRadiusActive = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOnCornerRadiusFocused()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOnCornerRadiusFocused( WidgetSetToggleButtonConfig _this, 
+  XInt32 value )
+{
+  if ( value < 0 )
+    value = 0;
+
+  if ( _this->ThumbOnCornerRadiusFocused == value )
+    return;
+
+  _this->ThumbOnCornerRadiusFocused = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOnCornerRadiusDisabled()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOnCornerRadiusDisabled( WidgetSetToggleButtonConfig _this, 
+  XInt32 value )
+{
+  if ( value < 0 )
+    value = 0;
+
+  if ( _this->ThumbOnCornerRadiusDisabled == value )
+    return;
+
+  _this->ThumbOnCornerRadiusDisabled = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOnCornerRadiusDefault()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOnCornerRadiusDefault( WidgetSetToggleButtonConfig _this, 
+  XInt32 value )
+{
+  if ( value < 0 )
+    value = 0;
+
+  if ( _this->ThumbOnCornerRadiusDefault == value )
+    return;
+
+  _this->ThumbOnCornerRadiusDefault = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOnOffsetActive()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOnOffsetActive( WidgetSetToggleButtonConfig _this, 
+  XPoint value )
+{
+  if ( !EwCompPoint( _this->ThumbOnOffsetActive, value ))
+    return;
+
+  _this->ThumbOnOffsetActive = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOnOffsetFocused()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOnOffsetFocused( WidgetSetToggleButtonConfig _this, 
+  XPoint value )
+{
+  if ( !EwCompPoint( _this->ThumbOnOffsetFocused, value ))
+    return;
+
+  _this->ThumbOnOffsetFocused = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOnOffsetDisabled()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOnOffsetDisabled( WidgetSetToggleButtonConfig _this, 
+  XPoint value )
+{
+  if ( !EwCompPoint( _this->ThumbOnOffsetDisabled, value ))
+    return;
+
+  _this->ThumbOnOffsetDisabled = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOnOffsetDefault()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOnOffsetDefault( WidgetSetToggleButtonConfig _this, 
+  XPoint value )
+{
+  if ( !EwCompPoint( _this->ThumbOnOffsetDefault, value ))
+    return;
+
+  _this->ThumbOnOffsetDefault = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOnSizeActive()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOnSizeActive( WidgetSetToggleButtonConfig _this, 
+  XPoint value )
+{
+  if ( !EwCompPoint( _this->ThumbOnSizeActive, value ))
+    return;
+
+  _this->ThumbOnSizeActive = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOnSizeFocused()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOnSizeFocused( WidgetSetToggleButtonConfig _this, 
+  XPoint value )
+{
+  if ( !EwCompPoint( _this->ThumbOnSizeFocused, value ))
+    return;
+
+  _this->ThumbOnSizeFocused = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOnSizeDisabled()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOnSizeDisabled( WidgetSetToggleButtonConfig _this, 
+  XPoint value )
+{
+  if ( !EwCompPoint( _this->ThumbOnSizeDisabled, value ))
+    return;
+
+  _this->ThumbOnSizeDisabled = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOnSizeDefault()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOnSizeDefault( WidgetSetToggleButtonConfig _this, 
+  XPoint value )
+{
+  if ( !EwCompPoint( _this->ThumbOnSizeDefault, value ))
+    return;
+
+  _this->ThumbOnSizeDefault = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOffBorderColorActive()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOffBorderColorActive( WidgetSetToggleButtonConfig _this, 
+  XColor value )
+{
+  if ( !EwCompColor( _this->ThumbOffBorderColorActive, value ))
+    return;
+
+  _this->ThumbOffBorderColorActive = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOffBorderColorFocused()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOffBorderColorFocused( WidgetSetToggleButtonConfig _this, 
+  XColor value )
+{
+  if ( !EwCompColor( _this->ThumbOffBorderColorFocused, value ))
+    return;
+
+  _this->ThumbOffBorderColorFocused = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOffBorderColorDisabled()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOffBorderColorDisabled( WidgetSetToggleButtonConfig _this, 
+  XColor value )
+{
+  if ( !EwCompColor( _this->ThumbOffBorderColorDisabled, value ))
+    return;
+
+  _this->ThumbOffBorderColorDisabled = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOffBorderColorDefault()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOffBorderColorDefault( WidgetSetToggleButtonConfig _this, 
+  XColor value )
+{
+  if ( !EwCompColor( _this->ThumbOffBorderColorDefault, value ))
+    return;
+
+  _this->ThumbOffBorderColorDefault = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOffBorderWidthActive()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOffBorderWidthActive( WidgetSetToggleButtonConfig _this, 
+  XInt32 value )
+{
+  if ( value < 0 )
+    value = 0;
+
+  if ( _this->ThumbOffBorderWidthActive == value )
+    return;
+
+  _this->ThumbOffBorderWidthActive = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOffBorderWidthFocused()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOffBorderWidthFocused( WidgetSetToggleButtonConfig _this, 
+  XInt32 value )
+{
+  if ( value < 0 )
+    value = 0;
+
+  if ( _this->ThumbOffBorderWidthFocused == value )
+    return;
+
+  _this->ThumbOffBorderWidthFocused = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOffBorderWidthDisabled()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOffBorderWidthDisabled( WidgetSetToggleButtonConfig _this, 
+  XInt32 value )
+{
+  if ( value < 0 )
+    value = 0;
+
+  if ( _this->ThumbOffBorderWidthDisabled == value )
+    return;
+
+  _this->ThumbOffBorderWidthDisabled = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOffBorderWidthDefault()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOffBorderWidthDefault( WidgetSetToggleButtonConfig _this, 
+  XInt32 value )
+{
+  if ( value < 0 )
+    value = 0;
+
+  if ( _this->ThumbOffBorderWidthDefault == value )
+    return;
+
+  _this->ThumbOffBorderWidthDefault = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOffColorActive()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOffColorActive( WidgetSetToggleButtonConfig _this, 
+  XColor value )
+{
+  if ( !EwCompColor( _this->ThumbOffColorActive, value ))
+    return;
+
+  _this->ThumbOffColorActive = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOffColorFocused()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOffColorFocused( WidgetSetToggleButtonConfig _this, 
+  XColor value )
+{
+  if ( !EwCompColor( _this->ThumbOffColorFocused, value ))
+    return;
+
+  _this->ThumbOffColorFocused = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOffColorDisabled()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOffColorDisabled( WidgetSetToggleButtonConfig _this, 
+  XColor value )
+{
+  if ( !EwCompColor( _this->ThumbOffColorDisabled, value ))
+    return;
+
+  _this->ThumbOffColorDisabled = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOffColorDefault()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOffColorDefault( WidgetSetToggleButtonConfig _this, 
+  XColor value )
+{
+  if ( !EwCompColor( _this->ThumbOffColorDefault, value ))
+    return;
+
+  _this->ThumbOffColorDefault = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOffCornerRadiusActive()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOffCornerRadiusActive( WidgetSetToggleButtonConfig _this, 
+  XInt32 value )
+{
+  if ( value < 0 )
+    value = 0;
+
+  if ( _this->ThumbOffCornerRadiusActive == value )
+    return;
+
+  _this->ThumbOffCornerRadiusActive = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOffCornerRadiusFocused()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOffCornerRadiusFocused( WidgetSetToggleButtonConfig _this, 
+  XInt32 value )
+{
+  if ( value < 0 )
+    value = 0;
+
+  if ( _this->ThumbOffCornerRadiusFocused == value )
+    return;
+
+  _this->ThumbOffCornerRadiusFocused = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOffCornerRadiusDisabled()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOffCornerRadiusDisabled( WidgetSetToggleButtonConfig _this, 
+  XInt32 value )
+{
+  if ( value < 0 )
+    value = 0;
+
+  if ( _this->ThumbOffCornerRadiusDisabled == value )
+    return;
+
+  _this->ThumbOffCornerRadiusDisabled = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOffCornerRadiusDefault()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOffCornerRadiusDefault( WidgetSetToggleButtonConfig _this, 
+  XInt32 value )
+{
+  if ( value < 0 )
+    value = 0;
+
+  if ( _this->ThumbOffCornerRadiusDefault == value )
+    return;
+
+  _this->ThumbOffCornerRadiusDefault = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOffOffsetActive()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOffOffsetActive( WidgetSetToggleButtonConfig _this, 
+  XPoint value )
+{
+  if ( !EwCompPoint( _this->ThumbOffOffsetActive, value ))
+    return;
+
+  _this->ThumbOffOffsetActive = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOffOffsetFocused()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOffOffsetFocused( WidgetSetToggleButtonConfig _this, 
+  XPoint value )
+{
+  if ( !EwCompPoint( _this->ThumbOffOffsetFocused, value ))
+    return;
+
+  _this->ThumbOffOffsetFocused = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOffOffsetDisabled()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOffOffsetDisabled( WidgetSetToggleButtonConfig _this, 
+  XPoint value )
+{
+  if ( !EwCompPoint( _this->ThumbOffOffsetDisabled, value ))
+    return;
+
+  _this->ThumbOffOffsetDisabled = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOffOffsetDefault()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOffOffsetDefault( WidgetSetToggleButtonConfig _this, 
+  XPoint value )
+{
+  if ( !EwCompPoint( _this->ThumbOffOffsetDefault, value ))
+    return;
+
+  _this->ThumbOffOffsetDefault = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOffSizeActive()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOffSizeActive( WidgetSetToggleButtonConfig _this, 
+  XPoint value )
+{
+  if ( !EwCompPoint( _this->ThumbOffSizeActive, value ))
+    return;
+
+  _this->ThumbOffSizeActive = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOffSizeFocused()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOffSizeFocused( WidgetSetToggleButtonConfig _this, 
+  XPoint value )
+{
+  if ( !EwCompPoint( _this->ThumbOffSizeFocused, value ))
+    return;
+
+  _this->ThumbOffSizeFocused = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOffSizeDisabled()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOffSizeDisabled( WidgetSetToggleButtonConfig _this, 
+  XPoint value )
+{
+  if ( !EwCompPoint( _this->ThumbOffSizeDisabled, value ))
+    return;
+
+  _this->ThumbOffSizeDisabled = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOffSizeDefault()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOffSizeDefault( WidgetSetToggleButtonConfig _this, 
+  XPoint value )
+{
+  if ( !EwCompPoint( _this->ThumbOffSizeDefault, value ))
+    return;
+
+  _this->ThumbOffSizeDefault = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbLayout()' */
+void WidgetSetToggleButtonConfig_OnSetThumbLayout( WidgetSetToggleButtonConfig _this, 
+  XSet value )
+{
+  if ( _this->ThumbLayout == value )
+    return;
+
+  _this->ThumbLayout = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetTrackOnBorderColorActive()' */
+void WidgetSetToggleButtonConfig_OnSetTrackOnBorderColorActive( WidgetSetToggleButtonConfig _this, 
+  XColor value )
+{
+  if ( !EwCompColor( _this->TrackOnBorderColorActive, value ))
+    return;
+
+  _this->TrackOnBorderColorActive = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetTrackOnBorderColorFocused()' */
+void WidgetSetToggleButtonConfig_OnSetTrackOnBorderColorFocused( WidgetSetToggleButtonConfig _this, 
+  XColor value )
+{
+  if ( !EwCompColor( _this->TrackOnBorderColorFocused, value ))
+    return;
+
+  _this->TrackOnBorderColorFocused = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetTrackOnBorderColorDisabled()' */
+void WidgetSetToggleButtonConfig_OnSetTrackOnBorderColorDisabled( WidgetSetToggleButtonConfig _this, 
+  XColor value )
+{
+  if ( !EwCompColor( _this->TrackOnBorderColorDisabled, value ))
+    return;
+
+  _this->TrackOnBorderColorDisabled = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetTrackOnBorderColorDefault()' */
+void WidgetSetToggleButtonConfig_OnSetTrackOnBorderColorDefault( WidgetSetToggleButtonConfig _this, 
+  XColor value )
+{
+  if ( !EwCompColor( _this->TrackOnBorderColorDefault, value ))
+    return;
+
+  _this->TrackOnBorderColorDefault = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetTrackOnBorderWidthActive()' */
+void WidgetSetToggleButtonConfig_OnSetTrackOnBorderWidthActive( WidgetSetToggleButtonConfig _this, 
+  XInt32 value )
+{
+  if ( value < 0 )
+    value = 0;
+
+  if ( _this->TrackOnBorderWidthActive == value )
+    return;
+
+  _this->TrackOnBorderWidthActive = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetTrackOnBorderWidthFocused()' */
+void WidgetSetToggleButtonConfig_OnSetTrackOnBorderWidthFocused( WidgetSetToggleButtonConfig _this, 
+  XInt32 value )
+{
+  if ( value < 0 )
+    value = 0;
+
+  if ( _this->TrackOnBorderWidthFocused == value )
+    return;
+
+  _this->TrackOnBorderWidthFocused = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetTrackOnBorderWidthDisabled()' */
+void WidgetSetToggleButtonConfig_OnSetTrackOnBorderWidthDisabled( WidgetSetToggleButtonConfig _this, 
+  XInt32 value )
+{
+  if ( value < 0 )
+    value = 0;
+
+  if ( _this->TrackOnBorderWidthDisabled == value )
+    return;
+
+  _this->TrackOnBorderWidthDisabled = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetTrackOnBorderWidthDefault()' */
+void WidgetSetToggleButtonConfig_OnSetTrackOnBorderWidthDefault( WidgetSetToggleButtonConfig _this, 
+  XInt32 value )
+{
+  if ( value < 0 )
+    value = 0;
+
+  if ( _this->TrackOnBorderWidthDefault == value )
+    return;
+
+  _this->TrackOnBorderWidthDefault = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetTrackOnColorActive()' */
+void WidgetSetToggleButtonConfig_OnSetTrackOnColorActive( WidgetSetToggleButtonConfig _this, 
+  XColor value )
+{
+  if ( !EwCompColor( _this->TrackOnColorActive, value ))
+    return;
+
+  _this->TrackOnColorActive = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetTrackOnColorFocused()' */
+void WidgetSetToggleButtonConfig_OnSetTrackOnColorFocused( WidgetSetToggleButtonConfig _this, 
+  XColor value )
+{
+  if ( !EwCompColor( _this->TrackOnColorFocused, value ))
+    return;
+
+  _this->TrackOnColorFocused = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetTrackOnColorDisabled()' */
+void WidgetSetToggleButtonConfig_OnSetTrackOnColorDisabled( WidgetSetToggleButtonConfig _this, 
+  XColor value )
+{
+  if ( !EwCompColor( _this->TrackOnColorDisabled, value ))
+    return;
+
+  _this->TrackOnColorDisabled = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetTrackOnColorDefault()' */
+void WidgetSetToggleButtonConfig_OnSetTrackOnColorDefault( WidgetSetToggleButtonConfig _this, 
+  XColor value )
+{
+  if ( !EwCompColor( _this->TrackOnColorDefault, value ))
+    return;
+
+  _this->TrackOnColorDefault = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetTrackOffBorderColorActive()' */
+void WidgetSetToggleButtonConfig_OnSetTrackOffBorderColorActive( WidgetSetToggleButtonConfig _this, 
+  XColor value )
+{
+  if ( !EwCompColor( _this->TrackOffBorderColorActive, value ))
+    return;
+
+  _this->TrackOffBorderColorActive = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetTrackOffBorderColorFocused()' */
+void WidgetSetToggleButtonConfig_OnSetTrackOffBorderColorFocused( WidgetSetToggleButtonConfig _this, 
+  XColor value )
+{
+  if ( !EwCompColor( _this->TrackOffBorderColorFocused, value ))
+    return;
+
+  _this->TrackOffBorderColorFocused = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetTrackOffBorderColorDisabled()' */
+void WidgetSetToggleButtonConfig_OnSetTrackOffBorderColorDisabled( WidgetSetToggleButtonConfig _this, 
+  XColor value )
+{
+  if ( !EwCompColor( _this->TrackOffBorderColorDisabled, value ))
+    return;
+
+  _this->TrackOffBorderColorDisabled = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetTrackOffBorderColorDefault()' */
+void WidgetSetToggleButtonConfig_OnSetTrackOffBorderColorDefault( WidgetSetToggleButtonConfig _this, 
+  XColor value )
+{
+  if ( !EwCompColor( _this->TrackOffBorderColorDefault, value ))
+    return;
+
+  _this->TrackOffBorderColorDefault = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetTrackOffBorderWidthActive()' */
+void WidgetSetToggleButtonConfig_OnSetTrackOffBorderWidthActive( WidgetSetToggleButtonConfig _this, 
+  XInt32 value )
+{
+  if ( value < 0 )
+    value = 0;
+
+  if ( _this->TrackOffBorderWidthActive == value )
+    return;
+
+  _this->TrackOffBorderWidthActive = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetTrackOffBorderWidthFocused()' */
+void WidgetSetToggleButtonConfig_OnSetTrackOffBorderWidthFocused( WidgetSetToggleButtonConfig _this, 
+  XInt32 value )
+{
+  if ( value < 0 )
+    value = 0;
+
+  if ( _this->TrackOffBorderWidthFocused == value )
+    return;
+
+  _this->TrackOffBorderWidthFocused = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetTrackOffBorderWidthDisabled()' */
+void WidgetSetToggleButtonConfig_OnSetTrackOffBorderWidthDisabled( WidgetSetToggleButtonConfig _this, 
+  XInt32 value )
+{
+  if ( value < 0 )
+    value = 0;
+
+  if ( _this->TrackOffBorderWidthDisabled == value )
+    return;
+
+  _this->TrackOffBorderWidthDisabled = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetTrackOffBorderWidthDefault()' */
+void WidgetSetToggleButtonConfig_OnSetTrackOffBorderWidthDefault( WidgetSetToggleButtonConfig _this, 
+  XInt32 value )
+{
+  if ( value < 0 )
+    value = 0;
+
+  if ( _this->TrackOffBorderWidthDefault == value )
+    return;
+
+  _this->TrackOffBorderWidthDefault = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetTrackOffColorActive()' */
+void WidgetSetToggleButtonConfig_OnSetTrackOffColorActive( WidgetSetToggleButtonConfig _this, 
+  XColor value )
+{
+  if ( !EwCompColor( _this->TrackOffColorActive, value ))
+    return;
+
+  _this->TrackOffColorActive = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetTrackOffColorFocused()' */
+void WidgetSetToggleButtonConfig_OnSetTrackOffColorFocused( WidgetSetToggleButtonConfig _this, 
+  XColor value )
+{
+  if ( !EwCompColor( _this->TrackOffColorFocused, value ))
+    return;
+
+  _this->TrackOffColorFocused = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetTrackOffColorDisabled()' */
+void WidgetSetToggleButtonConfig_OnSetTrackOffColorDisabled( WidgetSetToggleButtonConfig _this, 
+  XColor value )
+{
+  if ( !EwCompColor( _this->TrackOffColorDisabled, value ))
+    return;
+
+  _this->TrackOffColorDisabled = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetTrackOffColorDefault()' */
+void WidgetSetToggleButtonConfig_OnSetTrackOffColorDefault( WidgetSetToggleButtonConfig _this, 
+  XColor value )
+{
+  if ( !EwCompColor( _this->TrackOffColorDefault, value ))
+    return;
+
+  _this->TrackOffColorDefault = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetTrackCornerRadius()' */
+void WidgetSetToggleButtonConfig_OnSetTrackCornerRadius( WidgetSetToggleButtonConfig _this, 
+  XInt32 value )
+{
+  if ( value < 0 )
+    value = 0;
+
+  if ( _this->TrackCornerRadius == value )
+    return;
+
+  _this->TrackCornerRadius = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetTrackSize()' */
+void WidgetSetToggleButtonConfig_OnSetTrackSize( WidgetSetToggleButtonConfig _this, 
+  XPoint value )
+{
+  if ( !EwCompPoint( _this->TrackSize, value ))
+    return;
+
+  _this->TrackSize = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetTrackLayout()' */
+void WidgetSetToggleButtonConfig_OnSetTrackLayout( WidgetSetToggleButtonConfig _this, 
+  XSet value )
+{
+  if ( _this->TrackLayout == value )
+    return;
+
+  _this->TrackLayout = value;
+  EwPostSignal( EwNewSlot( _this, WidgetSetWidgetConfig_onInvalidate ), ((XObject)_this ));
 }
 
 /* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetLabelOnColorActive()' */
@@ -1121,8 +1972,8 @@ EW_END_OF_CLASS_VARIANTS( WidgetSetToggleButtonConfig )
 
 /* Virtual Method Table (VMT) for the class : 'WidgetSet::ToggleButtonConfig' */
 EW_DEFINE_CLASS( WidgetSetToggleButtonConfig, WidgetSetWidgetConfig, LabelOnFont, 
-                 LabelOnFont, LabelOnColorActive, LabelOnColorActive, LabelOnColorActive, 
-                 LabelOnColorActive, "WidgetSet::ToggleButtonConfig" )
+                 LabelOnFont, StateTransitionDuration, StateTransitionDuration, 
+                 StateTransitionDuration, StateTransitionDuration, "WidgetSet::ToggleButtonConfig" )
 EW_END_OF_CLASS( WidgetSetToggleButtonConfig )
 
 /* Initializer for the class 'WidgetSet::PushButtonConfig' */
@@ -1139,14 +1990,14 @@ void WidgetSetPushButtonConfig__Init( WidgetSetPushButtonConfig _this, XObject a
 
   /* ... and initialize objects, variables, properties, etc. */
   _this->PressedFeedbackDuration = 50;
-  _this->LabelColorActive = _Const0005;
-  _this->LabelColorFocused = _Const0005;
-  _this->LabelColorDisabled = _Const0005;
-  _this->LabelColorDefault = _Const0005;
-  _this->IconTintActive = _Const0006;
-  _this->IconTintFocused = _Const0006;
-  _this->IconTintDisabled = _Const0006;
-  _this->IconTintDefault = _Const0006;
+  _this->LabelColorActive = _Const0004;
+  _this->LabelColorFocused = _Const0004;
+  _this->LabelColorDisabled = _Const0004;
+  _this->LabelColorDefault = _Const0004;
+  _this->IconTintActive = _Const0005;
+  _this->IconTintFocused = _Const0005;
+  _this->IconTintDisabled = _Const0005;
+  _this->IconTintDefault = _Const0005;
 }
 
 /* Re-Initializer for the class 'WidgetSet::PushButtonConfig' */
@@ -1712,855 +2563,6 @@ EW_DEFINE_CLASS( WidgetSetWidgetConfig, XObject, _.VMT, _.VMT, _.VMT, _.VMT, _.V
                  _.VMT, "WidgetSet::WidgetConfig" )
 EW_END_OF_CLASS( WidgetSetWidgetConfig )
 
-/* Initializer for the class 'WidgetSet::HorizontalSlider' */
-void WidgetSetHorizontalSlider__Init( WidgetSetHorizontalSlider _this, XObject aLink, XHandle aArg )
-{
-  /* At first initialize the super class ... */
-  CoreGroup__Init( &_this->_.Super, aLink, aArg );
-
-  /* Allow the Immediate Garbage Collection to evalute the members of this class. */
-  _this->_.XObject._.GCT = EW_CLASS_GCT( WidgetSetHorizontalSlider );
-
-  /* ... then construct all embedded objects */
-  CoreTimer__Init( &_this->RepetitionTimer, &_this->_.XObject, 0 );
-  CoreKeyPressHandler__Init( &_this->KeyHandlerLeft, &_this->_.XObject, 0 );
-  CoreKeyPressHandler__Init( &_this->KeyHandlerRight, &_this->_.XObject, 0 );
-  CoreSimpleTouchHandler__Init( &_this->TouchHandler, &_this->_.XObject, 0 );
-
-  /* Setup the VMT pointer */
-  _this->_.VMT = EW_CLASS( WidgetSetHorizontalSlider );
-
-  /* ... and initialize objects, variables, properties, etc. */
-  CoreRectView__OnSetBounds( _this, _Const0007 );
-  CoreTimer_OnSetPeriod( &_this->RepetitionTimer, 0 );
-  CoreTimer_OnSetBegin( &_this->RepetitionTimer, 50 );
-  _this->KeyHandlerLeft.Filter = CoreKeyCodeLeft;
-  _this->KeyHandlerRight.Filter = CoreKeyCodeRight;
-  CoreView_OnSetLayout((CoreView)&_this->TouchHandler, CoreLayoutAlignToBottom | 
-  CoreLayoutAlignToLeft | CoreLayoutAlignToRight | CoreLayoutAlignToTop | CoreLayoutResizeHorz 
-  | CoreLayoutResizeVert );
-  CoreQuadView_OnSetPoint4((CoreQuadView)&_this->TouchHandler, _Const0008 );
-  CoreQuadView_OnSetPoint3((CoreQuadView)&_this->TouchHandler, _Const0009 );
-  CoreQuadView_OnSetPoint2((CoreQuadView)&_this->TouchHandler, _Const000A );
-  CoreQuadView_OnSetPoint1((CoreQuadView)&_this->TouchHandler, _Const000B );
-  CoreSimpleTouchHandler_OnSetRetargetOffset( &_this->TouchHandler, 16 );
-  CoreSimpleTouchHandler_OnSetMaxStrikeCount( &_this->TouchHandler, 100 );
-  _this->MaxValue = 100;
-  _this->CurrentValue = 50;
-  CoreGroup_Add((CoreGroup)_this, ((CoreView)&_this->TouchHandler ), 0 );
-  _this->RepetitionTimer.OnTrigger = EwNewSlot( _this, WidgetSetHorizontalSlider_onRepetitionTimer );
-  _this->KeyHandlerLeft.OnRelease = EwNewSlot( _this, WidgetSetHorizontalSlider_onReleaseKey );
-  _this->KeyHandlerLeft.OnPress = EwNewSlot( _this, WidgetSetHorizontalSlider_onPressKey );
-  _this->KeyHandlerRight.OnRelease = EwNewSlot( _this, WidgetSetHorizontalSlider_onReleaseKey );
-  _this->KeyHandlerRight.OnPress = EwNewSlot( _this, WidgetSetHorizontalSlider_onPressKey );
-  _this->TouchHandler.OnDrag = EwNewSlot( _this, WidgetSetHorizontalSlider_onDragTouch );
-  _this->TouchHandler.OnRelease = EwNewSlot( _this, WidgetSetHorizontalSlider_onReleaseTouch );
-  _this->TouchHandler.OnPress = EwNewSlot( _this, WidgetSetHorizontalSlider_onPressTouch );
-}
-
-/* Re-Initializer for the class 'WidgetSet::HorizontalSlider' */
-void WidgetSetHorizontalSlider__ReInit( WidgetSetHorizontalSlider _this )
-{
-  /* At first re-initialize the super class ... */
-  CoreGroup__ReInit( &_this->_.Super );
-
-  /* ... then re-construct all embedded objects */
-  CoreTimer__ReInit( &_this->RepetitionTimer );
-  CoreKeyPressHandler__ReInit( &_this->KeyHandlerLeft );
-  CoreKeyPressHandler__ReInit( &_this->KeyHandlerRight );
-  CoreSimpleTouchHandler__ReInit( &_this->TouchHandler );
-}
-
-/* Finalizer method for the class 'WidgetSet::HorizontalSlider' */
-void WidgetSetHorizontalSlider__Done( WidgetSetHorizontalSlider _this )
-{
-  /* Finalize this class */
-  _this->_.Super._.VMT = EW_CLASS( CoreGroup );
-
-  /* Finalize all embedded objects */
-  CoreTimer__Done( &_this->RepetitionTimer );
-  CoreKeyPressHandler__Done( &_this->KeyHandlerLeft );
-  CoreKeyPressHandler__Done( &_this->KeyHandlerRight );
-  CoreSimpleTouchHandler__Done( &_this->TouchHandler );
-
-  /* Don't forget to deinitialize the super class ... */
-  CoreGroup__Done( &_this->_.Super );
-}
-
-/* 'C' function for method : 'WidgetSet::HorizontalSlider.OnSetBounds()' */
-void WidgetSetHorizontalSlider_OnSetBounds( WidgetSetHorizontalSlider _this, XRect 
-  value )
-{
-  if ( _this->Appearance != 0 )
-  {
-    XPoint cs = EwGetRectSize( value );
-    XPoint ns = cs;
-    XPoint delta;
-
-    if ( ns.X < _this->Appearance->WidgetMinSize.X )
-      ns.X = _this->Appearance->WidgetMinSize.X;
-
-    if ( ns.Y < _this->Appearance->WidgetMinSize.Y )
-      ns.Y = _this->Appearance->WidgetMinSize.Y;
-
-    delta = EwMovePointNeg( ns, cs );
-
-    if ( delta.X != 0 )
-    {
-      XBool alignToLeft = (( _this->Super3.Layout & CoreLayoutAlignToLeft ) == CoreLayoutAlignToLeft );
-      XBool alignToRight = (( _this->Super3.Layout & CoreLayoutAlignToRight ) == 
-        CoreLayoutAlignToRight );
-
-      if ( alignToLeft && !alignToRight )
-        value.Point2.X = ( value.Point2.X + delta.X );
-      else
-        if ( !alignToLeft && alignToRight )
-          value.Point1.X = ( value.Point1.X - delta.X );
-        else
-        {
-          value.Point1.X = ( value.Point1.X - ( delta.X / 2 ));
-          value.Point2.X = ( value.Point1.X + ns.X );
-        }
-    }
-
-    if ( delta.Y != 0 )
-    {
-      XBool alignToTop = (( _this->Super3.Layout & CoreLayoutAlignToTop ) == CoreLayoutAlignToTop );
-      XBool alignToBottom = (( _this->Super3.Layout & CoreLayoutAlignToBottom ) 
-        == CoreLayoutAlignToBottom );
-
-      if ( alignToTop && !alignToBottom )
-        value.Point2.Y = ( value.Point2.Y + delta.Y );
-      else
-        if ( !alignToTop && alignToBottom )
-          value.Point1.Y = ( value.Point1.Y - delta.Y );
-        else
-        {
-          value.Point1.Y = ( value.Point1.Y - ( delta.Y / 2 ));
-          value.Point2.Y = ( value.Point1.Y + ns.Y );
-        }
-    }
-  }
-
-  CoreGroup_OnSetBounds((CoreGroup)_this, value );
-}
-
-/* The method UpdateViewState() is invoked automatically after the state of the 
-   component has been changed. This method can be overridden and filled with logic 
-   to ensure the visual aspect of the component does reflect its current state. 
-   For example, the 'enabled' state of the component can affect its colors (disabled 
-   components may appear pale). In this case the logic of the method should modify 
-   the respective color properties accordingly to the current 'enabled' state. 
-   The current state of the component is passed as a set in the parameter aState. 
-   It reflects the very basic component state like its visibility or the ability 
-   to react to user inputs. Beside this common state, the method can also involve 
-   any other variables used in the component as long as they reflect its current 
-   state. For example, the toggle switch component can take in account its toggle 
-   state 'on' or 'off' and change accordingly the location of the slider, etc.
-   Usually, this method will be invoked automatically by the framework. Optionally 
-   you can request its invocation by using the method @InvalidateViewState(). */
-void WidgetSetHorizontalSlider_UpdateViewState( WidgetSetHorizontalSlider _this, 
-  XSet aState )
-{
-  XBool needsFrame2;
-  XBool needsFrame3;
-  XBool needsImage;
-  XRect area;
-  XChar isState;
-  XInt32 marginLeft;
-  XInt32 marginRight;
-  XInt32 minPos;
-  XInt32 maxPos;
-  XInt32 newThumbPos;
-  XRect r;
-
-  CoreGroup_UpdateViewState((CoreGroup)_this, aState );
-  needsFrame2 = (XBool)(( _this->Appearance != 0 ) && (((( _this->Appearance->TrackLeftBitmapDefault 
-  != 0 ) || ( _this->Appearance->TrackLeftBitmapDisabled != 0 )) || ( _this->Appearance->TrackLeftBitmapFocused 
-  != 0 )) || ( _this->Appearance->TrackLeftBitmapActive != 0 )));
-  needsFrame3 = (XBool)(( _this->Appearance != 0 ) && (((( _this->Appearance->TrackRightBitmapDefault 
-  != 0 ) || ( _this->Appearance->TrackRightBitmapDisabled != 0 )) || ( _this->Appearance->TrackRightBitmapFocused 
-  != 0 )) || ( _this->Appearance->TrackRightBitmapActive != 0 )));
-  needsImage = (XBool)(( _this->Appearance != 0 ) && (((( _this->Appearance->ThumbBitmapDefault 
-  != 0 ) || ( _this->Appearance->ThumbBitmapDisabled != 0 )) || ( _this->Appearance->ThumbBitmapFocused 
-  != 0 )) || ( _this->Appearance->ThumbBitmapActive != 0 )));
-  area = EwGetRectORect( _this->Super2.Bounds );
-
-  if ( needsFrame2 && !( _this->frameView2 != 0 ))
-  {
-    _this->frameView2 = EwNewObject( ViewsFrame, 0 );
-    CoreGroup_Add((CoreGroup)_this, ((CoreView)_this->frameView2 ), 0 );
-  }
-  else
-    if ( !needsFrame2 && ( _this->frameView2 != 0 ))
-    {
-      CoreGroup_Remove((CoreGroup)_this, ((CoreView)_this->frameView2 ));
-      _this->frameView2 = 0;
-    }
-
-  if ( needsFrame3 && !( _this->frameView3 != 0 ))
-  {
-    _this->frameView3 = EwNewObject( ViewsFrame, 0 );
-    CoreGroup_Add((CoreGroup)_this, ((CoreView)_this->frameView3 ), 0 );
-  }
-  else
-    if ( !needsFrame3 && ( _this->frameView3 != 0 ))
-    {
-      CoreGroup_Remove((CoreGroup)_this, ((CoreView)_this->frameView3 ));
-      _this->frameView3 = 0;
-    }
-
-  if ( needsImage && !( _this->imageView != 0 ))
-  {
-    _this->imageView = EwNewObject( ViewsImage, 0 );
-    CoreGroup_Add((CoreGroup)_this, ((CoreView)_this->imageView ), 0 );
-  }
-  else
-    if ( !needsImage && ( _this->imageView != 0 ))
-    {
-      CoreGroup_Remove((CoreGroup)_this, ((CoreView)_this->imageView ));
-      _this->imageView = 0;
-    }
-
-  if ( !(( aState & CoreViewStateEnabled ) == CoreViewStateEnabled ))
-    isState = 'D';
-  else
-    if (( _this->touchActive || _this->KeyHandlerRight.Down ) || _this->KeyHandlerLeft.Down )
-      isState = 'A';
-    else
-      if ((( aState & CoreViewStateFocused ) == CoreViewStateFocused ))
-        isState = 'F';
-      else
-        isState = 'E';
-
-  _this->prevState = isState;
-
-  if ( _this->frameView2 != 0 )
-    switch ( isState )
-    {
-      case 'D' :
-      case 'A' :
-      case 'F' :
-      break;
-
-      default :; 
-    }
-
-  if ( _this->frameView3 != 0 )
-    switch ( isState )
-    {
-      case 'D' :
-      case 'A' :
-      case 'F' :
-      break;
-
-      default :; 
-    }
-
-  if ( _this->imageView != 0 )
-    switch ( isState )
-    {
-      case 'D' :
-      case 'A' :
-      case 'F' :
-      break;
-
-      default :; 
-    }
-
-  if ( _this->frameView2 != 0 )
-  {
-    ResourcesBitmap bitmap;
-    XInt32 frameNo;
-
-    switch ( isState )
-    {
-      case 'D' :
-      {
-        bitmap = _this->Appearance->TrackLeftBitmapDisabled;
-        frameNo = _this->Appearance->TrackLeftFrameDisabled;
-      }
-      break;
-
-      case 'A' :
-      {
-        bitmap = _this->Appearance->TrackLeftBitmapActive;
-        frameNo = _this->Appearance->TrackLeftFrameActive;
-      }
-      break;
-
-      case 'F' :
-      {
-        bitmap = _this->Appearance->TrackLeftBitmapFocused;
-        frameNo = _this->Appearance->TrackLeftFrameFocused;
-      }
-      break;
-
-      default : 
-      {
-        bitmap = _this->Appearance->TrackLeftBitmapDefault;
-        frameNo = _this->Appearance->TrackLeftFrameDefault;
-      }
-    }
-
-    switch ( isState )
-    {
-      case 'D' :
-      case 'A' :
-      case 'F' :
-      break;
-
-      default :; 
-    }
-
-    ViewsFrame_OnSetAnimated( _this->frameView2, (XBool)( frameNo < 0 ));
-    ViewsFrame_OnSetColor( _this->frameView2, _Const0006 );
-
-    if ( frameNo < 0 )
-      frameNo = 0;
-
-    ViewsFrame_OnSetFrameNumber( _this->frameView2, frameNo );
-    ViewsFrame_OnSetBitmap( _this->frameView2, bitmap );
-    ViewsFrame_OnSetEdges( _this->frameView2, GraphicsEdgesBottom | GraphicsEdgesInterior 
-    | GraphicsEdgesLeft | GraphicsEdgesTop );
-    CoreView_OnSetStackingPriority((CoreView)_this->frameView2, 54 );
-  }
-
-  if ( _this->frameView3 != 0 )
-  {
-    ResourcesBitmap bitmap;
-    XInt32 frameNo;
-
-    switch ( isState )
-    {
-      case 'D' :
-      {
-        bitmap = _this->Appearance->TrackRightBitmapDisabled;
-        frameNo = _this->Appearance->TrackRightFrameDisabled;
-      }
-      break;
-
-      case 'A' :
-      {
-        bitmap = _this->Appearance->TrackRightBitmapActive;
-        frameNo = _this->Appearance->TrackRightFrameActive;
-      }
-      break;
-
-      case 'F' :
-      {
-        bitmap = _this->Appearance->TrackRightBitmapFocused;
-        frameNo = _this->Appearance->TrackRightFrameFocused;
-      }
-      break;
-
-      default : 
-      {
-        bitmap = _this->Appearance->TrackRightBitmapDefault;
-        frameNo = _this->Appearance->TrackRightFrameDefault;
-      }
-    }
-
-    switch ( isState )
-    {
-      case 'D' :
-      case 'A' :
-      case 'F' :
-      break;
-
-      default :; 
-    }
-
-    ViewsFrame_OnSetAnimated( _this->frameView3, (XBool)( frameNo < 0 ));
-    ViewsFrame_OnSetColor( _this->frameView3, _Const0006 );
-
-    if ( frameNo < 0 )
-      frameNo = 0;
-
-    ViewsFrame_OnSetFrameNumber( _this->frameView3, frameNo );
-    ViewsFrame_OnSetBitmap( _this->frameView3, bitmap );
-    ViewsFrame_OnSetEdges( _this->frameView3, GraphicsEdgesBottom | GraphicsEdgesInterior 
-    | GraphicsEdgesRight | GraphicsEdgesTop );
-    CoreView_OnSetStackingPriority((CoreView)_this->frameView3, 35 );
-  }
-
-  if ( _this->imageView != 0 )
-  {
-    ResourcesBitmap bitmap;
-    XInt32 frameNo;
-
-    switch ( isState )
-    {
-      case 'D' :
-      {
-        bitmap = _this->Appearance->ThumbBitmapDisabled;
-        frameNo = _this->Appearance->ThumbFrameDisabled;
-      }
-      break;
-
-      case 'A' :
-      {
-        bitmap = _this->Appearance->ThumbBitmapActive;
-        frameNo = _this->Appearance->ThumbFrameActive;
-      }
-      break;
-
-      case 'F' :
-      {
-        bitmap = _this->Appearance->ThumbBitmapFocused;
-        frameNo = _this->Appearance->ThumbFrameFocused;
-      }
-      break;
-
-      default : 
-      {
-        bitmap = _this->Appearance->ThumbBitmapDefault;
-        frameNo = _this->Appearance->ThumbFrameDefault;
-      }
-    }
-
-    switch ( isState )
-    {
-      case 'D' :
-      case 'A' :
-      case 'F' :
-      break;
-
-      default :; 
-    }
-
-    ViewsImage_OnSetAnimated( _this->imageView, (XBool)( frameNo < 0 ));
-    ViewsImage_OnSetColor( _this->imageView, _Const0006 );
-
-    if ( frameNo < 0 )
-      frameNo = 0;
-
-    ViewsImage_OnSetFrameNumber( _this->imageView, frameNo );
-    ViewsImage_OnSetBitmap( _this->imageView, bitmap );
-    CoreView_OnSetStackingPriority((CoreView)_this->imageView, 74 );
-  }
-
-  marginLeft = (( _this->Appearance != 0 )? _this->Appearance->ThumbMarginLeft : 
-  0 );
-  marginRight = (( _this->Appearance != 0 )? _this->Appearance->ThumbMarginRight 
-  : 0 );
-
-  if (( _this->imageView != 0 ) && ( _this->imageView->Bitmap != 0 ))
-  {
-    XInt32 width = _this->imageView->Bitmap->FrameSize.X;
-    marginLeft += ( width / 2 );
-    marginRight += ( width - ( width / 2 ));
-  }
-
-  minPos = marginLeft;
-  maxPos = EwGetRectW( area ) - marginRight;
-  newThumbPos = marginLeft;
-
-  if ( _this->MaxValue != 0 )
-    newThumbPos = (XInt32)(((XFloat)WidgetSetHorizontalSlider_OnGetCurrentValue( 
-    _this ) * (XFloat)( maxPos - minPos )) / (XFloat)_this->MaxValue ) + minPos;
-
-  if ( newThumbPos < marginLeft )
-    newThumbPos = marginLeft;
-
-  if ( newThumbPos > ( EwGetRectW( area ) - marginRight ))
-    newThumbPos = EwGetRectW( area ) - marginRight;
-
-  if (( _this->frameView2 != 0 ) && ( _this->frameView2->Bitmap != 0 ))
-  {
-    XPoint s = _this->frameView2->Bitmap->FrameSize;
-    XInt32 x2 = EwGetRectW( area );
-    XInt32 x = newThumbPos;
-
-    if ( x > x2 )
-      x = x2;
-
-    CoreRectView__OnSetBounds( _this->frameView2, EwNewRect( 0, ( EwGetRectH( area ) 
-    / 2 ) - ( s.Y / 2 ), x, (( EwGetRectH( area ) / 2 ) - ( s.Y / 2 )) + s.Y ));
-    ViewsFrame_OnSetNoEdgesLimit( _this->frameView2, EwSetPointX( _this->frameView2->NoEdgesLimit, 
-    x2 - ( s.X / 3 )));
-    ViewsFrame_OnSetVisible( _this->frameView2, 1 );
-  }
-
-  if (( _this->frameView3 != 0 ) && ( _this->frameView3->Bitmap != 0 ))
-  {
-    XPoint s = _this->frameView3->Bitmap->FrameSize;
-    XInt32 x2 = EwGetRectW( area );
-    XInt32 x = newThumbPos;
-
-    if ( x < 0 )
-      x = 0;
-
-    CoreRectView__OnSetBounds( _this->frameView3, EwNewRect( x, ( EwGetRectH( area ) 
-    / 2 ) - ( s.Y / 2 ), x2, (( EwGetRectH( area ) / 2 ) - ( s.Y / 2 )) + s.Y ));
-    ViewsFrame_OnSetNoEdgesLimit( _this->frameView3, EwSetPointX( _this->frameView3->NoEdgesLimit, 
-    x2 - ( s.X / 3 )));
-    ViewsFrame_OnSetVisible( _this->frameView3, 1 );
-  }
-
-  if (( _this->imageView != 0 ) && ( _this->imageView->Bitmap != 0 ))
-  {
-    XRect thumbArea = EwNewRect2Point( _Const000B, _this->imageView->Bitmap->FrameSize );
-    CoreRectView__OnSetBounds( _this->imageView, EwMoveRectPos( EwMoveRectNeg( thumbArea, 
-    EwGetRectCenter( thumbArea )), EwNewPoint( newThumbPos, EwGetRectH( area ) / 
-    2 )));
-  }
-
-  r = _Const000C;
-
-  if ( _this->imageView != 0 )
-    r = EwUnionRect( r, _this->imageView->Super1.Bounds );
-
-  CoreGroup_ExtendClipping((CoreGroup)_this, EwGetInt32Max( 2, -r.Point1.X, 0 ), 
-  EwGetInt32Max( 2, r.Point2.X - area.Point2.X, 0 ), EwGetInt32Max( 2, -r.Point1.Y, 
-  0 ), EwGetInt32Max( 2, r.Point2.Y - area.Point2.Y, 0 ));
-}
-
-/* 'C' function for method : 'WidgetSet::HorizontalSlider.onConfigChanged()' */
-void WidgetSetHorizontalSlider_onConfigChanged( WidgetSetHorizontalSlider _this, 
-  XObject sender )
-{
-  XEnum oldKeyCodeRight;
-  XEnum oldKeyCodeLeft;
-
-  /* Dummy expressions to avoid the 'C' warning 'unused argument'. */
-  EW_UNUSED_ARG( sender );
-
-  oldKeyCodeRight = _this->KeyHandlerRight.Filter;
-  oldKeyCodeLeft = _this->KeyHandlerLeft.Filter;
-  _this->KeyHandlerRight.Filter = CoreKeyCodeRight;
-  _this->KeyHandlerLeft.Filter = CoreKeyCodeLeft;
-
-  if (((( oldKeyCodeRight == CoreKeyCodeNoKey ) || ( oldKeyCodeLeft == CoreKeyCodeNoKey )) 
-      && ( _this->KeyHandlerRight.Filter != CoreKeyCodeNoKey )) && ( _this->KeyHandlerLeft.Filter 
-      != CoreKeyCodeNoKey ))
-    CoreView__ChangeViewState( _this, CoreViewStateFocusable, 0 );
-
-  if ((( oldKeyCodeRight != CoreKeyCodeNoKey ) && ( oldKeyCodeLeft != CoreKeyCodeNoKey )) 
-      && (( _this->KeyHandlerRight.Filter == CoreKeyCodeNoKey ) || ( _this->KeyHandlerLeft.Filter 
-      == CoreKeyCodeNoKey )))
-    CoreView__ChangeViewState( _this, 0, CoreViewStateFocusable );
-
-  if ( _this->Appearance != 0 )
-  {
-    CoreTimer_OnSetBegin( &_this->RepetitionTimer, _this->Appearance->KeyRepeatDelay );
-    CoreTimer_OnSetPeriod( &_this->RepetitionTimer, _this->Appearance->KeyRepeatPeriod );
-  }
-  else
-  {
-    CoreTimer_OnSetBegin( &_this->RepetitionTimer, 0 );
-    CoreTimer_OnSetPeriod( &_this->RepetitionTimer, 0 );
-  }
-
-  if ( _this->Appearance != 0 )
-    CoreRectView__OnSetBounds( _this, _this->Super2.Bounds );
-
-  CoreGroup_InvalidateViewState((CoreGroup)_this );
-}
-
-/* 'C' function for method : 'WidgetSet::HorizontalSlider.onRepetitionTimer()' */
-void WidgetSetHorizontalSlider_onRepetitionTimer( WidgetSetHorizontalSlider _this, 
-  XObject sender )
-{
-  XInt32 oldValue;
-  XInt32 newValue;
-  XInt32 delta;
-
-  /* Dummy expressions to avoid the 'C' warning 'unused argument'. */
-  EW_UNUSED_ARG( sender );
-
-  oldValue = WidgetSetHorizontalSlider_OnGetCurrentValue( _this );
-  newValue = oldValue;
-  delta = 1;
-
-  if (( _this->KeyHandlerLeft.Down && ( _this->MaxValue > 0 )) || ( _this->KeyHandlerRight.Down 
-      && ( _this->MaxValue < 0 )))
-    delta = -1;
-
-  if ( oldValue < 0 )
-  {
-    newValue = -newValue;
-    delta = -delta;
-  }
-
-  if ( delta > 0 )
-    newValue = ( newValue + delta ) - (( newValue + delta ) % delta );
-
-  if ( delta < 0 )
-  {
-    if (( newValue % -delta ) != 0 )
-      newValue = ( newValue - delta ) - ( newValue % -delta );
-
-    newValue = newValue + delta;
-  }
-
-  if ( oldValue < 0 )
-    newValue = -newValue;
-
-  WidgetSetHorizontalSlider_OnSetCurrentValue( _this, newValue );
-
-  if ( oldValue == WidgetSetHorizontalSlider_OnGetCurrentValue( _this ))
-    return;
-
-  EwPostSignal( _this->OnChange, ((XObject)_this ));
-}
-
-/* 'C' function for method : 'WidgetSet::HorizontalSlider.onReleaseKey()' */
-void WidgetSetHorizontalSlider_onReleaseKey( WidgetSetHorizontalSlider _this, XObject 
-  sender )
-{
-  /* Dummy expressions to avoid the 'C' warning 'unused argument'. */
-  EW_UNUSED_ARG( sender );
-
-  CoreSimpleTouchHandler_OnSetEnabled( &_this->TouchHandler, 1 );
-  CoreGroup_InvalidateViewState((CoreGroup)_this );
-  CoreTimer_OnSetEnabled( &_this->RepetitionTimer, 0 );
-}
-
-/* 'C' function for method : 'WidgetSet::HorizontalSlider.onPressKey()' */
-void WidgetSetHorizontalSlider_onPressKey( WidgetSetHorizontalSlider _this, XObject 
-  sender )
-{
-  XInt32 oldValue;
-  XInt32 newValue;
-  XInt32 delta;
-
-  CoreSimpleTouchHandler_OnSetEnabled( &_this->TouchHandler, 0 );
-  CoreGroup_InvalidateViewState((CoreGroup)_this );
-  CoreTimer_OnSetEnabled( &_this->RepetitionTimer, 1 );
-  oldValue = WidgetSetHorizontalSlider_OnGetCurrentValue( _this );
-  newValue = oldValue;
-  delta = 1;
-
-  if ((( sender == ((XObject)&_this->KeyHandlerLeft )) && ( _this->MaxValue > 0 )) 
-      || (( sender == ((XObject)&_this->KeyHandlerRight )) && ( _this->MaxValue 
-      < 0 )))
-    delta = -1;
-
-  if ( oldValue < 0 )
-  {
-    newValue = -newValue;
-    delta = -delta;
-  }
-
-  if ( delta > 0 )
-    newValue = ( newValue + delta ) - (( newValue + delta ) % delta );
-
-  if ( delta < 0 )
-  {
-    if (( newValue % -delta ) != 0 )
-      newValue = ( newValue - delta ) - ( newValue % -delta );
-
-    newValue = newValue + delta;
-  }
-
-  if ( oldValue < 0 )
-    newValue = -newValue;
-
-  WidgetSetHorizontalSlider_OnSetCurrentValue( _this, newValue );
-
-  if ( oldValue == WidgetSetHorizontalSlider_OnGetCurrentValue( _this ))
-    return;
-
-  EwPostSignal( _this->OnChange, ((XObject)_this ));
-}
-
-/* 'C' function for method : 'WidgetSet::HorizontalSlider.onDragTouch()' */
-void WidgetSetHorizontalSlider_onDragTouch( WidgetSetHorizontalSlider _this, XObject 
-  sender )
-{
-  XInt32 marginLeft;
-  XInt32 marginRight;
-  XPoint delta;
-  XInt32 minPos;
-  XInt32 maxPos;
-  XInt32 oldValue;
-  XInt32 newValue;
-
-  /* Dummy expressions to avoid the 'C' warning 'unused argument'. */
-  EW_UNUSED_ARG( sender );
-
-  if ( !_this->touchActive )
-    return;
-
-  marginLeft = 0;
-  marginRight = 0;
-
-  if ( _this->Appearance != 0 )
-  {
-    marginLeft = _this->Appearance->ThumbMarginLeft;
-    marginRight = _this->Appearance->ThumbMarginRight;
-  }
-
-  delta = EwMovePointNeg( _this->TouchHandler.CurrentPos, _this->TouchHandler.HittingPos );
-  minPos = marginLeft;
-  maxPos = EwGetRectW( _this->Super2.Bounds ) - marginRight;
-  oldValue = WidgetSetHorizontalSlider_OnGetCurrentValue( _this );
-  newValue = oldValue;
-
-  if (( _this->imageView != 0 ) && ( _this->imageView->Bitmap != 0 ))
-    maxPos = maxPos - EwGetRectW( _this->imageView->Super1.Bounds );
-
-  if ( maxPos > minPos )
-    newValue = (XInt32)(((XFloat)delta.X * (XFloat)_this->MaxValue ) / (XFloat)( 
-    maxPos - minPos )) + _this->touchStartValue;
-
-  WidgetSetHorizontalSlider_OnSetCurrentValue( _this, newValue );
-
-  if ( oldValue == WidgetSetHorizontalSlider_OnGetCurrentValue( _this ))
-    return;
-
-  EwPostSignal( _this->OnChange, ((XObject)_this ));
-}
-
-/* 'C' function for method : 'WidgetSet::HorizontalSlider.onReleaseTouch()' */
-void WidgetSetHorizontalSlider_onReleaseTouch( WidgetSetHorizontalSlider _this, 
-  XObject sender )
-{
-  /* Dummy expressions to avoid the 'C' warning 'unused argument'. */
-  EW_UNUSED_ARG( sender );
-
-  if ( !_this->touchActive )
-    return;
-
-  _this->touchActive = 0;
-  _this->KeyHandlerRight.Enabled = 1;
-  _this->KeyHandlerLeft.Enabled = 1;
-  CoreGroup_InvalidateViewState((CoreGroup)_this );
-}
-
-/* 'C' function for method : 'WidgetSet::HorizontalSlider.onPressTouch()' */
-void WidgetSetHorizontalSlider_onPressTouch( WidgetSetHorizontalSlider _this, XObject 
-  sender )
-{
-  XRect touchArea;
-  XBool hasThumb;
-  XBool insideThumb;
-
-  /* Dummy expressions to avoid the 'C' warning 'unused argument'. */
-  EW_UNUSED_ARG( sender );
-
-  touchArea = EwMoveRectPos( _Const000D, _this->TouchHandler.CurrentPos );
-  hasThumb = 0;
-  insideThumb = 0;
-
-  if (( _this->imageView != 0 ) && ( _this->imageView->Bitmap != 0 ))
-  {
-    hasThumb = 1;
-    insideThumb = (XBool)!EwIsRectEmpty( EwIntersectRect( _this->imageView->Super1.Bounds, 
-    touchArea ));
-  }
-
-  if ( hasThumb && !insideThumb )
-  {
-    CoreRoot root = CoreView__GetRoot( _this );
-    CoreSimpleTouchHandler_OnSetEnabled( &_this->TouchHandler, 0 );
-    CoreRoot_RetargetCursor( root, ((CoreView)root ), 0, ((CoreView)_this ));
-    CoreSimpleTouchHandler_OnSetEnabled( &_this->TouchHandler, 1 );
-    return;
-  }
-
-  _this->touchActive = 1;
-  _this->KeyHandlerRight.Enabled = 0;
-  _this->KeyHandlerLeft.Enabled = 0;
-  CoreGroup_InvalidateViewState((CoreGroup)_this );
-  _this->touchStartValue = WidgetSetHorizontalSlider_OnGetCurrentValue( _this );
-}
-
-/* 'C' function for method : 'WidgetSet::HorizontalSlider.OnSetMaxValue()' */
-void WidgetSetHorizontalSlider_OnSetMaxValue( WidgetSetHorizontalSlider _this, XInt32 
-  value )
-{
-  if ( _this->MaxValue == value )
-    return;
-
-  _this->MaxValue = value;
-  CoreGroup_InvalidateViewState((CoreGroup)_this );
-}
-
-/* 'C' function for method : 'WidgetSet::HorizontalSlider.OnGetCurrentValue()' */
-XInt32 WidgetSetHorizontalSlider_OnGetCurrentValue( WidgetSetHorizontalSlider _this )
-{
-  XInt32 value = _this->CurrentValue;
-
-  if ( 0 > _this->MaxValue )
-  {
-    if ( value < _this->MaxValue )
-      value = _this->MaxValue;
-
-    if ( value > 0 )
-      value = 0;
-  }
-  else
-  {
-    if ( value < 0 )
-      value = 0;
-
-    if ( value > _this->MaxValue )
-      value = _this->MaxValue;
-  }
-
-  return value;
-}
-
-/* 'C' function for method : 'WidgetSet::HorizontalSlider.OnSetCurrentValue()' */
-void WidgetSetHorizontalSlider_OnSetCurrentValue( WidgetSetHorizontalSlider _this, 
-  XInt32 value )
-{
-  if ( _this->CurrentValue == value )
-    return;
-
-  _this->CurrentValue = value;
-  CoreGroup_InvalidateViewState((CoreGroup)_this );
-}
-
-/* 'C' function for method : 'WidgetSet::HorizontalSlider.OnSetAppearance()' */
-void WidgetSetHorizontalSlider_OnSetAppearance( WidgetSetHorizontalSlider _this, 
-  WidgetSetHorizontalSliderConfig value )
-{
-  if ( _this->Appearance == value )
-    return;
-
-  if ( _this->Appearance != 0 )
-    EwDetachObjObserver( EwNewSlot( _this, WidgetSetHorizontalSlider_onConfigChanged ), 
-      (XObject)_this->Appearance, 0 );
-
-  _this->Appearance = value;
-
-  if ( value != 0 )
-    EwAttachObjObserver( EwNewSlot( _this, WidgetSetHorizontalSlider_onConfigChanged ), 
-      (XObject)value, 0 );
-
-  EwPostSignal( EwNewSlot( _this, WidgetSetHorizontalSlider_onConfigChanged ), ((XObject)_this ));
-}
-
-/* Variants derived from the class : 'WidgetSet::HorizontalSlider' */
-EW_DEFINE_CLASS_VARIANTS( WidgetSetHorizontalSlider )
-EW_END_OF_CLASS_VARIANTS( WidgetSetHorizontalSlider )
-
-/* Virtual Method Table (VMT) for the class : 'WidgetSet::HorizontalSlider' */
-EW_DEFINE_CLASS( WidgetSetHorizontalSlider, CoreGroup, RepetitionTimer, imageView, 
-                 OnChange, touchStartValue, touchStartValue, touchStartValue, "WidgetSet::HorizontalSlider" )
-  CoreRectView_initLayoutContext,
-  CoreView_GetRoot,
-  CoreGroup_Draw,
-  CoreGroup_GetClipping,
-  CoreView_HandleEvent,
-  CoreGroup_CursorHitTest,
-  CoreGroup_AdjustDrawingArea,
-  CoreRectView_ArrangeView,
-  CoreRectView_MoveView,
-  CoreRectView_GetExtent,
-  CoreGroup_ChangeViewState,
-  WidgetSetHorizontalSlider_OnSetBounds,
-  CoreGroup_OnSetFocus,
-  CoreGroup_OnSetOpacity,
-  CoreGroup_DispatchEvent,
-  CoreGroup_BroadcastEvent,
-  WidgetSetHorizontalSlider_UpdateViewState,
-  CoreGroup_InvalidateArea,
-EW_END_OF_CLASS( WidgetSetHorizontalSlider )
-
 /* Initializer for the class 'WidgetSet::ToggleButton' */
 void WidgetSetToggleButton__Init( WidgetSetToggleButton _this, XObject aLink, XHandle aArg )
 {
@@ -2579,14 +2581,14 @@ void WidgetSetToggleButton__Init( WidgetSetToggleButton _this, XObject aLink, XH
   _this->_.VMT = EW_CLASS( WidgetSetToggleButton );
 
   /* ... and initialize objects, variables, properties, etc. */
-  CoreRectView__OnSetBounds( _this, _Const000E );
+  CoreRectView__OnSetBounds( _this, _Const0006 );
   CoreTimer_OnSetPeriod( &_this->FlashTimer, 0 );
   CoreTimer_OnSetBegin( &_this->FlashTimer, 50 );
   _this->KeyHandler.Filter = CoreKeyCodeEnter;
-  CoreQuadView_OnSetPoint4((CoreQuadView)&_this->TouchHandler, _Const0008 );
-  CoreQuadView_OnSetPoint3((CoreQuadView)&_this->TouchHandler, _Const000F );
-  CoreQuadView_OnSetPoint2((CoreQuadView)&_this->TouchHandler, _Const0010 );
-  CoreQuadView_OnSetPoint1((CoreQuadView)&_this->TouchHandler, _Const000B );
+  CoreQuadView_OnSetPoint4((CoreQuadView)&_this->TouchHandler, _Const0007 );
+  CoreQuadView_OnSetPoint3((CoreQuadView)&_this->TouchHandler, _Const0008 );
+  CoreQuadView_OnSetPoint2((CoreQuadView)&_this->TouchHandler, _Const0009 );
+  CoreQuadView_OnSetPoint1((CoreQuadView)&_this->TouchHandler, _Const000A );
   CoreSimpleTouchHandler_OnSetRetargetOffset( &_this->TouchHandler, 16 );
   CoreSimpleTouchHandler_OnSetMaxStrikeCount( &_this->TouchHandler, 100 );
   CoreGroup_Add((CoreGroup)_this, ((CoreView)&_this->TouchHandler ), 0 );
@@ -2701,8 +2703,20 @@ void WidgetSetToggleButton_UpdateViewState( WidgetSetToggleButton _this, XSet aS
 {
   XBool needsFrame;
   XBool needsText;
+  XBool needsRect1;
+  XBool needsBorder1;
+  XBool needsRect2;
+  XBool needsBorder2;
+  XBool needsRect3;
   XRect area;
+  XRect trackArea;
+  XRect thumbArea;
+  XInt32 thumbCornerRadius;
+  XRect accentArea;
+  XInt32 accentCornerRadius;
   XChar isState;
+  XBool needsAnimation;
+  XBool startAnimation;
 
   CoreGroup_UpdateViewState((CoreGroup)_this, aState );
   needsFrame = (XBool)(( _this->Appearance != 0 ) && (((((((( _this->Appearance->FaceOffBitmapDefault 
@@ -2713,7 +2727,47 @@ void WidgetSetToggleButton_UpdateViewState( WidgetSetToggleButton _this, XSet aS
   needsText = (XBool)(( _this->Appearance != 0 ) && (( !EwIsStringEmpty( _this->LabelOff ) 
   && ( _this->Appearance->LabelOffFont != 0 )) || ( !EwIsStringEmpty( _this->LabelOn ) 
   && ( _this->Appearance->LabelOnFont != 0 ))));
+  needsRect1 = (XBool)(( _this->Appearance != 0 ) && ((((((( !EwIsColorNull( _this->Appearance->TrackOffColorDefault ) 
+  || !EwIsColorNull( _this->Appearance->TrackOffColorDisabled )) || !EwIsColorNull( 
+  _this->Appearance->TrackOffColorFocused )) || !EwIsColorNull( _this->Appearance->TrackOffColorActive )) 
+  || !EwIsColorNull( _this->Appearance->TrackOnColorDefault )) || !EwIsColorNull( 
+  _this->Appearance->TrackOnColorDisabled )) || !EwIsColorNull( _this->Appearance->TrackOnColorFocused )) 
+  || !EwIsColorNull( _this->Appearance->TrackOnColorActive )));
+  needsBorder1 = (XBool)((( _this->Appearance != 0 ) && ((((((( !EwIsColorNull( 
+  _this->Appearance->TrackOffBorderColorDefault ) || !EwIsColorNull( _this->Appearance->TrackOffBorderColorDisabled )) 
+  || !EwIsColorNull( _this->Appearance->TrackOffBorderColorFocused )) || !EwIsColorNull( 
+  _this->Appearance->TrackOffBorderColorActive )) || !EwIsColorNull( _this->Appearance->TrackOnBorderColorDefault )) 
+  || !EwIsColorNull( _this->Appearance->TrackOnBorderColorDisabled )) || !EwIsColorNull( 
+  _this->Appearance->TrackOnBorderColorFocused )) || !EwIsColorNull( _this->Appearance->TrackOnBorderColorActive ))) 
+  && ((((((( !!_this->Appearance->TrackOffBorderWidthDefault || !!_this->Appearance->TrackOffBorderWidthDisabled ) 
+  || !!_this->Appearance->TrackOffBorderWidthFocused ) || !!_this->Appearance->TrackOffBorderWidthActive ) 
+  || !!_this->Appearance->TrackOnBorderWidthDefault ) || !!_this->Appearance->TrackOnBorderWidthDisabled ) 
+  || !!_this->Appearance->TrackOnBorderWidthFocused ) || !!_this->Appearance->TrackOnBorderWidthActive ));
+  needsRect2 = (XBool)(( _this->Appearance != 0 ) && ((((((( !EwIsColorNull( _this->Appearance->ThumbOffColorDefault ) 
+  || !EwIsColorNull( _this->Appearance->ThumbOffColorDisabled )) || !EwIsColorNull( 
+  _this->Appearance->ThumbOffColorFocused )) || !EwIsColorNull( _this->Appearance->ThumbOffColorActive )) 
+  || !EwIsColorNull( _this->Appearance->ThumbOnColorDefault )) || !EwIsColorNull( 
+  _this->Appearance->ThumbOnColorDisabled )) || !EwIsColorNull( _this->Appearance->ThumbOnColorFocused )) 
+  || !EwIsColorNull( _this->Appearance->ThumbOnColorActive )));
+  needsBorder2 = (XBool)((( _this->Appearance != 0 ) && ((((((( !EwIsColorNull( 
+  _this->Appearance->ThumbOffBorderColorDefault ) || !EwIsColorNull( _this->Appearance->ThumbOffBorderColorDisabled )) 
+  || !EwIsColorNull( _this->Appearance->ThumbOffBorderColorFocused )) || !EwIsColorNull( 
+  _this->Appearance->ThumbOffBorderColorActive )) || !EwIsColorNull( _this->Appearance->ThumbOnBorderColorDefault )) 
+  || !EwIsColorNull( _this->Appearance->ThumbOnBorderColorDisabled )) || !EwIsColorNull( 
+  _this->Appearance->ThumbOnBorderColorFocused )) || !EwIsColorNull( _this->Appearance->ThumbOnBorderColorActive ))) 
+  && ((((((( !!_this->Appearance->ThumbOffBorderWidthDefault || !!_this->Appearance->ThumbOffBorderWidthDisabled ) 
+  || !!_this->Appearance->ThumbOffBorderWidthFocused ) || !!_this->Appearance->ThumbOffBorderWidthActive ) 
+  || !!_this->Appearance->ThumbOnBorderWidthDefault ) || !!_this->Appearance->ThumbOnBorderWidthDisabled ) 
+  || !!_this->Appearance->ThumbOnBorderWidthFocused ) || !!_this->Appearance->ThumbOnBorderWidthActive ));
+  needsRect3 = (XBool)(( _this->Appearance != 0 ) && ((( !EwIsColorNull( _this->Appearance->AccentOffColorFocused ) 
+  || !EwIsColorNull( _this->Appearance->AccentOffColorActive )) || !EwIsColorNull( 
+  _this->Appearance->AccentOnColorFocused )) || !EwIsColorNull( _this->Appearance->AccentOnColorActive )));
   area = EwGetRectORect( _this->Super2.Bounds );
+  trackArea = _Const000B;
+  thumbArea = _Const000B;
+  thumbCornerRadius = 0;
+  accentArea = _Const000B;
+  accentCornerRadius = 0;
 
   if ( needsFrame && !( _this->frameView != 0 ))
   {
@@ -2740,6 +2794,66 @@ void WidgetSetToggleButton_UpdateViewState( WidgetSetToggleButton _this, XSet aS
       _this->textView = 0;
     }
 
+  if ( needsRect1 && !( _this->rectView1 != 0 ))
+  {
+    _this->rectView1 = EwNewObject( ViewsRectangle, 0 );
+    CoreGroup_Add((CoreGroup)_this, ((CoreView)_this->rectView1 ), 0 );
+  }
+  else
+    if ( !needsRect1 && ( _this->rectView1 != 0 ))
+    {
+      CoreGroup_Remove((CoreGroup)_this, ((CoreView)_this->rectView1 ));
+      _this->rectView1 = 0;
+    }
+
+  if ( needsBorder1 && !( _this->borderView1 != 0 ))
+  {
+    _this->borderView1 = EwNewObject( ViewsBorder, 0 );
+    CoreGroup_Add((CoreGroup)_this, ((CoreView)_this->borderView1 ), 0 );
+  }
+  else
+    if ( !needsBorder1 && ( _this->borderView1 != 0 ))
+    {
+      CoreGroup_Remove((CoreGroup)_this, ((CoreView)_this->borderView1 ));
+      _this->borderView1 = 0;
+    }
+
+  if ( needsRect2 && !( _this->rectView2 != 0 ))
+  {
+    _this->rectView2 = EwNewObject( ViewsRectangle, 0 );
+    CoreGroup_Add((CoreGroup)_this, ((CoreView)_this->rectView2 ), 0 );
+  }
+  else
+    if ( !needsRect2 && ( _this->rectView2 != 0 ))
+    {
+      CoreGroup_Remove((CoreGroup)_this, ((CoreView)_this->rectView2 ));
+      _this->rectView2 = 0;
+    }
+
+  if ( needsBorder2 && !( _this->borderView2 != 0 ))
+  {
+    _this->borderView2 = EwNewObject( ViewsBorder, 0 );
+    CoreGroup_Add((CoreGroup)_this, ((CoreView)_this->borderView2 ), 0 );
+  }
+  else
+    if ( !needsBorder2 && ( _this->borderView2 != 0 ))
+    {
+      CoreGroup_Remove((CoreGroup)_this, ((CoreView)_this->borderView2 ));
+      _this->borderView2 = 0;
+    }
+
+  if ( needsRect3 && !( _this->rectView3 != 0 ))
+  {
+    _this->rectView3 = EwNewObject( ViewsRectangle, 0 );
+    CoreGroup_Add((CoreGroup)_this, ((CoreView)_this->rectView3 ), 0 );
+  }
+  else
+    if ( !needsRect3 && ( _this->rectView3 != 0 ))
+    {
+      CoreGroup_Remove((CoreGroup)_this, ((CoreView)_this->rectView3 ));
+      _this->rectView3 = 0;
+    }
+
   if ( !(( aState & CoreViewStateEnabled ) == CoreViewStateEnabled ))
     isState = 'D';
   else
@@ -2755,10 +2869,51 @@ void WidgetSetToggleButton_UpdateViewState( WidgetSetToggleButton _this, XSet aS
   if ( !_this->Checked )
     isState = EwGetCharLower( isState );
 
+  needsAnimation = (XBool)(( _this->Appearance != 0 ) && ( _this->Appearance->StateTransitionDuration 
+  > 0 ));
+  startAnimation = (XBool)(( needsAnimation && ( _this->prevState != isState )) 
+  && !!_this->prevState );
+
+  if ((( startAnimation && ( _this->animation != 0 )) && !_this->animation->Super1.Reversed ) 
+      && ( isState == _this->animStartState ))
+  {
+    EffectsEffect_OnSetReversed((EffectsEffect)_this->animation, 1 );
+    startAnimation = 0;
+  }
+
+  if ((( startAnimation && ( _this->animation != 0 )) && _this->animation->Super1.Reversed ) 
+      && ( isState == _this->animEndState ))
+  {
+    EffectsEffect_OnSetReversed((EffectsEffect)_this->animation, 0 );
+    startAnimation = 0;
+  }
+
+  if (( _this->animation != 0 ) && (( !_this->animation->Super1.Enabled || startAnimation ) 
+      || !needsAnimation ))
+  {
+    EffectsEffect_OnSetEnabled((EffectsEffect)_this->animation, 0 );
+    _this->animation->Super1.OnAnimate = EwNullSlot;
+    _this->animation->Super1.OnFinished = EwNullSlot;
+    _this->animation = 0;
+  }
+
+  if ( startAnimation )
+  {
+    _this->animation = EwNewObject( EffectsFloatEffect, 0 );
+    _this->animation->Super1.OnAnimate = EwNewSlot( _this, WidgetSetToggleButton_onAnimate );
+    _this->animation->Super1.OnFinished = EwNewSlot( _this, WidgetSetToggleButton_onAnimate );
+    EffectsEffect_OnSetCycleDuration((EffectsEffect)_this->animation, _this->Appearance->StateTransitionDuration );
+    EffectsEffect_OnSetNoOfCycles((EffectsEffect)_this->animation, 1 );
+    EffectsEffect_OnSetEnabled((EffectsEffect)_this->animation, 1 );
+    _this->animStartState = _this->prevState;
+    _this->animEndState = isState;
+  }
+
   _this->prevState = isState;
 
   if (( _this->frameView != 0 ) || ( _this->textView != 0 ))
-    switch ( isState )
+  {
+    switch ((( _this->animation != 0 )? _this->animEndState : isState ))
     {
       case 'D' :
       case 'A' :
@@ -2771,6 +2926,996 @@ void WidgetSetToggleButton_UpdateViewState( WidgetSetToggleButton _this, XSet aS
 
       default :; 
     }
+
+    if ( _this->animation != 0 )
+      switch ( _this->animStartState )
+      {
+        case 'D' :
+        case 'A' :
+        case 'F' :
+        case 'E' :
+        case 'd' :
+        case 'a' :
+        case 'f' :
+        break;
+
+        default :; 
+      }
+  }
+
+  if (( _this->rectView1 != 0 ) || ( _this->borderView1 != 0 ))
+  {
+    XSet layout = _this->Appearance->TrackLayout;
+    XPoint s = _this->Appearance->TrackSize;
+    XRect r = area;
+    XBool alignToLeft;
+    XBool alignToRight;
+    XBool alignToTop;
+    XBool alignToBottom;
+
+    if ((( layout & CoreLayoutResizeHorz ) == CoreLayoutResizeHorz ))
+      s.X = ( s.X + EwGetRectW( r ));
+
+    if ((( layout & CoreLayoutResizeVert ) == CoreLayoutResizeVert ))
+      s.Y = ( s.Y + EwGetRectH( r ));
+
+    alignToLeft = (( layout & CoreLayoutAlignToLeft ) == CoreLayoutAlignToLeft );
+    alignToRight = (( layout & CoreLayoutAlignToRight ) == CoreLayoutAlignToRight );
+    alignToTop = (( layout & CoreLayoutAlignToTop ) == CoreLayoutAlignToTop );
+    alignToBottom = (( layout & CoreLayoutAlignToBottom ) == CoreLayoutAlignToBottom );
+
+    if ( alignToLeft && !alignToRight )
+      r.Point2.X = ( r.Point1.X + s.X );
+    else
+      if ( !alignToLeft && alignToRight )
+        r.Point1.X = ( r.Point2.X - s.X );
+      else
+      {
+        r.Point1.X = (( EwGetRectW( r ) / 2 ) - ( s.X / 2 ));
+        r.Point2.X = ( r.Point1.X + s.X );
+      }
+
+    if ( alignToTop && !alignToBottom )
+      r.Point2.Y = ( r.Point1.Y + s.Y );
+    else
+      if ( !alignToTop && alignToBottom )
+        r.Point1.Y = ( r.Point2.Y - s.Y );
+      else
+      {
+        r.Point1.Y = (( EwGetRectH( r ) / 2 ) - ( s.Y / 2 ));
+        r.Point2.Y = ( r.Point1.Y + s.Y );
+      }
+
+    trackArea = r;
+  }
+
+  if (( _this->borderView2 != 0 ) || ( _this->rectView2 != 0 ))
+  {
+    XSet layout = _this->Appearance->ThumbLayout;
+    XRect r = area;
+    XPoint thumbOffset;
+    XPoint thumbSize;
+    XBool alignToLeft;
+    XBool alignToRight;
+    XBool alignToTop;
+    XBool alignToBottom;
+
+    switch ((( _this->animation != 0 )? _this->animEndState : isState ))
+    {
+      case 'D' :
+      {
+        thumbOffset = _this->Appearance->ThumbOnOffsetDisabled;
+        thumbSize = _this->Appearance->ThumbOnSizeDisabled;
+        thumbCornerRadius = _this->Appearance->ThumbOnCornerRadiusDisabled;
+      }
+      break;
+
+      case 'A' :
+      {
+        thumbOffset = _this->Appearance->ThumbOnOffsetActive;
+        thumbSize = _this->Appearance->ThumbOnSizeActive;
+        thumbCornerRadius = _this->Appearance->ThumbOnCornerRadiusActive;
+      }
+      break;
+
+      case 'F' :
+      {
+        thumbOffset = _this->Appearance->ThumbOnOffsetFocused;
+        thumbSize = _this->Appearance->ThumbOnSizeFocused;
+        thumbCornerRadius = _this->Appearance->ThumbOnCornerRadiusFocused;
+      }
+      break;
+
+      case 'E' :
+      {
+        thumbOffset = _this->Appearance->ThumbOnOffsetDefault;
+        thumbSize = _this->Appearance->ThumbOnSizeDefault;
+        thumbCornerRadius = _this->Appearance->ThumbOnCornerRadiusDefault;
+      }
+      break;
+
+      case 'd' :
+      {
+        thumbOffset = _this->Appearance->ThumbOffOffsetDisabled;
+        thumbSize = _this->Appearance->ThumbOffSizeDisabled;
+        thumbCornerRadius = _this->Appearance->ThumbOffCornerRadiusDisabled;
+      }
+      break;
+
+      case 'a' :
+      {
+        thumbOffset = _this->Appearance->ThumbOffOffsetActive;
+        thumbSize = _this->Appearance->ThumbOffSizeActive;
+        thumbCornerRadius = _this->Appearance->ThumbOffCornerRadiusActive;
+      }
+      break;
+
+      case 'f' :
+      {
+        thumbOffset = _this->Appearance->ThumbOffOffsetFocused;
+        thumbSize = _this->Appearance->ThumbOffSizeFocused;
+        thumbCornerRadius = _this->Appearance->ThumbOffCornerRadiusFocused;
+      }
+      break;
+
+      default : 
+      {
+        thumbOffset = _this->Appearance->ThumbOffOffsetDefault;
+        thumbSize = _this->Appearance->ThumbOffSizeDefault;
+        thumbCornerRadius = _this->Appearance->ThumbOffCornerRadiusDefault;
+      }
+    }
+
+    if ((( layout & CoreLayoutResizeHorz ) == CoreLayoutResizeHorz ))
+      thumbSize.X = ( thumbSize.X + EwGetRectW( r ));
+
+    if ((( layout & CoreLayoutResizeVert ) == CoreLayoutResizeVert ))
+      thumbSize.Y = ( thumbSize.Y + EwGetRectH( r ));
+
+    thumbSize = EwGetPointMax( 2, thumbSize, _Const000A );
+
+    if ( _this->animation != 0 )
+    {
+      XPoint thumbOffsetS;
+      XPoint thumbSizeS;
+      XInt32 thumbCornerRadiusS;
+
+      switch ( _this->animStartState )
+      {
+        case 'D' :
+        {
+          thumbOffsetS = _this->Appearance->ThumbOnOffsetDisabled;
+          thumbSizeS = _this->Appearance->ThumbOnSizeDisabled;
+          thumbCornerRadiusS = _this->Appearance->ThumbOnCornerRadiusDisabled;
+        }
+        break;
+
+        case 'A' :
+        {
+          thumbOffsetS = _this->Appearance->ThumbOnOffsetActive;
+          thumbSizeS = _this->Appearance->ThumbOnSizeActive;
+          thumbCornerRadiusS = _this->Appearance->ThumbOnCornerRadiusActive;
+        }
+        break;
+
+        case 'F' :
+        {
+          thumbOffsetS = _this->Appearance->ThumbOnOffsetFocused;
+          thumbSizeS = _this->Appearance->ThumbOnSizeFocused;
+          thumbCornerRadiusS = _this->Appearance->ThumbOnCornerRadiusFocused;
+        }
+        break;
+
+        case 'E' :
+        {
+          thumbOffsetS = _this->Appearance->ThumbOnOffsetDefault;
+          thumbSizeS = _this->Appearance->ThumbOnSizeDefault;
+          thumbCornerRadiusS = _this->Appearance->ThumbOnCornerRadiusDefault;
+        }
+        break;
+
+        case 'd' :
+        {
+          thumbOffsetS = _this->Appearance->ThumbOffOffsetDisabled;
+          thumbSizeS = _this->Appearance->ThumbOffSizeDisabled;
+          thumbCornerRadiusS = _this->Appearance->ThumbOffCornerRadiusDisabled;
+        }
+        break;
+
+        case 'a' :
+        {
+          thumbOffsetS = _this->Appearance->ThumbOffOffsetActive;
+          thumbSizeS = _this->Appearance->ThumbOffSizeActive;
+          thumbCornerRadiusS = _this->Appearance->ThumbOffCornerRadiusActive;
+        }
+        break;
+
+        case 'f' :
+        {
+          thumbOffsetS = _this->Appearance->ThumbOffOffsetFocused;
+          thumbSizeS = _this->Appearance->ThumbOffSizeFocused;
+          thumbCornerRadiusS = _this->Appearance->ThumbOffCornerRadiusFocused;
+        }
+        break;
+
+        default : 
+        {
+          thumbOffsetS = _this->Appearance->ThumbOffOffsetDefault;
+          thumbSizeS = _this->Appearance->ThumbOffSizeDefault;
+          thumbCornerRadiusS = _this->Appearance->ThumbOffCornerRadiusDefault;
+        }
+      }
+
+      if ((( layout & CoreLayoutResizeHorz ) == CoreLayoutResizeHorz ))
+        thumbSizeS.X = ( thumbSizeS.X + EwGetRectW( r ));
+
+      if ((( layout & CoreLayoutResizeVert ) == CoreLayoutResizeVert ))
+        thumbSizeS.Y = ( thumbSizeS.Y + EwGetRectH( r ));
+
+      thumbSizeS = EwGetPointMax( 2, thumbSizeS, _Const000A );
+      thumbCornerRadius = EwMathMixInt32( thumbCornerRadiusS, thumbCornerRadius, 
+      _this->animation->Value );
+      thumbOffset = EwMathMixPoint( thumbOffsetS, thumbOffset, _this->animation->Value );
+      thumbSize = EwMathMixPoint( thumbSizeS, thumbSize, _this->animation->Value );
+    }
+
+    alignToLeft = (( layout & CoreLayoutAlignToLeft ) == CoreLayoutAlignToLeft );
+    alignToRight = (( layout & CoreLayoutAlignToRight ) == CoreLayoutAlignToRight );
+    alignToTop = (( layout & CoreLayoutAlignToTop ) == CoreLayoutAlignToTop );
+    alignToBottom = (( layout & CoreLayoutAlignToBottom ) == CoreLayoutAlignToBottom );
+
+    if ( alignToLeft && !alignToRight )
+      r.Point2.X = ( r.Point1.X + thumbSize.X );
+    else
+      if ( !alignToLeft && alignToRight )
+        r.Point1.X = ( r.Point2.X - thumbSize.X );
+      else
+      {
+        r.Point1.X = (( EwGetRectW( r ) / 2 ) - ( thumbSize.X / 2 ));
+        r.Point2.X = ( r.Point1.X + thumbSize.X );
+      }
+
+    if ( alignToTop && !alignToBottom )
+      r.Point2.Y = ( r.Point1.Y + thumbSize.Y );
+    else
+      if ( !alignToTop && alignToBottom )
+        r.Point1.Y = ( r.Point2.Y - thumbSize.Y );
+      else
+      {
+        r.Point1.Y = (( EwGetRectH( r ) / 2 ) - ( thumbSize.Y / 2 ));
+        r.Point2.Y = ( r.Point1.Y + thumbSize.Y );
+      }
+
+    thumbArea = EwMoveRectPos( r, thumbOffset );
+  }
+
+  if ( _this->rectView3 != 0 )
+  {
+    XSet layout = _this->Appearance->AccentLayout;
+    XRect r = area;
+    XPoint accentOffset;
+    XPoint accentSize;
+    XBool alignToLeft;
+    XBool alignToRight;
+    XBool alignToTop;
+    XBool alignToBottom;
+
+    switch ((( _this->animation != 0 )? _this->animEndState : isState ))
+    {
+      case 'D' :
+      {
+        accentOffset = _this->Appearance->AccentOnOffsetDisabled;
+        accentSize = _this->Appearance->AccentOnSizeDisabled;
+        accentCornerRadius = _this->Appearance->AccentOnCornerRadiusDisabled;
+      }
+      break;
+
+      case 'A' :
+      {
+        accentOffset = _this->Appearance->AccentOnOffsetActive;
+        accentSize = _this->Appearance->AccentOnSizeActive;
+        accentCornerRadius = _this->Appearance->AccentOnCornerRadiusActive;
+      }
+      break;
+
+      case 'F' :
+      {
+        accentOffset = _this->Appearance->AccentOnOffsetFocused;
+        accentSize = _this->Appearance->AccentOnSizeFocused;
+        accentCornerRadius = _this->Appearance->AccentOnCornerRadiusFocused;
+      }
+      break;
+
+      case 'E' :
+      {
+        accentOffset = _this->Appearance->AccentOnOffsetDefault;
+        accentSize = _this->Appearance->AccentOnSizeDefault;
+        accentCornerRadius = _this->Appearance->AccentOnCornerRadiusDefault;
+      }
+      break;
+
+      case 'd' :
+      {
+        accentOffset = _this->Appearance->AccentOffOffsetDisabled;
+        accentSize = _this->Appearance->AccentOffSizeDisabled;
+        accentCornerRadius = _this->Appearance->AccentOffCornerRadiusDisabled;
+      }
+      break;
+
+      case 'a' :
+      {
+        accentOffset = _this->Appearance->AccentOffOffsetActive;
+        accentSize = _this->Appearance->AccentOffSizeActive;
+        accentCornerRadius = _this->Appearance->AccentOffCornerRadiusActive;
+      }
+      break;
+
+      case 'f' :
+      {
+        accentOffset = _this->Appearance->AccentOffOffsetFocused;
+        accentSize = _this->Appearance->AccentOffSizeFocused;
+        accentCornerRadius = _this->Appearance->AccentOffCornerRadiusFocused;
+      }
+      break;
+
+      default : 
+      {
+        accentOffset = _this->Appearance->AccentOffOffsetDefault;
+        accentSize = _this->Appearance->AccentOffSizeDefault;
+        accentCornerRadius = _this->Appearance->AccentOffCornerRadiusDefault;
+      }
+    }
+
+    if ((( layout & CoreLayoutResizeHorz ) == CoreLayoutResizeHorz ))
+      accentSize.X = ( accentSize.X + EwGetRectW( r ));
+
+    if ((( layout & CoreLayoutResizeVert ) == CoreLayoutResizeVert ))
+      accentSize.Y = ( accentSize.Y + EwGetRectH( r ));
+
+    accentSize = EwGetPointMax( 2, accentSize, _Const000A );
+
+    if ( _this->animation != 0 )
+    {
+      XPoint accentOffsetS;
+      XPoint accentSizeS;
+      XInt32 accentCornerRadiusS;
+
+      switch ( _this->animStartState )
+      {
+        case 'D' :
+        {
+          accentOffsetS = _this->Appearance->AccentOnOffsetDisabled;
+          accentSizeS = _this->Appearance->AccentOnSizeDisabled;
+          accentCornerRadiusS = _this->Appearance->AccentOnCornerRadiusDisabled;
+        }
+        break;
+
+        case 'A' :
+        {
+          accentOffsetS = _this->Appearance->AccentOnOffsetActive;
+          accentSizeS = _this->Appearance->AccentOnSizeActive;
+          accentCornerRadiusS = _this->Appearance->AccentOnCornerRadiusActive;
+        }
+        break;
+
+        case 'F' :
+        {
+          accentOffsetS = _this->Appearance->AccentOnOffsetFocused;
+          accentSizeS = _this->Appearance->AccentOnSizeFocused;
+          accentCornerRadiusS = _this->Appearance->AccentOnCornerRadiusFocused;
+        }
+        break;
+
+        case 'E' :
+        {
+          accentOffsetS = _this->Appearance->AccentOnOffsetDefault;
+          accentSizeS = _this->Appearance->AccentOnSizeDefault;
+          accentCornerRadiusS = _this->Appearance->AccentOnCornerRadiusDefault;
+        }
+        break;
+
+        case 'd' :
+        {
+          accentOffsetS = _this->Appearance->AccentOffOffsetDisabled;
+          accentSizeS = _this->Appearance->AccentOffSizeDisabled;
+          accentCornerRadiusS = _this->Appearance->AccentOffCornerRadiusDisabled;
+        }
+        break;
+
+        case 'a' :
+        {
+          accentOffsetS = _this->Appearance->AccentOffOffsetActive;
+          accentSizeS = _this->Appearance->AccentOffSizeActive;
+          accentCornerRadiusS = _this->Appearance->AccentOffCornerRadiusActive;
+        }
+        break;
+
+        case 'f' :
+        {
+          accentOffsetS = _this->Appearance->AccentOffOffsetFocused;
+          accentSizeS = _this->Appearance->AccentOffSizeFocused;
+          accentCornerRadiusS = _this->Appearance->AccentOffCornerRadiusFocused;
+        }
+        break;
+
+        default : 
+        {
+          accentOffsetS = _this->Appearance->AccentOffOffsetDefault;
+          accentSizeS = _this->Appearance->AccentOffSizeDefault;
+          accentCornerRadiusS = _this->Appearance->AccentOffCornerRadiusDefault;
+        }
+      }
+
+      if ((( layout & CoreLayoutResizeHorz ) == CoreLayoutResizeHorz ))
+        accentSizeS.X = ( accentSizeS.X + EwGetRectW( r ));
+
+      if ((( layout & CoreLayoutResizeVert ) == CoreLayoutResizeVert ))
+        accentSizeS.Y = ( accentSizeS.Y + EwGetRectH( r ));
+
+      accentSizeS = EwGetPointMax( 2, accentSizeS, _Const000A );
+      accentCornerRadius = EwMathMixInt32( accentCornerRadiusS, accentCornerRadius, 
+      _this->animation->Value );
+      accentOffset = EwMathMixPoint( accentOffsetS, accentOffset, _this->animation->Value );
+      accentSize = EwMathMixPoint( accentSizeS, accentSize, _this->animation->Value );
+    }
+
+    alignToLeft = (( layout & CoreLayoutAlignToLeft ) == CoreLayoutAlignToLeft );
+    alignToRight = (( layout & CoreLayoutAlignToRight ) == CoreLayoutAlignToRight );
+    alignToTop = (( layout & CoreLayoutAlignToTop ) == CoreLayoutAlignToTop );
+    alignToBottom = (( layout & CoreLayoutAlignToBottom ) == CoreLayoutAlignToBottom );
+
+    if ( alignToLeft && !alignToRight )
+      r.Point2.X = ( r.Point1.X + accentSize.X );
+    else
+      if ( !alignToLeft && alignToRight )
+        r.Point1.X = ( r.Point2.X - accentSize.X );
+      else
+      {
+        r.Point1.X = (( EwGetRectW( r ) / 2 ) - ( accentSize.X / 2 ));
+        r.Point2.X = ( r.Point1.X + accentSize.X );
+      }
+
+    if ( alignToTop && !alignToBottom )
+      r.Point2.Y = ( r.Point1.Y + accentSize.Y );
+    else
+      if ( !alignToTop && alignToBottom )
+        r.Point1.Y = ( r.Point2.Y - accentSize.Y );
+      else
+      {
+        r.Point1.Y = (( EwGetRectH( r ) / 2 ) - ( accentSize.Y / 2 ));
+        r.Point2.Y = ( r.Point1.Y + accentSize.Y );
+      }
+
+    accentArea = EwMoveRectPos( r, accentOffset );
+  }
+
+  if ( _this->borderView1 != 0 )
+  {
+    XColor clr;
+    XInt32 width;
+
+    switch ((( _this->animation != 0 )? _this->animEndState : isState ))
+    {
+      case 'D' :
+      {
+        clr = _this->Appearance->TrackOnBorderColorDisabled;
+        width = _this->Appearance->TrackOnBorderWidthDisabled;
+      }
+      break;
+
+      case 'A' :
+      {
+        clr = _this->Appearance->TrackOnBorderColorActive;
+        width = _this->Appearance->TrackOnBorderWidthActive;
+      }
+      break;
+
+      case 'F' :
+      {
+        clr = _this->Appearance->TrackOnBorderColorFocused;
+        width = _this->Appearance->TrackOnBorderWidthFocused;
+      }
+      break;
+
+      case 'E' :
+      {
+        clr = _this->Appearance->TrackOnBorderColorDefault;
+        width = _this->Appearance->TrackOnBorderWidthDefault;
+      }
+      break;
+
+      case 'd' :
+      {
+        clr = _this->Appearance->TrackOffBorderColorDisabled;
+        width = _this->Appearance->TrackOffBorderWidthDisabled;
+      }
+      break;
+
+      case 'a' :
+      {
+        clr = _this->Appearance->TrackOffBorderColorActive;
+        width = _this->Appearance->TrackOffBorderWidthActive;
+      }
+      break;
+
+      case 'f' :
+      {
+        clr = _this->Appearance->TrackOffBorderColorFocused;
+        width = _this->Appearance->TrackOffBorderWidthFocused;
+      }
+      break;
+
+      default : 
+      {
+        clr = _this->Appearance->TrackOffBorderColorDefault;
+        width = _this->Appearance->TrackOffBorderWidthDefault;
+      }
+    }
+
+    if ( _this->animation != 0 )
+    {
+      XColor clrS;
+      XInt32 widthS;
+
+      switch ( _this->animStartState )
+      {
+        case 'D' :
+        {
+          clrS = _this->Appearance->TrackOnBorderColorDisabled;
+          widthS = _this->Appearance->TrackOnBorderWidthDisabled;
+        }
+        break;
+
+        case 'A' :
+        {
+          clrS = _this->Appearance->TrackOnBorderColorActive;
+          widthS = _this->Appearance->TrackOnBorderWidthActive;
+        }
+        break;
+
+        case 'F' :
+        {
+          clrS = _this->Appearance->TrackOnBorderColorFocused;
+          widthS = _this->Appearance->TrackOnBorderWidthFocused;
+        }
+        break;
+
+        case 'E' :
+        {
+          clrS = _this->Appearance->TrackOnBorderColorDefault;
+          widthS = _this->Appearance->TrackOnBorderWidthDefault;
+        }
+        break;
+
+        case 'd' :
+        {
+          clrS = _this->Appearance->TrackOffBorderColorDisabled;
+          widthS = _this->Appearance->TrackOffBorderWidthDisabled;
+        }
+        break;
+
+        case 'a' :
+        {
+          clrS = _this->Appearance->TrackOffBorderColorActive;
+          widthS = _this->Appearance->TrackOffBorderWidthActive;
+        }
+        break;
+
+        case 'f' :
+        {
+          clrS = _this->Appearance->TrackOffBorderColorFocused;
+          widthS = _this->Appearance->TrackOffBorderWidthFocused;
+        }
+        break;
+
+        default : 
+        {
+          clrS = _this->Appearance->TrackOffBorderColorDefault;
+          widthS = _this->Appearance->TrackOffBorderWidthDefault;
+        }
+      }
+
+      clr = EwMathMixColor( clrS, clr, _this->animation->Value );
+      width = EwMathMixInt32( widthS, width, _this->animation->Value );
+    }
+
+    CoreRectView__OnSetBounds( _this->borderView1, trackArea );
+    ViewsBorder_OnSetRadius( _this->borderView1, _this->Appearance->TrackCornerRadius );
+    ViewsBorder_OnSetColor( _this->borderView1, clr );
+    ViewsBorder_OnSetWidth( _this->borderView1, width );
+    CoreView_OnSetStackingPriority((CoreView)_this->borderView1, 34 );
+  }
+
+  if ( _this->rectView1 != 0 )
+  {
+    XRect r = trackArea;
+    XColor clr;
+
+    switch ((( _this->animation != 0 )? _this->animEndState : isState ))
+    {
+      case 'D' :
+        clr = _this->Appearance->TrackOnColorDisabled;
+      break;
+
+      case 'A' :
+        clr = _this->Appearance->TrackOnColorActive;
+      break;
+
+      case 'F' :
+        clr = _this->Appearance->TrackOnColorFocused;
+      break;
+
+      case 'E' :
+        clr = _this->Appearance->TrackOnColorDefault;
+      break;
+
+      case 'd' :
+        clr = _this->Appearance->TrackOffColorDisabled;
+      break;
+
+      case 'a' :
+        clr = _this->Appearance->TrackOffColorActive;
+      break;
+
+      case 'f' :
+        clr = _this->Appearance->TrackOffColorFocused;
+      break;
+
+      default : 
+        clr = _this->Appearance->TrackOffColorDefault;
+    }
+
+    if ( _this->animation != 0 )
+    {
+      XColor clrS;
+
+      switch ( _this->animStartState )
+      {
+        case 'D' :
+          clrS = _this->Appearance->TrackOnColorDisabled;
+        break;
+
+        case 'A' :
+          clrS = _this->Appearance->TrackOnColorActive;
+        break;
+
+        case 'F' :
+          clrS = _this->Appearance->TrackOnColorFocused;
+        break;
+
+        case 'E' :
+          clrS = _this->Appearance->TrackOnColorDefault;
+        break;
+
+        case 'd' :
+          clrS = _this->Appearance->TrackOffColorDisabled;
+        break;
+
+        case 'a' :
+          clrS = _this->Appearance->TrackOffColorActive;
+        break;
+
+        case 'f' :
+          clrS = _this->Appearance->TrackOffColorFocused;
+        break;
+
+        default : 
+          clrS = _this->Appearance->TrackOffColorDefault;
+      }
+
+      clr = EwMathMixColor( clrS, clr, _this->animation->Value );
+    }
+
+    if ((( _this->borderView1 != 0 ) && !!_this->borderView1->Width ) && ( _this->borderView1->Color.Alpha 
+        == 255 ))
+      r = EwInflateRect( r, _Const000C );
+
+    CoreRectView__OnSetBounds( _this->rectView1, r );
+    ViewsRectangle_OnSetRadius( _this->rectView1, _this->Appearance->TrackCornerRadius );
+    ViewsRectangle_OnSetColor( _this->rectView1, clr );
+    CoreView_OnSetStackingPriority((CoreView)_this->rectView1, 33 );
+  }
+
+  if ( _this->borderView2 != 0 )
+  {
+    XColor clr;
+    XInt32 width;
+
+    switch ((( _this->animation != 0 )? _this->animEndState : isState ))
+    {
+      case 'D' :
+      {
+        clr = _this->Appearance->ThumbOnBorderColorDisabled;
+        width = _this->Appearance->ThumbOnBorderWidthDisabled;
+      }
+      break;
+
+      case 'A' :
+      {
+        clr = _this->Appearance->ThumbOnBorderColorActive;
+        width = _this->Appearance->ThumbOnBorderWidthActive;
+      }
+      break;
+
+      case 'F' :
+      {
+        clr = _this->Appearance->ThumbOnBorderColorFocused;
+        width = _this->Appearance->ThumbOnBorderWidthFocused;
+      }
+      break;
+
+      case 'E' :
+      {
+        clr = _this->Appearance->ThumbOnBorderColorDefault;
+        width = _this->Appearance->ThumbOnBorderWidthDefault;
+      }
+      break;
+
+      case 'd' :
+      {
+        clr = _this->Appearance->ThumbOffBorderColorDisabled;
+        width = _this->Appearance->ThumbOffBorderWidthDisabled;
+      }
+      break;
+
+      case 'a' :
+      {
+        clr = _this->Appearance->ThumbOffBorderColorActive;
+        width = _this->Appearance->ThumbOffBorderWidthActive;
+      }
+      break;
+
+      case 'f' :
+      {
+        clr = _this->Appearance->ThumbOffBorderColorFocused;
+        width = _this->Appearance->ThumbOffBorderWidthFocused;
+      }
+      break;
+
+      default : 
+      {
+        clr = _this->Appearance->ThumbOffBorderColorDefault;
+        width = _this->Appearance->ThumbOffBorderWidthDefault;
+      }
+    }
+
+    if ( _this->animation != 0 )
+    {
+      XColor clrS;
+      XInt32 widthS;
+
+      switch ( _this->animStartState )
+      {
+        case 'D' :
+        {
+          clrS = _this->Appearance->ThumbOnBorderColorDisabled;
+          widthS = _this->Appearance->ThumbOnBorderWidthDisabled;
+        }
+        break;
+
+        case 'A' :
+        {
+          clrS = _this->Appearance->ThumbOnBorderColorActive;
+          widthS = _this->Appearance->ThumbOnBorderWidthActive;
+        }
+        break;
+
+        case 'F' :
+        {
+          clrS = _this->Appearance->ThumbOnBorderColorFocused;
+          widthS = _this->Appearance->ThumbOnBorderWidthFocused;
+        }
+        break;
+
+        case 'E' :
+        {
+          clrS = _this->Appearance->ThumbOnBorderColorDefault;
+          widthS = _this->Appearance->ThumbOnBorderWidthDefault;
+        }
+        break;
+
+        case 'd' :
+        {
+          clrS = _this->Appearance->ThumbOffBorderColorDisabled;
+          widthS = _this->Appearance->ThumbOffBorderWidthDisabled;
+        }
+        break;
+
+        case 'a' :
+        {
+          clrS = _this->Appearance->ThumbOffBorderColorActive;
+          widthS = _this->Appearance->ThumbOffBorderWidthActive;
+        }
+        break;
+
+        case 'f' :
+        {
+          clrS = _this->Appearance->ThumbOffBorderColorFocused;
+          widthS = _this->Appearance->ThumbOffBorderWidthFocused;
+        }
+        break;
+
+        default : 
+        {
+          clrS = _this->Appearance->ThumbOffBorderColorDefault;
+          widthS = _this->Appearance->ThumbOffBorderWidthDefault;
+        }
+      }
+
+      clr = EwMathMixColor( clrS, clr, _this->animation->Value );
+      width = EwMathMixInt32( widthS, width, _this->animation->Value );
+    }
+
+    CoreRectView__OnSetBounds( _this->borderView2, thumbArea );
+    ViewsBorder_OnSetRadius( _this->borderView2, thumbCornerRadius );
+    ViewsBorder_OnSetColor( _this->borderView2, clr );
+    ViewsBorder_OnSetWidth( _this->borderView2, width );
+    CoreView_OnSetStackingPriority((CoreView)_this->borderView2, 57 );
+  }
+
+  if ( _this->rectView2 != 0 )
+  {
+    XRect r = thumbArea;
+    XColor clr;
+
+    switch ((( _this->animation != 0 )? _this->animEndState : isState ))
+    {
+      case 'D' :
+        clr = _this->Appearance->ThumbOnColorDisabled;
+      break;
+
+      case 'A' :
+        clr = _this->Appearance->ThumbOnColorActive;
+      break;
+
+      case 'F' :
+        clr = _this->Appearance->ThumbOnColorFocused;
+      break;
+
+      case 'E' :
+        clr = _this->Appearance->ThumbOnColorDefault;
+      break;
+
+      case 'd' :
+        clr = _this->Appearance->ThumbOffColorDisabled;
+      break;
+
+      case 'a' :
+        clr = _this->Appearance->ThumbOffColorActive;
+      break;
+
+      case 'f' :
+        clr = _this->Appearance->ThumbOffColorFocused;
+      break;
+
+      default : 
+        clr = _this->Appearance->ThumbOffColorDefault;
+    }
+
+    if ( _this->animation != 0 )
+    {
+      XColor clrS;
+
+      switch ( _this->animStartState )
+      {
+        case 'D' :
+          clrS = _this->Appearance->ThumbOnColorDisabled;
+        break;
+
+        case 'A' :
+          clrS = _this->Appearance->ThumbOnColorActive;
+        break;
+
+        case 'F' :
+          clrS = _this->Appearance->ThumbOnColorFocused;
+        break;
+
+        case 'E' :
+          clrS = _this->Appearance->ThumbOnColorDefault;
+        break;
+
+        case 'd' :
+          clrS = _this->Appearance->ThumbOffColorDisabled;
+        break;
+
+        case 'a' :
+          clrS = _this->Appearance->ThumbOffColorActive;
+        break;
+
+        case 'f' :
+          clrS = _this->Appearance->ThumbOffColorFocused;
+        break;
+
+        default : 
+          clrS = _this->Appearance->ThumbOffColorDefault;
+      }
+
+      clr = EwMathMixColor( clrS, clr, _this->animation->Value );
+    }
+
+    if ((( _this->borderView2 != 0 ) && !!_this->borderView2->Width ) && ( _this->borderView2->Color.Alpha 
+        == 255 ))
+      r = EwInflateRect( r, _Const000C );
+
+    CoreRectView__OnSetBounds( _this->rectView2, r );
+    ViewsRectangle_OnSetRadius( _this->rectView2, thumbCornerRadius );
+    ViewsRectangle_OnSetColor( _this->rectView2, clr );
+    CoreView_OnSetStackingPriority((CoreView)_this->rectView2, 56 );
+  }
+
+  if ( _this->rectView3 != 0 )
+  {
+    XRect r = accentArea;
+    XColor clr;
+
+    switch ((( _this->animation != 0 )? _this->animEndState : isState ))
+    {
+      case 'A' :
+        clr = _this->Appearance->AccentOnColorActive;
+      break;
+
+      case 'F' :
+        clr = _this->Appearance->AccentOnColorFocused;
+      break;
+
+      case 'D' :
+      case 'E' :
+      case 'd' :
+        clr = _Const000D;
+      break;
+
+      case 'a' :
+        clr = _this->Appearance->AccentOffColorActive;
+      break;
+
+      case 'f' :
+        clr = _this->Appearance->AccentOffColorFocused;
+      break;
+
+      default : 
+        clr = _Const000D;
+    }
+
+    if ( _this->animation != 0 )
+    {
+      XColor clrS;
+
+      switch ( _this->animStartState )
+      {
+        case 'A' :
+          clrS = _this->Appearance->AccentOnColorActive;
+        break;
+
+        case 'F' :
+          clrS = _this->Appearance->AccentOnColorFocused;
+        break;
+
+        case 'D' :
+        case 'E' :
+        case 'd' :
+          clrS = _Const000D;
+        break;
+
+        case 'a' :
+          clrS = _this->Appearance->AccentOffColorActive;
+        break;
+
+        case 'f' :
+          clrS = _this->Appearance->AccentOffColorFocused;
+        break;
+
+        default : 
+          clrS = _Const000D;
+      }
+
+      clr = EwMathMixColor( clrS, clr, _this->animation->Value );
+    }
+
+    CoreRectView__OnSetBounds( _this->rectView3, r );
+    ViewsRectangle_OnSetRadius( _this->rectView3, accentCornerRadius );
+    ViewsRectangle_OnSetColor( _this->rectView3, clr );
+    CoreView_OnSetStackingPriority((CoreView)_this->rectView3, 109 );
+  }
 
   if ( _this->frameView != 0 )
   {
@@ -2837,7 +3982,7 @@ void WidgetSetToggleButton_UpdateViewState( WidgetSetToggleButton _this, XSet aS
       }
     }
 
-    switch ( isState )
+    switch ((( _this->animation != 0 )? _this->animEndState : isState ))
     {
       case 'D' :
       case 'A' :
@@ -2851,8 +3996,23 @@ void WidgetSetToggleButton_UpdateViewState( WidgetSetToggleButton _this, XSet aS
       default :; 
     }
 
+    if ( _this->animation != 0 )
+      switch ( _this->animStartState )
+      {
+        case 'D' :
+        case 'A' :
+        case 'F' :
+        case 'E' :
+        case 'd' :
+        case 'a' :
+        case 'f' :
+        break;
+
+        default :; 
+      }
+
     ViewsFrame_OnSetAnimated( _this->frameView, (XBool)( frameNo < 0 ));
-    ViewsFrame_OnSetColor( _this->frameView, _Const0006 );
+    ViewsFrame_OnSetColor( _this->frameView, _Const0005 );
 
     if ( frameNo < 0 )
       frameNo = 0;
@@ -2933,7 +4093,7 @@ void WidgetSetToggleButton_UpdateViewState( WidgetSetToggleButton _this, XSet aS
       }
     }
 
-    switch ( isState )
+    switch ((( _this->animation != 0 )? _this->animEndState : isState ))
     {
       case 'D' :
         clr = _this->Appearance->LabelOnColorDisabled;
@@ -2967,6 +4127,47 @@ void WidgetSetToggleButton_UpdateViewState( WidgetSetToggleButton _this, XSet aS
         clr = _this->Appearance->LabelOffColorDefault;
     }
 
+    if ( _this->animation != 0 )
+    {
+      XColor clrS;
+
+      switch ( _this->animStartState )
+      {
+        case 'D' :
+          clrS = _this->Appearance->LabelOnColorDisabled;
+        break;
+
+        case 'A' :
+          clrS = _this->Appearance->LabelOnColorActive;
+        break;
+
+        case 'F' :
+          clrS = _this->Appearance->LabelOnColorFocused;
+        break;
+
+        case 'E' :
+          clrS = _this->Appearance->LabelOnColorDefault;
+        break;
+
+        case 'd' :
+          clrS = _this->Appearance->LabelOffColorDisabled;
+        break;
+
+        case 'a' :
+          clrS = _this->Appearance->LabelOffColorActive;
+        break;
+
+        case 'f' :
+          clrS = _this->Appearance->LabelOffColorFocused;
+        break;
+
+        default : 
+          clrS = _this->Appearance->LabelOffColorDefault;
+      }
+
+      clr = EwMathMixColor( clrS, clr, _this->animation->Value );
+    }
+
     CoreRectView__OnSetBounds( _this->textView, EwNewRect( area.Point1.X, area.Point1.Y, 
     area.Point2.X - _this->Appearance->LabelMarginRight, area.Point2.Y ));
     ViewsText_OnSetAlignment( _this->textView, _this->Appearance->LabelAlignment );
@@ -2978,10 +4179,33 @@ void WidgetSetToggleButton_UpdateViewState( WidgetSetToggleButton _this, XSet aS
     CoreView_OnSetStackingPriority((CoreView)_this->textView, 92 );
   }
 
-  CoreGroup_ExtendClipping((CoreGroup)_this, 0, 0, 0, 0 );
+  if ( !EwIsRectNull( thumbArea ) || !EwIsRectNull( accentArea ))
+  {
+    XRect r = EwUnionRect( thumbArea, accentArea );
 
+    if ( _this->frameView != 0 )
+      r = EwUnionRect( r, CoreView__GetExtent( _this->frameView ));
+
+    CoreGroup_ExtendClipping((CoreGroup)_this, EwGetInt32Max( 2, -r.Point1.X, 0 ), 
+    EwGetInt32Max( 2, r.Point2.X - area.Point2.X, 0 ), EwGetInt32Max( 2, -r.Point1.Y, 
+    0 ), EwGetInt32Max( 2, r.Point2.Y - area.Point2.Y, 0 ));
+  }
+  else
+    CoreGroup_ExtendClipping((CoreGroup)_this, 0, 0, 0, 0 );
+
+  if ( !( _this->animation != 0 ))
   {
     XRect touchArea = area;
+
+    if ((( _this->Appearance != 0 ) && _this->Appearance->LimitTouchArea ) && (((( 
+        _this->rectView1 != 0 ) || ( _this->borderView1 != 0 )) || ( _this->rectView2 
+        != 0 )) || ( _this->borderView2 != 0 )))
+      touchArea = EwIntersectRect( EwUnionRect( trackArea, thumbArea ), area );
+    else
+      if ((( _this->Appearance != 0 ) && _this->Appearance->LimitTouchArea ) && 
+          ( _this->frameView != 0 ))
+        touchArea = EwIntersectRect( _this->frameView->Super1.Bounds, area );
+
     CoreQuadView_OnSetPoint1((CoreQuadView)&_this->TouchHandler, touchArea.Point1 );
     CoreQuadView_OnSetPoint3((CoreQuadView)&_this->TouchHandler, touchArea.Point2 );
     CoreQuadView_OnSetPoint2((CoreQuadView)&_this->TouchHandler, EwNewPoint( touchArea.Point2.X, 
@@ -2989,6 +4213,15 @@ void WidgetSetToggleButton_UpdateViewState( WidgetSetToggleButton _this, XSet aS
     CoreQuadView_OnSetPoint4((CoreQuadView)&_this->TouchHandler, EwNewPoint( touchArea.Point1.X, 
     touchArea.Point2.Y ));
   }
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButton.onAnimate()' */
+void WidgetSetToggleButton_onAnimate( WidgetSetToggleButton _this, XObject sender )
+{
+  /* Dummy expressions to avoid the 'C' warning 'unused argument'. */
+  EW_UNUSED_ARG( sender );
+
+  CoreGroup_InvalidateViewState((CoreGroup)_this );
 }
 
 /* 'C' function for method : 'WidgetSet::ToggleButton.onConfigChanged()' */
@@ -3015,6 +4248,16 @@ void WidgetSetToggleButton_onConfigChanged( WidgetSetToggleButton _this, XObject
   CoreGroup_InvalidateViewState((CoreGroup)_this );
 }
 
+/* 'C' function for method : 'WidgetSet::ToggleButton.onOutlet()' */
+void WidgetSetToggleButton_onOutlet( WidgetSetToggleButton _this, XObject sender )
+{
+  /* Dummy expressions to avoid the 'C' warning 'unused argument'. */
+  EW_UNUSED_ARG( sender );
+
+  if ( _this->Outlet.Object != 0 )
+    WidgetSetToggleButton_OnSetChecked( _this, EwOnGetBool( _this->Outlet ));
+}
+
 /* 'C' function for method : 'WidgetSet::ToggleButton.onFlashTimer()' */
 void WidgetSetToggleButton_onFlashTimer( WidgetSetToggleButton _this, XObject sender )
 {
@@ -3023,6 +4266,17 @@ void WidgetSetToggleButton_onFlashTimer( WidgetSetToggleButton _this, XObject se
 
   CoreGroup_InvalidateViewState((CoreGroup)_this );
   WidgetSetToggleButton_OnSetChecked( _this, (XBool)!_this->Checked );
+
+  if ( _this->Checked )
+    EwPostSignal( _this->OnSwitchOn, ((XObject)_this ));
+  else
+    EwPostSignal( _this->OnSwitchOff, ((XObject)_this ));
+
+  if ( _this->Outlet.Object != 0 )
+  {
+    EwOnSetBool( _this->Outlet, _this->Checked );
+    EwNotifyRefObservers( _this->Outlet, 0 );
+  }
 }
 
 /* 'C' function for method : 'WidgetSet::ToggleButton.onReleaseKey()' */
@@ -3036,13 +4290,26 @@ void WidgetSetToggleButton_onReleaseKey( WidgetSetToggleButton _this, XObject se
   pressFeedbackDuration = 0;
 
   if ( _this->Appearance != 0 )
-    pressFeedbackDuration = 50;
+    pressFeedbackDuration = _this->Appearance->PressedFeedbackDuration;
 
   CoreSimpleTouchHandler_OnSetEnabled( &_this->TouchHandler, 1 );
   CoreGroup_InvalidateViewState((CoreGroup)_this );
 
   if ((XInt32)( _this->KeyHandler.Time - _this->onPressKeyTime ) >= pressFeedbackDuration )
+  {
     WidgetSetToggleButton_OnSetChecked( _this, (XBool)!_this->Checked );
+
+    if ( _this->Checked )
+      EwPostSignal( _this->OnSwitchOn, ((XObject)_this ));
+    else
+      EwPostSignal( _this->OnSwitchOff, ((XObject)_this ));
+
+    if ( _this->Outlet.Object != 0 )
+    {
+      EwOnSetBool( _this->Outlet, _this->Checked );
+      EwNotifyRefObservers( _this->Outlet, 0 );
+    }
+  }
   else
   {
     CoreTimer_OnSetBegin( &_this->FlashTimer, pressFeedbackDuration - (XInt32)( 
@@ -3064,6 +4331,17 @@ void WidgetSetToggleButton_onPressKey( WidgetSetToggleButton _this, XObject send
   {
     CoreTimer_OnSetEnabled( &_this->FlashTimer, 0 );
     WidgetSetToggleButton_OnSetChecked( _this, (XBool)!_this->Checked );
+
+    if ( _this->Checked )
+      EwPostSignal( _this->OnSwitchOn, ((XObject)_this ));
+    else
+      EwPostSignal( _this->OnSwitchOff, ((XObject)_this ));
+
+    if ( _this->Outlet.Object != 0 )
+    {
+      EwOnSetBool( _this->Outlet, _this->Checked );
+      EwNotifyRefObservers( _this->Outlet, 0 );
+    }
   }
 
   _this->onPressKeyTime = _this->KeyHandler.Time;
@@ -3099,7 +4377,7 @@ void WidgetSetToggleButton_onReleaseTouch( WidgetSetToggleButton _this, XObject
   pressFeedbackDuration = 0;
 
   if ( _this->Appearance != 0 )
-    pressFeedbackDuration = 50;
+    pressFeedbackDuration = _this->Appearance->PressedFeedbackDuration;
 
   _this->KeyHandler.Enabled = 1;
 
@@ -3110,7 +4388,20 @@ void WidgetSetToggleButton_onReleaseTouch( WidgetSetToggleButton _this, XObject
     return;
 
   if ( _this->TouchHandler.HoldPeriod >= pressFeedbackDuration )
+  {
     WidgetSetToggleButton_OnSetChecked( _this, (XBool)!_this->Checked );
+
+    if ( _this->Checked )
+      EwPostSignal( _this->OnSwitchOn, ((XObject)_this ));
+    else
+      EwPostSignal( _this->OnSwitchOff, ((XObject)_this ));
+
+    if ( _this->Outlet.Object != 0 )
+    {
+      EwOnSetBool( _this->Outlet, _this->Checked );
+      EwNotifyRefObservers( _this->Outlet, 0 );
+    }
+  }
   else
   {
     CoreTimer_OnSetBegin( &_this->FlashTimer, pressFeedbackDuration - _this->TouchHandler.HoldPeriod );
@@ -3130,7 +4421,38 @@ void WidgetSetToggleButton_onPressTouch( WidgetSetToggleButton _this, XObject se
   {
     CoreTimer_OnSetEnabled( &_this->FlashTimer, 0 );
     WidgetSetToggleButton_OnSetChecked( _this, (XBool)!_this->Checked );
+
+    if ( _this->Checked )
+      EwPostSignal( _this->OnSwitchOn, ((XObject)_this ));
+    else
+      EwPostSignal( _this->OnSwitchOff, ((XObject)_this ));
+
+    if ( _this->Outlet.Object != 0 )
+    {
+      EwOnSetBool( _this->Outlet, _this->Checked );
+      EwNotifyRefObservers( _this->Outlet, 0 );
+    }
   }
+}
+
+/* 'C' function for method : 'WidgetSet::ToggleButton.OnSetOutlet()' */
+void WidgetSetToggleButton_OnSetOutlet( WidgetSetToggleButton _this, XRef value )
+{
+  if ( !EwCompRef( _this->Outlet, value ))
+    return;
+
+  if ( _this->Outlet.Object != 0 )
+    EwDetachRefObserver( EwNewSlot( _this, WidgetSetToggleButton_onOutlet ), _this->Outlet, 
+      0 );
+
+  _this->Outlet = value;
+
+  if ( value.Object != 0 )
+    EwAttachRefObserver( EwNewSlot( _this, WidgetSetToggleButton_onOutlet ), value, 
+      0 );
+
+  if ( value.Object != 0 )
+    EwSignal( EwNewSlot( _this, WidgetSetToggleButton_onOutlet ), ((XObject)_this ));
 }
 
 /* 'C' function for method : 'WidgetSet::ToggleButton.OnSetChecked()' */
@@ -3174,13 +4496,19 @@ void WidgetSetToggleButton_OnSetAppearance( WidgetSetToggleButton _this, WidgetS
   EwPostSignal( EwNewSlot( _this, WidgetSetToggleButton_onConfigChanged ), ((XObject)_this ));
 }
 
+/* Default onget method for the property 'Checked' */
+XBool WidgetSetToggleButton_OnGetChecked( WidgetSetToggleButton _this )
+{
+  return _this->Checked;
+}
+
 /* Variants derived from the class : 'WidgetSet::ToggleButton' */
 EW_DEFINE_CLASS_VARIANTS( WidgetSetToggleButton )
 EW_END_OF_CLASS_VARIANTS( WidgetSetToggleButton )
 
 /* Virtual Method Table (VMT) for the class : 'WidgetSet::ToggleButton' */
-EW_DEFINE_CLASS( WidgetSetToggleButton, CoreGroup, FlashTimer, textView, LabelOn, 
-                 LabelOn, LabelOn, onPressKeyTime, "WidgetSet::ToggleButton" )
+EW_DEFINE_CLASS( WidgetSetToggleButton, CoreGroup, FlashTimer, animation, OnSwitchOn, 
+                 Outlet, LabelOn, onPressKeyTime, "WidgetSet::ToggleButton" )
   CoreRectView_initLayoutContext,
   CoreView_GetRoot,
   CoreGroup_Draw,
@@ -3219,17 +4547,17 @@ void WidgetSetPushButton__Init( WidgetSetPushButton _this, XObject aLink, XHandl
   _this->_.VMT = EW_CLASS( WidgetSetPushButton );
 
   /* ... and initialize objects, variables, properties, etc. */
-  CoreRectView__OnSetBounds( _this, _Const000E );
+  CoreRectView__OnSetBounds( _this, _Const0006 );
   CoreTimer_OnSetPeriod( &_this->FlashTimer, 0 );
   CoreTimer_OnSetBegin( &_this->FlashTimer, 50 );
   _this->KeyHandler.Filter = CoreKeyCodeEnter;
   CoreView_OnSetLayout((CoreView)&_this->TouchHandler, CoreLayoutAlignToBottom | 
   CoreLayoutAlignToLeft | CoreLayoutAlignToRight | CoreLayoutAlignToTop | CoreLayoutResizeHorz 
   | CoreLayoutResizeVert );
-  CoreQuadView_OnSetPoint4((CoreQuadView)&_this->TouchHandler, _Const0008 );
-  CoreQuadView_OnSetPoint3((CoreQuadView)&_this->TouchHandler, _Const000F );
-  CoreQuadView_OnSetPoint2((CoreQuadView)&_this->TouchHandler, _Const0010 );
-  CoreQuadView_OnSetPoint1((CoreQuadView)&_this->TouchHandler, _Const000B );
+  CoreQuadView_OnSetPoint4((CoreQuadView)&_this->TouchHandler, _Const0007 );
+  CoreQuadView_OnSetPoint3((CoreQuadView)&_this->TouchHandler, _Const0008 );
+  CoreQuadView_OnSetPoint2((CoreQuadView)&_this->TouchHandler, _Const0009 );
+  CoreQuadView_OnSetPoint1((CoreQuadView)&_this->TouchHandler, _Const000A );
   CoreSimpleTouchHandler_OnSetRetargetOffset( &_this->TouchHandler, 16 );
   CoreSimpleTouchHandler_OnSetMaxStrikeCount( &_this->TouchHandler, 100 );
   CoreGroup_Add((CoreGroup)_this, ((CoreView)&_this->TouchHandler ), 0 );
@@ -3367,7 +4695,7 @@ void WidgetSetPushButton_UpdateViewState( WidgetSetPushButton _this, XSet aState
   needsShadow = (XBool)(( _this->Appearance != 0 ) && ( !EwIsColorNull( _this->Appearance->ThumbShadowColorDefault ) 
   || !EwIsColorNull( _this->Appearance->ThumbShadowColorFocused )));
   area = EwGetRectORect( _this->Super2.Bounds );
-  thumbArea = _Const000C;
+  thumbArea = _Const000B;
   thumbCornerRadius = 0;
 
   if ( needsText && !( _this->textView != 0 ))
@@ -3506,35 +4834,35 @@ void WidgetSetPushButton_UpdateViewState( WidgetSetPushButton _this, XSet aState
     {
       case 'D' :
       {
-        thumbSize = _Const000B;
+        thumbSize = _Const000A;
         thumbCornerRadius = _this->Appearance->ThumbCornerRadiusDisabled;
       }
       break;
 
       case 'A' :
       {
-        thumbSize = _Const000B;
+        thumbSize = _Const000A;
         thumbCornerRadius = _this->Appearance->ThumbCornerRadiusActive;
       }
       break;
 
       case 'F' :
       {
-        thumbSize = _Const000B;
+        thumbSize = _Const000A;
         thumbCornerRadius = _this->Appearance->ThumbCornerRadiusFocused;
       }
       break;
 
       default : 
       {
-        thumbSize = _Const000B;
+        thumbSize = _Const000A;
         thumbCornerRadius = _this->Appearance->ThumbCornerRadiusDefault;
       }
     }
 
     thumbSize.X = ( thumbSize.X + EwGetRectW( r ));
     thumbSize.Y = ( thumbSize.Y + EwGetRectH( r ));
-    thumbSize = EwGetPointMax( 2, thumbSize, _Const000B );
+    thumbSize = EwGetPointMax( 2, thumbSize, _Const000A );
 
     if ( _this->animation != 0 )
     {
@@ -3545,35 +4873,35 @@ void WidgetSetPushButton_UpdateViewState( WidgetSetPushButton _this, XSet aState
       {
         case 'D' :
         {
-          thumbSizeS = _Const000B;
+          thumbSizeS = _Const000A;
           thumbCornerRadiusS = _this->Appearance->ThumbCornerRadiusDisabled;
         }
         break;
 
         case 'A' :
         {
-          thumbSizeS = _Const000B;
+          thumbSizeS = _Const000A;
           thumbCornerRadiusS = _this->Appearance->ThumbCornerRadiusActive;
         }
         break;
 
         case 'F' :
         {
-          thumbSizeS = _Const000B;
+          thumbSizeS = _Const000A;
           thumbCornerRadiusS = _this->Appearance->ThumbCornerRadiusFocused;
         }
         break;
 
         default : 
         {
-          thumbSizeS = _Const000B;
+          thumbSizeS = _Const000A;
           thumbCornerRadiusS = _this->Appearance->ThumbCornerRadiusDefault;
         }
       }
 
       thumbSizeS.X = ( thumbSizeS.X + EwGetRectW( r ));
       thumbSizeS.Y = ( thumbSizeS.Y + EwGetRectH( r ));
-      thumbSizeS = EwGetPointMax( 2, thumbSizeS, _Const000B );
+      thumbSizeS = EwGetPointMax( 2, thumbSizeS, _Const000A );
       thumbCornerRadius = EwMathMixInt32( thumbCornerRadiusS, thumbCornerRadius, 
       _this->animation->Value );
       thumbSize = EwMathMixPoint( thumbSizeS, thumbSize, _this->animation->Value );
@@ -3597,7 +4925,7 @@ void WidgetSetPushButton_UpdateViewState( WidgetSetPushButton _this, XSet aState
       case 'A' :
       {
         blur = 0;
-        clr = _Const0011;
+        clr = _Const000D;
       }
       break;
 
@@ -3626,7 +4954,7 @@ void WidgetSetPushButton_UpdateViewState( WidgetSetPushButton _this, XSet aState
         case 'A' :
         {
           blurS = 0;
-          clrS = _Const0011;
+          clrS = _Const000D;
         }
         break;
 
@@ -3652,7 +4980,7 @@ void WidgetSetPushButton_UpdateViewState( WidgetSetPushButton _this, XSet aState
     ViewsShadow_OnSetBlurRadius( _this->shadowView, blur );
     ViewsShadow_OnSetRadius( _this->shadowView, thumbCornerRadius );
     ViewsShadow_OnSetColor( _this->shadowView, clr );
-    ViewsShadow_OnSetOffset( _this->shadowView, _Const000B );
+    ViewsShadow_OnSetOffset( _this->shadowView, _Const000A );
     CoreView_OnSetStackingPriority((CoreView)_this->shadowView, 39 );
   }
 
@@ -3787,7 +5115,7 @@ void WidgetSetPushButton_UpdateViewState( WidgetSetPushButton _this, XSet aState
 
     if ((( _this->borderView1 != 0 ) && !!_this->borderView1->Width ) && ( _this->borderView1->Color.Alpha 
         == 255 ))
-      r = EwInflateRect( r, _Const0012 );
+      r = EwInflateRect( r, _Const000C );
 
     CoreRectView__OnSetBounds( _this->rectView1, r );
     ViewsRectangle_OnSetRadius( _this->rectView1, thumbCornerRadius );
@@ -4077,45 +5405,45 @@ void WidgetSetPushButton_Mono_Medium__Init( WidgetSetPushButtonConfig _this )
 {
   WidgetSetPushButtonConfig_OnSetStateTransitionDuration( _this, 50 );
   WidgetSetPushButtonConfig_OnSetPressedFeedbackDuration( _this, 100 );
-  WidgetSetPushButtonConfig_OnSetThumbShadowColorFocused( _this, _Const0013 );
-  WidgetSetPushButtonConfig_OnSetThumbShadowColorDefault( _this, _Const0014 );
+  WidgetSetPushButtonConfig_OnSetThumbShadowColorFocused( _this, _Const000E );
+  WidgetSetPushButtonConfig_OnSetThumbShadowColorDefault( _this, _Const000F );
   WidgetSetPushButtonConfig_OnSetThumbShadowBlurRadiusFocused( _this, 4 );
   WidgetSetPushButtonConfig_OnSetThumbShadowBlurRadiusDefault( _this, 3 );
-  WidgetSetPushButtonConfig_OnSetThumbBorderColorActive( _this, _Const0015 );
-  WidgetSetPushButtonConfig_OnSetThumbBorderColorFocused( _this, _Const0016 );
-  WidgetSetPushButtonConfig_OnSetThumbBorderColorDisabled( _this, _Const0015 );
-  WidgetSetPushButtonConfig_OnSetThumbBorderColorDefault( _this, _Const0015 );
+  WidgetSetPushButtonConfig_OnSetThumbBorderColorActive( _this, _Const0010 );
+  WidgetSetPushButtonConfig_OnSetThumbBorderColorFocused( _this, _Const0011 );
+  WidgetSetPushButtonConfig_OnSetThumbBorderColorDisabled( _this, _Const0010 );
+  WidgetSetPushButtonConfig_OnSetThumbBorderColorDefault( _this, _Const0010 );
   WidgetSetPushButtonConfig_OnSetThumbBorderWidthActive( _this, 1 );
   WidgetSetPushButtonConfig_OnSetThumbBorderWidthFocused( _this, 1 );
   WidgetSetPushButtonConfig_OnSetThumbBorderWidthDisabled( _this, 1 );
   WidgetSetPushButtonConfig_OnSetThumbBorderWidthDefault( _this, 1 );
-  WidgetSetPushButtonConfig_OnSetThumbColorActive( _this, _Const0006 );
-  WidgetSetPushButtonConfig_OnSetThumbColorFocused( _this, _Const0006 );
-  WidgetSetPushButtonConfig_OnSetThumbColorDisabled( _this, _Const0006 );
-  WidgetSetPushButtonConfig_OnSetThumbColorDefault( _this, _Const0006 );
+  WidgetSetPushButtonConfig_OnSetThumbColorActive( _this, _Const0005 );
+  WidgetSetPushButtonConfig_OnSetThumbColorFocused( _this, _Const0005 );
+  WidgetSetPushButtonConfig_OnSetThumbColorDisabled( _this, _Const0005 );
+  WidgetSetPushButtonConfig_OnSetThumbColorDefault( _this, _Const0005 );
   WidgetSetPushButtonConfig_OnSetThumbCornerRadiusActive( _this, 8 );
   WidgetSetPushButtonConfig_OnSetThumbCornerRadiusFocused( _this, 8 );
   WidgetSetPushButtonConfig_OnSetThumbCornerRadiusDisabled( _this, 8 );
   WidgetSetPushButtonConfig_OnSetThumbCornerRadiusDefault( _this, 8 );
-  WidgetSetPushButtonConfig_OnSetLabelColorActive( _this, _Const0017 );
-  WidgetSetPushButtonConfig_OnSetLabelColorFocused( _this, _Const0017 );
-  WidgetSetPushButtonConfig_OnSetLabelColorDisabled( _this, _Const0018 );
-  WidgetSetPushButtonConfig_OnSetLabelColorDefault( _this, _Const0017 );
+  WidgetSetPushButtonConfig_OnSetLabelColorActive( _this, _Const0012 );
+  WidgetSetPushButtonConfig_OnSetLabelColorFocused( _this, _Const0012 );
+  WidgetSetPushButtonConfig_OnSetLabelColorDisabled( _this, _Const0013 );
+  WidgetSetPushButtonConfig_OnSetLabelColorDefault( _this, _Const0012 );
   WidgetSetPushButtonConfig_OnSetLabelMarginBottom( _this, 6 );
   WidgetSetPushButtonConfig_OnSetLabelMarginTop( _this, 6 );
   WidgetSetPushButtonConfig_OnSetLabelMarginRight( _this, 6 );
   WidgetSetPushButtonConfig_OnSetLabelMarginLeft( _this, 6 );
-  WidgetSetPushButtonConfig_OnSetIconTintActive( _this, _Const0017 );
-  WidgetSetPushButtonConfig_OnSetIconTintFocused( _this, _Const0017 );
-  WidgetSetPushButtonConfig_OnSetIconTintDisabled( _this, _Const0018 );
-  WidgetSetPushButtonConfig_OnSetIconTintDefault( _this, _Const0017 );
+  WidgetSetPushButtonConfig_OnSetIconTintActive( _this, _Const0012 );
+  WidgetSetPushButtonConfig_OnSetIconTintFocused( _this, _Const0012 );
+  WidgetSetPushButtonConfig_OnSetIconTintDisabled( _this, _Const0013 );
+  WidgetSetPushButtonConfig_OnSetIconTintDefault( _this, _Const0012 );
   WidgetSetPushButtonConfig_OnSetIconMarginBottom( _this, 6 );
   WidgetSetPushButtonConfig_OnSetIconMarginTop( _this, 6 );
   WidgetSetPushButtonConfig_OnSetIconMarginRight( _this, 6 );
   WidgetSetPushButtonConfig_OnSetIconMarginLeft( _this, 6 );
   WidgetSetPushButtonConfig_OnSetLabelFont( _this, EwLoadResource( &ResourcesFontMedium, 
   ResourcesFont ));
-  WidgetSetPushButtonConfig_OnSetWidgetMinSize( _this, _Const0019 );
+  WidgetSetPushButtonConfig_OnSetWidgetMinSize( _this, _Const0014 );
 }
 
 /* Re-Initializer for the auto object 'WidgetSet::PushButton_Mono_Medium' */
@@ -4127,5 +5455,163 @@ void WidgetSetPushButton_Mono_Medium__ReInit( WidgetSetPushButtonConfig _this )
 /* Table with links to derived variants of the auto object : 'WidgetSet::PushButton_Mono_Medium' */
 EW_DEFINE_AUTOOBJECT_VARIANTS( WidgetSetPushButton_Mono_Medium )
 EW_END_OF_AUTOOBJECT_VARIANTS( WidgetSetPushButton_Mono_Medium )
+
+/* This autoobject provides one of the default customizations for the 'toggle' widget 
+   (WidgetSet::ToggleButton) in its medium size variant. With this customization 
+   the toggle button appears as a 'switch'. */
+EW_DEFINE_AUTOOBJECT( WidgetSetSwitch_Mono_Medium, WidgetSetToggleButtonConfig )
+
+/* Initializer for the auto object 'WidgetSet::Switch_Mono_Medium' */
+void WidgetSetSwitch_Mono_Medium__Init( WidgetSetToggleButtonConfig _this )
+{
+  WidgetSetToggleButtonConfig_OnSetStateTransitionDuration( _this, 50 );
+  WidgetSetToggleButtonConfig_OnSetPressedFeedbackDuration( _this, 100 );
+  WidgetSetToggleButtonConfig_OnSetLimitTouchArea( _this, 1 );
+  WidgetSetToggleButtonConfig_OnSetAccentOnColorActive( _this, _Const0015 );
+  WidgetSetToggleButtonConfig_OnSetAccentOnColorFocused( _this, _Const0015 );
+  WidgetSetToggleButtonConfig_OnSetAccentOnCornerRadiusActive( _this, 30 );
+  WidgetSetToggleButtonConfig_OnSetAccentOnCornerRadiusFocused( _this, 30 );
+  WidgetSetToggleButtonConfig_OnSetAccentOnCornerRadiusDisabled( _this, 30 );
+  WidgetSetToggleButtonConfig_OnSetAccentOnCornerRadiusDefault( _this, 30 );
+  WidgetSetToggleButtonConfig_OnSetAccentOnOffsetActive( _this, _Const0016 );
+  WidgetSetToggleButtonConfig_OnSetAccentOnOffsetFocused( _this, _Const0016 );
+  WidgetSetToggleButtonConfig_OnSetAccentOnOffsetDisabled( _this, _Const0016 );
+  WidgetSetToggleButtonConfig_OnSetAccentOnOffsetDefault( _this, _Const0016 );
+  WidgetSetToggleButtonConfig_OnSetAccentOnSizeActive( _this, _Const0017 );
+  WidgetSetToggleButtonConfig_OnSetAccentOnSizeFocused( _this, _Const0018 );
+  WidgetSetToggleButtonConfig_OnSetAccentOnSizeDisabled( _this, _Const0018 );
+  WidgetSetToggleButtonConfig_OnSetAccentOnSizeDefault( _this, _Const0018 );
+  WidgetSetToggleButtonConfig_OnSetAccentOffColorActive( _this, _Const0015 );
+  WidgetSetToggleButtonConfig_OnSetAccentOffColorFocused( _this, _Const0015 );
+  WidgetSetToggleButtonConfig_OnSetAccentOffCornerRadiusActive( _this, 30 );
+  WidgetSetToggleButtonConfig_OnSetAccentOffCornerRadiusFocused( _this, 30 );
+  WidgetSetToggleButtonConfig_OnSetAccentOffCornerRadiusDisabled( _this, 30 );
+  WidgetSetToggleButtonConfig_OnSetAccentOffCornerRadiusDefault( _this, 30 );
+  WidgetSetToggleButtonConfig_OnSetAccentOffOffsetActive( _this, _Const0019 );
+  WidgetSetToggleButtonConfig_OnSetAccentOffOffsetFocused( _this, _Const001A );
+  WidgetSetToggleButtonConfig_OnSetAccentOffOffsetDisabled( _this, _Const001A );
+  WidgetSetToggleButtonConfig_OnSetAccentOffOffsetDefault( _this, _Const001A );
+  WidgetSetToggleButtonConfig_OnSetAccentOffSizeActive( _this, _Const0017 );
+  WidgetSetToggleButtonConfig_OnSetAccentOffSizeFocused( _this, _Const0018 );
+  WidgetSetToggleButtonConfig_OnSetAccentOffSizeDisabled( _this, _Const0018 );
+  WidgetSetToggleButtonConfig_OnSetAccentOffSizeDefault( _this, _Const0018 );
+  WidgetSetToggleButtonConfig_OnSetAccentLayout( _this, CoreLayoutAlignToBottom 
+  | CoreLayoutAlignToRight | CoreLayoutAlignToTop );
+  WidgetSetToggleButtonConfig_OnSetThumbOnBorderColorActive( _this, _Const0015 );
+  WidgetSetToggleButtonConfig_OnSetThumbOnBorderColorFocused( _this, _Const0015 );
+  WidgetSetToggleButtonConfig_OnSetThumbOnBorderColorDisabled( _this, _Const0015 );
+  WidgetSetToggleButtonConfig_OnSetThumbOnBorderColorDefault( _this, _Const0015 );
+  WidgetSetToggleButtonConfig_OnSetThumbOnBorderWidthActive( _this, 1 );
+  WidgetSetToggleButtonConfig_OnSetThumbOnBorderWidthFocused( _this, 1 );
+  WidgetSetToggleButtonConfig_OnSetThumbOnBorderWidthDisabled( _this, 1 );
+  WidgetSetToggleButtonConfig_OnSetThumbOnBorderWidthDefault( _this, 1 );
+  WidgetSetToggleButtonConfig_OnSetThumbOnColorActive( _this, _Const001B );
+  WidgetSetToggleButtonConfig_OnSetThumbOnColorFocused( _this, _Const001B );
+  WidgetSetToggleButtonConfig_OnSetThumbOnColorDisabled( _this, _Const001C );
+  WidgetSetToggleButtonConfig_OnSetThumbOnColorDefault( _this, _Const001B );
+  WidgetSetToggleButtonConfig_OnSetThumbOnCornerRadiusActive( _this, 15 );
+  WidgetSetToggleButtonConfig_OnSetThumbOnCornerRadiusFocused( _this, 15 );
+  WidgetSetToggleButtonConfig_OnSetThumbOnCornerRadiusDisabled( _this, 15 );
+  WidgetSetToggleButtonConfig_OnSetThumbOnCornerRadiusDefault( _this, 15 );
+  WidgetSetToggleButtonConfig_OnSetThumbOnOffsetActive( _this, _Const001D );
+  WidgetSetToggleButtonConfig_OnSetThumbOnOffsetFocused( _this, _Const001D );
+  WidgetSetToggleButtonConfig_OnSetThumbOnOffsetDisabled( _this, _Const001D );
+  WidgetSetToggleButtonConfig_OnSetThumbOnOffsetDefault( _this, _Const001D );
+  WidgetSetToggleButtonConfig_OnSetThumbOnSizeActive( _this, _Const001E );
+  WidgetSetToggleButtonConfig_OnSetThumbOnSizeFocused( _this, _Const001F );
+  WidgetSetToggleButtonConfig_OnSetThumbOnSizeDisabled( _this, _Const001F );
+  WidgetSetToggleButtonConfig_OnSetThumbOnSizeDefault( _this, _Const001F );
+  WidgetSetToggleButtonConfig_OnSetThumbOffBorderColorActive( _this, _Const0015 );
+  WidgetSetToggleButtonConfig_OnSetThumbOffBorderColorFocused( _this, _Const0015 );
+  WidgetSetToggleButtonConfig_OnSetThumbOffBorderColorDisabled( _this, _Const0015 );
+  WidgetSetToggleButtonConfig_OnSetThumbOffBorderColorDefault( _this, _Const0015 );
+  WidgetSetToggleButtonConfig_OnSetThumbOffBorderWidthActive( _this, 1 );
+  WidgetSetToggleButtonConfig_OnSetThumbOffBorderWidthFocused( _this, 1 );
+  WidgetSetToggleButtonConfig_OnSetThumbOffBorderWidthDisabled( _this, 1 );
+  WidgetSetToggleButtonConfig_OnSetThumbOffBorderWidthDefault( _this, 1 );
+  WidgetSetToggleButtonConfig_OnSetThumbOffColorActive( _this, _Const001B );
+  WidgetSetToggleButtonConfig_OnSetThumbOffColorFocused( _this, _Const001B );
+  WidgetSetToggleButtonConfig_OnSetThumbOffColorDisabled( _this, _Const001C );
+  WidgetSetToggleButtonConfig_OnSetThumbOffColorDefault( _this, _Const001B );
+  WidgetSetToggleButtonConfig_OnSetThumbOffCornerRadiusActive( _this, 15 );
+  WidgetSetToggleButtonConfig_OnSetThumbOffCornerRadiusFocused( _this, 15 );
+  WidgetSetToggleButtonConfig_OnSetThumbOffCornerRadiusDisabled( _this, 15 );
+  WidgetSetToggleButtonConfig_OnSetThumbOffCornerRadiusDefault( _this, 15 );
+  WidgetSetToggleButtonConfig_OnSetThumbOffOffsetActive( _this, _Const0020 );
+  WidgetSetToggleButtonConfig_OnSetThumbOffOffsetFocused( _this, _Const0021 );
+  WidgetSetToggleButtonConfig_OnSetThumbOffOffsetDisabled( _this, _Const0021 );
+  WidgetSetToggleButtonConfig_OnSetThumbOffOffsetDefault( _this, _Const0021 );
+  WidgetSetToggleButtonConfig_OnSetThumbOffSizeActive( _this, _Const001E );
+  WidgetSetToggleButtonConfig_OnSetThumbOffSizeFocused( _this, _Const001F );
+  WidgetSetToggleButtonConfig_OnSetThumbOffSizeDisabled( _this, _Const001F );
+  WidgetSetToggleButtonConfig_OnSetThumbOffSizeDefault( _this, _Const001F );
+  WidgetSetToggleButtonConfig_OnSetThumbLayout( _this, CoreLayoutAlignToBottom | 
+  CoreLayoutAlignToRight | CoreLayoutAlignToTop );
+  WidgetSetToggleButtonConfig_OnSetTrackOnBorderColorActive( _this, _Const0011 );
+  WidgetSetToggleButtonConfig_OnSetTrackOnBorderColorFocused( _this, _Const0011 );
+  WidgetSetToggleButtonConfig_OnSetTrackOnBorderColorDisabled( _this, _Const0010 );
+  WidgetSetToggleButtonConfig_OnSetTrackOnBorderColorDefault( _this, _Const0011 );
+  WidgetSetToggleButtonConfig_OnSetTrackOnBorderWidthActive( _this, 2 );
+  WidgetSetToggleButtonConfig_OnSetTrackOnBorderWidthFocused( _this, 2 );
+  WidgetSetToggleButtonConfig_OnSetTrackOnBorderWidthDisabled( _this, 2 );
+  WidgetSetToggleButtonConfig_OnSetTrackOnBorderWidthDefault( _this, 2 );
+  WidgetSetToggleButtonConfig_OnSetTrackOnColorActive( _this, _Const0005 );
+  WidgetSetToggleButtonConfig_OnSetTrackOnColorFocused( _this, _Const0005 );
+  WidgetSetToggleButtonConfig_OnSetTrackOnColorDisabled( _this, _Const0005 );
+  WidgetSetToggleButtonConfig_OnSetTrackOnColorDefault( _this, _Const0005 );
+  WidgetSetToggleButtonConfig_OnSetTrackOffBorderColorActive( _this, _Const0011 );
+  WidgetSetToggleButtonConfig_OnSetTrackOffBorderColorFocused( _this, _Const0011 );
+  WidgetSetToggleButtonConfig_OnSetTrackOffBorderColorDisabled( _this, _Const0010 );
+  WidgetSetToggleButtonConfig_OnSetTrackOffBorderColorDefault( _this, _Const0011 );
+  WidgetSetToggleButtonConfig_OnSetTrackOffBorderWidthActive( _this, 2 );
+  WidgetSetToggleButtonConfig_OnSetTrackOffBorderWidthFocused( _this, 2 );
+  WidgetSetToggleButtonConfig_OnSetTrackOffBorderWidthDisabled( _this, 2 );
+  WidgetSetToggleButtonConfig_OnSetTrackOffBorderWidthDefault( _this, 2 );
+  WidgetSetToggleButtonConfig_OnSetTrackOffColorActive( _this, _Const0005 );
+  WidgetSetToggleButtonConfig_OnSetTrackOffColorFocused( _this, _Const0005 );
+  WidgetSetToggleButtonConfig_OnSetTrackOffColorDisabled( _this, _Const0005 );
+  WidgetSetToggleButtonConfig_OnSetTrackOffColorDefault( _this, _Const0005 );
+  WidgetSetToggleButtonConfig_OnSetTrackCornerRadius( _this, 18 );
+  WidgetSetToggleButtonConfig_OnSetTrackSize( _this, _Const0022 );
+  WidgetSetToggleButtonConfig_OnSetTrackLayout( _this, CoreLayoutAlignToBottom | 
+  CoreLayoutAlignToRight | CoreLayoutAlignToTop );
+  WidgetSetToggleButtonConfig_OnSetLabelOnColorActive( _this, _Const0012 );
+  WidgetSetToggleButtonConfig_OnSetLabelOnColorFocused( _this, _Const0012 );
+  WidgetSetToggleButtonConfig_OnSetLabelOnColorDisabled( _this, _Const0013 );
+  WidgetSetToggleButtonConfig_OnSetLabelOnColorDefault( _this, _Const0012 );
+  WidgetSetToggleButtonConfig_OnSetLabelOffColorActive( _this, _Const0012 );
+  WidgetSetToggleButtonConfig_OnSetLabelOffColorFocused( _this, _Const0012 );
+  WidgetSetToggleButtonConfig_OnSetLabelOffColorDisabled( _this, _Const0013 );
+  WidgetSetToggleButtonConfig_OnSetLabelOffColorDefault( _this, _Const0012 );
+  WidgetSetToggleButtonConfig_OnSetLabelMarginRight( _this, 75 );
+  WidgetSetToggleButtonConfig_OnSetIconOnTintActive( _this, _Const0012 );
+  WidgetSetToggleButtonConfig_OnSetIconOnTintFocused( _this, _Const0012 );
+  WidgetSetToggleButtonConfig_OnSetIconOnTintDisabled( _this, _Const0013 );
+  WidgetSetToggleButtonConfig_OnSetIconOnTintDefault( _this, _Const0012 );
+  WidgetSetToggleButtonConfig_OnSetIconOffTintActive( _this, _Const0012 );
+  WidgetSetToggleButtonConfig_OnSetIconOffTintFocused( _this, _Const0012 );
+  WidgetSetToggleButtonConfig_OnSetIconOffTintDisabled( _this, _Const0013 );
+  WidgetSetToggleButtonConfig_OnSetIconOffTintDefault( _this, _Const0012 );
+  WidgetSetToggleButtonConfig_OnSetIconMarginRight( _this, 75 );
+  WidgetSetToggleButtonConfig_OnSetLabelAlignment( _this, ViewsTextAlignmentAlignHorzLeft 
+  | ViewsTextAlignmentAlignVertCenter );
+  WidgetSetToggleButtonConfig_OnSetLabelOnFont( _this, EwLoadResource( &ResourcesFontMedium, 
+  ResourcesFont ));
+  WidgetSetToggleButtonConfig_OnSetLabelOffFont( _this, EwLoadResource( &ResourcesFontMedium, 
+  ResourcesFont ));
+  WidgetSetToggleButtonConfig_OnSetIconAlignment( _this, ViewsImageAlignmentAlignHorzLeft 
+  | ViewsImageAlignmentAlignVertCenter );
+  WidgetSetToggleButtonConfig_OnSetWidgetMinSize( _this, _Const0023 );
+}
+
+/* Re-Initializer for the auto object 'WidgetSet::Switch_Mono_Medium' */
+void WidgetSetSwitch_Mono_Medium__ReInit( WidgetSetToggleButtonConfig _this )
+{
+  EW_UNUSED_ARG( _this );
+}
+
+/* Table with links to derived variants of the auto object : 'WidgetSet::Switch_Mono_Medium' */
+EW_DEFINE_AUTOOBJECT_VARIANTS( WidgetSetSwitch_Mono_Medium )
+EW_END_OF_AUTOOBJECT_VARIANTS( WidgetSetSwitch_Mono_Medium )
 
 /* Embedded Wizard */

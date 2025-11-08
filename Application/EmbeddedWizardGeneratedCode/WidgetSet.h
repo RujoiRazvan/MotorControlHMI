@@ -42,26 +42,14 @@
   #error Wrong version of Embedded Wizard Graphics Engine.
 #endif
 
-#include "_WidgetSetHorizontalSlider.h"
-#include "_WidgetSetHorizontalSliderConfig.h"
 #include "_WidgetSetPushButton.h"
 #include "_WidgetSetPushButtonConfig.h"
 #include "_WidgetSetToggleButton.h"
 #include "_WidgetSetToggleButtonConfig.h"
 #include "_WidgetSetWidgetConfig.h"
 
-/* Bitmap resource used per default by the Widgets customized for the small  size. */
-EW_DECLARE_BITMAP_RES( WidgetSetHorizontalSliderTrackSmall )
-
-/* Bitmap resource used per default by the Widgets customized for the small  size. */
-EW_DECLARE_BITMAP_RES( WidgetSetThumbKnobSmall )
-
 /* Bitmap resource used per default by the Widgets customized for the medium size. */
 EW_DECLARE_BITMAP_RES( WidgetSetSwitchMedium )
-
-/* This autoobject provides the default customization for the 'horizontal slider' 
-   widget (WidgetSet::HorizontalSlider) in its small size variant. */
-EW_DECLARE_AUTOOBJECT( WidgetSetHorizontalSlider_Lime_Small, WidgetSetHorizontalSliderConfig )
 
 /* This autoobject provides one of the default customizations for the 'toggle' widget 
    (WidgetSet::ToggleButton) in its medium size variant. With this customization 
@@ -71,6 +59,11 @@ EW_DECLARE_AUTOOBJECT( WidgetSetSwitch_Lime_Medium, WidgetSetToggleButtonConfig 
 /* This autoobject provides the default customization for the 'push button' widget 
    (WidgetSet::PushButton) in its medium size variant. */
 EW_DECLARE_AUTOOBJECT( WidgetSetPushButton_Mono_Medium, WidgetSetPushButtonConfig )
+
+/* This autoobject provides one of the default customizations for the 'toggle' widget 
+   (WidgetSet::ToggleButton) in its medium size variant. With this customization 
+   the toggle button appears as a 'switch'. */
+EW_DECLARE_AUTOOBJECT( WidgetSetSwitch_Mono_Medium, WidgetSetToggleButtonConfig )
 
 #ifdef __cplusplus
   }

@@ -51,6 +51,35 @@
 #endif
 
 
+/*
+ * PINS Declaration
+ */
+
+#define Out1_Pin GPIO_PIN_10
+#define Out1_GPIO_Port GPIOI
+
+#define Out2_Pin GPIO_PIN_9
+#define Out2_GPIO_Port GPIOI
+
+#define IN1_Pin GPIO_PIN_9
+#define IN1_GPIO_Port GPIOH
+
+#define IN2_Pin GPIO_PIN_10
+#define IN2_GPIO_Port GPIOH
+
+#define IN3_Pin GPIO_PIN_11
+#define IN3_GPIO_Port GPIOH
+
+#define IN4_Pin GPIO_PIN_7
+#define IN4_GPIO_Port GPIOI
+
+#define USER_LED1_Pin GPIO_PIN_11
+#define USER_LED1_GPIO_Port GPIOG
+
+#define USER_LED2_Pin GPIO_PIN_2
+#define USER_LED2_GPIO_Port GPIOG
+
+
 /*******************************************************************************
 * FUNCTION:
 *   DeviceIntegrationExample_Init
@@ -183,6 +212,9 @@ void DeviceDriver_Deinitialize( void );
 *
 *******************************************************************************/
 int DeviceDriver_ProcessData( void );
+
+
+void DeviceDriver_SetOutputState(XInt32 output_number, XBool output_state);
 
 
 #ifdef __cplusplus

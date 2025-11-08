@@ -127,7 +127,6 @@
    all handler appear as semitransparent quads. This allows you to interact with 
    the handlers during the design time. */
 EW_DEFINE_FIELDS( CoreSimpleTouchHandler, CoreQuadView )
-  EW_PROPERTY( OnDrag,          XSlot )
   EW_PROPERTY( OnLeave,         XSlot )
   EW_PROPERTY( OnEnter,         XSlot )
   EW_PROPERTY( OnRelease,       XSlot )

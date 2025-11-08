@@ -42,13 +42,15 @@
   #error Wrong version of Embedded Wizard Graphics Engine.
 #endif
 
+#include "_ApplicationFaultOrWarning.h"
+#include "_ApplicationInput.h"
+#include "_ApplicationLed.h"
+#include "_ApplicationReady.h"
 #include "_CoreGroup.h"
 #include "_CoreTimer.h"
 #include "_CoreWipeTouchHandler.h"
-#include "_ViewsImage.h"
 #include "_ViewsRectangle.h"
 #include "_ViewsText.h"
-#include "_WidgetSetHorizontalSlider.h"
 #include "_WidgetSetPushButton.h"
 #include "_WidgetSetToggleButton.h"
 
@@ -100,29 +102,35 @@ EW_DEFINE_FIELDS( ApplicationHMI, CoreGroup )
   EW_OBJECT  ( WipeTouchHandler, CoreWipeTouchHandler )
   EW_OBJECT  ( splashTimer,     CoreTimer )
   EW_OBJECT  ( Rectangle,       ViewsRectangle )
-  EW_OBJECT  ( HorizontalSlider, WidgetSetHorizontalSlider )
-  EW_OBJECT  ( Text,            ViewsText )
-  EW_OBJECT  ( Text1,           ViewsText )
-  EW_OBJECT  ( Text2,           ViewsText )
-  EW_OBJECT  ( Text3,           ViewsText )
-  EW_OBJECT  ( Motor_On,        ViewsImage )
-  EW_OBJECT  ( Motor_Error,     ViewsImage )
-  EW_OBJECT  ( Motor_Off,       ViewsImage )
-  EW_OBJECT  ( ToggleButton,    WidgetSetToggleButton )
-  EW_OBJECT  ( ToggleButton1,   WidgetSetToggleButton )
-  EW_OBJECT  ( IN1_ON,          ViewsImage )
-  EW_OBJECT  ( IN1_Off,         ViewsImage )
-  EW_OBJECT  ( IN2_ON,          ViewsImage )
-  EW_OBJECT  ( IN2_Off,         ViewsImage )
-  EW_OBJECT  ( IN3_ON,          ViewsImage )
-  EW_OBJECT  ( IN3_Off,         ViewsImage )
-  EW_OBJECT  ( IN4_ON,          ViewsImage )
-  EW_OBJECT  ( IN4_Off,         ViewsImage )
-  EW_OBJECT  ( IN1_Text,        ViewsText )
-  EW_OBJECT  ( IN2_Text,        ViewsText )
-  EW_OBJECT  ( IN3_Text,        ViewsText )
-  EW_OBJECT  ( IN4_Text,        ViewsText )
+  EW_OBJECT  ( Out1,            WidgetSetToggleButton )
+  EW_OBJECT  ( Out2,            WidgetSetToggleButton )
   EW_OBJECT  ( TripResetButton, WidgetSetPushButton )
+  EW_OBJECT  ( CW,              WidgetSetToggleButton )
+  EW_OBJECT  ( CCW,             WidgetSetToggleButton )
+  EW_OBJECT  ( Cycle,           WidgetSetToggleButton )
+  EW_OBJECT  ( CycleCounterText, ViewsText )
+  EW_OBJECT  ( CycleCounterValue, ViewsText )
+  EW_OBJECT  ( Fault,           ApplicationFaultOrWarning )
+  EW_OBJECT  ( Warning,         ApplicationFaultOrWarning )
+  EW_OBJECT  ( Ready,           ApplicationReady )
+  EW_OBJECT  ( IN1,             ApplicationInput )
+  EW_OBJECT  ( IN2,             ApplicationInput )
+  EW_OBJECT  ( IN3,             ApplicationInput )
+  EW_OBJECT  ( IN4,             ApplicationInput )
+  EW_OBJECT  ( CWLed,           ApplicationLed )
+  EW_OBJECT  ( CCWLed,          ApplicationLed )
+  EW_OBJECT  ( CycleLed,        ApplicationLed )
+  EW_OBJECT  ( Timer,           CoreTimer )
+  EW_PROPERTY( Outlet_On1,      XRef )
+  EW_PROPERTY( Outlet_On2,      XRef )
+  EW_PROPERTY( Value,           XInt32 )
+  EW_PROPERTY( Value_Out2,      XInt32 )
+  EW_PROPERTY( cwValue,         XInt16 )
+  EW_PROPERTY( ccwValue,        XInt16 )
+  EW_PROPERTY( cycleValue,      XInt16 )
+  EW_PROPERTY( motorReady,      XBool )
+  EW_PROPERTY( FaultStatus,     XBool )
+  EW_PROPERTY( WarningStatus,   XBool )
 EW_END_OF_FIELDS( ApplicationHMI )
 
 /* Virtual Method Table (VMT) for the class : 'Application::HMI' */
@@ -157,11 +165,65 @@ EW_END_OF_METHODS( ApplicationHMI )
 /* 'C' function for method : 'Application::HMI.onTimer()' */
 void ApplicationHMI_onTimer( ApplicationHMI _this, XObject sender );
 
-/* 'C' function for method : 'Application::HMI.motorSlider()' */
-void ApplicationHMI_motorSlider( ApplicationHMI _this, XObject sender );
-
 /* 'C' function for method : 'Application::HMI.onTripResetPress()' */
 void ApplicationHMI_onTripResetPress( ApplicationHMI _this, XObject sender );
+
+/* 'C' function for method : 'Application::HMI.onOut1On()' */
+void ApplicationHMI_onOut1On( ApplicationHMI _this, XObject sender );
+
+/* 'C' function for method : 'Application::HMI.onOut1Off()' */
+void ApplicationHMI_onOut1Off( ApplicationHMI _this, XObject sender );
+
+/* 'C' function for method : 'Application::HMI.OnSetValue()' */
+void ApplicationHMI_OnSetValue( ApplicationHMI _this, XInt32 value );
+
+/* 'C' function for method : 'Application::HMI.onOut2On()' */
+void ApplicationHMI_onOut2On( ApplicationHMI _this, XObject sender );
+
+/* 'C' function for method : 'Application::HMI.onOut2Off()' */
+void ApplicationHMI_onOut2Off( ApplicationHMI _this, XObject sender );
+
+/* 'C' function for method : 'Application::HMI.OnSetValue_Out2()' */
+void ApplicationHMI_OnSetValue_Out2( ApplicationHMI _this, XInt32 value );
+
+/* 'C' function for method : 'Application::HMI.onCWOn()' */
+void ApplicationHMI_onCWOn( ApplicationHMI _this, XObject sender );
+
+/* 'C' function for method : 'Application::HMI.onCWOff()' */
+void ApplicationHMI_onCWOff( ApplicationHMI _this, XObject sender );
+
+/* 'C' function for method : 'Application::HMI.onCCWOn()' */
+void ApplicationHMI_onCCWOn( ApplicationHMI _this, XObject sender );
+
+/* 'C' function for method : 'Application::HMI.onCCWOff()' */
+void ApplicationHMI_onCCWOff( ApplicationHMI _this, XObject sender );
+
+/* 'C' function for method : 'Application::HMI.OnSetcwValue()' */
+void ApplicationHMI_OnSetcwValue( ApplicationHMI _this, XInt16 value );
+
+/* 'C' function for method : 'Application::HMI.OnSetccwValue()' */
+void ApplicationHMI_OnSetccwValue( ApplicationHMI _this, XInt16 value );
+
+/* 'C' function for method : 'Application::HMI.OnSetmotorReady()' */
+void ApplicationHMI_OnSetmotorReady( ApplicationHMI _this, XBool value );
+
+/* 'C' function for method : 'Application::HMI.OnSetFaultStatus()' */
+void ApplicationHMI_OnSetFaultStatus( ApplicationHMI _this, XBool value );
+
+/* 'C' function for method : 'Application::HMI.OnSetWarningStatus()' */
+void ApplicationHMI_OnSetWarningStatus( ApplicationHMI _this, XBool value );
+
+/* 'C' function for method : 'Application::HMI.onSetCycle()' */
+void ApplicationHMI_onSetCycle( ApplicationHMI _this, XObject sender );
+
+/* 'C' function for method : 'Application::HMI.OnSetcycleValue()' */
+void ApplicationHMI_OnSetcycleValue( ApplicationHMI _this, XInt16 value );
+
+/* 'C' function for method : 'Application::HMI.onResetCycle()' */
+void ApplicationHMI_onResetCycle( ApplicationHMI _this, XObject sender );
+
+/* 'C' function for method : 'Application::HMI.checkMotorStatus()' */
+void ApplicationHMI_checkMotorStatus( ApplicationHMI _this, XObject sender );
 
 #ifdef __cplusplus
   }

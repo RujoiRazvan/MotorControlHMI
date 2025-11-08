@@ -352,9 +352,6 @@ void CoreGroup_OnSetFocus( CoreGroup _this, CoreView value );
 /* Wrapper function for the virtual method : 'Core::Group.OnSetFocus()' */
 void CoreGroup__OnSetFocus( void* _this, CoreView value );
 
-/* 'C' function for method : 'Core::Group.OnSetClipViews()' */
-void CoreGroup_OnSetClipViews( CoreGroup _this, XBool value );
-
 /* 'C' function for method : 'Core::Group.OnSetEnabled()' */
 void CoreGroup_OnSetEnabled( CoreGroup _this, XBool value );
 
@@ -363,6 +360,9 @@ void CoreGroup_OnSetOpacity( CoreGroup _this, XInt32 value );
 
 /* Wrapper function for the virtual method : 'Core::Group.OnSetOpacity()' */
 void CoreGroup__OnSetOpacity( void* _this, XInt32 value );
+
+/* 'C' function for method : 'Core::Group.OnSetEmbedded()' */
+void CoreGroup_OnSetEmbedded( CoreGroup _this, XBool value );
 
 /* 'C' function for method : 'Core::Group.OnGetVisible()' */
 XBool CoreGroup_OnGetVisible( CoreGroup _this );

@@ -1,4 +1,5 @@
 Application/Project/STM32CubeIDE/STM32H7B3-Discovery/BUILD
+Application/Project/STM32CubeIDE/STM32H7B3-Discovery/.settings/
 cmake/Obj
 cmake/Bin
 /TIA_Simulation/Application.ewu.bak
