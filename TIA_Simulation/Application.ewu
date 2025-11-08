@@ -379,15 +379,15 @@ class WelcomePage : Core::Group
   $rect <20,20,160,60>
   object Views::Text Text
   {
-    preset Bounds = <86,97,394,176>;
+    preset Bounds = <0,97,480,176>;
     preset OverflowWarning = true;
-    preset ColorBL = #FF3003FF;
-    preset ColorBR = #FF3003FF;
-    preset ColorTR = #FF3003FF;
-    preset ColorTL = #FF3003FF;
-    preset String = "Welcome Page";
+    preset ColorBL = #50DFFFFF;
+    preset ColorBR = #50DFFFFF;
+    preset ColorTR = #50DFFFFF;
+    preset ColorTL = #50DFFFFF;
+    preset String = "Motor Starter Emulator";
     preset Font = Resources::FontExtraLarge;
-    preset Color = #FF3003FF;
+    preset Color = #50DFFFFF;
   }
 }
 
@@ -594,7 +594,7 @@ class HMI : Core::Group
   object WidgetSet::PushButton TripResetButton
   {
     preset Bounds = <338,151,463,201>;
-    preset Visible = true;
+    preset Visible = false;
     preset OnPress = onTripResetPress;
     preset Label = "Trip Reset";
     preset Appearance = WidgetSet::PushButton_Mono_Medium;
@@ -603,9 +603,8 @@ class HMI : Core::Group
   $rect <910,40,1110,80>
   slot onTripResetPress
   {
-    faultEnabled = !faultEnabled;
-    warningEnabled = !warningEnabled;
-    input1State = !input1State;
+    FaultStatus = false;
+    WarningStatus = false;
   }
 
   // On Page Slots
@@ -791,8 +790,8 @@ class HMI : Core::Group
     preset Checked = false;
     preset OnRelease = null;
     preset OnPress = null;
-    preset OnSwitchOn = null;
-    preset OnSwitchOff = null;
+    preset OnSwitchOn = onSetCycle;
+    preset OnSwitchOff = onResetCycle;
     preset Label = "Cycle";
     preset Appearance = WidgetSet::Switch_Mono_Medium;
   }
@@ -842,15 +841,18 @@ class HMI : Core::Group
   $rect <560,530,760,570>
   slot onCWOn
   {
-    cwValue = 1;
+    if (motorReady)
+      cwValue = 1;
+    else
+      cwValue = 0;
 
-    trace Value;
+    //trace Value;
   }
 
   // Motor Control
   note group Note4
   {
-    attr Bounds = <530,430,1640,680>;
+    attr Bounds = <530,430,1640,790>;
   }
 
   $rect <559,479,759,519>
@@ -858,27 +860,30 @@ class HMI : Core::Group
   {
     cwValue = 0;
 
-    trace Value;
+    //trace Value;
   }
 
   $rect <559,631,759,671>
   slot onCCWOn
   {
-    ccwValue = 1;
-    trace Value;
+    if (motorReady)
+      ccwValue = 1;
+    else
+      ccwValue = 0;
+    //trace Value;
   }
 
   $rect <558,580,758,620>
   slot onCCWOff
   {
     ccwValue = 0;
-    trace Value;
+    //trace Value;
   }
 
-  $rect <782,480,982,520>
+  $rect <782,503,982,543>
   property int16 cwValue;
 
-  $rect <1002,480,1202,520>
+  $rect <1002,503,1202,543>
   onset cwValue
   {
     // The value doesn't change - nothing to do.
@@ -888,7 +893,7 @@ class HMI : Core::Group
     // Remember the property's new value.
     pure cwValue = value;
     CWLed.ledState = value;
-    if ( cwOutlet != null )
+    if ( cwOutlet != null && motorReady)
     {
       if ( value == 0 )
       {
@@ -900,16 +905,17 @@ class HMI : Core::Group
       }
 
     }
-
+    else if ( cwOutlet != null && !motorReady)
+      cwOutlet^ = false;
     // TO DO:
     // 
     // Now you can handle the alternation of the property.
   }
 
-  $rect <1222,480,1422,520>
+  $rect <1222,503,1422,543>
   property ^bool cwOutlet;
 
-  $rect <1432,480,1632,520>
+  $rect <1432,503,1632,543>
   onset cwOutlet
   {
     // The value doesn't change - nothing to do.
@@ -939,7 +945,7 @@ class HMI : Core::Group
     CCWLed.ledState = value;
     if ( ccwOutlet != null )
     {
-      if ( value == 0 )
+      if ( value == 0 && motorReady)
       {
         ccwOutlet^ = false;
       }
@@ -949,7 +955,8 @@ class HMI : Core::Group
       }
 
     }
-
+    else if ( ccwOutlet != null && !motorReady)
+      ccwOutlet^ = false;
     // TO DO:
     // 
     // Now you can handle the alternation of the property.
@@ -986,6 +993,7 @@ class HMI : Core::Group
     // Remember the property's new value.
     pure motorReady = value;
     Ready.readyFlag = motorReady;
+    TripResetButton.Visible = false;
 
   }
 
@@ -996,20 +1004,22 @@ class HMI : Core::Group
   }
 
   $rect <1390,39,1590,79>
-  property bool faultEnabled;
+  property bool FaultStatus;
 
   $rect <1390,79,1590,119>
-  onset faultEnabled
+  onset FaultStatus
   {
     // The value doesn't change - nothing to do.
-    if ( pure faultEnabled == value )
+    if ( pure FaultStatus == value )
       return;
 
     // Remember the property's new value.
-    pure faultEnabled = value;
+    pure FaultStatus = value;
     Fault.type = "Fault";
     Fault.Text.String = "Fault";
-    Fault.enabled = faultEnabled;
+    Fault.enabled = FaultStatus;
+    motorReady = false;
+    TripResetButton.Visible = true;
 
     // TO DO:
     // 
@@ -1017,20 +1027,20 @@ class HMI : Core::Group
   }
 
   $rect <1600,39,1800,79>
-  property bool warningEnabled;
+  property bool WarningStatus;
 
   $rect <1600,79,1800,119>
-  onset warningEnabled
+  onset WarningStatus
   {
     // The value doesn't change - nothing to do.
-    if ( pure warningEnabled == value )
+    if ( pure WarningStatus == value )
       return;
 
     // Remember the property's new value.
-    pure warningEnabled = value;
+    pure WarningStatus = value;
     Warning.type = "Warning";
     Warning.Text.String = "Warning";
-    Warning.enabled = warningEnabled;
+    Warning.enabled = WarningStatus;
     // TO DO:
     // 
     // Now you can handle the alternation of the property.
@@ -1042,6 +1052,7 @@ class HMI : Core::Group
     preset Bounds = <202,50,325,93>;
     preset inputState = false;
     preset inputNumber = 1;
+    preset Outlet = null;
   }
 
   $rect <20,20,160,60>
@@ -1056,7 +1067,7 @@ class HMI : Core::Group
   object Application::Input IN3
   {
     preset Bounds = <202,136,325,179>;
-    preset inputState = false;
+    preset inputState = null;
     preset inputNumber = 3;
   }
 
@@ -1192,6 +1203,94 @@ class HMI : Core::Group
     preset Bounds = <135,146,166,189>;
   }
 
+  $rect <560,680,760,720>
+  slot onSetCycle
+  {
+    if (motorReady)
+      cycleValue = 1;
+    else
+      cycleValue = 0;
+  }
+
+  $rect <770,703,970,743>
+  property int16 cycleValue;
+
+  $rect <990,703,1190,743>
+  onset cycleValue
+  {
+    // The value doesn't change - nothing to do.
+    if ( pure cycleValue == value )
+      return;
+
+    // Remember the property's new value.
+    pure cycleValue = value;
+    CycleLed.ledState = value;
+
+    if (cycleOutlet != null && motorReady)
+    {
+      if (value == 1)
+      {
+        cycleOutlet^ = true;
+      }
+      else
+      {
+        cycleOutlet^ = false;
+      }
+    }
+    else if ( cycleOutlet != null && !motorReady)
+      cycleOutlet^ = false;
+    // TO DO:
+    // 
+    // Now you can handle the alternation of the property.
+  }
+
+  $rect <1210,703,1410,743>
+  property ^bool cycleOutlet;
+
+  $rect <1430,703,1630,743>
+  onset cycleOutlet
+  {
+    // The value doesn't change - nothing to do.
+    if ( pure cycleOutlet == value )
+      return;
+
+    // Remember the property's new value.
+    //trace value;
+    pure cycleOutlet = value;
+
+    // TO DO:
+    // 
+    // Now you can handle the alternation of the property.
+  }
+
+  $rect <560,730,760,770>
+  slot onResetCycle
+  {
+    cycleValue = 0;
+  }
+
+  $rect <780,810,980,850>
+  slot checkMotorStatus
+  {
+    if ((cwValue == 1 && ccwValue == 1) || ((cwValue == 1 || ccwValue == 1) && cycleValue == 1))
+    {
+      FaultStatus = true;
+    }
+    if (!FaultStatus)
+    {
+      motorReady = true;
+    }
+
+  }
+
+  $rect <560,810,760,850>
+  object Core::Timer Timer
+  {
+    preset OnTrigger = checkMotorStatus;
+    preset Period = 1;
+    preset Enabled = true;
+  }
+
   // Directives to adapt the order of the above members according to how these members 
   // where arranged when the project content was stored. In this manner the storage 
   // and the expected order of the members don't depend. Merging of changes in the 
@@ -1247,10 +1346,10 @@ class HMI : Core::Group
   $member motorReady
   $member OnSetmotorReady
   $member Note5
-  $member faultEnabled
-  $member OnSetfaultEnabled
-  $member warningEnabled
-  $member OnSetwarningEnabled
+  $member FaultStatus
+  $member OnSetFaultStatus
+  $member WarningStatus
+  $member OnSetWarningStatus
   $member IN1
   $member IN2
   $member IN3
@@ -1271,6 +1370,14 @@ class HMI : Core::Group
   $member CWLed
   $member CCWLed
   $member CycleLed
+  $member onSetCycle
+  $member cycleValue
+  $member OnSetcycleValue
+  $member cycleOutlet
+  $member OnSetcycleOutlet
+  $member onResetCycle
+  $member checkMotorStatus
+  $member Timer
 
   // Directives to adapt the order of members belonging to this class so they appear 
   // correctly arranged relative to the members inherited from the ancestor (super) 
@@ -1802,6 +1909,12 @@ class MeasuredValues : Core::Group
   $rect <510,90,710,130>
   slot onMeasureOperatingHours
   {
+    if (isFirstStart)
+    {
+      ElapsedSeconds = math_rand(512, 2048); 
+      isFirstStart = false;
+    }
+
     ElapsedSeconds = ElapsedSeconds + 1;
 
     var int32 hours = (ElapsedSeconds / 3600);
@@ -1809,11 +1922,14 @@ class MeasuredValues : Core::Group
     var int32 seconds = ElapsedSeconds % 60;
     OperatingHours.String = "Operating Hours: " + string(hours) + " h " + 
                             string(minutes) + " m " + string(seconds) + " s" ;
-    //trace seconds;
+
   }
 
   $rect <510,140,710,180>
   var int32 ElapsedSeconds;
+
+  $rect <510,200,710,240>
+  var bool isFirstStart = true;
 }
 
 $rect <20,380,220,420>
@@ -2003,7 +2119,6 @@ class DeviceClass : Templates::DeviceClass
     // Remember the property's new value.
     pure DeviceClass_CW = value;
 
-
     native (value)
     {
        DeviceDriver_SetMotorState(1, value);
@@ -2027,10 +2142,32 @@ class DeviceClass : Templates::DeviceClass
     // Remember the property's new value.
     pure DeviceClass_CCW = value;
 
-
     native (value)
     {
        DeviceDriver_SetMotorState(2, value);
+    }
+
+    // TO DO:
+    // 
+    // Now you can handle the alternation of the property.
+  }
+
+  $rect <400,210,600,250>
+  property bool DeviceClass_Cycle;
+
+  $rect <400,250,600,290>
+  onset DeviceClass_Cycle
+  {
+    // The value doesn't change - nothing to do.
+    if ( pure DeviceClass_Cycle == value )
+      return;
+
+    // Remember the property's new value.
+    pure DeviceClass_Cycle = value;
+
+    native (value)
+    {
+       DeviceDriver_CycleMode(value);
     }
 
     // TO DO:
@@ -2626,38 +2763,6 @@ class Input : Core::Group
     */
   }
 
-  // To do:
-  // 
-  // - Adjust the visible size of your component (the thick blue border).
-  // 
-  // - The simplest way to compose the appearance of the component is to use the \
-  // 'Views' and 'Widget Sets' from the Gallery.
-  // 
-  // - To react to touch or keyboard events use the templates from the Gallery folder \
-  // 'Event Handlers'.
-  // 
-  // - To perform transitions (animations) use the templates from the Gallery folder \
-  // 'Effects'.
-  // 
-  // - To implement the interface of the component use the 'Property' template from \
-  // the Gallery folder 'Chora'.
-  // 
-  // - To store values use the 'Variable' and 'Array' templates available in the \
-  // Gallery folder 'Chora'.
-  // 
-  // - To implement behavior use the 'Method' and 'Slot Method' templates available \
-  // in the Gallery folder 'Chora'.
-  // 
-  // - In the method 'UpdateViewState()' you can put code to update the state of \
-  // views enclosed in your component.
-  // 
-  // - In the method 'UpdateLayout()' you can put code to perform sophisticated layout \
-  // calculation for enclosed views.
-  note legend Note1
-  {
-    attr Bounds = <220,230,1000,550>;
-  }
-
   $rect <20,20,160,60>
   object Views::Rectangle LedBorder
   {
@@ -2703,7 +2808,7 @@ class Input : Core::Group
 
     if (inputState)
       InputLed.Color = #00FF3FFF;
-    else
+    else if (!inputState)
       InputLed.Color = #FFFFFFFF;
     InvalidateViewState();
     // TO DO:
@@ -2734,6 +2839,17 @@ class Input : Core::Group
     // TO DO:
     // 
     // Now you can handle the alternation of the property.
+  }
+
+  $rect <700,30,900,70>
+  property ^bool Outlet = ^inputState;
+
+  $rect <700,70,900,110>
+  onget Outlet
+  {
+
+    inputState = Outlet;
+    return pure Outlet;
   }
 }
 
