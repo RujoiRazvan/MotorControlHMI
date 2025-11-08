@@ -73,13 +73,32 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Get commits for release
+        id: commits
+        run: |
+          latest=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
+          echo "Latest tag: $latest"
+
+          base="${latest#v}"
+          IFS='.' read -r major minor patch <<< "$base"
+          patch=$((patch+1))
+          next="v$major.$minor.$patch"
+          echo "next=$next" >> $GITHUB_OUTPUT
+
+          # Get commit list between latest tag and HEAD
+          commits=$(git log $latest..HEAD --pretty=format:"- %s (%h)")
+          echo "commits<<EOF" >> $GITHUB_OUTPUT
+          echo "$commits" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
       - name: Create GitHub Release
         id: create_release
         uses: actions/create-release@v1
         with:
           tag_name: ${{ steps.version.outputs.next }}
           release_name: Release ${{ steps.version.outputs.next }}
-          body: "Automated release from workflow"
+          body: |
+            ${{ steps.commits.outputs.commits }}
           draft: false
           prerelease: false
         env:
