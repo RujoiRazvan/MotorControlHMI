@@ -49,6 +49,12 @@ jobs:
         with:
           fetch-depth: 0  # required for tags
 
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: MotorControlHMI-binaries
+          path: release-binaries
+      
       - name: Get next version
         id: version
         run: |
@@ -72,3 +78,32 @@ jobs:
           git push origin ${{ steps.version.outputs.next }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create GitHub Release
+        id: create_release
+        uses: actions/create-release@v1
+        with:
+          tag_name: ${{ steps.version.outputs.next }}
+          release_name: Release ${{ steps.version.outputs.next }}
+          body: "Automated release from workflow"
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload release assets
+        uses: actions/upload-release-asset@v1
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: release-binaries/MotorControlHMI.elf
+          asset_name: MotorControlHMI.elf
+          asset_content_type: application/octet-stream
+
+      - name: Upload release HEX
+        uses: actions/upload-release-asset@v1
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: release-binaries/MotorControlHMI.hex
+          asset_name: MotorControlHMI.hex
+          asset_content_type: application/octet-stream
+  
