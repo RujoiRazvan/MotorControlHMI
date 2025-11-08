@@ -2155,6 +2155,15 @@ void CoreGroup_updateComponent( CoreGroup _this, XObject sender )
   }
 }
 
+/* 'C' function for method : 'Core::Group.OnSetDeriveEnabledState()' */
+void CoreGroup_OnSetDeriveEnabledState( CoreGroup _this, XBool value )
+{
+  if ( value )
+    CoreView__ChangeViewState( _this, CoreViewStateDeriveEnabledState, 0 );
+  else
+    CoreView__ChangeViewState( _this, 0, CoreViewStateDeriveEnabledState );
+}
+
 /* 'C' function for method : 'Core::Group.OnSetFocus()' */
 void CoreGroup_OnSetFocus( CoreGroup _this, CoreView value )
 {

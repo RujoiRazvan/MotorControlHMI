@@ -346,6 +346,9 @@ void CoreGroup_updateComponentWithDelay( CoreGroup _this, XObject sender );
 /* 'C' function for method : 'Core::Group.updateComponent()' */
 void CoreGroup_updateComponent( CoreGroup _this, XObject sender );
 
+/* 'C' function for method : 'Core::Group.OnSetDeriveEnabledState()' */
+void CoreGroup_OnSetDeriveEnabledState( CoreGroup _this, XBool value );
+
 /* 'C' function for method : 'Core::Group.OnSetFocus()' */
 void CoreGroup_OnSetFocus( CoreGroup _this, CoreView value );
 

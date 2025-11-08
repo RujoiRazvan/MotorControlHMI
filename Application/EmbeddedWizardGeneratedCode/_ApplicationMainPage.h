@@ -166,6 +166,9 @@ void ApplicationMainPage_onStart( ApplicationMainPage _this, XObject sender );
 /* 'C' function for method : 'Application::MainPage.onEnd()' */
 void ApplicationMainPage_onEnd( ApplicationMainPage _this, XObject sender );
 
+/* 'C' function for method : 'Application::MainPage.touch()' */
+void ApplicationMainPage_touch( ApplicationMainPage _this, XBool enabled );
+
 #ifdef __cplusplus
   }
 #endif

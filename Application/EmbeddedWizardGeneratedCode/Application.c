@@ -85,7 +85,7 @@ EW_CONST_STRING_PRAGMA static const unsigned int _StringsDefault0[] =
 
 /* Constant values used in this 'C' module only. */
 static const XRect _Const0000 = {{ 0, 0 }, { 480, 272 }};
-static const XRect _Const0001 = {{ 0, 200 }, { 480, 272 }};
+static const XRect _Const0001 = {{ 0, 214 }, { 480, 272 }};
 static const XRect _Const0002 = {{ 221, 64 }, { 480, 136 }};
 static const XRect _Const0003 = {{ 0, 97 }, { 480, 176 }};
 static const XColor _Const0004 = { 0x50, 0xDF, 0xFF, 0xFF };
@@ -121,11 +121,11 @@ static const XRect _Const0021 = {{ 202, 178 }, { 325, 221 }};
 static const XRect _Const0022 = {{ 135, 49 }, { 166, 92 }};
 static const XRect _Const0023 = {{ 135, 97 }, { 166, 140 }};
 static const XRect _Const0024 = {{ 135, 146 }, { 166, 189 }};
-static const XRect _Const0025 = {{ 285, 34 }, { 478, 254 }};
-static const XPoint _Const0026 = { 102, 189 };
-static const XPoint _Const0027 = { 177, 189 };
-static const XPoint _Const0028 = { 177, 222 };
-static const XPoint _Const0029 = { 102, 222 };
+static const XPoint _Const0025 = { 102, 189 };
+static const XPoint _Const0026 = { 177, 189 };
+static const XPoint _Const0027 = { 177, 222 };
+static const XPoint _Const0028 = { 102, 222 };
+static const XRect _Const0029 = {{ 285, 34 }, { 478, 254 }};
 static const XPoint _Const002A = { 398, 188 };
 static const XPoint _Const002B = { 473, 188 };
 static const XPoint _Const002C = { 473, 250 };
@@ -236,6 +236,7 @@ void ApplicationMainPage__Init( ApplicationMainPage _this, XObject aLink, XHandl
   /* ... and initialize objects, variables, properties, etc. */
   CoreRectView__OnSetBounds( _this, _Const0000 );
   CoreRectView__OnSetBounds( &_this->HMI, _Const0000 );
+  CoreGroup_OnSetDeriveEnabledState((CoreGroup)&_this->HMI, 1 );
   CoreRectView__OnSetBounds( &_this->WelcomePage, _Const0000 );
   CoreGroup_OnSetEnabled((CoreGroup)&_this->WelcomePage, 1 );
   CoreGroup_OnSetVisible((CoreGroup)&_this->WelcomePage, 1 );
@@ -408,6 +409,12 @@ void ApplicationMainPage_onEnd( ApplicationMainPage _this, XObject sender )
   _this->readyToSlide = 1;
 }
 
+/* 'C' function for method : 'Application::MainPage.touch()' */
+void ApplicationMainPage_touch( ApplicationMainPage _this, XBool enabled )
+{
+  CoreSlideTouchHandler_OnSetEnabled( &_this->SlideTouchHandler, enabled );
+}
+
 /* Variants derived from the class : 'Application::MainPage' */
 EW_DEFINE_CLASS_VARIANTS( ApplicationMainPage )
 EW_END_OF_CLASS_VARIANTS( ApplicationMainPage )
@@ -577,8 +584,8 @@ void ApplicationHMI__Init( ApplicationHMI _this, XObject aLink, XHandle aArg )
   ApplicationLed__Init( &_this->CCWLed, &_this->_.XObject, 0 );
   ApplicationLed__Init( &_this->CycleLed, &_this->_.XObject, 0 );
   CoreTimer__Init( &_this->Timer, &_this->_.XObject, 0 );
-  ApplicationNumKeyboard__Init( &_this->NumKeyboard, &_this->_.XObject, 0 );
   CoreSimpleTouchHandler__Init( &_this->ModifyCycleCounterTouch, &_this->_.XObject, 0 );
+  ApplicationNumKeyboard__Init( &_this->NumKeyboard, &_this->_.XObject, 0 );
   CoreSimpleTouchHandler__Init( &_this->EnterTouch, &_this->_.XObject, 0 );
 
   /* Setup the VMT pointer */
@@ -639,14 +646,14 @@ void ApplicationHMI__Init( ApplicationHMI _this, XObject aLink, XHandle aArg )
   CoreRectView__OnSetBounds( &_this->CycleLed, _Const0024 );
   CoreTimer_OnSetPeriod( &_this->Timer, 1 );
   CoreTimer_OnSetEnabled( &_this->Timer, 1 );
-  CoreRectView__OnSetBounds( &_this->NumKeyboard, _Const0025 );
+  CoreQuadView_OnSetPoint4((CoreQuadView)&_this->ModifyCycleCounterTouch, _Const0025 );
+  CoreQuadView_OnSetPoint3((CoreQuadView)&_this->ModifyCycleCounterTouch, _Const0026 );
+  CoreQuadView_OnSetPoint2((CoreQuadView)&_this->ModifyCycleCounterTouch, _Const0027 );
+  CoreQuadView_OnSetPoint1((CoreQuadView)&_this->ModifyCycleCounterTouch, _Const0028 );
+  CoreRectView__OnSetBounds( &_this->NumKeyboard, _Const0029 );
   CoreGroup_OnSetEnabled((CoreGroup)&_this->NumKeyboard, 0 );
   CoreGroup_OnSetEmbedded((CoreGroup)&_this->NumKeyboard, 0 );
   CoreGroup_OnSetVisible((CoreGroup)&_this->NumKeyboard, 0 );
-  CoreQuadView_OnSetPoint4((CoreQuadView)&_this->ModifyCycleCounterTouch, _Const0026 );
-  CoreQuadView_OnSetPoint3((CoreQuadView)&_this->ModifyCycleCounterTouch, _Const0027 );
-  CoreQuadView_OnSetPoint2((CoreQuadView)&_this->ModifyCycleCounterTouch, _Const0028 );
-  CoreQuadView_OnSetPoint1((CoreQuadView)&_this->ModifyCycleCounterTouch, _Const0029 );
   CoreQuadView_OnSetPoint4((CoreQuadView)&_this->EnterTouch, _Const002A );
   CoreQuadView_OnSetPoint3((CoreQuadView)&_this->EnterTouch, _Const002B );
   CoreQuadView_OnSetPoint2((CoreQuadView)&_this->EnterTouch, _Const002C );
@@ -671,9 +678,9 @@ void ApplicationHMI__Init( ApplicationHMI _this, XObject aLink, XHandle aArg )
   CoreGroup_Add((CoreGroup)_this, ((CoreView)&_this->CWLed ), 0 );
   CoreGroup_Add((CoreGroup)_this, ((CoreView)&_this->CCWLed ), 0 );
   CoreGroup_Add((CoreGroup)_this, ((CoreView)&_this->CycleLed ), 0 );
-  CoreGroup_Add((CoreGroup)_this, ((CoreView)&_this->NumKeyboard ), 0 );
   CoreGroup_Add((CoreGroup)_this, ((CoreView)&_this->ModifyCycleCounterTouch ), 
   0 );
+  CoreGroup_Add((CoreGroup)_this, ((CoreView)&_this->NumKeyboard ), 0 );
   CoreGroup_Add((CoreGroup)_this, ((CoreView)&_this->EnterTouch ), 0 );
   _this->splashTimer.OnTrigger = EwNewSlot( _this, ApplicationHMI_onTimer );
   WidgetSetToggleButton_OnSetOutlet( &_this->Out1, EwNewRef( EwGetAutoObject( &ApplicationDevice, 
@@ -749,8 +756,8 @@ void ApplicationHMI__ReInit( ApplicationHMI _this )
   ApplicationLed__ReInit( &_this->CCWLed );
   ApplicationLed__ReInit( &_this->CycleLed );
   CoreTimer__ReInit( &_this->Timer );
-  ApplicationNumKeyboard__ReInit( &_this->NumKeyboard );
   CoreSimpleTouchHandler__ReInit( &_this->ModifyCycleCounterTouch );
+  ApplicationNumKeyboard__ReInit( &_this->NumKeyboard );
   CoreSimpleTouchHandler__ReInit( &_this->EnterTouch );
 }
 
@@ -783,8 +790,8 @@ void ApplicationHMI__Done( ApplicationHMI _this )
   ApplicationLed__Done( &_this->CCWLed );
   ApplicationLed__Done( &_this->CycleLed );
   CoreTimer__Done( &_this->Timer );
-  ApplicationNumKeyboard__Done( &_this->NumKeyboard );
   CoreSimpleTouchHandler__Done( &_this->ModifyCycleCounterTouch );
+  ApplicationNumKeyboard__Done( &_this->NumKeyboard );
   CoreSimpleTouchHandler__Done( &_this->EnterTouch );
 
   /* Don't forget to deinitialize the super class ... */
@@ -1033,17 +1040,23 @@ void ApplicationHMI_checkMotorStatus( ApplicationHMI _this, XObject sender )
 /* 'C' function for method : 'Application::HMI.CycleCounterTouchSlot()' */
 void ApplicationHMI_CycleCounterTouchSlot( ApplicationHMI _this, XObject sender )
 {
+  ApplicationMainPage mainPageRef;
+
   /* Dummy expressions to avoid the 'C' warning 'unused argument'. */
   EW_UNUSED_ARG( sender );
 
   CoreGroup_OnSetVisible((CoreGroup)&_this->NumKeyboard, 1 );
   CoreGroup_OnSetEnabled((CoreGroup)&_this->NumKeyboard, 1 );
   _this->NumKeyboard.generatedNumber = 0;
+  mainPageRef = EwCastObject( EwGetAppRootObject(), ApplicationMainPage );
+  ApplicationMainPage_touch( mainPageRef, 0 );
 }
 
 /* 'C' function for method : 'Application::HMI.ClearKeyBoard()' */
 void ApplicationHMI_ClearKeyBoard( ApplicationHMI _this, XObject sender )
 {
+  ApplicationMainPage mainPageRef;
+
   /* Dummy expressions to avoid the 'C' warning 'unused argument'. */
   EW_UNUSED_ARG( sender );
 
@@ -1051,6 +1064,8 @@ void ApplicationHMI_ClearKeyBoard( ApplicationHMI _this, XObject sender )
   0, 10 ));
   CoreGroup_OnSetVisible((CoreGroup)&_this->NumKeyboard, 0 );
   CoreGroup_OnSetEnabled((CoreGroup)&_this->NumKeyboard, 0 );
+  mainPageRef = EwCastObject( EwGetAppRootObject(), ApplicationMainPage );
+  ApplicationMainPage_touch( mainPageRef, 1 );
 }
 
 /* Variants derived from the class : 'Application::HMI' */
@@ -2350,7 +2365,6 @@ void ApplicationNumKeyboard_activateKey( ApplicationNumKeyboard _this, XObject s
     charCode = EwGetStringChar( textKeyView->String, 0 );
     _this->generatedNumber = (XChar)(( _this->generatedNumber * 10 ) + charCode ) 
     - '0';
-    EwTrace( "%i", _this->generatedNumber );
   }
   else
     if ( _this->keyView == ((CoreView)&_this->ImageKeyEnter ))
