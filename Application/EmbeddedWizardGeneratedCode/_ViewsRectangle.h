@@ -92,6 +92,10 @@
    within the GUI component itself. Very useful for any kind of scrollable lists, 
    menus, etc. */
 EW_DEFINE_FIELDS( ViewsRectangle, CoreRectView )
+  EW_PROPERTY( ColorBL,         XColor )
+  EW_PROPERTY( ColorBR,         XColor )
+  EW_PROPERTY( ColorTR,         XColor )
+  EW_PROPERTY( ColorTL,         XColor )
   EW_PROPERTY( Radius,          XInt32 )
   EW_PROPERTY( Color,           XColor )
 EW_END_OF_FIELDS( ViewsRectangle )
@@ -145,6 +149,18 @@ EW_END_OF_METHODS( ViewsRectangle )
    of the value of the property and the one passed in aBlend parameter. */
 void ViewsRectangle_Draw( ViewsRectangle _this, GraphicsCanvas aCanvas, XRect aClip, 
   XPoint aOffset, XInt32 aOpacity, XBool aBlend );
+
+/* 'C' function for method : 'Views::Rectangle.OnSetColorBL()' */
+void ViewsRectangle_OnSetColorBL( ViewsRectangle _this, XColor value );
+
+/* 'C' function for method : 'Views::Rectangle.OnSetColorBR()' */
+void ViewsRectangle_OnSetColorBR( ViewsRectangle _this, XColor value );
+
+/* 'C' function for method : 'Views::Rectangle.OnSetColorTR()' */
+void ViewsRectangle_OnSetColorTR( ViewsRectangle _this, XColor value );
+
+/* 'C' function for method : 'Views::Rectangle.OnSetColorTL()' */
+void ViewsRectangle_OnSetColorTL( ViewsRectangle _this, XColor value );
 
 /* 'C' function for method : 'Views::Rectangle.OnSetRadius()' */
 void ViewsRectangle_OnSetRadius( ViewsRectangle _this, XInt32 value );

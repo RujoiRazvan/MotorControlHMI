@@ -43,20 +43,18 @@
 #endif
 
 #include "_ApplicationDeviceClass.h"
+#include "_ApplicationFaultOrWarning.h"
 #include "_ApplicationHMI.h"
+#include "_ApplicationInput.h"
+#include "_ApplicationLed.h"
 #include "_ApplicationMainPage.h"
 #include "_ApplicationMeasuredValues.h"
+#include "_ApplicationReady.h"
 #include "_ApplicationSystemInfo.h"
 #include "_ApplicationWelcomePage.h"
 
-/* Bitmap resource : 'Application::GreenLed' */
-EW_DECLARE_BITMAP_RES( ApplicationGreenLed )
-
-/* Bitmap resource : 'Application::RedLed' */
-EW_DECLARE_BITMAP_RES( ApplicationRedLed )
-
-/* Bitmap resource : 'Application::TurnedOffLed' */
-EW_DECLARE_BITMAP_RES( ApplicationTurnedOffLed )
+/* Font resource : 'Application::Font' */
+EW_DECLARE_FONT_RES( ApplicationFont )
 
 /* User defined auto object: 'Application::Device' */
 EW_DECLARE_AUTOOBJECT( ApplicationDevice, ApplicationDeviceClass )

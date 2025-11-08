@@ -142,7 +142,6 @@ EW_DEFINE_FIELDS( ViewsText, CoreRectView )
   EW_PROPERTY( ColorBR,         XColor )
   EW_PROPERTY( ColorTR,         XColor )
   EW_PROPERTY( ColorTL,         XColor )
-  EW_PROPERTY( WrapWidth,       XInt32 )
   EW_PROPERTY( Alignment,       XSet )
   EW_PROPERTY( Color,           XColor )
   EW_VARIABLE( reparsed,        XBool )
@@ -251,9 +250,6 @@ void ViewsText_OnSetColorTR( ViewsText _this, XColor value );
 /* 'C' function for method : 'Views::Text.OnSetColorTL()' */
 void ViewsText_OnSetColorTL( ViewsText _this, XColor value );
 
-/* 'C' function for method : 'Views::Text.OnSetWrapWidth()' */
-void ViewsText_OnSetWrapWidth( ViewsText _this, XInt32 value );
-
 /* 'C' function for method : 'Views::Text.OnSetWrapText()' */
 void ViewsText_OnSetWrapText( ViewsText _this, XBool value );
 
@@ -268,6 +264,9 @@ void ViewsText_OnSetFont( ViewsText _this, ResourcesFont value );
 
 /* 'C' function for method : 'Views::Text.OnSetColor()' */
 void ViewsText_OnSetColor( ViewsText _this, XColor value );
+
+/* 'C' function for method : 'Views::Text.OnSetEmbedded()' */
+void ViewsText_OnSetEmbedded( ViewsText _this, XBool value );
 
 /* The method IsBaseDirectionRTL() returns 'true' if the text specified in @String 
    starts with an RTL (right-to-left) character. This implies the base direction 

@@ -24,48 +24,20 @@
 *
 *******************************************************************************/
 
-#ifndef Resources_H
-#define Resources_H
-
-#ifdef __cplusplus
-  extern "C"
-  {
-#endif
-
-#include "ewrte.h"
-#if ( EW_RTE_VERSION >> 16 ) != 14
-  #error Wrong version of Embedded Wizard Runtime Environment.
-#endif
-
-#include "ewgfx.h"
-#if ( EW_GFX_VERSION >> 16 ) != 14
-  #error Wrong version of Embedded Wizard Graphics Engine.
-#endif
-
-#include "_ResourcesBitmap.h"
-#include "_ResourcesFont.h"
-#include "_ResourcesFontSet.h"
+#include "_EwFont_Roboto_HC18_C16.h"
 
 /* The small version of the default font resource. The resource is using 'Roboto' 
    TrueType font with 18 pixel height. */
-EW_DECLARE_FONT_RES( ResourcesFontSmall )
+EW_DEFINE_FONT_RES( ResourcesFontSmall )
+  EW_FONT_ENTRY( EwFont_Roboto_HC18_C16, 18, 18, 1, 0, 0, 16 )
 
-/* The medium version of the default font resource. The resource is using 'Roboto' 
-   TrueType font with 24 pixel height. */
-EW_DECLARE_FONT_RES( ResourcesFontMedium )
+  EW_FONT_RANGES( ResourcesFontSmall )
 
-/* The large version of the default font resource. The resource is using 'Roboto' 
-   TrueType font with 36 pixel height. */
-EW_DECLARE_FONT_RES( ResourcesFontLarge )
+  EW_FONT_MAPPINGS( ResourcesFontSmall )
+    EW_FONT_MAPPING( ResourcesFontSmall, Default, 0 )
 
-/* The extra large version of the default font resource. The resource is using 'Roboto' 
-   TrueType font with 54 pixel height. */
-EW_DECLARE_FONT_RES( ResourcesFontExtraLarge )
-
-#ifdef __cplusplus
-  }
-#endif
-
-#endif /* Resources_H */
+  EW_FONTS_TABLE( ResourcesFontSmall )
+    EW_FONT( ResourcesFontSmall, Default )
+EW_END_OF_FONT_RES( ResourcesFontSmall )
 
 /* Embedded Wizard */

@@ -124,8 +124,6 @@ EW_DEFINE_FIELDS( ViewsImage, CoreRectView )
   EW_PROPERTY( Bitmap,          ResourcesBitmap )
   EW_VARIABLE( startTime,       XUInt32 )
   EW_VARIABLE( animFrameNumber, XInt32 )
-  EW_PROPERTY( Color,           XColor )
-  EW_PROPERTY( FrameNumber,     XInt32 )
   EW_PROPERTY( Animated,        XBool )
 EW_END_OF_FIELDS( ViewsImage )
 
@@ -185,20 +183,11 @@ void ViewsImage_observerSlot( ViewsImage _this, XObject sender );
 /* 'C' function for method : 'Views::Image.timerSlot()' */
 void ViewsImage_timerSlot( ViewsImage _this, XObject sender );
 
-/* 'C' function for method : 'Views::Image.OnSetColor()' */
-void ViewsImage_OnSetColor( ViewsImage _this, XColor value );
-
 /* 'C' function for method : 'Views::Image.OnSetAnimated()' */
 void ViewsImage_OnSetAnimated( ViewsImage _this, XBool value );
 
-/* 'C' function for method : 'Views::Image.OnSetFrameNumber()' */
-void ViewsImage_OnSetFrameNumber( ViewsImage _this, XInt32 value );
-
 /* 'C' function for method : 'Views::Image.OnSetBitmap()' */
 void ViewsImage_OnSetBitmap( ViewsImage _this, ResourcesBitmap value );
-
-/* 'C' function for method : 'Views::Image.OnSetVisible()' */
-void ViewsImage_OnSetVisible( ViewsImage _this, XBool value );
 
 /* The method GetContentArea() returns the position and the size of an area where 
    the view will show the bitmap. This area is expressed in coordinates relative 

@@ -2195,15 +2195,6 @@ void CoreGroup__OnSetFocus( void* _this, CoreView value )
   ((CoreGroup)_this)->_.VMT->OnSetFocus((CoreGroup)_this, value );
 }
 
-/* 'C' function for method : 'Core::Group.OnSetClipViews()' */
-void CoreGroup_OnSetClipViews( CoreGroup _this, XBool value )
-{
-  if ( value )
-    CoreView__ChangeViewState( _this, 0, CoreViewStateDontClipViews );
-  else
-    CoreView__ChangeViewState( _this, CoreViewStateDontClipViews, 0 );
-}
-
 /* 'C' function for method : 'Core::Group.OnSetEnabled()' */
 void CoreGroup_OnSetEnabled( CoreGroup _this, XBool value )
 {
@@ -2236,6 +2227,15 @@ void CoreGroup_OnSetOpacity( CoreGroup _this, XInt32 value )
 void CoreGroup__OnSetOpacity( void* _this, XInt32 value )
 {
   ((CoreGroup)_this)->_.VMT->OnSetOpacity((CoreGroup)_this, value );
+}
+
+/* 'C' function for method : 'Core::Group.OnSetEmbedded()' */
+void CoreGroup_OnSetEmbedded( CoreGroup _this, XBool value )
+{
+  if ( value )
+    CoreView__ChangeViewState( _this, CoreViewStateEmbedded, 0 );
+  else
+    CoreView__ChangeViewState( _this, 0, CoreViewStateEmbedded );
 }
 
 /* 'C' function for method : 'Core::Group.OnGetVisible()' */
@@ -4917,48 +4917,6 @@ CoreView CoreRoot_RetargetCursorWithReason( CoreRoot _this, CoreView aNewTarget,
   return 0;
 }
 
-/* The method RetargetCursor() changes the currently active cursor event target 
-   view. Usually, the target view is determined when the user presses the finger 
-   on the touch screen. Once determined, the target view remains active until the 
-   user has released the finger. In the meantime the framework will provide this 
-   target view with all cursor events. This entire cycle is called 'grab cycle'. 
-   The method RetargetCursor() allows you to select a new target view without the 
-   necessity to wait until the user has released the touch screen and thus has finalized 
-   the grab cycle.
-   At first the method asks the new potential target view aNewTarget whether it 
-   or one of its sub-views is willing to handle the cursor events. If successful, 
-   the method hands over the cursor event flow to this determined view. If there 
-   is no view willing to handle these events, the method hands over the event flow 
-   directly to the view specified in the parameter aFallbackTarget. If no willing 
-   view could be found and no fall-back view was given, the current grab cycle is 
-   finalized as if the user had released the touch screen.
-   Unlike the method @DeflectCursor() this RetargetCursor() method performs the 
-   cursor hit test for all views of the new potential target. This is as if the 
-   user had tapped the screen and the framework tries to determine the view affected 
-   by this interaction. This search operation is limited to views at the current 
-   cursor position.
-   The parameter aStartView, if it is not 'null', restricts the operation to be 
-   handled by the specified view or another view lying behind it. In other words, 
-   views found in front of aStartView are not taken in account during the hit-test 
-   operation.
-   When switching the target view, the framework provides the old and the new target 
-   views with cursor events. The old view will receive a Core::CursorEvent with 
-   variables Down == 'false' and AutoDeflected == 'true' - this simulates the release 
-   operations. The new target view will receive a Core::CursorEvent with the variable 
-   Down == 'true' as if it had been just touched by the user.
-   If the application is running within a multi-touch environment, the invocation 
-   of the RetargetCursor() method does affect the event flow corresponding only 
-   to the finger which has lastly generated touch events.
-   The return value of the method identifies the view which becomed the new target 
-   of the events.
-   Please note the alternative version of this method @RetargetCursorWithReason(). */
-CoreView CoreRoot_RetargetCursor( CoreRoot _this, CoreView aNewTarget, CoreView 
-  aFallbackTarget, CoreView aStartView )
-{
-  return CoreRoot_RetargetCursorWithReason( _this, aNewTarget, aFallbackTarget, 
-    aStartView, 0 );
-}
-
 /* The method DeflectCursor() changes the currently active cursor event target view. 
    Usually, the target view is determined when the user presses the finger on the 
    touch screen. Once determined, the target view remains active until the user 
@@ -6123,9 +6081,6 @@ XObject CoreSimpleTouchHandler_HandleEvent( CoreSimpleTouchHandler _this, CoreEv
 
   down = _this->Down;
 
-  if ( event2 != 0 )
-    EwSignal( _this->OnDrag, ((XObject)_this ));
-
   if ((( event1 != 0 ) && _this->Down ) && ( _this->HoldPeriod == 0 ))
     EwSignal( _this->OnPress, ((XObject)_this ));
 
@@ -6290,8 +6245,8 @@ EW_DEFINE_CLASS_VARIANTS( CoreSimpleTouchHandler )
 EW_END_OF_CLASS_VARIANTS( CoreSimpleTouchHandler )
 
 /* Virtual Method Table (VMT) for the class : 'Core::SimpleTouchHandler' */
-EW_DEFINE_CLASS( CoreSimpleTouchHandler, CoreQuadView, OnDrag, OnDrag, OnDrag, state, 
-                 state, state, "Core::SimpleTouchHandler" )
+EW_DEFINE_CLASS( CoreSimpleTouchHandler, CoreQuadView, OnLeave, OnLeave, OnLeave, 
+                 state, state, state, "Core::SimpleTouchHandler" )
   CoreQuadView_initLayoutContext,
   CoreView_GetRoot,
   CoreSimpleTouchHandler_Draw,

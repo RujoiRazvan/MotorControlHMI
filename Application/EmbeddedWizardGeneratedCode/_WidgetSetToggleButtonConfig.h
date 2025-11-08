@@ -239,6 +239,113 @@ EW_DEFINE_FIELDS( WidgetSetToggleButtonConfig, WidgetSetWidgetConfig )
   EW_PROPERTY( FaceOffBitmapFocused, ResourcesBitmap )
   EW_PROPERTY( FaceOffBitmapDisabled, ResourcesBitmap )
   EW_PROPERTY( FaceOffBitmapDefault, ResourcesBitmap )
+  EW_PROPERTY( StateTransitionDuration, XInt32 )
+  EW_PROPERTY( PressedFeedbackDuration, XInt32 )
+  EW_PROPERTY( AccentOnColorActive, XColor )
+  EW_PROPERTY( AccentOnColorFocused, XColor )
+  EW_PROPERTY( AccentOnCornerRadiusActive, XInt32 )
+  EW_PROPERTY( AccentOnCornerRadiusFocused, XInt32 )
+  EW_PROPERTY( AccentOnCornerRadiusDisabled, XInt32 )
+  EW_PROPERTY( AccentOnCornerRadiusDefault, XInt32 )
+  EW_PROPERTY( AccentOnOffsetActive, XPoint )
+  EW_PROPERTY( AccentOnOffsetFocused, XPoint )
+  EW_PROPERTY( AccentOnOffsetDisabled, XPoint )
+  EW_PROPERTY( AccentOnOffsetDefault, XPoint )
+  EW_PROPERTY( AccentOnSizeActive, XPoint )
+  EW_PROPERTY( AccentOnSizeFocused, XPoint )
+  EW_PROPERTY( AccentOnSizeDisabled, XPoint )
+  EW_PROPERTY( AccentOnSizeDefault, XPoint )
+  EW_PROPERTY( AccentOffColorActive, XColor )
+  EW_PROPERTY( AccentOffColorFocused, XColor )
+  EW_PROPERTY( AccentOffCornerRadiusActive, XInt32 )
+  EW_PROPERTY( AccentOffCornerRadiusFocused, XInt32 )
+  EW_PROPERTY( AccentOffCornerRadiusDisabled, XInt32 )
+  EW_PROPERTY( AccentOffCornerRadiusDefault, XInt32 )
+  EW_PROPERTY( AccentOffOffsetActive, XPoint )
+  EW_PROPERTY( AccentOffOffsetFocused, XPoint )
+  EW_PROPERTY( AccentOffOffsetDisabled, XPoint )
+  EW_PROPERTY( AccentOffOffsetDefault, XPoint )
+  EW_PROPERTY( AccentOffSizeActive, XPoint )
+  EW_PROPERTY( AccentOffSizeFocused, XPoint )
+  EW_PROPERTY( AccentOffSizeDisabled, XPoint )
+  EW_PROPERTY( AccentOffSizeDefault, XPoint )
+  EW_PROPERTY( AccentLayout,    XSet )
+  EW_PROPERTY( ThumbOnBorderColorActive, XColor )
+  EW_PROPERTY( ThumbOnBorderColorFocused, XColor )
+  EW_PROPERTY( ThumbOnBorderColorDisabled, XColor )
+  EW_PROPERTY( ThumbOnBorderColorDefault, XColor )
+  EW_PROPERTY( ThumbOnBorderWidthActive, XInt32 )
+  EW_PROPERTY( ThumbOnBorderWidthFocused, XInt32 )
+  EW_PROPERTY( ThumbOnBorderWidthDisabled, XInt32 )
+  EW_PROPERTY( ThumbOnBorderWidthDefault, XInt32 )
+  EW_PROPERTY( ThumbOnColorActive, XColor )
+  EW_PROPERTY( ThumbOnColorFocused, XColor )
+  EW_PROPERTY( ThumbOnColorDisabled, XColor )
+  EW_PROPERTY( ThumbOnColorDefault, XColor )
+  EW_PROPERTY( ThumbOnCornerRadiusActive, XInt32 )
+  EW_PROPERTY( ThumbOnCornerRadiusFocused, XInt32 )
+  EW_PROPERTY( ThumbOnCornerRadiusDisabled, XInt32 )
+  EW_PROPERTY( ThumbOnCornerRadiusDefault, XInt32 )
+  EW_PROPERTY( ThumbOnOffsetActive, XPoint )
+  EW_PROPERTY( ThumbOnOffsetFocused, XPoint )
+  EW_PROPERTY( ThumbOnOffsetDisabled, XPoint )
+  EW_PROPERTY( ThumbOnOffsetDefault, XPoint )
+  EW_PROPERTY( ThumbOnSizeActive, XPoint )
+  EW_PROPERTY( ThumbOnSizeFocused, XPoint )
+  EW_PROPERTY( ThumbOnSizeDisabled, XPoint )
+  EW_PROPERTY( ThumbOnSizeDefault, XPoint )
+  EW_PROPERTY( ThumbOffBorderColorActive, XColor )
+  EW_PROPERTY( ThumbOffBorderColorFocused, XColor )
+  EW_PROPERTY( ThumbOffBorderColorDisabled, XColor )
+  EW_PROPERTY( ThumbOffBorderColorDefault, XColor )
+  EW_PROPERTY( ThumbOffBorderWidthActive, XInt32 )
+  EW_PROPERTY( ThumbOffBorderWidthFocused, XInt32 )
+  EW_PROPERTY( ThumbOffBorderWidthDisabled, XInt32 )
+  EW_PROPERTY( ThumbOffBorderWidthDefault, XInt32 )
+  EW_PROPERTY( ThumbOffColorActive, XColor )
+  EW_PROPERTY( ThumbOffColorFocused, XColor )
+  EW_PROPERTY( ThumbOffColorDisabled, XColor )
+  EW_PROPERTY( ThumbOffColorDefault, XColor )
+  EW_PROPERTY( ThumbOffCornerRadiusActive, XInt32 )
+  EW_PROPERTY( ThumbOffCornerRadiusFocused, XInt32 )
+  EW_PROPERTY( ThumbOffCornerRadiusDisabled, XInt32 )
+  EW_PROPERTY( ThumbOffCornerRadiusDefault, XInt32 )
+  EW_PROPERTY( ThumbOffOffsetActive, XPoint )
+  EW_PROPERTY( ThumbOffOffsetFocused, XPoint )
+  EW_PROPERTY( ThumbOffOffsetDisabled, XPoint )
+  EW_PROPERTY( ThumbOffOffsetDefault, XPoint )
+  EW_PROPERTY( ThumbOffSizeActive, XPoint )
+  EW_PROPERTY( ThumbOffSizeFocused, XPoint )
+  EW_PROPERTY( ThumbOffSizeDisabled, XPoint )
+  EW_PROPERTY( ThumbOffSizeDefault, XPoint )
+  EW_PROPERTY( ThumbLayout,     XSet )
+  EW_PROPERTY( TrackOnBorderColorActive, XColor )
+  EW_PROPERTY( TrackOnBorderColorFocused, XColor )
+  EW_PROPERTY( TrackOnBorderColorDisabled, XColor )
+  EW_PROPERTY( TrackOnBorderColorDefault, XColor )
+  EW_PROPERTY( TrackOnBorderWidthActive, XInt32 )
+  EW_PROPERTY( TrackOnBorderWidthFocused, XInt32 )
+  EW_PROPERTY( TrackOnBorderWidthDisabled, XInt32 )
+  EW_PROPERTY( TrackOnBorderWidthDefault, XInt32 )
+  EW_PROPERTY( TrackOnColorActive, XColor )
+  EW_PROPERTY( TrackOnColorFocused, XColor )
+  EW_PROPERTY( TrackOnColorDisabled, XColor )
+  EW_PROPERTY( TrackOnColorDefault, XColor )
+  EW_PROPERTY( TrackOffBorderColorActive, XColor )
+  EW_PROPERTY( TrackOffBorderColorFocused, XColor )
+  EW_PROPERTY( TrackOffBorderColorDisabled, XColor )
+  EW_PROPERTY( TrackOffBorderColorDefault, XColor )
+  EW_PROPERTY( TrackOffBorderWidthActive, XInt32 )
+  EW_PROPERTY( TrackOffBorderWidthFocused, XInt32 )
+  EW_PROPERTY( TrackOffBorderWidthDisabled, XInt32 )
+  EW_PROPERTY( TrackOffBorderWidthDefault, XInt32 )
+  EW_PROPERTY( TrackOffColorActive, XColor )
+  EW_PROPERTY( TrackOffColorFocused, XColor )
+  EW_PROPERTY( TrackOffColorDisabled, XColor )
+  EW_PROPERTY( TrackOffColorDefault, XColor )
+  EW_PROPERTY( TrackCornerRadius, XInt32 )
+  EW_PROPERTY( TrackSize,       XPoint )
+  EW_PROPERTY( TrackLayout,     XSet )
   EW_PROPERTY( LabelOnColorActive, XColor )
   EW_PROPERTY( LabelOnColorFocused, XColor )
   EW_PROPERTY( LabelOnColorDisabled, XColor )
@@ -269,11 +376,444 @@ EW_DEFINE_FIELDS( WidgetSetToggleButtonConfig, WidgetSetWidgetConfig )
   EW_PROPERTY( FaceOffFrameDisabled, XInt32 )
   EW_PROPERTY( FaceOffFrameDefault, XInt32 )
   EW_PROPERTY( WidgetMinSize,   XPoint )
+  EW_PROPERTY( LimitTouchArea,  XBool )
 EW_END_OF_FIELDS( WidgetSetToggleButtonConfig )
 
 /* Virtual Method Table (VMT) for the class : 'WidgetSet::ToggleButtonConfig' */
 EW_DEFINE_METHODS( WidgetSetToggleButtonConfig, WidgetSetWidgetConfig )
 EW_END_OF_METHODS( WidgetSetToggleButtonConfig )
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetStateTransitionDuration()' */
+void WidgetSetToggleButtonConfig_OnSetStateTransitionDuration( WidgetSetToggleButtonConfig _this, 
+  XInt32 value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetPressedFeedbackDuration()' */
+void WidgetSetToggleButtonConfig_OnSetPressedFeedbackDuration( WidgetSetToggleButtonConfig _this, 
+  XInt32 value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetLimitTouchArea()' */
+void WidgetSetToggleButtonConfig_OnSetLimitTouchArea( WidgetSetToggleButtonConfig _this, 
+  XBool value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetAccentOnColorActive()' */
+void WidgetSetToggleButtonConfig_OnSetAccentOnColorActive( WidgetSetToggleButtonConfig _this, 
+  XColor value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetAccentOnColorFocused()' */
+void WidgetSetToggleButtonConfig_OnSetAccentOnColorFocused( WidgetSetToggleButtonConfig _this, 
+  XColor value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetAccentOnCornerRadiusActive()' */
+void WidgetSetToggleButtonConfig_OnSetAccentOnCornerRadiusActive( WidgetSetToggleButtonConfig _this, 
+  XInt32 value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetAccentOnCornerRadiusFocused()' */
+void WidgetSetToggleButtonConfig_OnSetAccentOnCornerRadiusFocused( WidgetSetToggleButtonConfig _this, 
+  XInt32 value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetAccentOnCornerRadiusDisabled()' */
+void WidgetSetToggleButtonConfig_OnSetAccentOnCornerRadiusDisabled( WidgetSetToggleButtonConfig _this, 
+  XInt32 value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetAccentOnCornerRadiusDefault()' */
+void WidgetSetToggleButtonConfig_OnSetAccentOnCornerRadiusDefault( WidgetSetToggleButtonConfig _this, 
+  XInt32 value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetAccentOnOffsetActive()' */
+void WidgetSetToggleButtonConfig_OnSetAccentOnOffsetActive( WidgetSetToggleButtonConfig _this, 
+  XPoint value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetAccentOnOffsetFocused()' */
+void WidgetSetToggleButtonConfig_OnSetAccentOnOffsetFocused( WidgetSetToggleButtonConfig _this, 
+  XPoint value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetAccentOnOffsetDisabled()' */
+void WidgetSetToggleButtonConfig_OnSetAccentOnOffsetDisabled( WidgetSetToggleButtonConfig _this, 
+  XPoint value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetAccentOnOffsetDefault()' */
+void WidgetSetToggleButtonConfig_OnSetAccentOnOffsetDefault( WidgetSetToggleButtonConfig _this, 
+  XPoint value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetAccentOnSizeActive()' */
+void WidgetSetToggleButtonConfig_OnSetAccentOnSizeActive( WidgetSetToggleButtonConfig _this, 
+  XPoint value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetAccentOnSizeFocused()' */
+void WidgetSetToggleButtonConfig_OnSetAccentOnSizeFocused( WidgetSetToggleButtonConfig _this, 
+  XPoint value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetAccentOnSizeDisabled()' */
+void WidgetSetToggleButtonConfig_OnSetAccentOnSizeDisabled( WidgetSetToggleButtonConfig _this, 
+  XPoint value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetAccentOnSizeDefault()' */
+void WidgetSetToggleButtonConfig_OnSetAccentOnSizeDefault( WidgetSetToggleButtonConfig _this, 
+  XPoint value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetAccentOffColorActive()' */
+void WidgetSetToggleButtonConfig_OnSetAccentOffColorActive( WidgetSetToggleButtonConfig _this, 
+  XColor value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetAccentOffColorFocused()' */
+void WidgetSetToggleButtonConfig_OnSetAccentOffColorFocused( WidgetSetToggleButtonConfig _this, 
+  XColor value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetAccentOffCornerRadiusActive()' */
+void WidgetSetToggleButtonConfig_OnSetAccentOffCornerRadiusActive( WidgetSetToggleButtonConfig _this, 
+  XInt32 value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetAccentOffCornerRadiusFocused()' */
+void WidgetSetToggleButtonConfig_OnSetAccentOffCornerRadiusFocused( WidgetSetToggleButtonConfig _this, 
+  XInt32 value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetAccentOffCornerRadiusDisabled()' */
+void WidgetSetToggleButtonConfig_OnSetAccentOffCornerRadiusDisabled( WidgetSetToggleButtonConfig _this, 
+  XInt32 value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetAccentOffCornerRadiusDefault()' */
+void WidgetSetToggleButtonConfig_OnSetAccentOffCornerRadiusDefault( WidgetSetToggleButtonConfig _this, 
+  XInt32 value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetAccentOffOffsetActive()' */
+void WidgetSetToggleButtonConfig_OnSetAccentOffOffsetActive( WidgetSetToggleButtonConfig _this, 
+  XPoint value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetAccentOffOffsetFocused()' */
+void WidgetSetToggleButtonConfig_OnSetAccentOffOffsetFocused( WidgetSetToggleButtonConfig _this, 
+  XPoint value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetAccentOffOffsetDisabled()' */
+void WidgetSetToggleButtonConfig_OnSetAccentOffOffsetDisabled( WidgetSetToggleButtonConfig _this, 
+  XPoint value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetAccentOffOffsetDefault()' */
+void WidgetSetToggleButtonConfig_OnSetAccentOffOffsetDefault( WidgetSetToggleButtonConfig _this, 
+  XPoint value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetAccentOffSizeActive()' */
+void WidgetSetToggleButtonConfig_OnSetAccentOffSizeActive( WidgetSetToggleButtonConfig _this, 
+  XPoint value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetAccentOffSizeFocused()' */
+void WidgetSetToggleButtonConfig_OnSetAccentOffSizeFocused( WidgetSetToggleButtonConfig _this, 
+  XPoint value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetAccentOffSizeDisabled()' */
+void WidgetSetToggleButtonConfig_OnSetAccentOffSizeDisabled( WidgetSetToggleButtonConfig _this, 
+  XPoint value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetAccentOffSizeDefault()' */
+void WidgetSetToggleButtonConfig_OnSetAccentOffSizeDefault( WidgetSetToggleButtonConfig _this, 
+  XPoint value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetAccentLayout()' */
+void WidgetSetToggleButtonConfig_OnSetAccentLayout( WidgetSetToggleButtonConfig _this, 
+  XSet value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOnBorderColorActive()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOnBorderColorActive( WidgetSetToggleButtonConfig _this, 
+  XColor value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOnBorderColorFocused()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOnBorderColorFocused( WidgetSetToggleButtonConfig _this, 
+  XColor value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOnBorderColorDisabled()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOnBorderColorDisabled( WidgetSetToggleButtonConfig _this, 
+  XColor value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOnBorderColorDefault()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOnBorderColorDefault( WidgetSetToggleButtonConfig _this, 
+  XColor value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOnBorderWidthActive()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOnBorderWidthActive( WidgetSetToggleButtonConfig _this, 
+  XInt32 value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOnBorderWidthFocused()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOnBorderWidthFocused( WidgetSetToggleButtonConfig _this, 
+  XInt32 value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOnBorderWidthDisabled()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOnBorderWidthDisabled( WidgetSetToggleButtonConfig _this, 
+  XInt32 value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOnBorderWidthDefault()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOnBorderWidthDefault( WidgetSetToggleButtonConfig _this, 
+  XInt32 value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOnColorActive()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOnColorActive( WidgetSetToggleButtonConfig _this, 
+  XColor value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOnColorFocused()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOnColorFocused( WidgetSetToggleButtonConfig _this, 
+  XColor value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOnColorDisabled()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOnColorDisabled( WidgetSetToggleButtonConfig _this, 
+  XColor value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOnColorDefault()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOnColorDefault( WidgetSetToggleButtonConfig _this, 
+  XColor value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOnCornerRadiusActive()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOnCornerRadiusActive( WidgetSetToggleButtonConfig _this, 
+  XInt32 value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOnCornerRadiusFocused()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOnCornerRadiusFocused( WidgetSetToggleButtonConfig _this, 
+  XInt32 value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOnCornerRadiusDisabled()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOnCornerRadiusDisabled( WidgetSetToggleButtonConfig _this, 
+  XInt32 value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOnCornerRadiusDefault()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOnCornerRadiusDefault( WidgetSetToggleButtonConfig _this, 
+  XInt32 value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOnOffsetActive()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOnOffsetActive( WidgetSetToggleButtonConfig _this, 
+  XPoint value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOnOffsetFocused()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOnOffsetFocused( WidgetSetToggleButtonConfig _this, 
+  XPoint value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOnOffsetDisabled()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOnOffsetDisabled( WidgetSetToggleButtonConfig _this, 
+  XPoint value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOnOffsetDefault()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOnOffsetDefault( WidgetSetToggleButtonConfig _this, 
+  XPoint value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOnSizeActive()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOnSizeActive( WidgetSetToggleButtonConfig _this, 
+  XPoint value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOnSizeFocused()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOnSizeFocused( WidgetSetToggleButtonConfig _this, 
+  XPoint value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOnSizeDisabled()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOnSizeDisabled( WidgetSetToggleButtonConfig _this, 
+  XPoint value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOnSizeDefault()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOnSizeDefault( WidgetSetToggleButtonConfig _this, 
+  XPoint value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOffBorderColorActive()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOffBorderColorActive( WidgetSetToggleButtonConfig _this, 
+  XColor value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOffBorderColorFocused()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOffBorderColorFocused( WidgetSetToggleButtonConfig _this, 
+  XColor value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOffBorderColorDisabled()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOffBorderColorDisabled( WidgetSetToggleButtonConfig _this, 
+  XColor value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOffBorderColorDefault()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOffBorderColorDefault( WidgetSetToggleButtonConfig _this, 
+  XColor value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOffBorderWidthActive()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOffBorderWidthActive( WidgetSetToggleButtonConfig _this, 
+  XInt32 value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOffBorderWidthFocused()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOffBorderWidthFocused( WidgetSetToggleButtonConfig _this, 
+  XInt32 value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOffBorderWidthDisabled()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOffBorderWidthDisabled( WidgetSetToggleButtonConfig _this, 
+  XInt32 value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOffBorderWidthDefault()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOffBorderWidthDefault( WidgetSetToggleButtonConfig _this, 
+  XInt32 value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOffColorActive()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOffColorActive( WidgetSetToggleButtonConfig _this, 
+  XColor value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOffColorFocused()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOffColorFocused( WidgetSetToggleButtonConfig _this, 
+  XColor value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOffColorDisabled()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOffColorDisabled( WidgetSetToggleButtonConfig _this, 
+  XColor value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOffColorDefault()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOffColorDefault( WidgetSetToggleButtonConfig _this, 
+  XColor value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOffCornerRadiusActive()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOffCornerRadiusActive( WidgetSetToggleButtonConfig _this, 
+  XInt32 value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOffCornerRadiusFocused()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOffCornerRadiusFocused( WidgetSetToggleButtonConfig _this, 
+  XInt32 value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOffCornerRadiusDisabled()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOffCornerRadiusDisabled( WidgetSetToggleButtonConfig _this, 
+  XInt32 value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOffCornerRadiusDefault()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOffCornerRadiusDefault( WidgetSetToggleButtonConfig _this, 
+  XInt32 value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOffOffsetActive()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOffOffsetActive( WidgetSetToggleButtonConfig _this, 
+  XPoint value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOffOffsetFocused()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOffOffsetFocused( WidgetSetToggleButtonConfig _this, 
+  XPoint value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOffOffsetDisabled()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOffOffsetDisabled( WidgetSetToggleButtonConfig _this, 
+  XPoint value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOffOffsetDefault()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOffOffsetDefault( WidgetSetToggleButtonConfig _this, 
+  XPoint value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOffSizeActive()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOffSizeActive( WidgetSetToggleButtonConfig _this, 
+  XPoint value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOffSizeFocused()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOffSizeFocused( WidgetSetToggleButtonConfig _this, 
+  XPoint value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOffSizeDisabled()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOffSizeDisabled( WidgetSetToggleButtonConfig _this, 
+  XPoint value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbOffSizeDefault()' */
+void WidgetSetToggleButtonConfig_OnSetThumbOffSizeDefault( WidgetSetToggleButtonConfig _this, 
+  XPoint value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetThumbLayout()' */
+void WidgetSetToggleButtonConfig_OnSetThumbLayout( WidgetSetToggleButtonConfig _this, 
+  XSet value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetTrackOnBorderColorActive()' */
+void WidgetSetToggleButtonConfig_OnSetTrackOnBorderColorActive( WidgetSetToggleButtonConfig _this, 
+  XColor value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetTrackOnBorderColorFocused()' */
+void WidgetSetToggleButtonConfig_OnSetTrackOnBorderColorFocused( WidgetSetToggleButtonConfig _this, 
+  XColor value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetTrackOnBorderColorDisabled()' */
+void WidgetSetToggleButtonConfig_OnSetTrackOnBorderColorDisabled( WidgetSetToggleButtonConfig _this, 
+  XColor value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetTrackOnBorderColorDefault()' */
+void WidgetSetToggleButtonConfig_OnSetTrackOnBorderColorDefault( WidgetSetToggleButtonConfig _this, 
+  XColor value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetTrackOnBorderWidthActive()' */
+void WidgetSetToggleButtonConfig_OnSetTrackOnBorderWidthActive( WidgetSetToggleButtonConfig _this, 
+  XInt32 value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetTrackOnBorderWidthFocused()' */
+void WidgetSetToggleButtonConfig_OnSetTrackOnBorderWidthFocused( WidgetSetToggleButtonConfig _this, 
+  XInt32 value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetTrackOnBorderWidthDisabled()' */
+void WidgetSetToggleButtonConfig_OnSetTrackOnBorderWidthDisabled( WidgetSetToggleButtonConfig _this, 
+  XInt32 value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetTrackOnBorderWidthDefault()' */
+void WidgetSetToggleButtonConfig_OnSetTrackOnBorderWidthDefault( WidgetSetToggleButtonConfig _this, 
+  XInt32 value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetTrackOnColorActive()' */
+void WidgetSetToggleButtonConfig_OnSetTrackOnColorActive( WidgetSetToggleButtonConfig _this, 
+  XColor value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetTrackOnColorFocused()' */
+void WidgetSetToggleButtonConfig_OnSetTrackOnColorFocused( WidgetSetToggleButtonConfig _this, 
+  XColor value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetTrackOnColorDisabled()' */
+void WidgetSetToggleButtonConfig_OnSetTrackOnColorDisabled( WidgetSetToggleButtonConfig _this, 
+  XColor value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetTrackOnColorDefault()' */
+void WidgetSetToggleButtonConfig_OnSetTrackOnColorDefault( WidgetSetToggleButtonConfig _this, 
+  XColor value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetTrackOffBorderColorActive()' */
+void WidgetSetToggleButtonConfig_OnSetTrackOffBorderColorActive( WidgetSetToggleButtonConfig _this, 
+  XColor value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetTrackOffBorderColorFocused()' */
+void WidgetSetToggleButtonConfig_OnSetTrackOffBorderColorFocused( WidgetSetToggleButtonConfig _this, 
+  XColor value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetTrackOffBorderColorDisabled()' */
+void WidgetSetToggleButtonConfig_OnSetTrackOffBorderColorDisabled( WidgetSetToggleButtonConfig _this, 
+  XColor value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetTrackOffBorderColorDefault()' */
+void WidgetSetToggleButtonConfig_OnSetTrackOffBorderColorDefault( WidgetSetToggleButtonConfig _this, 
+  XColor value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetTrackOffBorderWidthActive()' */
+void WidgetSetToggleButtonConfig_OnSetTrackOffBorderWidthActive( WidgetSetToggleButtonConfig _this, 
+  XInt32 value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetTrackOffBorderWidthFocused()' */
+void WidgetSetToggleButtonConfig_OnSetTrackOffBorderWidthFocused( WidgetSetToggleButtonConfig _this, 
+  XInt32 value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetTrackOffBorderWidthDisabled()' */
+void WidgetSetToggleButtonConfig_OnSetTrackOffBorderWidthDisabled( WidgetSetToggleButtonConfig _this, 
+  XInt32 value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetTrackOffBorderWidthDefault()' */
+void WidgetSetToggleButtonConfig_OnSetTrackOffBorderWidthDefault( WidgetSetToggleButtonConfig _this, 
+  XInt32 value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetTrackOffColorActive()' */
+void WidgetSetToggleButtonConfig_OnSetTrackOffColorActive( WidgetSetToggleButtonConfig _this, 
+  XColor value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetTrackOffColorFocused()' */
+void WidgetSetToggleButtonConfig_OnSetTrackOffColorFocused( WidgetSetToggleButtonConfig _this, 
+  XColor value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetTrackOffColorDisabled()' */
+void WidgetSetToggleButtonConfig_OnSetTrackOffColorDisabled( WidgetSetToggleButtonConfig _this, 
+  XColor value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetTrackOffColorDefault()' */
+void WidgetSetToggleButtonConfig_OnSetTrackOffColorDefault( WidgetSetToggleButtonConfig _this, 
+  XColor value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetTrackCornerRadius()' */
+void WidgetSetToggleButtonConfig_OnSetTrackCornerRadius( WidgetSetToggleButtonConfig _this, 
+  XInt32 value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetTrackSize()' */
+void WidgetSetToggleButtonConfig_OnSetTrackSize( WidgetSetToggleButtonConfig _this, 
+  XPoint value );
+
+/* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetTrackLayout()' */
+void WidgetSetToggleButtonConfig_OnSetTrackLayout( WidgetSetToggleButtonConfig _this, 
+  XSet value );
 
 /* 'C' function for method : 'WidgetSet::ToggleButtonConfig.OnSetLabelOnColorActive()' */
 void WidgetSetToggleButtonConfig_OnSetLabelOnColorActive( WidgetSetToggleButtonConfig _this, 
