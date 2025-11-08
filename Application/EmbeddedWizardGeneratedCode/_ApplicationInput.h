@@ -94,6 +94,7 @@ EW_DEFINE_FIELDS( ApplicationInput, CoreGroup )
   EW_OBJECT  ( LedBorder,       ViewsRectangle )
   EW_OBJECT  ( InputText,       ViewsText )
   EW_OBJECT  ( InputLed,        ViewsRectangle )
+  EW_PROPERTY( Outlet,          XRef )
   EW_PROPERTY( inputNumber,     XInt32 )
   EW_PROPERTY( inputState,      XBool )
 EW_END_OF_FIELDS( ApplicationInput )
@@ -132,6 +133,9 @@ void ApplicationInput_OnSetinputState( ApplicationInput _this, XBool value );
 
 /* 'C' function for method : 'Application::Input.OnSetinputNumber()' */
 void ApplicationInput_OnSetinputNumber( ApplicationInput _this, XInt32 value );
+
+/* Default onget method for the property 'inputState' */
+XBool ApplicationInput_OnGetinputState( ApplicationInput _this );
 
 #ifdef __cplusplus
   }

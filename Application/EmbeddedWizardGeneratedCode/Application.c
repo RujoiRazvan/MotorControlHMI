@@ -55,56 +55,56 @@
 /* Compressed strings for the language 'Default'. */
 EW_CONST_STRING_PRAGMA static const unsigned int _StringsDefault0[] =
 {
-  0x0000033C, /* ratio 56.04 % */
-  0xB8001F00, 0x800AE452, 0x00D80032, 0x0DE00318, 0x01073680, 0x05000080, 0x67001840,
-  0xA0000222, 0x85116061, 0x01922F0E, 0x1B800690, 0xCC01128C, 0x4E400859, 0x27278444,
-  0x80098C3A, 0x1187C90E, 0xE03C6E5D, 0x3A8009F1, 0xD8C40135, 0x41278008, 0xCA6D409F,
-  0x23C0DA20, 0xE1379695, 0x711294A4, 0x1B9B4225, 0x321C780B, 0xAD81A890, 0xDC1AB800,
-  0x1E6C0088, 0x6E110A96, 0x6D166094, 0x1D0C89C4, 0x13693D02, 0x291D4BA1, 0xB8257E37,
-  0xBF0006B4, 0xB11A3D64, 0xD06133F8, 0x1A3C0A8D, 0x64F2E8BC, 0x371993C9, 0x0538F03A,
-  0x7595D9C0, 0x624C4E71, 0x86998012, 0x6C783B44, 0x80098002, 0xE00042C1, 0x0003989D,
-  0x2743AE69, 0x030A1D2E, 0x00A10B40, 0x4006E482, 0xDBED4003, 0xAEECB3B5, 0x08A3713D,
-  0x624F9C8F, 0xE150AC26, 0x67259B45, 0x384224A6, 0x4B006AF3, 0x5254A467, 0xD959E158,
-  0x25FFB1BE, 0xEEA3C14A, 0x80D000A4, 0x29F29BBE, 0x9F13E5C2, 0xF9500116, 0xA68F71A9,
-  0x7E7C321D, 0xF775FA53, 0x9135052A, 0xB1891769, 0x9E07755E, 0x434A42C5, 0x6E02E6F5,
-  0xD1168D6B, 0xE5012B45, 0x4D234212, 0x85730564, 0x05D447BD, 0xD366814E, 0x244D0A45,
-  0x392E4A56, 0xD1506234, 0x75D2B675, 0xA210611B, 0x189A1C8A, 0xA5135756, 0x2D7F1418,
-  0x5E5AA72A, 0x14779400, 0x85D95200, 0x4D2863E0, 0x16680484, 0x00230806, 0x9131157B,
-  0xE941C57A, 0x551044D1, 0x134115A9, 0x8853B4AD, 0x1871E108, 0x44116500, 0x59224215,
-  0x45519446, 0x4A44E670, 0x1C89AC58, 0x344E6F00, 0xB90497D4, 0x7852D299, 0x4A6749B6,
-  0xE7A9F5DA, 0x4511BD44, 0x00004054, 0x00000000
+  0x00000350, /* ratio 55.66 % */
+  0xB8003300, 0x8009A452, 0x1CE80037, 0x00072004, 0x12530008, 0x50C30802, 0x0F8A9962,
+  0x0368008B, 0x36000EA0, 0x6C222513, 0x86800008, 0x22404581, 0x400648A4, 0x006E001A,
+  0x6008719C, 0x1531800E, 0xF98C5E2F, 0x894F2110, 0x245E392F, 0xCA00E009, 0xC6251D27,
+  0x68F45928, 0x98328552, 0xA5494036, 0x34384BE2, 0x68B800A5, 0x92C2A2F3, 0x190E5005,
+  0x5880D4C8, 0x30AF6300, 0xCF367045, 0x995B8FCD, 0x16FB684A, 0x3887C5E4, 0xA98C7A11,
+  0x1D002870, 0x259A4B34, 0x0006B518, 0x12D925C3, 0x23D21234, 0x1400AFC8, 0xB14B54A0,
+  0x3197CC61, 0x80749667, 0x9B5BA232, 0x4CD2377D, 0x99801302, 0xA03B2585, 0x0004C834,
+  0x697F2163, 0x706000E6, 0x5187D2EC, 0xD000C297, 0x20D2C002, 0x00D38000, 0xEEF7BBB0,
+  0x0789C12C, 0x25022006, 0x43A098E9, 0x51490482, 0x349F4BE1, 0x0D0C8489, 0x19803718,
+  0x05249534, 0xEEFBD6E9, 0xA0294CC2, 0x2151EE04, 0xBB0D859A, 0x55CAA803, 0x1AAAC3E2,
+  0xD92D5623, 0x846B609C, 0xD2E75538, 0x47C93142, 0x01F64D5F, 0x62451AD0, 0x839DB7C0,
+  0xD340B16E, 0xE0B9C352, 0xC5AB5C9B, 0x1E4D9145, 0x4B517435, 0x5D21590F, 0x7495F552,
+  0x290B5501, 0x0F481144, 0x435345A5, 0x1408A908, 0x57CA0881, 0xC6280612, 0x688B6238,
+  0x8C10F591, 0x5D780912, 0x08D93669, 0x21047A80, 0x425F9585, 0x43D33696, 0x61D42C48,
+  0x560DCB8D, 0x3DEF43C4, 0x0F4A1824, 0x0025A471, 0x90F41161, 0x4519254D, 0x487881D0,
+  0x5A4A1894, 0x0012C45D, 0x1CE9956E, 0x84D04E00, 0x16665305, 0x0F9D5A41, 0x4127252D,
+  0xD514D27B, 0x49D27A9F, 0x06847813, 0x4C70D0FA, 0x00101531, 0x00000000
 };
 
 /* Constant values used in this 'C' module only. */
 static const XRect _Const0000 = {{ 0, 0 }, { 480, 272 }};
 static const XRect _Const0001 = {{ 0, 200 }, { 480, 272 }};
 static const XRect _Const0002 = {{ 221, 64 }, { 480, 136 }};
-static const XRect _Const0003 = {{ 86, 97 }, { 394, 176 }};
-static const XColor _Const0004 = { 0xFF, 0x30, 0x03, 0xFF };
+static const XRect _Const0003 = {{ 0, 97 }, { 480, 176 }};
+static const XColor _Const0004 = { 0x50, 0xDF, 0xFF, 0xFF };
 static const XStringRes _Const0005 = { _StringsDefault0, 0x0002 };
-static const XStringRes _Const0006 = { _StringsDefault0, 0x0011 };
+static const XStringRes _Const0006 = { _StringsDefault0, 0x001B };
 static const XRect _Const0007 = {{ 0, -1 }, { 480, 272 }};
 static const XRect _Const0008 = {{ 340, 43 }, { 463, 93 }};
-static const XStringRes _Const0009 = { _StringsDefault0, 0x002B };
+static const XStringRes _Const0009 = { _StringsDefault0, 0x0035 };
 static const XRect _Const000A = {{ 340, 96 }, { 463, 146 }};
-static const XStringRes _Const000B = { _StringsDefault0, 0x0032 };
+static const XStringRes _Const000B = { _StringsDefault0, 0x003C };
 static const XRect _Const000C = {{ 338, 151 }, { 463, 201 }};
-static const XStringRes _Const000D = { _StringsDefault0, 0x0039 };
+static const XStringRes _Const000D = { _StringsDefault0, 0x0043 };
 static const XRect _Const000E = {{ 13, 50 }, { 128, 96 }};
-static const XStringRes _Const000F = { _StringsDefault0, 0x0046 };
+static const XStringRes _Const000F = { _StringsDefault0, 0x0050 };
 static const XRect _Const0010 = {{ 0, 93 }, { 128, 143 }};
-static const XStringRes _Const0011 = { _StringsDefault0, 0x004B };
+static const XStringRes _Const0011 = { _StringsDefault0, 0x0055 };
 static const XRect _Const0012 = {{ 0, 143 }, { 128, 192 }};
-static const XStringRes _Const0013 = { _StringsDefault0, 0x0051 };
+static const XStringRes _Const0013 = { _StringsDefault0, 0x005B };
 static const XRect _Const0014 = {{ 11, 192 }, { 113, 222 }};
-static const XStringRes _Const0015 = { _StringsDefault0, 0x0059 };
+static const XStringRes _Const0015 = { _StringsDefault0, 0x0063 };
 static const XColor _Const0016 = { 0x00, 0x00, 0x00, 0xFF };
 static const XRect _Const0017 = {{ 109, 192 }, { 147, 222 }};
-static const XStringRes _Const0018 = { _StringsDefault0, 0x006B };
+static const XStringRes _Const0018 = { _StringsDefault0, 0x0075 };
 static const XRect _Const0019 = {{ 350, 208 }, { 451, 237 }};
-static const XStringRes _Const001A = { _StringsDefault0, 0x0071 };
+static const XStringRes _Const001A = { _StringsDefault0, 0x007B };
 static const XRect _Const001B = {{ 350, 240 }, { 451, 269 }};
-static const XStringRes _Const001C = { _StringsDefault0, 0x0079 };
+static const XStringRes _Const001C = { _StringsDefault0, 0x0083 };
 static const XRect _Const001D = {{ 12, 2 }, { 135, 45 }};
 static const XRect _Const001E = {{ 202, 50 }, { 325, 93 }};
 static const XRect _Const001F = {{ 202, 92 }, { 325, 135 }};
@@ -114,49 +114,49 @@ static const XRect _Const0022 = {{ 135, 49 }, { 166, 92 }};
 static const XRect _Const0023 = {{ 135, 97 }, { 166, 140 }};
 static const XRect _Const0024 = {{ 135, 146 }, { 166, 189 }};
 static const XRect _Const0025 = {{ 134, 2 }, { 346, 32 }};
-static const XStringRes _Const0026 = { _StringsDefault0, 0x0083 };
+static const XStringRes _Const0026 = { _StringsDefault0, 0x008D };
 static const XRect _Const0027 = {{ 21, 66 }, { 306, 96 }};
-static const XStringRes _Const0028 = { _StringsDefault0, 0x0091 };
+static const XStringRes _Const0028 = { _StringsDefault0, 0x009B };
 static const XRect _Const0029 = {{ 15, 96 }, { 306, 126 }};
-static const XStringRes _Const002A = { _StringsDefault0, 0x00AE };
+static const XStringRes _Const002A = { _StringsDefault0, 0x00B8 };
 static const XRect _Const002B = {{ 14, 150 }, { 201, 180 }};
-static const XStringRes _Const002C = { _StringsDefault0, 0x00D0 };
+static const XStringRes _Const002C = { _StringsDefault0, 0x00DA };
 static const XRect _Const002D = {{ 19, 123 }, { 310, 153 }};
-static const XStringRes _Const002E = { _StringsDefault0, 0x00E4 };
+static const XStringRes _Const002E = { _StringsDefault0, 0x00EE };
 static const XRect _Const002F = {{ 118, 2 }, { 360, 32 }};
-static const XStringRes _Const0030 = { _StringsDefault0, 0x0106 };
+static const XStringRes _Const0030 = { _StringsDefault0, 0x0110 };
 static const XRect _Const0031 = {{ 18, 64 }, { 202, 94 }};
-static const XStringRes _Const0032 = { _StringsDefault0, 0x0118 };
+static const XStringRes _Const0032 = { _StringsDefault0, 0x0122 };
 static const XRect _Const0033 = {{ 18, 94 }, { 214, 124 }};
-static const XStringRes _Const0034 = { _StringsDefault0, 0x012F };
+static const XStringRes _Const0034 = { _StringsDefault0, 0x0139 };
 static const XRect _Const0035 = {{ 18, 221 }, { 347, 251 }};
-static const XStringRes _Const0036 = { _StringsDefault0, 0x0147 };
-static const XStringRes _Const0037 = { _StringsDefault0, 0x015B };
-static const XStringRes _Const0038 = { _StringsDefault0, 0x0161 };
-static const XStringRes _Const0039 = { _StringsDefault0, 0x0167 };
+static const XStringRes _Const0036 = { _StringsDefault0, 0x0151 };
+static const XStringRes _Const0037 = { _StringsDefault0, 0x0165 };
+static const XStringRes _Const0038 = { _StringsDefault0, 0x016B };
+static const XStringRes _Const0039 = { _StringsDefault0, 0x0171 };
 static const XRect _Const003A = {{ 0, 0 }, { 100, 30 }};
 static const XRect _Const003B = {{ 0, 1 }, { 100, 30 }};
 static const XColor _Const003C = { 0xD6, 0xD6, 0xD6, 0xFF };
-static const XStringRes _Const003D = { _StringsDefault0, 0x016C };
+static const XStringRes _Const003D = { _StringsDefault0, 0x0176 };
 static const XColor _Const003E = { 0xD6, 0x08, 0x02, 0xFF };
 static const XColor _Const003F = { 0xF6, 0x8F, 0x00, 0xFF };
 static const XRect _Const0040 = {{ 0, 0 }, { 114, 40 }};
 static const XRect _Const0041 = {{ 1, 2 }, { 37, 38 }};
 static const XColor _Const0042 = { 0xCC, 0xCC, 0xCC, 0xFF };
 static const XRect _Const0043 = {{ 39, 5 }, { 114, 35 }};
-static const XStringRes _Const0044 = { _StringsDefault0, 0x0173 };
+static const XStringRes _Const0044 = { _StringsDefault0, 0x017D };
 static const XRect _Const0045 = {{ 5, 6 }, { 33, 34 }};
 static const XColor _Const0046 = { 0xFF, 0xFF, 0xFF, 0xFF };
 static const XColor _Const0047 = { 0x00, 0xFF, 0x3F, 0xFF };
 static const XRect _Const0048 = {{ 0, 0 }, { 94, 40 }};
 static const XRect _Const0049 = {{ 60, 6 }, { 91, 38 }};
 static const XRect _Const004A = {{ 1, 8 }, { 57, 32 }};
-static const XStringRes _Const004B = { _StringsDefault0, 0x017B };
+static const XStringRes _Const004B = { _StringsDefault0, 0x0185 };
 static const XRect _Const004C = {{ 63, 9 }, { 88, 35 }};
-static const XStringRes _Const004D = { _StringsDefault0, 0x0182 };
-static const XStringRes _Const004E = { _StringsDefault0, 0x0189 };
-static const XStringRes _Const004F = { _StringsDefault0, 0x0190 };
-static const XStringRes _Const0050 = { _StringsDefault0, 0x0197 };
+static const XStringRes _Const004D = { _StringsDefault0, 0x018C };
+static const XStringRes _Const004E = { _StringsDefault0, 0x0193 };
+static const XStringRes _Const004F = { _StringsDefault0, 0x019A };
+static const XStringRes _Const0050 = { _StringsDefault0, 0x01A1 };
 static const XRect _Const0051 = {{ 0, 0 }, { 31, 40 }};
 static const XRect _Const0052 = {{ 0, 6 }, { 31, 38 }};
 static const XRect _Const0053 = {{ 3, 9 }, { 28, 35 }};
@@ -531,6 +531,7 @@ void ApplicationHMI__Init( ApplicationHMI _this, XObject aLink, XHandle aArg )
   ApplicationLed__Init( &_this->CWLed, &_this->_.XObject, 0 );
   ApplicationLed__Init( &_this->CCWLed, &_this->_.XObject, 0 );
   ApplicationLed__Init( &_this->CycleLed, &_this->_.XObject, 0 );
+  CoreTimer__Init( &_this->Timer, &_this->_.XObject, 0 );
 
   /* Setup the VMT pointer */
   _this->_.VMT = EW_CLASS( ApplicationHMI );
@@ -547,7 +548,7 @@ void ApplicationHMI__Init( ApplicationHMI _this, XObject aLink, XHandle aArg )
   CoreRectView__OnSetBounds( &_this->Out2, _Const000A );
   WidgetSetToggleButton_OnSetLabel( &_this->Out2, EwLoadString( &_Const000B ));
   CoreRectView__OnSetBounds( &_this->TripResetButton, _Const000C );
-  CoreGroup_OnSetVisible((CoreGroup)&_this->TripResetButton, 1 );
+  CoreGroup_OnSetVisible((CoreGroup)&_this->TripResetButton, 0 );
   WidgetSetPushButton_OnSetLabel( &_this->TripResetButton, EwLoadString( &_Const000D ));
   CoreRectView__OnSetBounds( &_this->CW, _Const000E );
   WidgetSetToggleButton_OnSetChecked( &_this->CW, 0 );
@@ -588,6 +589,8 @@ void ApplicationHMI__Init( ApplicationHMI _this, XObject aLink, XHandle aArg )
   CoreRectView__OnSetBounds( &_this->CWLed, _Const0022 );
   CoreRectView__OnSetBounds( &_this->CCWLed, _Const0023 );
   CoreRectView__OnSetBounds( &_this->CycleLed, _Const0024 );
+  CoreTimer_OnSetPeriod( &_this->Timer, 1 );
+  CoreTimer_OnSetEnabled( &_this->Timer, 1 );
   CoreGroup_Add((CoreGroup)_this, ((CoreView)&_this->WipeTouchHandler ), 0 );
   CoreGroup_Add((CoreGroup)_this, ((CoreView)&_this->Rectangle ), 0 );
   CoreGroup_Add((CoreGroup)_this, ((CoreView)&_this->Out1 ), 0 );
@@ -639,14 +642,16 @@ void ApplicationHMI__Init( ApplicationHMI _this, XObject aLink, XHandle aArg )
   WidgetSetToggleButton_OnSetAppearance( &_this->CCW, EwGetAutoObject( &WidgetSetSwitch_Mono_Medium, 
   WidgetSetToggleButtonConfig ));
   WidgetSetToggleButton_OnSetOutlet( &_this->Cycle, EwNullRef );
-  _this->Cycle.OnSwitchOn = EwNullSlot;
-  _this->Cycle.OnSwitchOff = EwNullSlot;
+  _this->Cycle.OnSwitchOn = EwNewSlot( _this, ApplicationHMI_onSetCycle );
+  _this->Cycle.OnSwitchOff = EwNewSlot( _this, ApplicationHMI_onResetCycle );
   WidgetSetToggleButton_OnSetAppearance( &_this->Cycle, EwGetAutoObject( &WidgetSetSwitch_Mono_Medium, 
   WidgetSetToggleButtonConfig ));
   ViewsText_OnSetFont( &_this->CycleCounterText, EwLoadResource( &ResourcesFontSmall, 
   ResourcesFont ));
   ViewsText_OnSetFont( &_this->CycleCounterValue, EwLoadResource( &ResourcesFontSmall, 
   ResourcesFont ));
+  _this->IN1.Outlet = EwNullRef;
+  _this->Timer.OnTrigger = EwNewSlot( _this, ApplicationHMI_checkMotorStatus );
 }
 
 /* Re-Initializer for the class 'Application::HMI' */
@@ -677,6 +682,7 @@ void ApplicationHMI__ReInit( ApplicationHMI _this )
   ApplicationLed__ReInit( &_this->CWLed );
   ApplicationLed__ReInit( &_this->CCWLed );
   ApplicationLed__ReInit( &_this->CycleLed );
+  CoreTimer__ReInit( &_this->Timer );
 }
 
 /* Finalizer method for the class 'Application::HMI' */
@@ -707,6 +713,7 @@ void ApplicationHMI__Done( ApplicationHMI _this )
   ApplicationLed__Done( &_this->CWLed );
   ApplicationLed__Done( &_this->CCWLed );
   ApplicationLed__Done( &_this->CycleLed );
+  CoreTimer__Done( &_this->Timer );
 
   /* Don't forget to deinitialize the super class ... */
   CoreGroup__Done( &_this->_.Super );
@@ -731,9 +738,8 @@ void ApplicationHMI_onTripResetPress( ApplicationHMI _this, XObject sender )
   /* Dummy expressions to avoid the 'C' warning 'unused argument'. */
   EW_UNUSED_ARG( sender );
 
-  ApplicationHMI_OnSetfaultEnabled( _this, (XBool)!_this->faultEnabled );
-  ApplicationHMI_OnSetwarningEnabled( _this, (XBool)!_this->warningEnabled );
-  ApplicationHMI_OnSetinput1State( _this, (XBool)!_this->input1State );
+  ApplicationHMI_OnSetFaultStatus( _this, 0 );
+  ApplicationHMI_OnSetWarningStatus( _this, 0 );
 }
 
 /* 'C' function for method : 'Application::HMI.onOut1On()' */
@@ -814,8 +820,10 @@ void ApplicationHMI_onCWOn( ApplicationHMI _this, XObject sender )
   /* Dummy expressions to avoid the 'C' warning 'unused argument'. */
   EW_UNUSED_ARG( sender );
 
-  ApplicationHMI_OnSetcwValue( _this, 1 );
-  EwTrace( "%i", _this->Value );
+  if ( _this->motorReady )
+    ApplicationHMI_OnSetcwValue( _this, 1 );
+  else
+    ApplicationHMI_OnSetcwValue( _this, 0 );
 }
 
 /* 'C' function for method : 'Application::HMI.onCWOff()' */
@@ -825,7 +833,6 @@ void ApplicationHMI_onCWOff( ApplicationHMI _this, XObject sender )
   EW_UNUSED_ARG( sender );
 
   ApplicationHMI_OnSetcwValue( _this, 0 );
-  EwTrace( "%i", _this->Value );
 }
 
 /* 'C' function for method : 'Application::HMI.onCCWOn()' */
@@ -834,8 +841,10 @@ void ApplicationHMI_onCCWOn( ApplicationHMI _this, XObject sender )
   /* Dummy expressions to avoid the 'C' warning 'unused argument'. */
   EW_UNUSED_ARG( sender );
 
-  ApplicationHMI_OnSetccwValue( _this, 1 );
-  EwTrace( "%i", _this->Value );
+  if ( _this->motorReady )
+    ApplicationHMI_OnSetccwValue( _this, 1 );
+  else
+    ApplicationHMI_OnSetccwValue( _this, 0 );
 }
 
 /* 'C' function for method : 'Application::HMI.onCCWOff()' */
@@ -845,7 +854,6 @@ void ApplicationHMI_onCCWOff( ApplicationHMI _this, XObject sender )
   EW_UNUSED_ARG( sender );
 
   ApplicationHMI_OnSetccwValue( _this, 0 );
-  EwTrace( "%i", _this->Value );
 }
 
 /* 'C' function for method : 'Application::HMI.OnSetcwValue()' */
@@ -868,38 +876,86 @@ void ApplicationHMI_OnSetccwValue( ApplicationHMI _this, XInt16 value )
   ApplicationLed_OnSetledState( &_this->CCWLed, !!value );
 }
 
-/* 'C' function for method : 'Application::HMI.OnSetfaultEnabled()' */
-void ApplicationHMI_OnSetfaultEnabled( ApplicationHMI _this, XBool value )
+/* 'C' function for method : 'Application::HMI.OnSetmotorReady()' */
+void ApplicationHMI_OnSetmotorReady( ApplicationHMI _this, XBool value )
 {
-  if ( _this->faultEnabled == value )
+  if ( _this->motorReady == value )
     return;
 
-  _this->faultEnabled = value;
+  _this->motorReady = value;
+  ApplicationReady_OnSetreadyFlag( &_this->Ready, _this->motorReady );
+  CoreGroup_OnSetVisible((CoreGroup)&_this->TripResetButton, 0 );
+}
+
+/* 'C' function for method : 'Application::HMI.OnSetFaultStatus()' */
+void ApplicationHMI_OnSetFaultStatus( ApplicationHMI _this, XBool value )
+{
+  if ( _this->FaultStatus == value )
+    return;
+
+  _this->FaultStatus = value;
   ApplicationFaultOrWarning_OnSettype( &_this->Fault, EwLoadString( &_Const001A ));
   ViewsText_OnSetString( &_this->Fault.Text, EwLoadString( &_Const001A ));
-  ApplicationFaultOrWarning_OnSetenabled( &_this->Fault, _this->faultEnabled );
+  ApplicationFaultOrWarning_OnSetenabled( &_this->Fault, _this->FaultStatus );
+  ApplicationHMI_OnSetmotorReady( _this, 0 );
+  CoreGroup_OnSetVisible((CoreGroup)&_this->TripResetButton, 1 );
 }
 
-/* 'C' function for method : 'Application::HMI.OnSetwarningEnabled()' */
-void ApplicationHMI_OnSetwarningEnabled( ApplicationHMI _this, XBool value )
+/* 'C' function for method : 'Application::HMI.OnSetWarningStatus()' */
+void ApplicationHMI_OnSetWarningStatus( ApplicationHMI _this, XBool value )
 {
-  if ( _this->warningEnabled == value )
+  if ( _this->WarningStatus == value )
     return;
 
-  _this->warningEnabled = value;
+  _this->WarningStatus = value;
   ApplicationFaultOrWarning_OnSettype( &_this->Warning, EwLoadString( &_Const001C ));
   ViewsText_OnSetString( &_this->Warning.Text, EwLoadString( &_Const001C ));
-  ApplicationFaultOrWarning_OnSetenabled( &_this->Warning, _this->warningEnabled );
+  ApplicationFaultOrWarning_OnSetenabled( &_this->Warning, _this->WarningStatus );
 }
 
-/* 'C' function for method : 'Application::HMI.OnSetinput1State()' */
-void ApplicationHMI_OnSetinput1State( ApplicationHMI _this, XBool value )
+/* 'C' function for method : 'Application::HMI.onSetCycle()' */
+void ApplicationHMI_onSetCycle( ApplicationHMI _this, XObject sender )
 {
-  if ( _this->input1State == value )
+  /* Dummy expressions to avoid the 'C' warning 'unused argument'. */
+  EW_UNUSED_ARG( sender );
+
+  if ( _this->motorReady )
+    ApplicationHMI_OnSetcycleValue( _this, 1 );
+  else
+    ApplicationHMI_OnSetcycleValue( _this, 0 );
+}
+
+/* 'C' function for method : 'Application::HMI.OnSetcycleValue()' */
+void ApplicationHMI_OnSetcycleValue( ApplicationHMI _this, XInt16 value )
+{
+  if ( _this->cycleValue == value )
     return;
 
-  _this->input1State = value;
-  ApplicationInput_OnSetinputState( &_this->IN1, _this->input1State );
+  _this->cycleValue = value;
+  ApplicationLed_OnSetledState( &_this->CycleLed, !!value );
+}
+
+/* 'C' function for method : 'Application::HMI.onResetCycle()' */
+void ApplicationHMI_onResetCycle( ApplicationHMI _this, XObject sender )
+{
+  /* Dummy expressions to avoid the 'C' warning 'unused argument'. */
+  EW_UNUSED_ARG( sender );
+
+  ApplicationHMI_OnSetcycleValue( _this, 0 );
+}
+
+/* 'C' function for method : 'Application::HMI.checkMotorStatus()' */
+void ApplicationHMI_checkMotorStatus( ApplicationHMI _this, XObject sender )
+{
+  /* Dummy expressions to avoid the 'C' warning 'unused argument'. */
+  EW_UNUSED_ARG( sender );
+
+  if ((( _this->cwValue == 1 ) && ( _this->ccwValue == 1 )) || ((( _this->cwValue 
+      == 1 ) || ( _this->ccwValue == 1 )) && ( _this->cycleValue == 1 )))
+    ApplicationHMI_OnSetFaultStatus( _this, 1 );
+
+  if ( !_this->FaultStatus )
+    ApplicationHMI_OnSetmotorReady( _this, 1 );
 }
 
 /* Variants derived from the class : 'Application::HMI' */
@@ -1147,6 +1203,7 @@ void ApplicationMeasuredValues__Init( ApplicationMeasuredValues _this, XObject a
   ViewsText_OnSetString( &_this->OperatingHours, EwLoadString( &_Const0036 ));
   ViewsText_OnSetColor( &_this->OperatingHours, _Const0016 );
   CoreTimer_OnSetEnabled( &_this->measureOperatingHours, 1 );
+  _this->isFirstStart = 1;
   CoreGroup_Add((CoreGroup)_this, ((CoreView)&_this->Rectangle ), 0 );
   CoreGroup_Add((CoreGroup)_this, ((CoreView)&_this->Title ), 0 );
   CoreGroup_Add((CoreGroup)_this, ((CoreView)&_this->NumberOfCWrotations ), 0 );
@@ -1222,6 +1279,12 @@ void ApplicationMeasuredValues_onMeasureOperatingHours( ApplicationMeasuredValue
 
   /* Dummy expressions to avoid the 'C' warning 'unused argument'. */
   EW_UNUSED_ARG( sender );
+
+  if ( _this->isFirstStart )
+  {
+    _this->ElapsedSeconds = EwMathRandInt32( 512, 2048 );
+    _this->isFirstStart = 0;
+  }
 
   _this->ElapsedSeconds = _this->ElapsedSeconds + 1;
   hours = _this->ElapsedSeconds / 3600;
@@ -1702,6 +1765,7 @@ void ApplicationInput__Init( ApplicationInput _this, XObject aLink, XHandle aArg
   CoreGroup_Add((CoreGroup)_this, ((CoreView)&_this->InputText ), 0 );
   CoreGroup_Add((CoreGroup)_this, ((CoreView)&_this->InputLed ), 0 );
   ViewsText_OnSetFont( &_this->InputText, EwLoadResource( &ApplicationFont, ResourcesFont ));
+  _this->Outlet = EwNewRef( _this, ApplicationInput_OnGetinputState, ApplicationInput_OnSetinputState );
 }
 
 /* Re-Initializer for the class 'Application::Input' */
@@ -1742,7 +1806,8 @@ void ApplicationInput_OnSetinputState( ApplicationInput _this, XBool value )
   if ( _this->inputState )
     ViewsRectangle_OnSetColor( &_this->InputLed, _Const0047 );
   else
-    ViewsRectangle_OnSetColor( &_this->InputLed, _Const0046 );
+    if ( !_this->inputState )
+      ViewsRectangle_OnSetColor( &_this->InputLed, _Const0046 );
 
   CoreGroup_InvalidateViewState((CoreGroup)_this );
 }
@@ -1768,13 +1833,19 @@ void ApplicationInput_OnSetinputNumber( ApplicationInput _this, XInt32 value )
           ViewsText_OnSetString( &_this->InputText, EwLoadString( &_Const0050 ));
 }
 
+/* Default onget method for the property 'inputState' */
+XBool ApplicationInput_OnGetinputState( ApplicationInput _this )
+{
+  return _this->inputState;
+}
+
 /* Variants derived from the class : 'Application::Input' */
 EW_DEFINE_CLASS_VARIANTS( ApplicationInput )
 EW_END_OF_CLASS_VARIANTS( ApplicationInput )
 
 /* Virtual Method Table (VMT) for the class : 'Application::Input' */
-EW_DEFINE_CLASS( ApplicationInput, CoreGroup, LedBorder, inputNumber, inputNumber, 
-                 inputNumber, inputNumber, inputNumber, "Application::Input" )
+EW_DEFINE_CLASS( ApplicationInput, CoreGroup, LedBorder, Outlet, Outlet, Outlet, 
+                 inputNumber, inputNumber, "Application::Input" )
   CoreRectView_initLayoutContext,
   CoreView_GetRoot,
   CoreGroup_Draw,

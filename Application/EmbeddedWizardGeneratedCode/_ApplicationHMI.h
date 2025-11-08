@@ -120,15 +120,17 @@ EW_DEFINE_FIELDS( ApplicationHMI, CoreGroup )
   EW_OBJECT  ( CWLed,           ApplicationLed )
   EW_OBJECT  ( CCWLed,          ApplicationLed )
   EW_OBJECT  ( CycleLed,        ApplicationLed )
+  EW_OBJECT  ( Timer,           CoreTimer )
   EW_PROPERTY( Outlet_On1,      XRef )
   EW_PROPERTY( Outlet_On2,      XRef )
   EW_PROPERTY( Value,           XInt32 )
   EW_PROPERTY( Value_Out2,      XInt32 )
   EW_PROPERTY( cwValue,         XInt16 )
   EW_PROPERTY( ccwValue,        XInt16 )
-  EW_PROPERTY( faultEnabled,    XBool )
-  EW_PROPERTY( warningEnabled,  XBool )
-  EW_PROPERTY( input1State,     XBool )
+  EW_PROPERTY( cycleValue,      XInt16 )
+  EW_PROPERTY( motorReady,      XBool )
+  EW_PROPERTY( FaultStatus,     XBool )
+  EW_PROPERTY( WarningStatus,   XBool )
 EW_END_OF_FIELDS( ApplicationHMI )
 
 /* Virtual Method Table (VMT) for the class : 'Application::HMI' */
@@ -202,14 +204,26 @@ void ApplicationHMI_OnSetcwValue( ApplicationHMI _this, XInt16 value );
 /* 'C' function for method : 'Application::HMI.OnSetccwValue()' */
 void ApplicationHMI_OnSetccwValue( ApplicationHMI _this, XInt16 value );
 
-/* 'C' function for method : 'Application::HMI.OnSetfaultEnabled()' */
-void ApplicationHMI_OnSetfaultEnabled( ApplicationHMI _this, XBool value );
+/* 'C' function for method : 'Application::HMI.OnSetmotorReady()' */
+void ApplicationHMI_OnSetmotorReady( ApplicationHMI _this, XBool value );
 
-/* 'C' function for method : 'Application::HMI.OnSetwarningEnabled()' */
-void ApplicationHMI_OnSetwarningEnabled( ApplicationHMI _this, XBool value );
+/* 'C' function for method : 'Application::HMI.OnSetFaultStatus()' */
+void ApplicationHMI_OnSetFaultStatus( ApplicationHMI _this, XBool value );
 
-/* 'C' function for method : 'Application::HMI.OnSetinput1State()' */
-void ApplicationHMI_OnSetinput1State( ApplicationHMI _this, XBool value );
+/* 'C' function for method : 'Application::HMI.OnSetWarningStatus()' */
+void ApplicationHMI_OnSetWarningStatus( ApplicationHMI _this, XBool value );
+
+/* 'C' function for method : 'Application::HMI.onSetCycle()' */
+void ApplicationHMI_onSetCycle( ApplicationHMI _this, XObject sender );
+
+/* 'C' function for method : 'Application::HMI.OnSetcycleValue()' */
+void ApplicationHMI_OnSetcycleValue( ApplicationHMI _this, XInt16 value );
+
+/* 'C' function for method : 'Application::HMI.onResetCycle()' */
+void ApplicationHMI_onResetCycle( ApplicationHMI _this, XObject sender );
+
+/* 'C' function for method : 'Application::HMI.checkMotorStatus()' */
+void ApplicationHMI_checkMotorStatus( ApplicationHMI _this, XObject sender );
 
 #ifdef __cplusplus
   }
