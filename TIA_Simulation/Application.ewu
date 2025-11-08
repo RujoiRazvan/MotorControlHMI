@@ -559,7 +559,7 @@ class HMI : Core::Group
   // WelcomePage Configuration
   note group Note
   {
-    attr Bounds = <530,0,830,200>;
+    attr Bounds = <530,0,830,210>;
   }
 
   $rect <20,20,160,60>
@@ -611,7 +611,7 @@ class HMI : Core::Group
   // On Page Slots
   note group Note1
   {
-    attr Bounds = <850,0,1150,200>;
+    attr Bounds = <850,0,1150,210>;
   }
 
   // Output 1
@@ -755,7 +755,7 @@ class HMI : Core::Group
   $rect <20,20,160,60>
   object WidgetSet::ToggleButton CW
   {
-    preset Bounds = <13,46,136,96>;
+    preset Bounds = <13,50,128,96>;
     preset OnUpdate = null;
     preset Outlet = null;
     preset Checked = false;
@@ -764,13 +764,13 @@ class HMI : Core::Group
     preset OnSwitchOn = onCWOn;
     preset OnSwitchOff = onCWOff;
     preset Label = "CW";
-    preset Appearance = WidgetSet::Switch_Lime_Medium;
+    preset Appearance = WidgetSet::Switch_Mono_Medium;
   }
 
   $rect <20,20,160,60>
   object WidgetSet::ToggleButton CCW
   {
-    preset Bounds = <13,93,136,143>;
+    preset Bounds = <0,93,128,143>;
     preset OnUpdate = null;
     preset Outlet = null;
     preset Checked = false;
@@ -779,13 +779,13 @@ class HMI : Core::Group
     preset OnSwitchOn = onCCWOn;
     preset OnSwitchOff = onCCWOff;
     preset Label = "CCW";
-    preset Appearance = WidgetSet::Switch_Lime_Medium;
+    preset Appearance = WidgetSet::Switch_Mono_Medium;
   }
 
   $rect <20,20,160,60>
   object WidgetSet::ToggleButton Cycle
   {
-    preset Bounds = <13,142,136,192>;
+    preset Bounds = <0,143,128,192>;
     preset OnUpdate = null;
     preset Outlet = null;
     preset Checked = false;
@@ -794,7 +794,7 @@ class HMI : Core::Group
     preset OnSwitchOn = null;
     preset OnSwitchOff = null;
     preset Label = "Cycle";
-    preset Appearance = WidgetSet::Switch_Lime_Medium;
+    preset Appearance = WidgetSet::Switch_Mono_Medium;
   }
 
   $rect <20,20,160,60>
@@ -842,7 +842,8 @@ class HMI : Core::Group
   $rect <560,530,760,570>
   slot onCWOn
   {
-    Value = 0;
+    cwValue = 1;
+
     trace Value;
   }
 
@@ -856,13 +857,14 @@ class HMI : Core::Group
   slot onCWOff
   {
     cwValue = 0;
+
     trace Value;
   }
 
   $rect <559,631,759,671>
   slot onCCWOn
   {
-    ccwValue = 0;
+    ccwValue = 1;
     trace Value;
   }
 
@@ -874,7 +876,7 @@ class HMI : Core::Group
   }
 
   $rect <782,480,982,520>
-  property int32 cwValue;
+  property int16 cwValue;
 
   $rect <1002,480,1202,520>
   onset cwValue
@@ -885,7 +887,7 @@ class HMI : Core::Group
 
     // Remember the property's new value.
     pure cwValue = value;
-
+    CWLed.ledState = value;
     if ( cwOutlet != null )
     {
       if ( value == 0 )
@@ -923,7 +925,7 @@ class HMI : Core::Group
   }
 
   $rect <770,600,970,640>
-  property int32 ccwValue;
+  property int16 ccwValue;
 
   $rect <990,600,1190,640>
   onset ccwValue
@@ -934,7 +936,7 @@ class HMI : Core::Group
 
     // Remember the property's new value.
     pure ccwValue = value;
-
+    CCWLed.ledState = value;
     if ( ccwOutlet != null )
     {
       if ( value == 0 )
@@ -990,7 +992,7 @@ class HMI : Core::Group
   // Properties
   note group Note5
   {
-    attr Bounds = <1170,0,1810,199>;
+    attr Bounds = <1170,0,1810,210>;
   }
 
   $rect <1390,39,1590,79>
@@ -1037,7 +1039,7 @@ class HMI : Core::Group
   $rect <20,20,160,60>
   object Application::Input IN1
   {
-    preset Bounds = <179,50,302,93>;
+    preset Bounds = <202,50,325,93>;
     preset inputState = false;
     preset inputNumber = 1;
   }
@@ -1045,7 +1047,7 @@ class HMI : Core::Group
   $rect <20,20,160,60>
   object Application::Input IN2
   {
-    preset Bounds = <179,92,302,135>;
+    preset Bounds = <202,92,325,135>;
     preset inputState = false;
     preset inputNumber = 2;
   }
@@ -1053,7 +1055,7 @@ class HMI : Core::Group
   $rect <20,20,160,60>
   object Application::Input IN3
   {
-    preset Bounds = <179,136,302,179>;
+    preset Bounds = <202,136,325,179>;
     preset inputState = false;
     preset inputNumber = 3;
   }
@@ -1061,7 +1063,7 @@ class HMI : Core::Group
   $rect <20,20,160,60>
   object Application::Input IN4
   {
-    preset Bounds = <179,178,302,221>;
+    preset Bounds = <202,178,325,221>;
     preset inputState = false;
     preset inputNumber = 4;
   }
@@ -1172,6 +1174,24 @@ class HMI : Core::Group
     return pure input4State;
   }
 
+  $rect <20,20,160,60>
+  object Application::Led CWLed
+  {
+    preset Bounds = <135,49,166,92>;
+  }
+
+  $rect <20,20,160,60>
+  object Application::Led CCWLed
+  {
+    preset Bounds = <135,97,166,140>;
+  }
+
+  $rect <20,20,160,60>
+  object Application::Led CycleLed
+  {
+    preset Bounds = <135,146,166,189>;
+  }
+
   // Directives to adapt the order of the above members according to how these members 
   // where arranged when the project content was stored. In this manner the storage 
   // and the expected order of the members don't depend. Merging of changes in the 
@@ -1248,6 +1268,9 @@ class HMI : Core::Group
   $member input4State
   $member OnSetinput4State
   $member OnGetinput4State
+  $member CWLed
+  $member CCWLed
+  $member CycleLed
 
   // Directives to adapt the order of members belonging to this class so they appear 
   // correctly arranged relative to the members inherited from the ancestor (super) 
@@ -2466,7 +2489,7 @@ class Ready : Core::Group
 // Modules
 note group Modules
 {
-  attr Bounds = <490,240,790,450>;
+  attr Bounds = <490,240,790,510>;
 }
 
 $rect <540,394,740,434>
@@ -2708,6 +2731,216 @@ class Input : Core::Group
       InputText.String = "IN 3";
     else if (inputNumber == 4)
       InputText.String = "IN 4";
+    // TO DO:
+    // 
+    // Now you can handle the alternation of the property.
+  }
+}
+
+$rect <540,450,740,490>
+$output false
+class Led : Core::Group
+{
+  $rect <10,230,210,270>
+  inherited property Bounds = <0,0,31,40>;
+
+  $rect <10,390,210,430>
+  inherited method UpdateLayout()
+  {
+    // Always invoke the inherited method.
+    super( aSize );
+
+    /*
+
+      HINT:
+
+      This method exists for sophisticated layout calculation. Please note, that in 
+      most cases it is completely sufficient to use the views property 'Layout' to
+      determine how the view should behave when the component is resized.
+
+    */
+
+    /*
+
+      TO DO:
+
+      Put here the code to calculate new position and size of enclosed views. The
+      current (new) size of the component itself is passed in the parameter aSize.
+      For example:
+
+        SomeView.Bounds = rect( 10, 10, aSize.x - 20, aSize.y - 20 );
+
+    */
+  }
+
+  $rect <10,350,210,390>
+  inherited method UpdateViewState()
+  {
+    // Always invoke the inherited method.
+    super( aState );
+
+    /*
+
+      HINT 1:
+
+      This method is invoked automatically when the state set of the component has
+      been changed. The new state set can be found in the parameter aState.
+      Following are the important states:
+
+        Enabled   --> The component can react to user inputs.
+
+        Selected  --> The component is selected in context of its owner.
+
+        Focused   --> The component is selected in context of its owner and 
+                      the owner can react to keyboard events. In this manner the
+                      component is also able to react to keyboard events.
+
+        Modal     --> The component is modal. All events are redirected to this
+                      component.
+
+      To determine whether a state is currently active or not you have to test
+      the aState parameter. For example to test the 'Selected' state:
+
+        if ( aState.contains( Core::ViewState[ Selected ]))
+        {
+          ... yes, this component is currently selected.
+        }
+
+    */
+
+    /*
+
+      HINT 2:
+
+      Alternatively you can request this method invocation by executing explicitly
+      following code:
+
+
+        InvalidateViewState();
+
+    */
+      
+    /*
+
+      TO DO 1:
+
+      Put here the code to ensure that the visual aspect of the component does
+      reflect its current state. For example, depending on its 'Enabled' state
+      a component may appear with full colors or pale if it is disabled:
+
+        if ( aState.contains( Core::ViewState[ Enabled ]))
+        {
+          SomeBackgroundView.Opacity = 255;
+          SomeTextView.Color         = #000000FF;
+        }
+        else
+        {
+          SomeBackgroundView.Opacity = 128;
+          SomeTextView.Color         = #00000080;
+        }
+
+
+      TO DO 2:
+
+      You can evaluate here also the state of any other member in your component.
+      For example in a push-button component, the button should appear highlighted
+      as long as the user holds the finger within a touch area of the button:
+
+        if ( SomeTouchHandler.Down && SomeTouchHandler.Inside )
+          HighlightedBackground.Visible = true;
+        else
+          HighlightedBackground.Visible = false;
+
+      The touch handler itself only requests the update method to be called. Use
+      for this purpose 'InvalidateViewState()' method.
+
+
+      TO DO 3:
+
+      You can calculate here also the position/size of views accordingly to the
+      state of any other member in your component. For example in a slider you
+      can calculate the position of the slider knob from some properties like
+      'SliderValue' and 'SliderRange':
+
+        SliderKnob.Bounds.origin.x = ( SliderValue * Bounds.w ) / SliderRange;
+
+      Changing the 'SliderValue' or 'SliderRange' property should only request
+      the update method to be called. Use for this purpose 'InvalidateViewState()'
+      method.
+
+    */
+  }
+
+  // To do:
+  // 
+  // - Adjust the visible size of your component (the thick blue border).
+  // 
+  // - The simplest way to compose the appearance of the component is to use the \
+  // 'Views' and 'Widget Sets' from the Gallery.
+  // 
+  // - To react to touch or keyboard events use the templates from the Gallery folder \
+  // 'Event Handlers'.
+  // 
+  // - To perform transitions (animations) use the templates from the Gallery folder \
+  // 'Effects'.
+  // 
+  // - To implement the interface of the component use the 'Property' template from \
+  // the Gallery folder 'Chora'.
+  // 
+  // - To store values use the 'Variable' and 'Array' templates available in the \
+  // Gallery folder 'Chora'.
+  // 
+  // - To implement behavior use the 'Method' and 'Slot Method' templates available \
+  // in the Gallery folder 'Chora'.
+  // 
+  // - In the method 'UpdateViewState()' you can put code to update the state of \
+  // views enclosed in your component.
+  // 
+  // - In the method 'UpdateLayout()' you can put code to perform sophisticated layout \
+  // calculation for enclosed views.
+  note legend Note1
+  {
+    attr Bounds = <220,230,1000,550>;
+  }
+
+  $rect <20,20,160,60>
+  object Views::Rectangle LedBorder
+  {
+    preset Bounds = <0,6,31,38>;
+    preset ColorBL = #CCCCCCFF;
+    preset ColorBR = #CCCCCCFF;
+    preset ColorTR = #CCCCCCFF;
+    preset ColorTL = #CCCCCCFF;
+    preset Radius = 100;
+    preset Color = #CCCCCCFF;
+  }
+
+  $rect <20,20,160,60>
+  object Views::Rectangle InputLed
+  {
+    preset Bounds = <3,9,28,35>;
+    preset Radius = 100;
+    preset Color = #FFFFFFFF;
+  }
+
+  $rect <220,30,420,70>
+  property bool ledState;
+
+  $rect <220,70,420,110>
+  onset ledState
+  {
+    // The value doesn't change - nothing to do.
+    if ( pure ledState == value )
+      return;
+
+    // Remember the property's new value.
+    pure ledState = value;
+
+    if (ledState)
+      InputLed.Color = #00FF3FFF;
+    else
+      InputLed.Color = #FFFFFFFF;
+    InvalidateViewState();
     // TO DO:
     // 
     // Now you can handle the alternation of the property.
