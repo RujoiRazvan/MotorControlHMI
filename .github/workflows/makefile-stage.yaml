@@ -1,10 +1,13 @@
-name: Build EmbeddedWizard Project
+name: Build Embedded Wizard Project
 
 on:
   push:
     branches: [main]
   pull_request:
     branches: [main]
+
+permissions:
+  contents: write
 
 jobs:
   build:
@@ -36,4 +39,6 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: MotorControlHMI-binaries
-          path: cmake/Bin/
+          path: | 
+            cmake/Bin/MotorControlHMI.elf
+            cmake/Bin/MotorControlHMI.hex
