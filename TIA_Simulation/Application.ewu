@@ -28,6 +28,7 @@ class MainPage : Core::Root
   object Application::HMI HMI
   {
     preset Bounds = <0,0,480,272>;
+    preset DeriveEnabledState = true;
   }
 
   $rect <20,20,160,60>
@@ -49,7 +50,7 @@ class MainPage : Core::Root
   $rect <20,20,160,60>
   object Core::SlideTouchHandler SlideTouchHandler
   {
-    preset Bounds = <0,200,480,272>;
+    preset Bounds = <0,214,480,272>;
     preset OnSlide = onSlide;
     preset OnEnd = onEnd;
     preset OnStart = onStart;
@@ -171,6 +172,16 @@ class MainPage : Core::Root
 
   $rect <510,460,710,500>
   var int16 touchThreshold = 20;
+
+  $rect <742,362,942,402>
+  method void touch( arg bool enabled )
+  {
+    SlideTouchHandler.Enabled = enabled;
+    //SlideTouchHandler1.Enabled = enabled;
+  }
+
+  $rect <94,386,294,426>
+  var Application::HMI hmiPage;
 }
 
 $rect <20,80,220,120>
@@ -1307,6 +1318,8 @@ class HMI : Core::Group
     NumKeyboard.Visible = true;
     NumKeyboard.Enabled = true;
     NumKeyboard.generatedNumber  = 0;
+    var Application::MainPage mainPageRef = (Application::MainPage)rootthis;
+    mainPageRef.touch(false);
   }
 
   $rect <20,20,160,60>
@@ -1325,6 +1338,8 @@ class HMI : Core::Group
     CycleCounterValue.String = string(NumKeyboard.generatedNumber);
     NumKeyboard.Visible = false;
     NumKeyboard.Enabled = false;
+    var Application::MainPage mainPageRef = (Application::MainPage)rootthis;
+    mainPageRef.touch(true);
   }
 
   $rect <20,20,160,60>
@@ -1437,9 +1452,9 @@ class HMI : Core::Group
   $member Timer
   $member ModifyCycleCounterTouch
   $member CycleCounterTouchSlot
+  $member NumKeyboard
   $member EnterTouch
   $member ClearKeyBoard
-  $member NumKeyboard
   $member Note7
   $member Note8
 

@@ -1,8 +1,9 @@
 $version 1.0
 
-attr active = Application::HMI;
+attr active = Application::MainPage;
 attr callStackMonitor_Show = false;
-attr connectInspectors = true;
+attr connectInspectors = false;
+attr currentCodeInspector = Application::MainPage.onWelcomePageTimer;
 attr debug_TrackUpdates = false;
 attr extractDoc_ClassOverview = true;
 attr extractDoc_DeleteOldFiles = false;
@@ -52,7 +53,7 @@ view class Application::MeasuredValues
 view class Application::HMI
 {
   attr enableWireMode = false;
-  attr scrollTo = <929,-123>;
+  attr scrollTo = <14,-123>;
   attr zoom = 1.0;
 }
 
@@ -70,17 +71,24 @@ view class Application::Input
   attr zoom = 1.0;
 }
 
-view class Application::MainPage
-{
-  attr enableWireMode = false;
-  attr scrollTo = <-7,-167>;
-  attr zoom = 1.0;
-}
-
 view class Application::NumKeyboard
 {
   attr enableWireMode = false;
-  attr scrollTo = <-7,-167>;
+  attr scrollTo = <-7,-211>;
+  attr zoom = 2.5;
+}
+
+view class Application::MainPage
+{
+  attr enableWireMode = false;
+  attr scrollTo = <-7,-87>;
+  attr zoom = 1.0;
+}
+
+view class Application::WelcomePage
+{
+  attr enableWireMode = false;
+  attr scrollTo = <-7,-7>;
   attr zoom = 1.0;
 }
 
@@ -432,8 +440,8 @@ codeview Application::MainPage.onWelcomePageTimer
 {
   attr codeColSelect = false;
   attr codeFirstPos = <0,0>;
-  attr codeSelEnd = <28,0>;
-  attr codeSelStart = <28,0>;
+  attr codeSelEnd = <0,0>;
+  attr codeSelStart = <0,0>;
 }
 
 codeview Application::MainPage.onSlide1
@@ -488,14 +496,30 @@ codeview Application::HMI.CycleCounterTouchSlot
 {
   attr codeColSelect = false;
   attr codeFirstPos = <0,0>;
-  attr codeSelEnd = <33,2>;
-  attr codeSelStart = <33,2>;
+  attr codeSelEnd = <23,4>;
+  attr codeSelStart = <23,4>;
 }
 
 codeview Application::HMI.ClearKeyBoard
 {
   attr codeColSelect = false;
   attr codeFirstPos = <0,0>;
-  attr codeSelEnd = <61,0>;
-  attr codeSelStart = <34,0>;
+  attr codeSelEnd = <17,4>;
+  attr codeSelStart = <17,4>;
+}
+
+codeview Application::MainPage.touch
+{
+  attr codeColSelect = false;
+  attr codeFirstPos = <0,0>;
+  attr codeSelEnd = <2,1>;
+  attr codeSelStart = <2,1>;
+}
+
+codeview Application::WelcomePage.onTimer
+{
+  attr codeColSelect = false;
+  attr codeFirstPos = <0,0>;
+  attr codeSelEnd = <0,0>;
+  attr codeSelStart = <0,0>;
 }
