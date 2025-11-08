@@ -2,8 +2,7 @@ $version 1.0
 
 attr active = Application::HMI;
 attr callStackMonitor_Show = false;
-attr connectInspectors = false;
-attr currentCodeInspector = Application::DeviceClass.OnSetDeviceClass_CW;
+attr connectInspectors = true;
 attr debug_TrackUpdates = false;
 attr extractDoc_ClassOverview = true;
 attr extractDoc_DeleteOldFiles = false;
@@ -31,16 +30,8 @@ view Project
 {
   attr aspectRatio = 1.0;
   attr enableGrid = true;
-  attr enableWireMode = false;
   attr grid = 10;
   attr scrollTo = <-7,-399>;
-  attr zoom = 1.0;
-}
-
-view class Application::MeasuredValues
-{
-  attr enableWireMode = false;
-  attr scrollTo = <-7,-7>;
   attr zoom = 1.0;
 }
 
@@ -51,10 +42,17 @@ view unit Application
   attr zoom = 1.0;
 }
 
+view class Application::MeasuredValues
+{
+  attr enableWireMode = false;
+  attr scrollTo = <-7,-7>;
+  attr zoom = 1.0;
+}
+
 view class Application::HMI
 {
   attr enableWireMode = false;
-  attr scrollTo = <-8,-79>;
+  attr scrollTo = <929,-123>;
   attr zoom = 1.0;
 }
 
@@ -65,17 +63,24 @@ view class Application::Ready
   attr zoom = 1.0;
 }
 
-view class Application::DeviceClass
-{
-  attr enableWireMode = false;
-  attr scrollTo = <-9,-75>;
-  attr zoom = 1.5;
-}
-
 view class Application::Input
 {
   attr enableWireMode = false;
   attr scrollTo = <-7,-87>;
+  attr zoom = 1.0;
+}
+
+view class Application::MainPage
+{
+  attr enableWireMode = false;
+  attr scrollTo = <-7,-167>;
+  attr zoom = 1.0;
+}
+
+view class Application::NumKeyboard
+{
+  attr enableWireMode = false;
+  attr scrollTo = <-7,-167>;
   attr zoom = 1.0;
 }
 
@@ -162,7 +167,7 @@ codeview Application::HMI.OnSetccwValue
 codeview Application::DeviceClass.OnSetDeviceClass_CW
 {
   attr codeColSelect = false;
-  attr codeFirstPos = <0,0>;
+  attr codeFirstPos = <0,3>;
   attr codeSelEnd = <0,6>;
   attr codeSelStart = <0,6>;
 }
@@ -389,4 +394,108 @@ codeview Application::MeasuredValues.onMeasureOperatingHours
   attr codeFirstPos = <0,4>;
   attr codeSelEnd = <0,13>;
   attr codeSelStart = <0,13>;
+}
+
+codeview Application::MainPage.onStart
+{
+  attr codeColSelect = false;
+  attr codeFirstPos = <0,0>;
+  attr codeSelEnd = <0,0>;
+  attr codeSelStart = <0,0>;
+}
+
+codeview Application::MainPage.onSlide
+{
+  attr codeColSelect = false;
+  attr codeFirstPos = <0,0>;
+  attr codeSelEnd = <0,0>;
+  attr codeSelStart = <0,0>;
+}
+
+codeview Application::MainPage.onEnd
+{
+  attr codeColSelect = false;
+  attr codeFirstPos = <0,0>;
+  attr codeSelEnd = <0,0>;
+  attr codeSelStart = <0,0>;
+}
+
+codeview Application::MainPage.changePage
+{
+  attr codeColSelect = false;
+  attr codeFirstPos = <0,0>;
+  attr codeSelEnd = <24,5>;
+  attr codeSelStart = <24,5>;
+}
+
+codeview Application::MainPage.onWelcomePageTimer
+{
+  attr codeColSelect = false;
+  attr codeFirstPos = <0,0>;
+  attr codeSelEnd = <28,0>;
+  attr codeSelStart = <28,0>;
+}
+
+codeview Application::MainPage.onSlide1
+{
+  attr codeColSelect = false;
+  attr codeFirstPos = <0,0>;
+  attr codeSelEnd = <0,0>;
+  attr codeSelStart = <0,0>;
+}
+
+codeview Application::NumKeyboard.onPressTouch
+{
+  attr codeColSelect = false;
+  attr codeFirstPos = <0,7>;
+  attr codeSelEnd = <0,0>;
+  attr codeSelStart = <0,0>;
+}
+
+codeview Application::NumKeyboard.onDragTouch
+{
+  attr codeColSelect = false;
+  attr codeFirstPos = <0,0>;
+  attr codeSelEnd = <0,0>;
+  attr codeSelStart = <0,0>;
+}
+
+codeview Application::NumKeyboard.activateKey
+{
+  attr codeColSelect = false;
+  attr codeFirstPos = <0,10>;
+  attr codeSelEnd = <58,15>;
+  attr codeSelStart = <58,15>;
+}
+
+codeview Application::NumKeyboard.UpdateViewState
+{
+  attr codeColSelect = false;
+  attr codeFirstPos = <0,103>;
+  attr codeSelEnd = <0,0>;
+  attr codeSelStart = <0,0>;
+}
+
+codeview Application::NumKeyboard.onReleaseTouch
+{
+  attr codeColSelect = false;
+  attr codeFirstPos = <0,11>;
+  attr codeSelEnd = <0,0>;
+  attr codeSelStart = <0,0>;
+}
+
+codeview Application::HMI.CycleCounterTouchSlot
+{
+  attr codeColSelect = false;
+  attr codeFirstPos = <0,0>;
+  attr codeSelEnd = <33,2>;
+  attr codeSelStart = <33,2>;
+}
+
+codeview Application::HMI.ClearKeyBoard
+{
+  attr codeColSelect = false;
+  attr codeFirstPos = <0,0>;
+  attr codeSelEnd = <61,0>;
+  attr codeSelStart = <34,0>;
 }
