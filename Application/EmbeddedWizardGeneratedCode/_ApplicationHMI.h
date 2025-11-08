@@ -45,8 +45,10 @@
 #include "_ApplicationFaultOrWarning.h"
 #include "_ApplicationInput.h"
 #include "_ApplicationLed.h"
+#include "_ApplicationNumKeyboard.h"
 #include "_ApplicationReady.h"
 #include "_CoreGroup.h"
+#include "_CoreSimpleTouchHandler.h"
 #include "_CoreTimer.h"
 #include "_CoreWipeTouchHandler.h"
 #include "_ViewsRectangle.h"
@@ -121,6 +123,9 @@ EW_DEFINE_FIELDS( ApplicationHMI, CoreGroup )
   EW_OBJECT  ( CCWLed,          ApplicationLed )
   EW_OBJECT  ( CycleLed,        ApplicationLed )
   EW_OBJECT  ( Timer,           CoreTimer )
+  EW_OBJECT  ( ModifyCycleCounterTouch, CoreSimpleTouchHandler )
+  EW_OBJECT  ( NumKeyboard,     ApplicationNumKeyboard )
+  EW_OBJECT  ( EnterTouch,      CoreSimpleTouchHandler )
   EW_PROPERTY( Outlet_On1,      XRef )
   EW_PROPERTY( Outlet_On2,      XRef )
   EW_PROPERTY( Value,           XInt32 )
@@ -224,6 +229,12 @@ void ApplicationHMI_onResetCycle( ApplicationHMI _this, XObject sender );
 
 /* 'C' function for method : 'Application::HMI.checkMotorStatus()' */
 void ApplicationHMI_checkMotorStatus( ApplicationHMI _this, XObject sender );
+
+/* 'C' function for method : 'Application::HMI.CycleCounterTouchSlot()' */
+void ApplicationHMI_CycleCounterTouchSlot( ApplicationHMI _this, XObject sender );
+
+/* 'C' function for method : 'Application::HMI.ClearKeyBoard()' */
+void ApplicationHMI_ClearKeyBoard( ApplicationHMI _this, XObject sender );
 
 #ifdef __cplusplus
   }

@@ -2155,6 +2155,15 @@ void CoreGroup_updateComponent( CoreGroup _this, XObject sender )
   }
 }
 
+/* 'C' function for method : 'Core::Group.OnSetDeriveEnabledState()' */
+void CoreGroup_OnSetDeriveEnabledState( CoreGroup _this, XBool value )
+{
+  if ( value )
+    CoreView__ChangeViewState( _this, CoreViewStateDeriveEnabledState, 0 );
+  else
+    CoreView__ChangeViewState( _this, 0, CoreViewStateDeriveEnabledState );
+}
+
 /* 'C' function for method : 'Core::Group.OnSetFocus()' */
 void CoreGroup_OnSetFocus( CoreGroup _this, CoreView value )
 {
@@ -3223,6 +3232,48 @@ void CoreGroup_InvalidateArea( CoreGroup _this, XRect aArea )
 void CoreGroup__InvalidateArea( void* _this, XRect aArea )
 {
   ((CoreGroup)_this)->_.VMT->InvalidateArea((CoreGroup)_this, aArea );
+}
+
+/* The method FindViewAtPosition() searches at the given position aPosition within 
+   the component for a view.
+   The search operation starts with the view lying behind the view specified in 
+   the parameter aView - aView itself will be excluded from the search operation. 
+   This allows you to enumerate all affected views, view by view from the front 
+   to the background. If the parameter aView == null, the search operations will 
+   start with the top most view.
+   Beside the position, the additional parameter aFilter can be used to limit the 
+   search operation to special views only, e.g. to visible and touchable views.
+   If there is no other view at the given position lying behind the start view aView, 
+   the method returns 'null'. */
+CoreView CoreGroup_FindViewAtPosition( CoreGroup _this, CoreView aView, XPoint aPosition, 
+  XSet aFilter )
+{
+  CoreView view;
+  XSet notFilter;
+
+  if (( aView != 0 ) && ( aView->Owner != _this ))
+    return 0;
+
+  view = _this->last;
+  notFilter = CoreViewStateDialog;
+
+  if ((( aFilter & CoreViewStateDialog ) == CoreViewStateDialog ))
+    notFilter = 0;
+
+  if ( aView != 0 )
+    view = aView->prev;
+
+  while ( view != 0 )
+  {
+    if ((( !aFilter || EwSetContains( view->viewState, aFilter )) && ( !notFilter 
+        || !EwSetContains( view->viewState, notFilter ))) && EwIsPointInRect( CoreView__GetExtent( 
+        view ), aPosition ))
+      return view;
+
+    view = view->prev;
+  }
+
+  return 0;
 }
 
 /* The method FindSiblingView() searches for a sibling view of the view specified 
@@ -5956,97 +6007,101 @@ XObject CoreSimpleTouchHandler_HandleEvent( CoreSimpleTouchHandler _this, CoreEv
   if ( press )
     _this->multiFingerDelay = (XInt16)( event1->AutoDeflected? 0 : 100 );
 
-  if ( press )
+  if ( !_this->EnableMultiTouch )
   {
-    XInt32 noOfFingers = 0;
-    XUInt32 fingers;
-    _this->state = _this->state | ( 1 << event1->Finger );
-
-    for ( fingers = _this->state & 4095; fingers > 0; fingers = fingers >> 1 )
-      if (( fingers & 1 ) != 0 )
-        noOfFingers = noOfFingers + 1;
-
-    if ( noOfFingers == 1 )
-      _this->state = ( _this->state | 16777216 ) | ( 4096 << event1->Finger );
-  }
-
-  if ( release && ( _this->state < 16777216 ))
-  {
-    CoreRoot root = CoreView__GetRoot( _this );
-    CoreCursorHit hit = 0;
-
-    if ( root != 0 )
+    if ( press )
     {
-      CoreView startView = (( _this->Super2.prev != 0 )? _this->Super2.prev : ((CoreView)_this->Super2.Owner ));
-      hit = CoreView__CursorHitTest( root, EwMoveRectPos( _Const0011, event1->GlobalCurrentPos ), 
-      event1->Finger, event1->StrikeCount, 0, startView, 0 );
+      XInt32 noOfFingers = 0;
+      XUInt32 fingers;
+      _this->state = _this->state | ( 1 << event1->Finger );
+
+      for ( fingers = _this->state & 4095; fingers > 0; fingers = fingers >> 1 )
+        if (( fingers & 1 ) != 0 )
+          noOfFingers = noOfFingers + 1;
+
+      if ( noOfFingers == 1 )
+        _this->state = ( _this->state | 16777216 ) | ( 4096 << event1->Finger );
     }
 
-    if ( hit != 0 )
+    if ( release && ( _this->state < 16777216 ))
     {
-      XPoint cp = CoreGroup_LocalPosition( hit->View->Owner, event1->GlobalCurrentPos );
-      XInt32 i;
+      CoreRoot root = CoreView__GetRoot( _this );
+      CoreCursorHit hit = 0;
 
-      for ( i = 0; i < 10; i++ )
-        if ( !!( _this->state & ( 1 << i )))
-          CoreView__HandleEvent( hit->View, ((CoreEvent)CoreCursorEvent_InitializeDown( 
-          EwNewObject( CoreCursorEvent, 0 ), i, cp, event1->StrikeCount, _Const0000, 
-          1, event1->GlobalCurrentPos )));
+      if ( root != 0 )
+      {
+        CoreView startView = (( _this->Super2.prev != 0 )? _this->Super2.prev : 
+          ((CoreView)_this->Super2.Owner ));
+        hit = CoreView__CursorHitTest( root, EwMoveRectPos( _Const0011, event1->GlobalCurrentPos ), 
+        event1->Finger, event1->StrikeCount, 0, startView, 0 );
+      }
 
-      for ( i = 0; i < 10; i++ )
-        if ( !!( _this->state & ( 1 << i )))
-          CoreView__HandleEvent( hit->View, ((CoreEvent)CoreCursorEvent_InitializeUp( 
-          EwNewObject( CoreCursorEvent, 0 ), i, cp, cp, 0, event1->StrikeCount, 
-          _Const0000, 0, event1->GlobalCurrentPos, event1->GlobalCurrentPos )));
+      if ( hit != 0 )
+      {
+        XPoint cp = CoreGroup_LocalPosition( hit->View->Owner, event1->GlobalCurrentPos );
+        XInt32 i;
+
+        for ( i = 0; i < 10; i++ )
+          if ( !!( _this->state & ( 1 << i )))
+            CoreView__HandleEvent( hit->View, ((CoreEvent)CoreCursorEvent_InitializeDown( 
+            EwNewObject( CoreCursorEvent, 0 ), i, cp, event1->StrikeCount, _Const0000, 
+            1, event1->GlobalCurrentPos )));
+
+        for ( i = 0; i < 10; i++ )
+          if ( !!( _this->state & ( 1 << i )))
+            CoreView__HandleEvent( hit->View, ((CoreEvent)CoreCursorEvent_InitializeUp( 
+            EwNewObject( CoreCursorEvent, 0 ), i, cp, cp, 0, event1->StrikeCount, 
+            _Const0000, 0, event1->GlobalCurrentPos, event1->GlobalCurrentPos )));
+      }
     }
+
+    if ( release )
+      _this->state = ( _this->state & ~( 1 << event1->Finger )) | 33554432;
+
+    if ( timeout && ( _this->state < 16777216 ))
+      _this->state = _this->state | 67108864;
+
+    if ( release && event1->AutoDeflected )
+      _this->state = _this->state | 67108864;
+
+    if ( release && (( _this->state & 16777215 ) == 0 ))
+      _this->state = 0;
+
+    if ( hold && ( _this->state >= 67108864 ))
+    {
+      CoreRoot root = CoreView__GetRoot( _this );
+
+      if (( root != 0 ) && !( CoreRoot_RetargetCursorWithReason( root, 0, ((CoreView)_this ), 
+          ((CoreView)_this ), 0 ) != 0 ))
+        CoreRoot_RetargetCursorWithReason( root, 0, ((CoreView)_this ), 0, 0 );
+    }
+
+    if (( hold && (( _this->state & 16777216 ) != 0 )) && (( _this->state & 33554432 ) 
+        != 0 ))
+    {
+      hold = 0;
+      release = 1;
+    }
+
+    if (( event1 != 0 ) && (( _this->state & ( 4096 << event1->Finger )) == 0 ))
+      return ((XObject)_this );
+
+    if (( event2 != 0 ) && (( _this->state & ( 4096 << event2->Finger )) == 0 ))
+      return ((XObject)_this );
+
+    if ( release && (( _this->state & 16777216 ) == 0 ))
+      return ((XObject)_this );
+
+    if ((( press || drag ) || hold ) && (( _this->state < 16777216 ) || ( _this->state 
+        >= 33554432 )))
+      return ((XObject)_this );
+
+    if ( release )
+      _this->state = _this->state & 4261416959U;
+
+    if ( release && (( _this->state & 16777215 ) == 0 ))
+      _this->state = 0;
   }
-
-  if ( release )
-    _this->state = ( _this->state & ~( 1 << event1->Finger )) | 33554432;
-
-  if ( timeout && ( _this->state < 16777216 ))
-    _this->state = _this->state | 67108864;
-
-  if ( release && event1->AutoDeflected )
-    _this->state = _this->state | 67108864;
-
-  if ( release && (( _this->state & 16777215 ) == 0 ))
-    _this->state = 0;
-
-  if ( hold && ( _this->state >= 67108864 ))
-  {
-    CoreRoot root = CoreView__GetRoot( _this );
-
-    if (( root != 0 ) && !( CoreRoot_RetargetCursorWithReason( root, 0, ((CoreView)_this ), 
-        ((CoreView)_this ), 0 ) != 0 ))
-      CoreRoot_RetargetCursorWithReason( root, 0, ((CoreView)_this ), 0, 0 );
-  }
-
-  if (( hold && (( _this->state & 16777216 ) != 0 )) && (( _this->state & 33554432 ) 
-      != 0 ))
-  {
-    hold = 0;
-    release = 1;
-  }
-
-  if (( event1 != 0 ) && (( _this->state & ( 4096 << event1->Finger )) == 0 ))
-    return ((XObject)_this );
-
-  if (( event2 != 0 ) && (( _this->state & ( 4096 << event2->Finger )) == 0 ))
-    return ((XObject)_this );
-
-  if ( release && (( _this->state & 16777216 ) == 0 ))
-    return ((XObject)_this );
-
-  if ((( press || drag ) || hold ) && (( _this->state < 16777216 ) || ( _this->state 
-      >= 33554432 )))
-    return ((XObject)_this );
-
-  if ( release )
-    _this->state = _this->state & 4261416959U;
-
-  if ( release && (( _this->state & 16777215 ) == 0 ))
-    _this->state = 0;
 
   if ( event1 != 0 )
   {
@@ -6080,6 +6135,9 @@ XObject CoreSimpleTouchHandler_HandleEvent( CoreSimpleTouchHandler _this, CoreEv
   }
 
   down = _this->Down;
+
+  if ( event2 != 0 )
+    EwSignal( _this->OnDrag, ((XObject)_this ));
 
   if ((( event1 != 0 ) && _this->Down ) && ( _this->HoldPeriod == 0 ))
     EwSignal( _this->OnPress, ((XObject)_this ));
@@ -6151,11 +6209,11 @@ CoreCursorHit CoreSimpleTouchHandler_CursorHitTest( CoreSimpleTouchHandler _this
   if (( aStrikeCount < 1 ) || ( aStrikeCount > _this->MaxStrikeCount ))
     return 0;
 
-  if ( _this->state >= 33554432 )
+  if ( !_this->EnableMultiTouch && ( _this->state >= 33554432 ))
     return 0;
 
-  if (( _this->state >= 16777216 ) && (( _this->state & ( 4096 << aFinger )) == 
-      0 ))
+  if (( !_this->EnableMultiTouch && ( _this->state >= 16777216 )) && (( _this->state 
+      & ( 4096 << aFinger )) == 0 ))
     return 0;
 
   if ( CoreQuadView_HasRectShape((CoreQuadView)_this ))
@@ -6245,8 +6303,8 @@ EW_DEFINE_CLASS_VARIANTS( CoreSimpleTouchHandler )
 EW_END_OF_CLASS_VARIANTS( CoreSimpleTouchHandler )
 
 /* Virtual Method Table (VMT) for the class : 'Core::SimpleTouchHandler' */
-EW_DEFINE_CLASS( CoreSimpleTouchHandler, CoreQuadView, OnLeave, OnLeave, OnLeave, 
-                 state, state, state, "Core::SimpleTouchHandler" )
+EW_DEFINE_CLASS( CoreSimpleTouchHandler, CoreQuadView, OnDrag, OnDrag, OnDrag, state, 
+                 state, state, "Core::SimpleTouchHandler" )
   CoreQuadView_initLayoutContext,
   CoreView_GetRoot,
   CoreSimpleTouchHandler_Draw,

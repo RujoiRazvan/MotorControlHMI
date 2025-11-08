@@ -24,8 +24,8 @@
 *
 *******************************************************************************/
 
-#ifndef _ApplicationMainPage_H
-#define _ApplicationMainPage_H
+#ifndef _TemplatesNumKeyboard_H
+#define _TemplatesNumKeyboard_H
 
 #ifdef __cplusplus
   extern "C"
@@ -42,30 +42,12 @@
   #error Wrong version of Embedded Wizard Graphics Engine.
 #endif
 
-#include "_ApplicationHMI.h"
-#include "_ApplicationMeasuredValues.h"
-#include "_ApplicationSystemInfo.h"
-#include "_ApplicationWelcomePage.h"
-#include "_CoreRoot.h"
-#include "_CoreSlideTouchHandler.h"
-#include "_CoreTimer.h"
-
-/* Forward declaration of the class Application::MainPage */
-#ifndef _ApplicationMainPage_
-  EW_DECLARE_CLASS( ApplicationMainPage )
-#define _ApplicationMainPage_
-#endif
+#include "_CoreGroup.h"
 
 /* Forward declaration of the class Core::DialogContext */
 #ifndef _CoreDialogContext_
   EW_DECLARE_CLASS( CoreDialogContext )
 #define _CoreDialogContext_
-#endif
-
-/* Forward declaration of the class Core::Group */
-#ifndef _CoreGroup_
-  EW_DECLARE_CLASS( CoreGroup )
-#define _CoreGroup_
 #endif
 
 /* Forward declaration of the class Core::KeyPressHandler */
@@ -98,31 +80,23 @@
 #define _EffectsFader_
 #endif
 
-/* Forward declaration of the class Graphics::Canvas */
-#ifndef _GraphicsCanvas_
-  EW_DECLARE_CLASS( GraphicsCanvas )
-#define _GraphicsCanvas_
+/* Forward declaration of the class Templates::NumKeyboard */
+#ifndef _TemplatesNumKeyboard_
+  EW_DECLARE_CLASS( TemplatesNumKeyboard )
+#define _TemplatesNumKeyboard_
 #endif
 
 
-/* This is the root component of the entire GUI application. */
-EW_DEFINE_FIELDS( ApplicationMainPage, CoreRoot )
-  EW_OBJECT  ( HMI,             ApplicationHMI )
-  EW_OBJECT  ( WelcomePage,     ApplicationWelcomePage )
-  EW_OBJECT  ( SystemInfo,      ApplicationSystemInfo )
-  EW_OBJECT  ( SlideTouchHandler, CoreSlideTouchHandler )
-  EW_OBJECT  ( SlideTouchHandler1, CoreSlideTouchHandler )
-  EW_OBJECT  ( WelcomePageTimer, CoreTimer )
-  EW_OBJECT  ( MeasuredValues,  ApplicationMeasuredValues )
-  EW_VARIABLE( readyToSlide,    XBool )
-EW_END_OF_FIELDS( ApplicationMainPage )
+/* Deklaration of class : 'Templates::NumKeyboard' */
+EW_DEFINE_FIELDS( TemplatesNumKeyboard, CoreGroup )
+EW_END_OF_FIELDS( TemplatesNumKeyboard )
 
-/* Virtual Method Table (VMT) for the class : 'Application::MainPage' */
-EW_DEFINE_METHODS( ApplicationMainPage, CoreRoot )
+/* Virtual Method Table (VMT) for the class : 'Templates::NumKeyboard' */
+EW_DEFINE_METHODS( TemplatesNumKeyboard, CoreGroup )
   EW_METHOD( initLayoutContext, void )( CoreRectView _this, XRect aBounds, CoreOutline 
     aOutline )
-  EW_METHOD( GetRoot,           CoreRoot )( CoreRoot _this )
-  EW_METHOD( Draw,              void )( CoreRoot _this, GraphicsCanvas aCanvas, 
+  EW_METHOD( GetRoot,           CoreRoot )( CoreView _this )
+  EW_METHOD( Draw,              void )( CoreGroup _this, GraphicsCanvas aCanvas, 
     XRect aClip, XPoint aOffset, XInt32 aOpacity, XBool aBlend )
   EW_METHOD( GetClipping,       XRect )( CoreGroup _this )
   EW_METHOD( HandleEvent,       XObject )( CoreView _this, CoreEvent aEvent )
@@ -135,44 +109,21 @@ EW_DEFINE_METHODS( ApplicationMainPage, CoreRoot )
   EW_METHOD( MoveView,          void )( CoreRectView _this, XPoint aOffset, XBool 
     aFastMove )
   EW_METHOD( GetExtent,         XRect )( CoreRectView _this )
-  EW_METHOD( ChangeViewState,   void )( CoreRoot _this, XSet aSetState, XSet aClearState )
+  EW_METHOD( ChangeViewState,   void )( CoreGroup _this, XSet aSetState, XSet aClearState )
   EW_METHOD( OnSetBounds,       void )( CoreGroup _this, XRect value )
-  EW_METHOD( OnSetFocus,        void )( CoreRoot _this, CoreView value )
-  EW_METHOD( OnSetOpacity,      void )( CoreRoot _this, XInt32 value )
-  EW_METHOD( DispatchEvent,     XObject )( CoreRoot _this, CoreEvent aEvent )
-  EW_METHOD( BroadcastEvent,    XObject )( CoreRoot _this, CoreEvent aEvent, XSet 
+  EW_METHOD( OnSetFocus,        void )( CoreGroup _this, CoreView value )
+  EW_METHOD( OnSetOpacity,      void )( CoreGroup _this, XInt32 value )
+  EW_METHOD( DispatchEvent,     XObject )( CoreGroup _this, CoreEvent aEvent )
+  EW_METHOD( BroadcastEvent,    XObject )( CoreGroup _this, CoreEvent aEvent, XSet 
     aFilter )
   EW_METHOD( UpdateViewState,   void )( CoreGroup _this, XSet aState )
-  EW_METHOD( InvalidateArea,    void )( CoreRoot _this, XRect aArea )
-EW_END_OF_METHODS( ApplicationMainPage )
-
-/* 'C' function for method : 'Application::MainPage.onWelcomePageTimer()' */
-void ApplicationMainPage_onWelcomePageTimer( ApplicationMainPage _this, XObject 
-  sender );
-
-/* 'C' function for method : 'Application::MainPage.onSlide()' */
-void ApplicationMainPage_onSlide( ApplicationMainPage _this, XObject sender );
-
-/* 'C' function for method : 'Application::MainPage.onSlide1()' */
-void ApplicationMainPage_onSlide1( ApplicationMainPage _this, XObject sender );
-
-/* 'C' function for method : 'Application::MainPage.changePage()' */
-void ApplicationMainPage_changePage( ApplicationMainPage _this, CoreSlideTouchHandler 
-  touchHandler );
-
-/* 'C' function for method : 'Application::MainPage.onStart()' */
-void ApplicationMainPage_onStart( ApplicationMainPage _this, XObject sender );
-
-/* 'C' function for method : 'Application::MainPage.onEnd()' */
-void ApplicationMainPage_onEnd( ApplicationMainPage _this, XObject sender );
-
-/* 'C' function for method : 'Application::MainPage.touch()' */
-void ApplicationMainPage_touch( ApplicationMainPage _this, XBool enabled );
+  EW_METHOD( InvalidateArea,    void )( CoreGroup _this, XRect aArea )
+EW_END_OF_METHODS( TemplatesNumKeyboard )
 
 #ifdef __cplusplus
   }
 #endif
 
-#endif /* _ApplicationMainPage_H */
+#endif /* _TemplatesNumKeyboard_H */
 
 /* Embedded Wizard */

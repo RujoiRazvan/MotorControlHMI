@@ -561,4 +561,10 @@ EW_DEFINE_CLASS( ResourcesFontSet, ResourcesFont, fonts, fonts, _.VMT, _.VMT, _.
                  _.VMT, "Resources::FontSet" )
 EW_END_OF_CLASS( ResourcesFontSet )
 
+/* Include a file containing the bitmap resource : 'Resources::KeyIconsMedium' */
+#include "_ResourcesKeyIconsMedium.h"
+
+/* Table with links to derived variants of the bitmap resource : 'Resources::KeyIconsMedium' */
+EW_RES_WITHOUT_VARIANTS( ResourcesKeyIconsMedium )
+
 /* Embedded Wizard */

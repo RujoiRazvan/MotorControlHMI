@@ -127,6 +127,7 @@
    all handler appear as semitransparent quads. This allows you to interact with 
    the handlers during the design time. */
 EW_DEFINE_FIELDS( CoreSimpleTouchHandler, CoreQuadView )
+  EW_PROPERTY( OnDrag,          XSlot )
   EW_PROPERTY( OnLeave,         XSlot )
   EW_PROPERTY( OnEnter,         XSlot )
   EW_PROPERTY( OnRelease,       XSlot )
@@ -146,6 +147,7 @@ EW_DEFINE_FIELDS( CoreSimpleTouchHandler, CoreQuadView )
   EW_VARIABLE( AutoDeflected,   XBool )
   EW_VARIABLE( Inside,          XBool )
   EW_VARIABLE( Down,            XBool )
+  EW_PROPERTY( EnableMultiTouch, XBool )
 EW_END_OF_FIELDS( CoreSimpleTouchHandler )
 
 /* Virtual Method Table (VMT) for the class : 'Core::SimpleTouchHandler' */
